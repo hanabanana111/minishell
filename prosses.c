@@ -1,44 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   prosses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/06/26 17:36:22 by rkawahar         ###   ########.fr       */
+/*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
+/*   Updated: 2024/06/26 18:27:32 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include <signal.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <string.h>
-
-# define ERROR -1
-
-// command or arg
-# define ARG 1
-// pipe
-# define PIPE 2
-// > or >>
-# define RIGHT 3
-// < or <<
-# define LEFT 4
-//infile
-# define IN 5
-//outfile
-# define OUT 6
-
-typedef struct s_info
+void	ft_prosses(t_info *lst, char **env)
 {
-	char *str;
-	int	type;
-	t_info *next;
-} t_info;
+	int	infile_fd;
+	int	outfile_fd;
 
-#endif
+	infile_fd = determine_infile(lst);
+	outfile_fd = determine_outfile(lst);
+}
