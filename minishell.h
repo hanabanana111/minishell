@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/06/26 20:04:21 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:09:52 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,20 @@
 
 # define ERROR -1
 
-// command or arg
+// command
 # define ARG 1
-// pipe
+// option
 # define PIPE 2
 // > or >>
 # define RIGHT 3
-// < or << or <<<
+// < or <<
 # define LEFT 4
-//infile
+//infile(here_doc -> str)
 # define IN 5
 //outfile
 # define OUT 6
-
+//pipe
+# define 
 typedef struct s_info
 {
 	char	*str;
