@@ -22,18 +22,20 @@
 
 # define ERROR -1
 
-// command or arg
-# define ARG 1
 // pipe
-# define PIPE 2
+# define PIPE 0
 // > or >>
-# define RIGHT 3
+# define RIGHT 1
 // < or << or <<<
-# define LEFT 4
+# define LEFT 2
 //infile
-# define IN 5
+# define IN 3
 //outfile
-# define OUT 6
+# define OUT 4
+//cmd
+# define CMD 5
+// option or arg
+# define OPT 6
 
 typedef struct s_info
 {
