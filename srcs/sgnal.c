@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sgnal.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/06/28 05:15:33 by hakobori         ###   ########.fr       */
+/*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
+/*   Updated: 2024/06/28 05:14:45 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+void	signal_handler_sigint(int signum)
 {
-	treat_signal();
-	treat_read();
-	return (0);
+	(void)signum;
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	write(STDOUT_FILENO, "\n", 1);
+	rl_redisplay();
+}
+
+void	treat_signal(void)
+{
+	if (signal(SIGINT, signal_handler_sigint) == SIG_ERR)
+	{
+		perror(strerror(errno));
+		exit(1);
+	}
+	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+	{
+		perror(strerror(errno));
+		exit(1);
+	}
 }
