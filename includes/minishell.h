@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/06/27 22:35:46 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:37:00 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # include <unistd.h>
 # include <string.h>
 # include <limits.h>
+# include <signal.h>
+# include <termios.h>
+# include <errno.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+
+volatile sig_atomic_t	g_sig = 0;
 
 # define ERROR -1
 
@@ -43,7 +50,7 @@ typedef struct s_info
 {
 	char	*str;
 	int		type;
-	t_info	*next;
+	struct s_info	*next;
 }	t_info;
 
 size_t	ft_strlen(const char *s);
