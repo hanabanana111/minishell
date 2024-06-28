@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/06/28 05:14:37 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/06/28 22:44:41 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 # include "libft/libft.h"
 # include <errno.h>
 # include <limits.h>
+# include <stdio.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <termios.h>
 # include <unistd.h>
 
-volatile sig_atomic_t	g_sig = 0;
+//volatile sig_atomic_t	g_sig = 0;
 
 # define ERROR -1
 
