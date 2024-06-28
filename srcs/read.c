@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/06/28 19:02:57 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/06/28 22:41:53 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	treat_read(void)
 	while (1)
 	{
 		line = readline("> ");
-		if (!line)
+		if (!line || ft_strncmp(line, "exit\n", 5))
 		{
 			free(line);
 			break ;
