@@ -3,39 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   infile.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:26:49 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/06/27 21:11:34 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/06/29 16:14:36 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	infile_redirect2(char *str)
+int	infile_redirect1(infile)
 {
-	int	file_pipe[2];
+	int	fd;
 
-	if (pipe(file_pipe) < 0)
-		
+	fd = open(infile, O_RDONLY);
+	if (fd < 0)
+		error_exit(infile);
+	return (fd);
 }
 
-int	determine_infile(t_info *lst)
+int	infile_redirect2(char *str)
 {
-	char	*redirect;
-	char	*infile;
+	int		pipe_fd[2];
+	size_t	byte;
 
-	while (lst)
-	{
-		if (lst -> type == 4)
-		{
-			redirect = lst -> str;
-			infile = lst -> next -> str;
-		}
-		lst = lst -> next;
-	}
-	if (ft_strncmp(redirect, "<<\0", 3) == 0)
-		return (infile_redirect2(infile));
-	else
-		return (infile_redirect1(infile));
+	if (pipe(pipe_fd) < 0)
+		error_exit("infile_redirect");
+	byte = write(pipe_fd[1], str, ft_strlen(str) + 1);
+	if (byte < 0)
+		error_exit("infile_redirect");
+	close(pipe_fd[1]);
+	return (pipe_fd[0]);
+}
+
+int	determine_infile(char *cmd, char *next, int infile_fd)
+{
+	if (ft_strncmp(cmd, "<<\0", 3) == 0)
+		return (infile_redirect2(next));
+	else if (ft_strncmp(cmd, "<\0", 2) == 0)
+		return (infile_redirect1(next));
 }
