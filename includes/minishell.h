@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/02 18:51:36 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:14:40 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,14 @@
 # include <errno.h>
 # include <limits.h>
 # include <stdio.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 # include <signal.h>
 # include <stdlib.h>
 # include <string.h>
 # include <termios.h>
-# include <errno.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <fcntl.h>n
+# include <fcntl.h>
 # include <unistd.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 
 //volatile sig_atomic_t	g_sig = 0;
 
