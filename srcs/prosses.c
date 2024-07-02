@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   prosses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/01 16:40:50 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/02 13:06:27 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_miniprosses(t_info *lst, char **env)
+void	ft_miniprocess(t_info *lst, char **env)
 {
 	int		infile_fd;
 	int		outfile_fd;
 	t_cmd	*info;
 
-	info = create_nord();
+	info = create_lst(lst);
 	infile_fd = 0;
 	outfile_fd = 1;
 	while (lst -> type != PIPE && lst)

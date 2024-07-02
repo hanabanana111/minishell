@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/02 12:41:31 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/02 18:51:36 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <fcntl.h>
+# include <fcntl.h>n
 # include <unistd.h>
 
 //volatile sig_atomic_t	g_sig = 0;
@@ -70,11 +70,12 @@ typedef struct s_info
 
 size_t	ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	ft_miniprosses(t_info *lst, char **env);
+void	ft_miniprocess(t_info *lst, char **env);
 int		determine_infile(char *cmd, char *next, int infile_fd);
 void	error_exit(char *str);
-t_cmd   *create_nord(void);
-char    **set_args(char *str, char **args);
-int	count_pipe(t_info *lst);
+t_cmd	*create_nord(void);
+char	**set_args(char *str, char **args);
+int		count_pipe(t_info *lst);
+void	ft_free(char **str);
 
 #endif
