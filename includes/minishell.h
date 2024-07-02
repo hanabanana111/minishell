@@ -6,27 +6,31 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/02 10:31:00 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/02 12:41:31 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "libft/libft.h"
+# include <errno.h>
+# include <limits.h>
+# include <stdio.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 # include <signal.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
 # include <string.h>
-# include <limits.h>
-# include <signal.h>
 # include <termios.h>
 # include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
+# include <unistd.h>
 
-volatile sig_atomic_t	g_sig = 0;
+//volatile sig_atomic_t	g_sig = 0;
 
 # define ERROR -1
 
@@ -36,11 +40,11 @@ volatile sig_atomic_t	g_sig = 0;
 # define RIGHT 1
 // < or << or <<<
 # define LEFT 2
-//infile
+// infile
 # define IN 3
-//outfile
+// outfile
 # define OUT 4
-//cmd
+// cmd
 # define CMD 5
 // option or arg
 # define OPT 6
@@ -59,10 +63,10 @@ typedef struct s_cmd
 
 typedef struct s_info
 {
-	char	*str;
-	int		type;
-	struct s_info	*next;
-}	t_info;
+	char				*str;
+	int					type;
+	struct s_info		*next;
+}						t_info;
 
 size_t	ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
