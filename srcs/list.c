@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:13:50 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/01 16:41:13 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/02 10:35:08 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,21 @@ char    **set_args(char *str, char **args)
     ans[i] = ft_strdup(str);
     ans[i + 1] = NULL;
     return (ans);
+}
+
+t_cmd   *create_lst(t_info *lst)
+{
+    t_cmd   *ans;
+    t_cmd   *tmp;
+    int     i;
+
+    i = 0;
+    ans = create_nord();
+    i = count_pipe(lst);
+    while (i > 0)
+    {
+        tmp = create_nord();
+        connect_lst(ans, tmp);
+        i--;
+    }
 }

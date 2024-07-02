@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/01 16:26:49 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/02 10:31:00 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ int		determine_infile(char *cmd, char *next, int infile_fd);
 void	error_exit(char *str);
 t_cmd   *create_nord(void);
 char    **set_args(char *str, char **args);
+int	count_pipe(t_info *lst);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:31:41 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/06/26 20:01:44 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/02 10:30:16 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,18 @@ void	error_exit(char *str)
 {
 	perror(str);
 	exit(1);
+}
+
+int	count_pipe(t_info *lst)
+{
+	int	ans;
+
+	ans = 0;
+	while (lst)
+	{
+		if (lst -> type == PIPE)
+			ans++;
+		lst = lst -> next;
+	}
+	return (ans);
 }
