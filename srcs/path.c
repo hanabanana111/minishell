@@ -6,13 +6,13 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:41:23 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/01 16:50:57 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/03 13:31:55 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int check_sl(char *str)
+static int	check_sl(char *str)
 {
     int i;
 
@@ -25,10 +25,29 @@ int check_sl(char *str)
     return (0);
 }
 
-char    *path_finder(char *cmd, char **env)
+char	*absolute_path(t_cmd *lst)
 {
-    char ans;
+	if (access(lst -> cmd, F_OK) < 0)
+		return ("No such file or directory\0");
+	else
+		return (ft_strdup(lst -> cmd));
+}
 
-    if (check_sl(cmd))
-        file_finder(cmd);
+void	path_finder(t_cmd *lst, char **env)
+{
+	while (lst)
+	{
+		if (check_sl(lst -> cmd))
+		{
+			if (lst -> cmd[0] == '.')
+				lst -> path = relative_path(lst);
+			else if (lst -> cmd[0] = '/')
+				lst -> path = absolute_path(lst);
+			else
+				lst -> path = "No such file or directory\0";
+		}
+		else
+			lst -> path = search_env(lst -> cmd, env);
+		lst = lst -> next;
+	}
 }

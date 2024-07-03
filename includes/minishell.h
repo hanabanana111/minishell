@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/03 10:04:03 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/03 13:26:02 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ t_cmd	*create_nord(void);
 char	**set_args(char *str, char **args);
 int		count_pipe(t_info *lst);
 void	ft_free(char **str);
+char	*relative_path(t_cmd *lst);
 
 #endif
