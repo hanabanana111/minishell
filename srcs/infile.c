@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:26:49 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/03 14:57:54 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/03 15:53:00 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	infile_redirect1(infile)
 	int	fd;
 
 	fd = open(infile, O_RDONLY);
-	if (fd < 0)
-		error_exit(infile);
 	return (fd);
 }
 

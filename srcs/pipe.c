@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:46:28 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/03 15:12:27 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/03 16:51:04 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_cmd	*create_pipe(t_cmd *cmd_lst, t_info *lst)
 	while (lst)
 	{
 		if (lst -> type == IN)
-			cmd_lst -> pipe_0 = determine_infile(lst -> str, lst -> next -> str);
+			cmd_lst -> next -> pipe_0 = determine_infile(lst -> str, lst -> next -> str);
 		else if (lst -> type == OUT)
 			cmd_lst -> pipe_1 = determine_outfile(lst -> str, lst -> next -> str);
 		else if (lst -> type == PIPE)
