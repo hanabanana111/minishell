@@ -6,28 +6,67 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:54:55 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/03 15:01:27 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:47:33 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	check_quotes(const char **str, int *is_second_quote)
+{
+	int		i;
+	char	quote_char;
+
+	i = 0;
+	if (ft_strchr("\'\"", **str))
+	{
+		quote_char = **str;
+		i++;
+		(*str)++;
+		while (**str && **str != quote_char)
+		{
+			(*str)++;
+			i++;
+		}
+		if (**str == quote_char)
+		{
+			*is_second_quote = 1;
+			return (TRUE);
+		}
+		else
+			return (FALSE);
+	}
+	*is_second_quote = 1;
+	return (TRUE);
+}
+
 static int	count_words(char const *s, char *sep)
 {
-	int		count;
-	size_t	i;
-	size_t	start;
+	int			count;
+	size_t		i;
+	const char	*start;
+	const char	*str;
+	int			is_second_quote;
 
 	i = 0;
 	count = 0;
-	while (s[i])
+	str = s;
+	while (*str)
 	{
-		while (s[i] && ft_strchr(sep,s[i]))
-			i++;
-		start = i;
-		while (s[i] && !ft_strchr(sep,s[i]))
-			i++;
-		if (i > start)
+		is_second_quote = 0;
+		while (*str && ft_strchr(sep, *str))
+			str++;
+		start = str;
+		while (*str && !ft_strchr(sep, *str) && check_quotes(&str,
+				&is_second_quote))
+		{
+			// printf("*str = %c\n",*str);
+			str++;
+		}
+		// printf("*str = %c\n",*str);
+		if (!is_second_quote)
+			return (-1);
+		if (str > start)
 			count++;
 	}
 	return (count);
@@ -65,19 +104,26 @@ char	**token_split(char const *s, char *sep)
 	char		**result;
 	char		**head;
 	const char	*start;
+	int			words;
+	int			is_second_quote;
 
 	if (!s)
 		return (NULL);
-	result = (char **)ft_calloc(count_words(s, sep) + 1, sizeof(char *));
+	words = count_words(s, sep);
+	printf("words = %d\n", words);
+	if (words < 0)
+		return (NULL);
+	result = (char **)ft_calloc(words + 1, sizeof(char *));
 	if (!result)
 		return (NULL);
 	head = result;
 	while (*s)
 	{
-		while (*s && ft_strchr(sep,*s))
+		is_second_quote = 0;
+		while (*s && ft_strchr(sep, *s))
 			s++;
 		start = s;
-		while (*s && !ft_strchr(sep,*s))
+		while (*s && !ft_strchr(sep, *s) && check_quotes(&s, &is_second_quote))
 			s++;
 		if (s > start)
 		{
