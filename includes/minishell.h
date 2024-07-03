@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/03 13:26:02 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/03 14:44:13 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,8 @@ char	**set_args(char *str, char **args);
 int		count_pipe(t_info *lst);
 void	ft_free(char **str);
 char	*relative_path(t_cmd *lst);
+t_cmd	*create_lst(t_info *lst);
+t_cmd	*path_finder(t_cmd *lst, char **env);
+char	*search_env(char *cmd, char **env);
 
 #endif

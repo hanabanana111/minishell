@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:41:23 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/03 13:31:55 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/03 14:43:05 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ char	*absolute_path(t_cmd *lst)
 		return (ft_strdup(lst -> cmd));
 }
 
-void	path_finder(t_cmd *lst, char **env)
+t_cmd	*path_finder(t_cmd *lst, char **env)
 {
+	t_cmd	*ans;
+
+	ans = lst;
 	while (lst)
 	{
 		if (check_sl(lst -> cmd))
@@ -50,4 +53,5 @@ void	path_finder(t_cmd *lst, char **env)
 			lst -> path = search_env(lst -> cmd, env);
 		lst = lst -> next;
 	}
+	return (ans);
 }
