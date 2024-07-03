@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:13:50 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/03 14:41:17 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/03 14:49:40 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_cmd	*create_nord(void)
 	ans -> path = NULL;
 	ans -> arg = (char **)malloc(sizeof(char *));
 	ans -> arg[0] = NULL;
-	ans -> pipe_0 = NULL;
-	ans -> pipe_1 = NULL;
+	ans -> pipe_0 = 0;
+	ans -> pipe_1 = 1;
 	ans -> next = NULL;
 	return (ans);
 }

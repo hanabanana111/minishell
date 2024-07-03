@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   outfile.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:10:54 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/02 13:01:08 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:00:10 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	outfile_redirect2(char *outfile)
 	return (fd);
 }
 
-int	determine_outfile(char *cmd, char *next, int outfile_fd)
+int	determine_outfile(char *cmd, char *next)
 {
 	if (ft_strncmp(cmd, ">>\0", 3) == 0)
 		return (outfile_redirect2(next));

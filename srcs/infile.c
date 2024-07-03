@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:26:49 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/06/29 16:14:36 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/03 14:57:54 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	infile_redirect2(char *str)
 	return (pipe_fd[0]);
 }
 
-int	determine_infile(char *cmd, char *next, int infile_fd)
+int	determine_infile(char *cmd, char *next)
 {
 	if (ft_strncmp(cmd, "<<\0", 3) == 0)
 		return (infile_redirect2(next));
