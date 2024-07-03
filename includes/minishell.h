@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/02 20:14:40 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:59:32 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 //volatile sig_atomic_t	g_sig = 0;
 
 # define ERROR -1
+# define TRUE 1
+# define FALSE 0
 
 // pipe
 # define PIPE 0
@@ -75,4 +77,9 @@ char	**set_args(char *str, char **args);
 int		count_pipe(t_info *lst);
 void	ft_free(char **str);
 
+void	treat_read(void);
+void	treat_signal(void);
+void	to_new_pronpt(void);
+void	treat_parser(char *str,int *is_paesed);
+char	**token_split(char const *s, char *sep);
 #endif

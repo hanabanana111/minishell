@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/02 20:34:30 by hakobori         ###   ########.fr       */
+/*   Created: 2024/07/02 20:24:40 by hakobori          #+#    #+#             */
+/*   Updated: 2024/07/03 15:04:02 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	to_new_pronpt(void)
+void show_syntax_error(char *str)
 {
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	write(STDOUT_FILENO, "\n", 1);
-	rl_redisplay();
+    printf("Command '%s' not found",str);
 }
 
-void	signal_handler_sigint(int signum)
-{
-	(void)signum;
-	to_new_pronpt();
-}
 
-void	treat_signal(void)
+
+void treat_parser(char *str,int *is_paesed)
 {
-	if (signal(SIGINT, signal_handler_sigint) == SIG_ERR)
-	{
-		perror(strerror(errno));
-		exit(1);
-	}
-	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-	{
-		perror(strerror(errno));
-		exit(1);
-	}
+    char **arr;
+    
+    arr = token_split(str," \t\n");
+    (void)is_paesed;
+    // int i;
+    // i = 0;
+    // while(arr[i])
+    //     printf("%s\n",arr[i++]);
+    // printf("a\n");
 }

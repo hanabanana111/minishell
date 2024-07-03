@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/06/28 22:41:53 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:23:08 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,25 @@ void	setup_terminal(int n)
 void	treat_read(void)
 {
 	char	*line;
+	int	is_paesed;
 
 	line = NULL;
 	setup_terminal(1);
 	while (1)
 	{
+		is_paesed = 0;
 		line = readline("> ");
-		if (!line || ft_strncmp(line, "exit\n", 5))
+		if (!line)// || !ft_strncmp(line, "exit\n", 5)
 		{
 			free(line);
 			break ;
 		}
-		if (*line)
-			add_history(line);
+		else if (*line)
+		{
+			treat_parser(line,&is_paesed);
+			if(is_paesed)
+				add_history(line);
+		}
 		free(line);
 	}
 	write(1, "exit", 4);
