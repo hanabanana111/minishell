@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 11:12:16 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/04 15:58:18 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:24:53 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,9 @@ char	*search_env(char *cmd, char **env)
 		paths[i] = ft_strjoin(paths[i], cmd);
 		if (access(paths[i], X_OK) == 0)
 			return (paths[i]);
+		free(paths[i]);
 		i++;
 	}
+	free(paths);
 	return ("Command not found\0");
 }

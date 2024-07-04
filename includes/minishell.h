@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/04 17:03:08 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:14:34 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_info
 	char				*str;
 	int					type;
 	char				*errstr;
-	int					index;
+	int					flg;
 	struct s_info		*next;
 }						t_info;
 
