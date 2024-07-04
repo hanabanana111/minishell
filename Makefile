@@ -6,7 +6,7 @@
 #    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/03 14:59:52 by hakobori         ###   ########.fr        #
+#    Updated: 2024/07/04 20:54:46 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,14 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)signal.c \
 			   $(SRCS_DIR)read.c \
 			   $(SRCS_DIR)parser.c \
-			   $(SRCS_DIR)to_token.c 
+			   $(SRCS_DIR)split_to_token.c \
+			   $(SRCS_DIR)quotes.c \
+			   $(SRCS_DIR)set_cmd_info_lst.c \
+			   $(SRCS_DIR)info_list_utils.c \
+			   $(SRCS_DIR)parse_part1.c \
+			   $(SRCS_DIR)doll.c 
 OBJS 		 = $(SRCS:.c=.o)
 LIBFT 		 = $(LIBFT_DIR)libft.a
-
 
 all: $(NAME)
 

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   doll.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/04 22:12:34 by hakobori         ###   ########.fr       */
+/*   Created: 2024/07/04 17:09:34 by hakobori          #+#    #+#             */
+/*   Updated: 2024/07/04 21:21:01 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-volatile sig_atomic_t	g_sig = 0;
-
-int	main(void)
+char *treat_doll(char const *str,int *end_status)
 {
-	int	end_status;
+    char *ret;
+    char *end_status_str;
 
-	end_status = 0;
-	treat_signal();
-	treat_read(&end_status);
-	return (0);
+    //ret = getenv(name);
+    (void)str;
+    ret = NULL;
+    end_status_str = ft_itoa(*end_status);
+    if(ft_strncmp("$?",str,2))
+        ret = end_status_str;
+    // else if(*str == '$' && *(str+1) == '\0')
+    // {
+    // }
+    //printf("end_status_str = %s\n",end_status_str);
+    return(ret);
 }

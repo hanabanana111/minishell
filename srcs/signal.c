@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/02 20:34:30 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:08:13 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	to_new_pronpt(void)
 
 void	signal_handler_sigint(int signum)
 {
-	(void)signum;
 	to_new_pronpt();
+	g_sig = (sig_atomic_t)signum;
 }
 
 void	treat_signal(void)
 {
-	if (signal(SIGINT, signal_handler_sigint) == SIG_ERR)
+	if (signal(SIGINT,(void (*)(int))signal_handler_sigint) == SIG_ERR)
 	{
 		perror(strerror(errno));
 		exit(1);

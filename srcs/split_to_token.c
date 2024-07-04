@@ -1,92 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_token.c                                         :+:      :+:    :+:   */
+/*   split_to_token.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:54:55 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/03 16:47:33 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/04 22:13:35 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_quotes(const char **str, int *is_second_quote)
+int	find_word(const char **str, char *sep, const char **start)
 {
-	int		i;
-	char	quote_char;
+	int quote_char;
 
-	i = 0;
-	if (ft_strchr("\'\"", **str))
-	{
-		quote_char = **str;
-		i++;
+	while (**str && ft_strchr(sep, **str))
 		(*str)++;
-		while (**str && **str != quote_char)
-		{
-			(*str)++;
-			i++;
-		}
-		if (**str == quote_char)
-		{
-			*is_second_quote = 1;
-			return (TRUE);
-		}
-		else
-			return (FALSE);
+	*start = *str;
+	while (**str && !ft_strchr(sep, **str))
+	{
+		quote_char = check_quotes(str);
+		if(!quote_char)
+			return(FALSE);
+		(*str)++;
 	}
-	*is_second_quote = 1;
-	return (TRUE);
+	return (quote_char);
+	printf("%c\n",quote_char);
 }
 
 static int	count_words(char const *s, char *sep)
 {
 	int			count;
-	size_t		i;
 	const char	*start;
 	const char	*str;
-	int			is_second_quote;
 
-	i = 0;
 	count = 0;
 	str = s;
+	if(!s || !sep)
+		return(-1);
 	while (*str)
 	{
-		is_second_quote = 0;
-		while (*str && ft_strchr(sep, *str))
-			str++;
-		start = str;
-		while (*str && !ft_strchr(sep, *str) && check_quotes(&str,
-				&is_second_quote))
+		if (!find_word(&str, sep, &start))
 		{
-			// printf("*str = %c\n",*str);
-			str++;
-		}
-		// printf("*str = %c\n",*str);
-		if (!is_second_quote)
+			printf("Invalid quotes\n");
 			return (-1);
+		}
 		if (str > start)
 			count++;
 	}
 	return (count);
-}
-
-static char	*ft_strndup(char const *s, size_t n)
-{
-	size_t	i;
-	char	*result;
-
-	result = (char *)ft_calloc(n + 1, sizeof(char));
-	if (!result)
-		return (NULL);
-	i = 0;
-	while (s[i] && i < n)
-	{
-		result[i] = s[i];
-		i++;
-	}
-	return (result);
 }
 
 static void	ft_free_2d_array(char **head)
@@ -99,19 +63,15 @@ static void	ft_free_2d_array(char **head)
 	free(head);
 }
 
-char	**token_split(char const *s, char *sep)
+char	**split_to_token(char const *s, char *sep,int end_status)
 {
 	char		**result;
 	char		**head;
 	const char	*start;
 	int			words;
-	int			is_second_quote;
-
-	if (!s)
-		return (NULL);
+	
 	words = count_words(s, sep);
-	printf("words = %d\n", words);
-	if (words < 0)
+	if (!s || words < 0)
 		return (NULL);
 	result = (char **)ft_calloc(words + 1, sizeof(char *));
 	if (!result)
@@ -119,15 +79,10 @@ char	**token_split(char const *s, char *sep)
 	head = result;
 	while (*s)
 	{
-		is_second_quote = 0;
-		while (*s && ft_strchr(sep, *s))
-			s++;
-		start = s;
-		while (*s && !ft_strchr(sep, *s) && check_quotes(&s, &is_second_quote))
-			s++;
+		find_word(&s, sep, &start);
 		if (s > start)
 		{
-			*result++ = ft_strndup(start, s - start);
+			*result++ = format_quotes_and_strndup(start, s - start,end_status);
 			if (!*(result - 1))
 				return (ft_free_2d_array(head), NULL);
 		}

@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_part1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/04 22:12:34 by hakobori         ###   ########.fr       */
+/*   Created: 2024/07/04 19:42:56 by hakobori          #+#    #+#             */
+/*   Updated: 2024/07/04 20:14:39 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-volatile sig_atomic_t	g_sig = 0;
-
-int	main(void)
+int   to_parse_lst(t_info **cmd_info)
 {
-	int	end_status;
-
-	end_status = 0;
-	treat_signal();
-	treat_read(&end_status);
-	return (0);
+    (void)cmd_info;
+    return(5);
 }

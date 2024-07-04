@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/03 14:23:08 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:55:42 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ void	setup_terminal(int n)
 		exit(1);
 }
 
-void	treat_read(void)
+void	treat_read(int *end_status)
 {
 	char	*line;
-	int	is_paesed;
 
 	line = NULL;
 	setup_terminal(1);
 	while (1)
 	{
-		is_paesed = 0;
 		line = readline("> ");
+		if(g_sig)
+			*end_status = 130;
 		if (!line)// || !ft_strncmp(line, "exit\n", 5)
 		{
 			free(line);
@@ -47,11 +47,14 @@ void	treat_read(void)
 		}
 		else if (*line)
 		{
-			treat_parser(line,&is_paesed);
-			if(is_paesed)
+			treat_parser(line,end_status);
+			if(!(*end_status))
 				add_history(line);
 		}
 		free(line);
 	}
+	// char const *s;
+	// s = NULL;
+	// treat_doll(s,end_status);
 	write(1, "exit", 4);
 }
