@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   outfile.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:10:54 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/03 15:00:10 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/04 13:34:56 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,15 @@ int	determine_outfile(char *cmd, char *next)
 		return (outfile_redirect2(next));
 	else if (ft_strncmp(cmd, ">\0", 2) == 0)
 		return (outfile_redirect1(next));
+}
+
+t_info	*outfile_fd(t_cmd *cmd_lst, t_info *lst)
+{
+	cmd_lst -> pipe_1 = determine_out(lst -> str, lst -> next -> str);
+	if (cmd_lst -> pipe_1 < 0)
+	{
+		while (lst -> next -> type != PIPE && lst -> next)
+			lst = lst -> next;
+	}
+	return (lst);
 }

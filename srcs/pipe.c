@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:46:28 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/03 16:51:04 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/04 13:36:28 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ t_cmd	*create_pipe(t_cmd *cmd_lst, t_info *lst)
 	int		pp[2];
 	int		i;
 
-	ans = cmd_lst;
+	ans = lst;
 	while (lst)
 	{
 		if (lst -> type == IN)
-			cmd_lst -> next -> pipe_0 = determine_infile(lst -> str, lst -> next -> str);
+			lst = infile_fd(cmd_lst, lst);
 		else if (lst -> type == OUT)
-			cmd_lst -> pipe_1 = determine_outfile(lst -> str, lst -> next -> str);
-		else if (lst -> type == PIPE)
+			lst = outfile_fd(cmd_lst, lst);
+		if (lst -> type == PIPE)
 		{
 			if (pipe(pp) < 0)
 				error_exit("create_pipe");
@@ -38,5 +38,4 @@ t_cmd	*create_pipe(t_cmd *cmd_lst, t_info *lst)
 		}
 		lst = lst -> next;
 	}
-	return (ans);
 }

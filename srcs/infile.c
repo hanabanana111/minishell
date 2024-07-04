@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   infile.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:26:49 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/03 15:53:00 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/04 13:34:48 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	infile_redirect1(infile)
+int	infile_redirect1(char *infile)
 {
 	int	fd;
 
@@ -40,4 +40,15 @@ int	determine_infile(char *cmd, char *next)
 		return (infile_redirect2(next));
 	else if (ft_strncmp(cmd, "<\0", 2) == 0)
 		return (infile_redirect1(next));
+}
+
+t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst)
+{
+	cmd_lst -> pipe_0 = determine_infile(lst -> str, lst -> next -> str);
+	if (cmd_lst -> pipe_0 < 0)
+	{
+		while (lst -> next -> type != PIPE && lst -> next)
+			lst = lst -> next;
+	}
+	return (lst);
 }

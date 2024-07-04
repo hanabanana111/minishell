@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/03 15:00:35 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/04 13:35:12 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_info
 size_t	ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_miniprocess(t_info *lst, char **env);
-int		determine_infile(char *cmd, char *next);
+t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst);
 void	error_exit(char *str);
 t_cmd	*create_nord(void);
 char	**set_args(char *str, char **args);
@@ -78,6 +78,6 @@ char	*relative_path(t_cmd *lst);
 t_cmd	*create_lst(t_info *lst);
 t_cmd	*path_finder(t_cmd *lst, char **env);
 char	*search_env(char *cmd, char **env);
-int		determine_outfile(char *cmd, char *next);
+t_info	*outfile_fd(t_cmd *cmd_lst, t_info *lst);
 
 #endif
