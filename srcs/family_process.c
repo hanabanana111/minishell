@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   family_process.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:01:23 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/04 17:16:41 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:05:33 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@ void	children_process(t_cmd *lst, char **env)
 	close(lst -> pipe_0);
 	close(lst -> pipe_1);
 	if (execve(lst -> path, lst -> arg, env) < 0)
-		re_process(lst);
-	
+		re_process(lst, env);
+}
+
+void	parent_process(t_cmd *lst, int i)
+{
+	close(lst -> pipe_1);
+	if (lst -> next -> cmd == NULL)
+	{
+		while (i-- > 0)
+			wait(NULL);
+	}
 }

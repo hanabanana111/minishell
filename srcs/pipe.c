@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:46:28 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/04 13:36:28 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:11:51 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ t_cmd	*create_pipe(t_cmd *cmd_lst, t_info *lst)
 		}
 		lst = lst -> next;
 	}
+	return (ans);
 }

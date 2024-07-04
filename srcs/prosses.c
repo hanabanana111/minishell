@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prosses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/04 17:07:55 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:13:47 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,21 @@ int	check_fd(int pipe_0, int pipe_1, t_cmd *lst)
 void	ft_process(t_cmd *cmd_lst, t_info *lst, char **env)
 {
 	pid_t	pid;
+	int		i;
 
+	i = 0;
 	while (cmd_lst)
 	{
 		if (check_fd(cmd_lst -> pipe_0, cmd_lst -> pipe_1, cmd_lst))
 		{
 			if (check_cmd_exist(cmd_lst -> path, cmd_lst))
 			{
+				i++;
 				pid = fork();
 				if (pid == 0)
 					children_process(cmd_lst, env);
 				else if (pid > 0)
-					parent_process();
+					parent_process(cmd_lst, i);
 			}
 		}
 		cmd_lst = cmd_lst -> next;
@@ -65,6 +68,7 @@ void	ft_process(t_cmd *cmd_lst, t_info *lst, char **env)
 void	ft_miniprocess(t_info *lst, char **env)
 {
 	t_cmd	*info;
+	t_info	*first;
 
 	info = create_lst(lst);
 	info = path_finder(info, env);
