@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 11:12:16 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/03 14:29:42 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/04 15:58:18 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ char	*relative_path(t_cmd *lst)
 		perror("relative_path");
 	ab_path = ft_strdup(tmp);
 	ab_path = ft_strjoin(ab_path, lst -> cmd);
-	if (access(ab_path, F_OK) < 0)
-		return ("No such file or directory\0");
+	if (access(ab_path, X_OK) < 0)
+		return (strerror(errno));
 	return (ab_path);
 }
 
@@ -78,7 +78,7 @@ char	**split_path(char **env)
 	while (ft_strncmp(env[i], "PATH=", 5) && env[i])
 		i++;
 	if (env[i] == NULL)
-		return ("Command not found\0");
+		return (NULL);
 	path = slide_str(env[i]);
 	ans = ft_split(path, ':');
 	if (ans == NULL)
@@ -95,12 +95,14 @@ char	*search_env(char *cmd, char **env)
 	char	**paths;
 
 	paths = split_path(env);
+	if (paths == NULL)
+		return ("Command not found\0");
 	i = 0;
 	while (paths[i])
 	{
 		paths[i] = ft_strjoin(paths[i], "/");
 		paths[i] = ft_strjoin(paths[i], cmd);
-		if (access(paths[i], F_OK) == 0)
+		if (access(paths[i], X_OK) == 0)
 			return (paths[i]);
 		i++;
 	}

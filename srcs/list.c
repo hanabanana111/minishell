@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 13:13:50 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/03 14:49:40 by kawaharadar      ###   ########.fr       */
+/*   Created: 2024/07/04 13:43:21 by rkawahar          #+#    #+#             */
+/*   Updated: 2024/07/04 14:07:06 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_cmd	*create_nord(void)
 	ans -> arg[0] = NULL;
 	ans -> pipe_0 = 0;
 	ans -> pipe_1 = 1;
+	ans -> error_file = NULL;
 	ans -> next = NULL;
 	return (ans);
 }

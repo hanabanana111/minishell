@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:26:49 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/04 13:34:48 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:47:49 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst)
 	cmd_lst -> pipe_0 = determine_infile(lst -> str, lst -> next -> str);
 	if (cmd_lst -> pipe_0 < 0)
 	{
+		cmd_lst -> pipe_0 = errno;
+		cmd_lst -> error_file = ft_strdup(lst -> next -> str);
 		while (lst -> next -> type != PIPE && lst -> next)
 			lst = lst -> next;
 	}

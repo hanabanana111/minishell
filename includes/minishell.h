@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/04 13:35:12 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:03:08 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ typedef struct s_cmd
 	char			*cmd;
 	char			*path;
 	char			**arg;
-	int				*pipe_0;
-	int				*pipe_1;
+	int				pipe_0;
+	int				pipe_1;
+	char			*error_file;
 	struct s_cmd	*next;
 }	t_cmd;
 
@@ -62,6 +63,8 @@ typedef struct s_info
 {
 	char				*str;
 	int					type;
+	char				*errstr;
+	int					index;
 	struct s_info		*next;
 }						t_info;
 
@@ -79,5 +82,6 @@ t_cmd	*create_lst(t_info *lst);
 t_cmd	*path_finder(t_cmd *lst, char **env);
 char	*search_env(char *cmd, char **env);
 t_info	*outfile_fd(t_cmd *cmd_lst, t_info *lst);
+t_cmd	*create_pipe(t_cmd *cmd_lst, t_info *lst);
 
 #endif

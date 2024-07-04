@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:41:23 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/03 14:43:05 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/04 15:53:39 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 static int	check_sl(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] == '/')
-            return (1);
-    }
-    return (0);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '/')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 char	*absolute_path(t_cmd *lst)
 {
-	if (access(lst -> cmd, F_OK) < 0)
-		return ("No such file or directory\0");
+	if (access(lst -> cmd, X_OK) < 0)
+		return (strerror(errno));
 	else
 		return (ft_strdup(lst -> cmd));
 }
