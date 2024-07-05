@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/04 22:12:34 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/05 17:01:23 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,23 @@
 
 volatile sig_atomic_t	g_sig = 0;
 
-int	main(void)
+int	main(int argc, char *argv[], char **env)
 {
-	int	end_status;
+	t_status	status;
 
-	end_status = 0;
+	// int	end_status;
+	if (argc > 1)
+		return (0);
+	(void)argv;
+	status.end_status = 0;
+	status.envm = treat_env(env);
+	// int i = 0;
+	// while(status.envm[i])
+	// {
+	// 	printf("%s\n",status.envm[i++]);
+	// }
 	treat_signal();
-	treat_read(&end_status);
+	treat_read(&status);
+	ft_free_2d_array(status.envm);
 	return (0);
 }

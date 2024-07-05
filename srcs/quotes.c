@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:06:47 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/04 21:55:08 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/05 17:23:56 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	treat_second_quote(char *q_chr, size_t *i, int *q_count)
 	(*i)++;
 }
 
-char	*format_quotes_and_strndup(char const *s, size_t n,int end_status)
+char	*format_quotes_and_strndup(char const *s, size_t n,t_status *status)
 {
 	size_t	i;
 	size_t	j;
@@ -69,13 +69,13 @@ char	*format_quotes_and_strndup(char const *s, size_t n,int end_status)
 			treat_first_quote(&q_chr, s, &i, &q_count);
 		else if (q_chr && s[i] == q_chr)
 			treat_second_quote(&q_chr, &i, &q_count);
+		else if(q_chr != '\'' && s[i] == '$')
+		{
+			treat_doll(&s[i],status,&i,result);
+			j = ft_strlen(result) - 1;
+		}
 		else
 			result[j++] = s[i++];
-		// if(q_chr != '\'' && s[i] == '$')
-		// {
-		// 	treat_doll(&s[i+1],&end_status);
-		// }
 	}
-	(void)end_status;
 	return (result);
 }
