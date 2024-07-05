@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:54:55 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/05 17:03:40 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:07:05 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	find_word(const char **str, char *sep, const char **start)
 		(*str)++;
 	}
 	return (quote_char);
-	printf("%c\n",quote_char);
 }
 
 static int	count_words(char const *s, char *sep)

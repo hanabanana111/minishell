@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:06:47 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/05 17:23:56 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:13:20 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,9 @@ void	treat_first_quote(char *q_chr, char const *s, size_t *i, int *q_count)
 {
 	*q_chr = s[*i];
 	(*q_count)++;
-	(*i)++;
 }
 
-void	treat_second_quote(char *q_chr, size_t *i, int *q_count)
+void	treat_second_quote(char *q_chr, int *q_count)
 {
 	(*q_count)++;
 	if (*q_count == 2)
@@ -45,7 +44,6 @@ void	treat_second_quote(char *q_chr, size_t *i, int *q_count)
 		*q_chr = 0;
 		*q_count = 0;
 	}
-	(*i)++;
 }
 
 char	*format_quotes_and_strndup(char const *s, size_t n,t_status *status)
@@ -68,14 +66,15 @@ char	*format_quotes_and_strndup(char const *s, size_t n,t_status *status)
 		if (!q_chr && ft_strchr("\'\"", s[i]))
 			treat_first_quote(&q_chr, s, &i, &q_count);
 		else if (q_chr && s[i] == q_chr)
-			treat_second_quote(&q_chr, &i, &q_count);
-		else if(q_chr != '\'' && s[i] == '$')
-		{
-			treat_doll(&s[i],status,&i,result);
-			j = ft_strlen(result) - 1;
-		}
-		else
-			result[j++] = s[i++];
+			treat_second_quote(&q_chr, &q_count);
+		// else if(q_chr != '\'' && s[i] == '$')
+		// {
+		// 	treat_doll(&s[i],status,&i,result);
+		// 	j = ft_strlen(result) - 1;
+		// }
+		// else
+		result[j++] = s[i++];
 	}
+	(void)status;
 	return (result);
 }

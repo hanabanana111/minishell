@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/05 16:54:23 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/05 17:41:54 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	treat_read(t_status *status)
 		else if (*line)
 		{
 			treat_parser(line,status);
-			if(!(status->end_status))
-				add_history(line);
+			// if(!(status->end_status))
+			add_history(line);
 		}
 		free(line);
 	}
