@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/04 21:05:55 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/05 16:38:53 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_info
 
 size_t	ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	ft_miniprocess(t_info *lst, char **env);
+void	ft_miniprocess(t_info *lst, char **env, int *status);
 t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst);
 void	error_exit(char *str);
 t_cmd	*create_nord(void);
@@ -84,6 +84,6 @@ char	*search_env(char *cmd, char **env);
 t_info	*outfile_fd(t_cmd *cmd_lst, t_info *lst);
 t_cmd	*create_pipe(t_cmd *cmd_lst, t_info *lst);
 void	parent_process(t_cmd *lst, int i);
-void	children_process(t_cmd *lst, char **env);
+void	children_process(t_cmd *lst, char **env, t_cmd *first, t_info *info_lst);
 
 #endif

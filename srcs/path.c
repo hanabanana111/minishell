@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:41:23 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/04 15:53:39 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:13:09 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	check_sl(char *str)
 
 char	*absolute_path(t_cmd *lst)
 {
-	if (access(lst -> cmd, X_OK) < 0)
+	if (access(lst -> cmd, R_OK) < 0)
 		return (strerror(errno));
 	else
 		return (ft_strdup(lst -> cmd));
