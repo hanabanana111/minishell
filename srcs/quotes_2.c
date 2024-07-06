@@ -1,0 +1,69 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quotes_2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/06 20:16:06 by hakobori          #+#    #+#             */
+/*   Updated: 2024/07/06 21:13:08 by hakobori         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+static void	treat_first_quote(char *q_chr, char const *s, size_t *i)
+{
+	*q_chr = s[*i];
+	(*i)++;
+}
+
+static void	treat_second_quote(char *q_chr, size_t *i)
+{
+	*q_chr = 0;
+	(*i)++;
+}
+
+char	*delete_quotes_and_strndup(char *src, size_t n)
+{
+	size_t	i;
+	size_t	j;
+	char	*result;
+	char	q_chr;
+	int		q_count;
+
+	i = 0;
+	j = 0;
+	q_chr = 0;
+	q_count = 0;
+	result = (char *)ft_calloc(n + 1, sizeof(char));
+	if (!result)
+		return (NULL);
+	while (src[i] && i < n)
+	{
+		if (!q_chr && ft_strchr("\'\"", src[i]))
+			treat_first_quote(&q_chr, src, &i);
+		else if (q_chr && src[i] == q_chr)
+			treat_second_quote(&q_chr, &i);
+		else
+			result[j++] = src[i++];
+	}
+	return (result);
+}
+
+void	format_quote(t_info *cmd_lst)
+{
+	t_info *node;
+	char *pre;
+	char *tmp;
+
+	node = cmd_lst;
+	while (node)
+	{
+		pre = node->str;
+		tmp = node->str;
+		node->str = delete_quotes_and_strndup(node->str, ft_strlen(node->str));
+		node = node->next;
+		free(pre);
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/05 20:30:56 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/06 20:53:09 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,18 @@ typedef struct s_info
 {
 	char						*str;
 	int							type;
-	int							is_quotes;
+	int	len;
 	struct s_info				*next;
 }								t_info;
+
+typedef struct s_env_quote_info
+{
+	char q_chr;
+	int	q_count;
+    int is_question;
+	char	*key;
+	char *value;
+}t_env_quote_info;
 
 typedef struct s_status
 {
@@ -93,14 +102,16 @@ void							treat_read(t_status *status);
 void							treat_signal(void);
 void							to_new_pronpt(void);
 void							treat_parser(char *line, t_status *status);
-char	**split_to_token(char const *s, char *sep,t_status *status);
+char	**split_to_token(char const *s, char *sep);
 int								check_quotes(const char **str);
-char							*format_quotes_and_strndup(char const *s,
-									size_t n, t_status *status);
+char	*consider_quotes_and_strndup(char const *s, size_t n);
 t_info *treat_info_lst(char **arr,t_status *status);
 t_info							*info_lstnew(char *cmd);
 int								to_parse_lst(t_info **cmd_info);
 char							**treat_env(char **envm);
 void							ft_free_2d_array(char **head);
-char *treat_doll(char const *str,t_status *status);
+void treat_doll(char const *str,t_status *status,t_env_quote_info *e_q_info);
+void find_env(t_env_quote_info *e_q_info,t_status *status);
+void ft_chenge_env_to_value(t_info *node, t_env_quote_info *e_q_info);
+void format_quote(t_info *cmd_lst);
 #endif

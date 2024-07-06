@@ -6,7 +6,7 @@
 #    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/05 18:05:54 by hakobori         ###   ########.fr        #
+#    Updated: 2024/07/06 20:23:23 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)parser.c \
 			   $(SRCS_DIR)split_to_token.c \
 			   $(SRCS_DIR)quotes.c \
+			   $(SRCS_DIR)quotes_2.c \
 			   $(SRCS_DIR)set_cmd_info_lst.c \
 			   $(SRCS_DIR)info_list_utils.c \
 			   $(SRCS_DIR)parse_part1.c \

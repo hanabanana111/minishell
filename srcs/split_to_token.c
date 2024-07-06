@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:54:55 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/05 18:07:05 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/06 20:51:51 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_free_2d_array(char **head)
 	free(head);
 }
 
-char	**split_to_token(char const *s, char *sep,t_status *status)
+char	**split_to_token(char const *s, char *sep)
 {
 	char		**result;
 	char		**head;
@@ -81,7 +81,7 @@ char	**split_to_token(char const *s, char *sep,t_status *status)
 		find_word(&s, sep, &start);
 		if (s > start)
 		{
-			*result++ = format_quotes_and_strndup(start, s - start,status);
+			*result++ = consider_quotes_and_strndup(start, s - start);
 			if (!*(result - 1))
 				return (ft_free_2d_array(head), NULL);
 		}

@@ -6,91 +6,93 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/05 20:59:09 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/06 21:10:51 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void set_arr_to_lst(char **arr,t_info **ret)
+void	set_arr_to_lst(char **arr, t_info **cmd_lst)
 {
-    int i;
-    t_info *node;
+	int		i;
+	t_info	*node;
 
-    i = 0;
-    while(arr[i])
-    {
-        if(!*ret)
-        {
-            *ret = info_lstnew(arr[i]);
-            node = *ret;
-        }
-        else
-        {
-            node->next = info_lstnew(arr[i]);
-            node = node->next;
-        }
-        i++;
-    }
+	i = 0;
+	while (arr[i])
+	{
+		if (!*cmd_lst)
+		{
+			*cmd_lst = info_lstnew(arr[i]);
+			node = *cmd_lst;
+		}
+		else
+		{
+			node->next = info_lstnew(arr[i]);
+			node = node->next;
+		}
+		i++;
+	}
 }
 
-void check_cmd_env_quote(t_info *node, t_status *status)
+void	count_quotes(char current_quote, t_env_quote_info *e_q_info)
 {
-    char q_chr;
-    int is_doll;
-    int i;
-    int count;
-    int len;
-    // char *pre;
-    // char *add;
-
-    is_doll = 0;
-    q_chr = '\0';
-    i = 0;
-    count = 0;
-    len = ft_strlen(node->str);
-    while(node->str[i])
-    {
-        if(node->str[i] == '$' && q_chr != '\'')
-        {
-            if(node->str[i+1] != '\0'|| node->str[i+1] != q_chr || node->str[i+1] != ' ')
-            {
-                i++;
-                printf("s = %s\n",treat_doll(&node->str[i],status));
-            }
-        }
-        if(ft_strchr("\'\"",(node->str[i])))
-            q_chr = node->str[i];
-        i++;
-    }
-    // if(is_doll && q_chr != '\'')
-    // {
-    //     if(node->str[i+1] == q_chr || node->str[i+1] == ' ')
-    //         return;
-    //     i++;
-    //     printf("&node->str[i] = %s\n",&node->str[i]);
-    //     printf("s = %s\n",treat_doll(&node->str[i],status));
-    // }
+	if (e_q_info->q_chr && e_q_info->q_chr != current_quote)
+		return ;
+	e_q_info->q_count++;
+	e_q_info->q_chr = current_quote;
+	if (e_q_info->q_count == 2)
+	{
+		e_q_info->q_count = 0;
+		e_q_info->q_chr = 0;
+	}
 }
 
-void check_env(t_info *ret,t_status *status)
+void	check_cmd_env(t_info *node, t_status *status)
 {
-    t_info *node;
+	int					i;
+	int					len;
+	t_env_quote_info	e_q_info;
 
-    node = ret;
-    while(node)
-    {
-        check_cmd_env_quote(node,status);
-        node = node->next;
-    }
+	i = 0;
+	len = ft_strlen(node->str);
+	ft_bzero(&e_q_info, sizeof(t_env_quote_info));
+	while (node->str[i])
+	{
+		if (node->str[i] == '$' && e_q_info.q_chr != '\'')
+		{
+			if (!ft_strchr(" \0", node->str[i + 1]) || node->str[i
+				+ 1] != e_q_info.q_chr)
+			{
+				treat_doll(&node->str[++i], status, &e_q_info);
+				find_env(&e_q_info, status);
+				ft_chenge_env_to_value(node, &e_q_info);
+			}
+		}
+		if (ft_strchr("\'\"", (node->str[i])))
+			count_quotes(node->str[i], &e_q_info);
+		i++;
+	}
 }
 
-t_info *treat_info_lst(char **arr,t_status *status)
+void	check_env(t_info *cmd_lst, t_status *status)
 {
-    t_info *ret;
+	t_info	*node;
 
-    ret = NULL;
-    set_arr_to_lst(arr,&ret);
-    check_env(ret, status);
-    return(ret);
+	node = cmd_lst;
+	while (node)
+	{
+		check_cmd_env(node, status);
+		node = node->next;
+	}
+}
+
+t_info	*treat_info_lst(char **arr, t_status *status)
+{
+	t_info	*cmd_lst;
+
+	cmd_lst = NULL;
+	set_arr_to_lst(arr, &cmd_lst);
+	check_env(cmd_lst, status);
+	format_quote(cmd_lst);
+	return (cmd_lst);
 }
