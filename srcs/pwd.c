@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/05 19:46:43 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/06 09:40:57 by rkawahar         ###   ########.fr       */
+/*   Created: 2024/07/06 07:42:26 by rkawahar          #+#    #+#             */
+/*   Updated: 2024/07/06 09:39:47 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_strjoin2(char *s1, char *s2)
+static char	*slide_str(char *str)
 {
 	char	*ans;
 	int		i;
-	int		l;
 
-	ans = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	i = 0;
-	l = 0;
-	while (s1[i])
+	ans = (char *)malloc(ft_strlen(str) - 3);
+	while (str[i + 4])
 	{
-		ans[i] = s1[i];
+		ans[i] = str[i + 4];
 		i++;
-	}
-	while (s2[l])
-	{
-		ans[i] = s2[l];
-		i++;
-		l++;
 	}
 	ans[i] = '\0';
-	free(s1);
 	return (ans);
+}
+
+void	ft_pwd(char **env)
+{
+	char	*pwd;
+	int		i;
+
+	i = 0;
+	while (ft_strncmp(env[i], "PWD=", 4))
+		i++;
+	pwd = slide_str(env[i]);
+	printf("%s\n", pwd);
+	free(pwd);
 }

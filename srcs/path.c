@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:41:23 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/05 18:13:09 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/06 09:49:47 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_cmd	*path_finder(t_cmd *lst, char **env)
 		{
 			if (lst -> cmd[0] == '.')
 				lst -> path = relative_path(lst);
-			else if (lst -> cmd[0] = '/')
+			else if (lst -> cmd[0] == '/')
 				lst -> path = absolute_path(lst);
 			else
 				lst -> path = "No such file or directory\0";

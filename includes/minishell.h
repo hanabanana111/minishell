@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/05 19:52:22 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/06 09:40:34 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,8 @@ t_cmd	*create_pipe(t_cmd *cmd_lst, t_info *lst);
 void	parent_process(t_cmd *lst, int i);
 void	children_process(t_cmd *lst, char **env, t_cmd *first, t_info *info_lst);
 char	*ft_strjoin2(char *s1, char *s2);
+void	ft_echo(char **args);
+void	ft_cd(char **args, char **env);
+void	ft_pwd(char **env);
 
 #endif
