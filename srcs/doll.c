@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:09:34 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/06 19:52:11 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:04:17 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void	find_env(t_env_quote_info *e_q_info, t_status *status)
 	e_q_info->value = NULL;
 }
 
-void	treat_doll(char const *str, t_status *status,
-		t_env_quote_info *e_q_info)
+void	treat_doll(char const *str, t_env_quote_info *e_q_info)
 {
 	size_t	count;
 
@@ -48,7 +47,7 @@ void	treat_doll(char const *str, t_status *status,
 	if (str[0] == '?')
 	{
 		e_q_info->key = "?";
-		e_q_info->value = ft_itoa(status->end_status);
+		e_q_info->value = ft_itoa(end_status_func(-1));
 	}
 	while (str[count] && !ft_strchr("\'\" ", str[count]))
 		count++;
@@ -61,7 +60,7 @@ void	treat_doll(char const *str, t_status *status,
 	ft_strlcpy(e_q_info->key, str, count + 1);
 }
 
-static size_t	s_strlen(char *str)
+size_t	s_strlen(char *str)
 {
 	if (!str)
 		return (0);

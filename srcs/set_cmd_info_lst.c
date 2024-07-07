@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/06 21:10:51 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/07 23:12:46 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	set_arr_to_lst(char **arr, t_info **cmd_lst)
 {
 	int		i;
 	t_info	*node;
+	t_info	*pre;
 
 	i = 0;
 	while (arr[i])
@@ -27,8 +28,10 @@ void	set_arr_to_lst(char **arr, t_info **cmd_lst)
 		}
 		else
 		{
+			pre = node;
 			node->next = info_lstnew(arr[i]);
 			node = node->next;
+			node->pre = pre;
 		}
 		i++;
 	}
@@ -54,7 +57,7 @@ void	check_cmd_env(t_info *node, t_status *status)
 	t_env_quote_info	e_q_info;
 
 	i = 0;
-	len = ft_strlen(node->str);
+	len = s_strlen(node->str);
 	ft_bzero(&e_q_info, sizeof(t_env_quote_info));
 	while (node->str[i])
 	{
@@ -63,7 +66,7 @@ void	check_cmd_env(t_info *node, t_status *status)
 			if (!ft_strchr(" \0", node->str[i + 1]) || node->str[i
 				+ 1] != e_q_info.q_chr)
 			{
-				treat_doll(&node->str[++i], status, &e_q_info);
+				treat_doll(&node->str[++i], &e_q_info);
 				find_env(&e_q_info, status);
 				ft_chenge_env_to_value(node, &e_q_info);
 			}
@@ -86,13 +89,13 @@ void	check_env(t_info *cmd_lst, t_status *status)
 	}
 }
 
-t_info	*treat_info_lst(char **arr, t_status *status)
-{
-	t_info	*cmd_lst;
+// t_info	*treat_info_lst(char **arr, t_status *status)
+// {
+// 	t_info	*cmd_lst;
 
-	cmd_lst = NULL;
-	set_arr_to_lst(arr, &cmd_lst);
-	check_env(cmd_lst, status);
-	format_quote(cmd_lst);
-	return (cmd_lst);
-}
+// 	cmd_lst = NULL;
+// 	set_arr_to_lst(arr, &cmd_lst);
+// 	// check_env(cmd_lst, status);
+// 	// format_quote(cmd_lst);
+// 	return (cmd_lst);
+// }

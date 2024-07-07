@@ -6,14 +6,15 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:16:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/06 21:13:08 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/08 00:03:28 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	treat_first_quote(char *q_chr, char const *s, size_t *i)
+static void	treat_first_quote(char *q_chr, char const *s, size_t *i,t_info *node)
 {
+	node->is_quote = 1;
 	*q_chr = s[*i];
 	(*i)++;
 }
@@ -24,7 +25,7 @@ static void	treat_second_quote(char *q_chr, size_t *i)
 	(*i)++;
 }
 
-char	*delete_quotes_and_strndup(char *src, size_t n)
+char	*delete_quotes_and_strndup(char *src, size_t n,t_info *node)
 {
 	size_t	i;
 	size_t	j;
@@ -42,7 +43,7 @@ char	*delete_quotes_and_strndup(char *src, size_t n)
 	while (src[i] && i < n)
 	{
 		if (!q_chr && ft_strchr("\'\"", src[i]))
-			treat_first_quote(&q_chr, src, &i);
+			treat_first_quote(&q_chr, src, &i,node);
 		else if (q_chr && src[i] == q_chr)
 			treat_second_quote(&q_chr, &i);
 		else
@@ -51,19 +52,20 @@ char	*delete_quotes_and_strndup(char *src, size_t n)
 	return (result);
 }
 
-void	format_quote(t_info *cmd_lst)
+void	format_quote(t_info **cmd_lst)
 {
 	t_info *node;
 	char *pre;
 	char *tmp;
 
-	node = cmd_lst;
+	node = *cmd_lst;
 	while (node)
 	{
 		pre = node->str;
 		tmp = node->str;
-		node->str = delete_quotes_and_strndup(node->str, ft_strlen(node->str));
+		node->str = delete_quotes_and_strndup(node->str, ft_strlen(node->str),node);
 		node = node->next;
 		free(pre);
 	}
+	//debug_print_lst(cmd_lst);
 }

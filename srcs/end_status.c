@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_part1.c                                      :+:      :+:    :+:   */
+/*   end_status.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 19:42:56 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/07 15:17:41 by hakobori         ###   ########.fr       */
+/*   Created: 2024/07/07 16:41:07 by hakobori          #+#    #+#             */
+/*   Updated: 2024/07/07 17:54:27 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int   to_parse_lst(t_info **cmd_info)
+int end_status_func(int status)
 {
-    (void)cmd_info;
-    return(5);
+    static int end_status;
+    if (status > 0)
+        end_status = status;
+    else
+        return (end_status);
+    return (0);
 }

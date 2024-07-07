@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/06 21:08:56 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:47:23 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char *argv[], char **env)
 	if (argc > 1)
 		return (0);
 	(void)argv;
-	status.end_status = 0;
+	end_status_func(0);
 	status.envm = treat_env(env);
 	treat_signal();
 	treat_read(&status);
