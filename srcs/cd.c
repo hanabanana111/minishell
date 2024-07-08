@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 06:08:51 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/06 10:37:22 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:48:23 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	change_pwd(char **env, char *new)
+void	change_pwd(char **env, char *new, char **export)
 {
 	int	i;
 
@@ -22,7 +22,30 @@ void	change_pwd(char **env, char *new)
 	env[i] = new;
 }
 
-void	ft_cd(char **args, char **env)
+void	change_old_pwd(char **env, char *export)
+{
+	int		i;
+	char	*old_pwd;
+	char	*export_oldpwd;
+
+	while (ft_strncmp(env[i], "PWD=", 4))
+		i++;
+	old_pwd = ft_strjoin("OLD", env[i]);
+	i = 0;
+	while (ft_strncmp("OLDPWD", env[i], 6) && env[i])
+		i++;
+	if (env[i])
+	{
+		free(env[i]);
+		env[i] = old_pwd;
+	}
+	else
+		env = add_env(old_pwd, env);
+	export_oldpwd = export_str(old_pwd);
+	
+}
+
+void	ft_cd(char **args, char **env, char **export)
 {
 	char	buf[PATH_MAX];
 	int		len;
@@ -45,6 +68,6 @@ void	ft_cd(char **args, char **env)
 		i++;
 	}
 	new[i] = '\0';
-	// change_old_pwd(env);
-	change_pwd(env, new);
+	change_old_pwd(env, export);
+	change_pwd(env, new, export);
 }

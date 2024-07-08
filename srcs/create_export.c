@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_export.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:54:54 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/06 11:47:10 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:18:13 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ char	**create_export(char **env)
 		}
 		i++;
 	}
-	ans[ft_len(env)] = NULL;
+	ans[ft_len(env) - 1] = NULL;
+	ans = add_export(ans, "OLDPWD");
 	return (ans);
 }

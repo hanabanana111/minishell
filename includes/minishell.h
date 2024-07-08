@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/06 09:40:34 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:14:36 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ char	*ft_strjoin2(char *s1, char *s2);
 void	ft_echo(char **args);
 void	ft_cd(char **args, char **env);
 void	ft_pwd(char **env);
+char	*export_str(char *str);
+int		ft_strcmp(s1, s2);
 
 #endif
