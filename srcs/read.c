@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/08 04:26:17 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:28:44 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	treat_read(t_status *status)
 		else if (*line)
 		{
 			cmd_info = lexer(line,status);
-			debug_print_lst(cmd_info);
 			parser(cmd_info,status);
 			add_history(line);
 		}

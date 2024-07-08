@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/07 23:12:46 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:30:26 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,25 @@ void	count_quotes(char current_quote, t_env_quote_info *e_q_info)
 	}
 }
 
+int is_heredoc(t_info *node)
+{
+	size_t i;
+
+	i = 0;
+	if(node->pre && !ft_strncmp(node->pre->str,"<<",2))
+		return(TRUE);
+	else
+	{
+		while(node->str[i + 1])	
+		{
+			if(!ft_strncmp(&node->str[i],"<<",2))
+				return(TRUE);
+			i++;
+		}
+	}
+	return(FALSE);
+}
+
 void	check_cmd_env(t_info *node, t_status *status)
 {
 	int					i;
@@ -61,7 +80,7 @@ void	check_cmd_env(t_info *node, t_status *status)
 	ft_bzero(&e_q_info, sizeof(t_env_quote_info));
 	while (node->str[i])
 	{
-		if (node->str[i] == '$' && e_q_info.q_chr != '\'')
+		if (!is_heredoc(node) && node->str[i] == '$' && e_q_info.q_chr != '\'')
 		{
 			if (!ft_strchr(" \0", node->str[i + 1]) || node->str[i
 				+ 1] != e_q_info.q_chr)
@@ -88,14 +107,3 @@ void	check_env(t_info *cmd_lst, t_status *status)
 		node = node->next;
 	}
 }
-
-// t_info	*treat_info_lst(char **arr, t_status *status)
-// {
-// 	t_info	*cmd_lst;
-
-// 	cmd_lst = NULL;
-// 	set_arr_to_lst(arr, &cmd_lst);
-// 	// check_env(cmd_lst, status);
-// 	// format_quote(cmd_lst);
-// 	return (cmd_lst);
-// }

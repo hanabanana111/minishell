@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/08 00:01:11 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/08 22:16:38 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ extern volatile sig_atomic_t	g_sig;
 # define PIPE 0
 // > or >>
 # define RIGHT 1
-// < or << or <<<
+// < or << 
 # define LEFT 2
 // infile
 # define IN 3
@@ -48,6 +48,9 @@ extern volatile sig_atomic_t	g_sig;
 # define OPT 6
 // //<>
 // # define LEFT_RIGHT 7
+
+#define SINGLE 1
+#define DOUBLE 2
 
 typedef struct s_cmd
 {
@@ -63,8 +66,9 @@ typedef struct s_info
 {
 	char						*str;
 	int							type;
-	int flg;
-	char *errstr;
+	int 						flg;
+	int							e_flg;
+	char 						*errstr;
 	int							len;
 	int is_quote;
 	struct s_info				*pre;
@@ -129,6 +133,7 @@ int end_status_func(int status);
 size_t	s_strlen(char *str);
 void	set_arr_to_lst(char **arr, t_info **cmd_lst);
 void	check_env(t_info *cmd_lst, t_status *status);
+void separator(t_info *cmd_info);
 
 void debug_print_lst(t_info *cmd_info);
 #endif

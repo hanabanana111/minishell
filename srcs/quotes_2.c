@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:16:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/08 00:03:28 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:21:47 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 static void	treat_first_quote(char *q_chr, char const *s, size_t *i,t_info *node)
 {
-	node->is_quote = 1;
+	if(s[*i] == '\'')
+		node->is_quote = SINGLE;
+	else if(s[*i] == '\"')
+		node->is_quote = DOUBLE;
 	*q_chr = s[*i];
 	(*i)++;
 }
