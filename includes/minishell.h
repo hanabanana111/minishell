@@ -61,12 +61,16 @@ typedef struct s_cmd
 
 typedef struct s_info
 {
-	char				*str;
-	int					type;
-	char				*errstr;
-	int					flg;
-	struct s_info		*next;
-}						t_info;
+	char						*str;
+	int							type;
+	int 						flg;
+	int							e_flg;
+	char 						*errstr;
+	int							len;
+	int is_quote;
+	struct s_info				*pre;
+	struct s_info				*next;
+}								t_info;
 
 size_t	ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
