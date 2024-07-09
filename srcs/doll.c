@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:09:34 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/07 18:04:17 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/09 21:24:36 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ size_t	s_strlen(char *str)
 
 void	free_pre_e_q_info(char **pre, t_env_quote_info *e_q_info)
 {
-	char *pre_tmp;
-	char *key_tmp;
-	char *value_tmp;
-	
+	char	*pre_tmp;
+	char	*key_tmp;
+	char	*value_tmp;
+
 	pre_tmp = *pre;
 	key_tmp = e_q_info->key;
 	value_tmp = e_q_info->value;
