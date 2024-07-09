@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:08:29 by hakobori          #+#    #+#             */
-/*   Updated: 2024/06/27 21:04:16 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/09 23:10:18 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include <limits.h>
 # include <stdarg.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-#include <stdint.h>
 
 # define HEX_LOWER_BASE "0123456789abcdef"
 # define HEX_UPPER_BASE "0123456789ABCDEF"
