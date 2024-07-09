@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:31:41 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/02 15:57:10 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:48:02 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t	i;
+// int	ft_strncmp(const char *s1, const char *s2, size_t n)
+// {
+// 	size_t	i;
 
-	if (n == 0)
-		return (0);
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] && i < n - 1)
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
+// 	if (n == 0)
+// 		return (0);
+// 	i = 0;
+// 	while (s1[i] == s2[i] && s1[i] && i < n - 1)
+// 		i++;
+// 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+// }
 
 size_t	ft_strlen(const char *s)
 {

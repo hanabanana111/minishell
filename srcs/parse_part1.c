@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   parse_part1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 16:43:55 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/03 14:28:26 by hakobori         ###   ########.fr       */
+/*   Created: 2024/07/04 19:42:56 by hakobori          #+#    #+#             */
+/*   Updated: 2024/07/07 15:17:41 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-t_list	*ft_lstnew(void *content)
+int   to_parse_lst(t_info **cmd_info)
 {
-	t_list	*p;
-
-	p = (t_list *)malloc(sizeof(t_list));
-	if (!p)
-		return (NULL);
-	p->content = content;
-	p->next = NULL;
-	return (p);
+    (void)cmd_info;
+    return(5);
 }

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/06/28 22:41:53 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/09 20:32:29 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,30 @@ void	setup_terminal(int n)
 		exit(1);
 }
 
-void	treat_read(void)
+void	treat_read(t_status *status)
 {
 	char	*line;
+	t_info *cmd_info;
 
 	line = NULL;
 	setup_terminal(1);
 	while (1)
 	{
 		line = readline("> ");
-		if (!line || ft_strncmp(line, "exit\n", 5))
+		if(g_sig)
+			end_status_func(130);
+		if (!line)
 		{
 			free(line);
 			break ;
 		}
-		if (*line)
+		else if (*line)
+		{
+			cmd_info = lexer(line,status);
+			parser(cmd_info,status);
+			//debug_print_lst(cmd_info);
 			add_history(line);
+		}
 		free(line);
 	}
 	write(1, "exit", 4);

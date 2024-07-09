@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   end_status.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 16:43:55 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/03 14:28:26 by hakobori         ###   ########.fr       */
+/*   Created: 2024/07/07 16:41:07 by hakobori          #+#    #+#             */
+/*   Updated: 2024/07/07 17:54:27 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-t_list	*ft_lstnew(void *content)
+int end_status_func(int status)
 {
-	t_list	*p;
-
-	p = (t_list *)malloc(sizeof(t_list));
-	if (!p)
-		return (NULL);
-	p->content = content;
-	p->next = NULL;
-	return (p);
+    static int end_status;
+    if (status > 0)
+        end_status = status;
+    else
+        return (end_status);
+    return (0);
 }
