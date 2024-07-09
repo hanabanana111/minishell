@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 13:13:50 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/02 16:28:23 by rkawahar         ###   ########.fr       */
+/*   Created: 2024/07/04 13:43:21 by rkawahar          #+#    #+#             */
+/*   Updated: 2024/07/05 18:06:49 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ t_cmd	*create_nord(void)
 	ans -> path = NULL;
 	ans -> arg = (char **)malloc(sizeof(char *));
 	ans -> arg[0] = NULL;
-	ans -> pipe_0 = NULL;
-	ans -> pipe_1 = NULL;
+	ans -> pipe_0 = 0;
+	ans -> pipe_1 = 1;
+	ans -> error_file = NULL;
 	ans -> next = NULL;
 	return (ans);
 }
@@ -43,8 +44,8 @@ char	**set_args(char *str, char **args)
 		return (ans);
 	}
 	while (args[i])
-	i++;
-	ans = (char **)malloc(sizeof(char *) * (i + 1));
+		i++;
+	ans = (char **)malloc(sizeof(char *) * (i + 2));
 	i = 0;
 	while (args[i])
 	{
@@ -64,8 +65,11 @@ t_cmd	*ft_lastlst(t_cmd *lst)
 	return (lst);
 }
 
-void	insert_info(t_info *lst, t_cmd *cmd_lst)
+t_cmd	*insert_info(t_info *lst, t_cmd *cmd_lst)
 {
+	t_cmd	*ans;
+
+	ans = cmd_lst;
 	while (lst)
 	{
 		if (lst -> type == CMD)
@@ -79,22 +83,26 @@ void	insert_info(t_info *lst, t_cmd *cmd_lst)
 			cmd_lst = cmd_lst -> next;
 		lst = lst -> next;
 	}
+	return (ans);
 }
 
 t_cmd	*create_lst(t_info *lst)
 {
 	t_cmd	*ans;
+	t_cmd	*nord;
 	t_cmd	*tmp;
 	int		i;
 
 	i = 0;
 	ans = create_nord();
+	nord = ans;
 	i = count_pipe(lst);
 	while (i > 0)
 	{
 		tmp = create_nord();
-		ft_lastlst(ans)-> next = tmp;
+		ft_lastlst(nord)-> next = tmp;
 		i--;
 	}
-	insert_info(lst, ans);
+	ans = insert_info(lst, ans);
+	return (ans);
 }
