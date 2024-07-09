@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 15:16:48 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/08 23:20:37 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/09 20:31:31 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ int is_redirect_left(char *str)
 size_t i;
 
     i = is_digits_digits(str);
-    if(!ft_strncmp(str,"<\0",2) || !ft_strncmp(str,"<<\0",3))
+    if(!ft_strncmp(str,"<\0",2) || !ft_strncmp(str,"<<\0",3) || !ft_strncmp(str,"<<<\0",4))
         return(TRUE);
     else if(i && !ft_strncmp(&str[i],"<\0",2))
         return(TRUE);
     else if(i && !ft_strncmp(&str[i],"<<\0",3))
+        return(TRUE);
+    else if(i && !ft_strncmp(&str[i],"<<<\0",4))
         return(TRUE);
     else
         return(FALSE);
@@ -59,15 +61,15 @@ void set_token_types(t_info *cmd_info)
 	node = cmd_info;
 	while (node)
 	{
-		if(!ft_strncmp(node->str,"|\0",2))
+		if(!node->is_quote && !ft_strncmp(node->str,"|\0",2))
             node->type = PIPE;
-        else if(is_redirect_right(node->str))
+        else if(!node->is_quote && is_redirect_right(node->str))
             node->type = RIGHT;
-        else if(is_redirect_left(node->str))
+        else if(!node->is_quote && is_redirect_left(node->str))
             node->type = LEFT;
-        else if(node->pre && node->pre->type == RIGHT)
+        else if(!node->is_quote && node->pre && node->pre->type == RIGHT)
             node->type = OUT;
-        else if(node->pre && node->pre->type == LEFT)
+        else if(!node->is_quote && node->pre && node->pre->type == LEFT)
             node->type = IN;
         else if(node->type == 0)
         {
@@ -92,9 +94,10 @@ t_info *lexer(char *line,t_status *status)
     set_arr_to_lst(arr,&cmd_info);
 	check_env(cmd_info, status);
     format_quote(&cmd_info);
+    //invalid arg ..........
     separator(cmd_info);
     set_token_types(cmd_info);
-    //debug_print_lst(cmd_info);
+    // debug_print_lst(cmd_info);
     ft_free_2d_array(arr);
     return(cmd_info);
 }

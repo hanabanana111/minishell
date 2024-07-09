@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:16:23 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/08 23:18:47 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/09 20:19:38 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int check_cmd(char *cmd, char *str)
     cmd_c = cmd[0];
     while (str[i])
     {
-        if (str[i] != cmd_c)
-            return (0);
+        if (str[i] != cmd_c || i == 2)
+            return (FALSE);
         i++;
     }
-    return (1);
+    return (TRUE);
 }
 
 void separate_cmd(char *cmd,t_info *node,size_t *j)
@@ -100,20 +100,20 @@ void find_separater(t_info *node)
     i = 0;
     while(node->str[i])
     {
-        if(!ft_strncmp(&node->str[i],"|||",3))
-            separate_cmd("|||",node,&i);
-        else if(!ft_strncmp(&node->str[i],"||",2))
+        // if(!ft_strncmp(&node->str[i],"|||",3))
+        //     separate_cmd("|||",node,&i);
+        if(!ft_strncmp(&node->str[i],"||",2))
             separate_cmd("||",node,&i);
         else if(!ft_strncmp(&node->str[i],"|",1))
             separate_cmd("|",node,&i);
-        else if(!ft_strncmp(&node->str[i],"<<<",3))
-            separate_cmd("<<<",node,&i);
+        // else if(!ft_strncmp(&node->str[i],"<<<",3))
+        //     separate_cmd("<<<",node,&i);
         else if(!ft_strncmp(&node->str[i],"<<",2))
             separate_cmd("<<",node,&i);
         else if(!ft_strncmp(&node->str[i],"<",1))
             separate_cmd("<",node,&i);
-        else if(!ft_strncmp(&node->str[i],">>>",3))
-            separate_cmd(">>>",node,&i);
+        // else if(!ft_strncmp(&node->str[i],">>>",3))
+        //     separate_cmd(">>>",node,&i);
         else if(!ft_strncmp(&node->str[i],">>",2))
             separate_cmd(">>",node,&i);
         else if(!ft_strncmp(&node->str[i],">",1))
@@ -129,7 +129,7 @@ void separator(t_info *cmd_info)
     node = cmd_info;
     while(node)
     {
-        printf("node -> str = %s\n", node -> str);
+        //printf("node -> str = %s\n", node -> str);
         if(node->str && !node->is_quote)
             find_separater(node);
         node = node->next;

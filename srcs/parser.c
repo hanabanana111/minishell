@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:24:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/08 04:55:27 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/09 20:31:55 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,57 +20,48 @@ void	show_syntax_error(char *str,t_info *node)
         head = node->errstr;
     else
         head =ft_strdup("minishell");
-    printf("%s: syntax error near unexpected token `%s'", head,str);
+    printf("%s: syntax error near unexpected token `%s'\n", head,str);
     if(!node->flg)
         free(head);
 }
 
-void is_syntax_is_heredoc(t_syn_here *syn_here,t_info *cmd_info)
+int is_syntax_error(t_info *node)
+{
+    if(node->type == 1 || node->type == 2)
+    {
+        if(!node->next)
+            return(show_syntax_error("newline",node),TRUE);
+        if(node->type == 1 && node->next->type != OUT)
+            return(show_syntax_error(node->next->str,node),TRUE);
+        if(node->type == 2 && node->next->type != IN)
+            return(show_syntax_error(node->next->str,node),TRUE);
+    }
+    return(FALSE);
+}
+
+void is_syntax(t_syn_here *syn_here,t_info *cmd_info)
 {
     t_info	*node;
     
+    (void) syn_here;
     node = cmd_info;
 	while (node)
 	{
-        // if()
-		if(ft_strnstr(node->str,">>>",s_strlen(node->str)))
-        {
-            syn_here->is_syntax = 1;
-            //show_syntax_error(">",node);
-        }
-        else if(ft_strnstr(node->str,"|||",s_strlen(node->str)))
-        {
-            syn_here->is_syntax = 2;
-            //show_syntax_error("|",node);
-        }
-        else if(ft_strnstr(node->str,"<<",s_strlen(node->str)) && node->next)
-        {
-            
-        }
-		node = node->next;
-        if(ft_strnstr(node->str,"|",s_strlen(node->str)))
+        if(is_syntax_error(node))
             break;
+        node = node->next;
 	}
 }
 
 void	parser(t_info *cmd_info, t_status *status)
 {
-	// t_info	*node;
     t_syn_here syn_here;
     
 	//to_parse_lst(&cmd_info);
     ft_bzero(&syn_here,sizeof(t_syn_here));
-    //is_syntax_is_heredoc(syn_here,cmd_info);
+    is_syntax(&syn_here,cmd_info);
+    //is_here_doc
     (void)status;
-	// node = cmd_info;
-	// while (node)
-	// {
-	// 	printf("cmd = %s\n", node->str);
-    //     printf("type = %d\n", node->type);
-    //     if(node->pre)
-    //         printf("node->pre = %p\n", node->pre);
-	// 	node = node->next;
-	// }
     (void)cmd_info;
     // debug_print_lst(cmd_info);
 }
