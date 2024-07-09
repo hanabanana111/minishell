@@ -6,14 +6,14 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 19:42:56 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/07 15:17:41 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:03:32 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int   to_parse_lst(t_info **cmd_info)
-{
-    (void)cmd_info;
-    return(5);
-}
+// int   to_parse_lst(t_info **cmd_info)
+// {
+//     (void)cmd_info;
+//     return(5);
+// }

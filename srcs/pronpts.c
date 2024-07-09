@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pronpts.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/09 22:59:31 by hakobori         ###   ########.fr       */
+/*   Created: 2024/07/09 21:11:38 by hakobori          #+#    #+#             */
+/*   Updated: 2024/07/09 22:52:34 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-volatile sig_atomic_t	g_sig = 0;
-
-// __attribute__((destructor)) static void destructor()
-// {
-// 	system("leaks -q minishell");
-// }
-
-int	main(int argc, char *argv[], char **env)
+char	*pronpt(char **env)
 {
-	t_status	status;
+	size_t	i;
+	char	*ret;
 
-	if (argc > 1)
-		return (0);
-	(void)argv;
-	end_status_func(0);
-	status.envm = treat_env(env);
-	treat_signal();
-	treat_read(&status);
-	ft_free_2d_array(status.envm);
-	return (0);
+	i = 0;
+	while (env[i])
+	{
+		if (!ft_strncmp(env[i], "PS1", 3))
+			return (get_ps1_value(env[i]));
+	}
+	ret = (char *)ft_calloc(12, sizeof(char));
+	ft_strlcpy(ret, "minishell >");
+	return (ret);
 }

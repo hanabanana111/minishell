@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:54:55 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/07 23:05:49 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:07:01 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	find_word(const char **str, char *sep, const char **start)
 {
-	int quote_char;
+	int	quote_char;
 
 	while (**str && ft_strchr(sep, **str))
 		(*str)++;
@@ -22,8 +22,8 @@ int	find_word(const char **str, char *sep, const char **start)
 	while (**str && !ft_strchr(sep, **str))
 	{
 		quote_char = check_quotes(str);
-		if(!quote_char)
-			return(FALSE);
+		if (!quote_char)
+			return (FALSE);
 		(*str)++;
 	}
 	return (TRUE);
@@ -37,8 +37,8 @@ static int	count_words(char const *s, char *sep)
 
 	count = 0;
 	str = s;
-	if(!s || !sep)
-		return(-1);
+	if (!s || !sep)
+		return (-1);
 	while (*str)
 	{
 		if (!find_word(&str, sep, &start))
@@ -68,7 +68,7 @@ char	**split_to_token(char const *s, char *sep)
 	char		**head;
 	const char	*start;
 	int			words;
-	
+
 	words = count_words(s, sep);
 	if (!s || words < 0)
 		return (NULL);
