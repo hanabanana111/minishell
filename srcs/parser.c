@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:24:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/09 20:43:24 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/09 21:01:26 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	show_syntax_error(char *str,t_info *node)
 
 int is_syntax_error(t_info *node)
 {
+    if(node->type == 0 && !node->pre)
+        return(show_syntax_error(node->str,node),TRUE);
     if(node->type == 1 || node->type == 2)
     {
         if(!node->next)
