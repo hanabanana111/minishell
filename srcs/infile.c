@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   infile.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:26:49 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/06/29 16:14:36 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/04 15:47:49 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	infile_redirect1(infile)
+int	infile_redirect1(char *infile)
 {
 	int	fd;
 
 	fd = open(infile, O_RDONLY);
-	if (fd < 0)
-		error_exit(infile);
 	return (fd);
 }
 
@@ -36,10 +34,23 @@ int	infile_redirect2(char *str)
 	return (pipe_fd[0]);
 }
 
-int	determine_infile(char *cmd, char *next, int infile_fd)
+int	determine_infile(char *cmd, char *next)
 {
 	if (ft_strncmp(cmd, "<<\0", 3) == 0)
 		return (infile_redirect2(next));
 	else if (ft_strncmp(cmd, "<\0", 2) == 0)
 		return (infile_redirect1(next));
+}
+
+t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst)
+{
+	cmd_lst -> pipe_0 = determine_infile(lst -> str, lst -> next -> str);
+	if (cmd_lst -> pipe_0 < 0)
+	{
+		cmd_lst -> pipe_0 = errno;
+		cmd_lst -> error_file = ft_strdup(lst -> next -> str);
+		while (lst -> next -> type != PIPE && lst -> next)
+			lst = lst -> next;
+	}
+	return (lst);
 }

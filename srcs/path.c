@@ -3,32 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:41:23 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/01 16:50:57 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/06 09:49:47 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int check_sl(char *str)
+static int	check_sl(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] == '/')
-            return (1);
-    }
-    return (0);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '/')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-char    *path_finder(char *cmd, char **env)
+char	*absolute_path(t_cmd *lst)
 {
-    char ans;
+	if (access(lst -> cmd, R_OK) < 0)
+		return (strerror(errno));
+	else
+		return (ft_strdup(lst -> cmd));
+}
 
-    if (check_sl(cmd))
-        file_finder(cmd);
+t_cmd	*path_finder(t_cmd *lst, char **env)
+{
+	t_cmd	*ans;
+
+	ans = lst;
+	while (lst)
+	{
+		if (check_sl(lst -> cmd))
+		{
+			if (lst -> cmd[0] == '.')
+				lst -> path = relative_path(lst);
+			else if (lst -> cmd[0] == '/')
+				lst -> path = absolute_path(lst);
+			else
+				lst -> path = "No such file or directory\0";
+		}
+		else
+			lst -> path = search_env(lst -> cmd, env);
+		lst = lst -> next;
+	}
+	return (ans);
 }
