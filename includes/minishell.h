@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/08 22:16:38 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/10 18:15:55 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct s_status
 {
 	char	**exp;
 	char						**envm;
+	int		is_pipe_syntax;
+	char *line;
 }								t_status;
 
 typedef struct s_syntax_heredoc
@@ -119,7 +121,7 @@ void	ft_echo(char **args);
 void	ft_cd(char **args, char **env);
 void	ft_pwd(char **env);
 char	*export_str(char *str);
-int		ft_strcmp(s1, s2);
+int		ft_strcmp(char *s1,char *s2);
 
 void							treat_read(t_status *status);
 void							treat_signal(void);
@@ -147,6 +149,12 @@ size_t	s_strlen(char *str);
 void	set_arr_to_lst(char **arr, t_info **cmd_lst);
 void	check_env(t_info *cmd_lst, t_status *status);
 void separator(t_info *cmd_info);
+char	*ft_strndup(char const *s, size_t n);
+const char	*pronpt_ps1(char **env);
+const char	*pronpt_ps2(char **env);
+char *get_value(char **env,char *key);
+void	here_doc(t_info *cmd_info,t_status *status);
+void	here_doc_pipe(t_info *cmd_info,t_status *status);
 
 void debug_print_lst(t_info *cmd_info);
 #endif

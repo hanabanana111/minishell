@@ -6,13 +6,13 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/09 19:56:20 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:29:09 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_eof(char *eof)
+static char	*ft_eof(char *eof)
 {
 	char	*ans;
 	int		i;
@@ -32,7 +32,7 @@ char	*ft_eof(char *eof)
 	return (ans);
 }
 
-int	checker(char *str, char *eof)
+static int	checker(char *str, char *eof)
 {
 	int		i;
 	char	*new_eof;
@@ -60,7 +60,7 @@ int	checker(char *str, char *eof)
 	return (0);
 }
 
-char	*re_create(char *str, char tmp)
+static char	*re_create(char *str, char tmp)
 {
 	char	*ans;
 	int		i;
@@ -77,7 +77,7 @@ char	*re_create(char *str, char tmp)
 	return (ans);
 }
 
-char	*pipex_gnl(char *eof)
+static char	*pipex_gnl(char *eof,t_status *status)
 {
 	char	*ans;
 	char	tmp;
@@ -87,7 +87,7 @@ char	*pipex_gnl(char *eof)
 	if (ans == NULL)
 		exit(1);
 	ans[0] = '\0';
-	write(1, "> ", 2);
+	ft_printf("%s",pronpt_ps2(status->envm));
 	len = 0;
 	while (1)
 	{
@@ -97,25 +97,32 @@ char	*pipex_gnl(char *eof)
 		if (checker(ans, eof) != 0)
 			break ;
 		if (tmp == '\n')
-			write(1, "> ", 2);
+			ft_printf("%s",pronpt_ps2(status->envm));
+            // write(1, "> ", 2);
 	}
 	ans[len - ft_strlen(eof) - 1] = '\0';
 	return (ans);
 }
 
-int	here_doc(char *eof)
+void	here_doc(t_info *cmd_info,t_status *status)
 {
-	int		pipe1[2];
-	char	*str;
+	// int		pipe1[2];
+	// char	*str;
+	t_info *node;
+    //char    *pre;
+	char *eof;
 
-	str = pipex_gnl(eof);
-	if (pipe(pipe1) < 0)
+	node = cmd_info;
+	while (node)
 	{
-		perror(NULL);
-		exit(1);
+		if (node->type == LEFT && !ft_strncmp(node->str,"<<\0",3)&& node->next)
+		{
+			//pre = node->str;
+			eof = node->next->str;
+			node->next->str = pipex_gnl(eof,status);
+			node->next->str[s_strlen(node->next->str) - 2] = '\0';
+			free(eof);
+		}
+		node = node->next;
 	}
-	write(pipe1[1], str, ft_strlen(str));
-	close(pipe1[1]);
-	free(str);
-	return (pipe1[0]);
 }
