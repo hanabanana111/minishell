@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/09 22:56:37 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 20:12:46 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	is_heredoc(t_info *node)
 	return (FALSE);
 }
 
-void	check_cmd_env(t_info *node, t_status *status)
+void	check_cmd_env(t_info *node, char **envm)
 {
 	int					i;
 	int					len;
@@ -86,7 +86,7 @@ void	check_cmd_env(t_info *node, t_status *status)
 				+ 1] != e_q_info.q_chr)
 			{
 				treat_doll(&node->str[++i], &e_q_info);
-				find_env(&e_q_info, status);
+				find_env(&e_q_info, envm);
 				ft_chenge_env_to_value(node, &e_q_info);
 			}
 		}
@@ -96,14 +96,14 @@ void	check_cmd_env(t_info *node, t_status *status)
 	}
 }
 
-void	check_env(t_info *cmd_lst, t_status *status)
+void	check_env(t_info *cmd_lst, char **envm)
 {
 	t_info	*node;
 
 	node = cmd_lst;
 	while (node)
 	{
-		check_cmd_env(node, status);
+		check_cmd_env(node, envm);
 		node = node->next;
 	}
 }

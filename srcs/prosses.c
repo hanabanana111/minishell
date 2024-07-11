@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prosses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/11 17:21:56 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/11 21:10:42 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_fd(int pipe_0, int pipe_1, t_cmd *lst)
 	return (1);
 }
 
-void	ft_process(t_cmd *first, char **env)
+void	ft_process(t_cmd *first, t_status *env)
 {
 	pid_t	pid;
 	int		i;
@@ -103,17 +103,17 @@ t_cmd *check_cmdlst(t_cmd *first)
 	return (first);
 }
 
-void	ft_miniprocess(t_info *first, char **env)
+void	ft_miniprocess(t_info *first, t_status *env_lst)
 {
 	t_cmd	*info;
 	t_info	*lst;
 
-	(void)env;
 	lst = first;
 	info = create_lst(lst);
-	info = path_finder(info, env);
+	info = path_finder(info, env_lst -> envm);
 	lst = first;
 	info = create_pipe(info, lst);
 	// info = check_cmdlst(info);
-	ft_process(info, env);
+	ft_process(info, env_lst);
+	// printf("ft_miniprocess was passed\n");
 }

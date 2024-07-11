@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/11 18:55:54 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 20:37:50 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MINISHELL_H
 
 # include "../libft/libft.h"
+#include <sys/types.h>
+#include <sys/wait.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -101,7 +103,7 @@ typedef struct s_syntax_heredoc
 	int is_heredoc;
 }	t_syn_here;
 
-void	ft_miniprocess(t_info *lst, char **env);
+void	ft_miniprocess(t_info *first, t_status *env_lst);
 t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst);
 void	error_exit(char *str);
 t_cmd	*create_nord(t_info *lst);
@@ -116,10 +118,10 @@ t_cmd	*create_pipe(t_cmd *cmd_lst, t_info *lst);
 void	parent_process(t_cmd *lst, int i);
 char	*ft_strjoin2(char *s1, char *s2);
 t_info	*decide_file(t_info *first);
-void	children_process(t_cmd *lst, char **env);
+void	children_process(t_cmd *lst, t_status *env_lst);
 void	parent_process(t_cmd *lst, int i);
 void	ft_close(t_cmd *first);
-void	re_process(t_cmd *lst, char **env);
+void	re_process(t_cmd *lst, t_status *env_lst);
 
 
 void							treat_read(t_status *status);
@@ -138,15 +140,14 @@ int								to_parse_lst(t_info **cmd_info);
 char							**treat_env(char **envm);
 void							ft_free_2d_array(char **head);
 void							treat_doll(char const *str, t_env_quote_info *e_q_info);
-void							find_env(t_env_quote_info *e_q_info,
-									t_status *status);
+void	find_env(t_env_quote_info *e_q_info, char **envm);
 void							ft_chenge_env_to_value(t_info *node,
 									t_env_quote_info *e_q_info);
 void							format_quote(t_info **cmd_lst);
 int end_status_func(int status);
 size_t	s_strlen(char *str);
 void	set_arr_to_lst(char **arr, t_info **cmd_lst);
-void	check_env(t_info *cmd_lst, t_status *status);
+void	check_env(t_info *cmd_lst, char **envm);
 void separator(t_info *cmd_info);
 char	*ft_strndup(char const *s, size_t n);
 const char	*pronpt_ps1(char **env);
@@ -154,6 +155,7 @@ const char	*pronpt_ps2(char **env);
 char *get_value(char **env,char *key);
 void	here_doc(t_info *cmd_info,t_status *status);
 void	here_doc_pipe(t_info *cmd_info,t_status *status);
+void set_lst_details(t_info	*cmd_info, char **envm);
 
 void debug_print_lst(t_info *cmd_info);
 #endif

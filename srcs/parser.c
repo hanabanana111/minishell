@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:24:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/11 18:21:46 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 19:55:12 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	is_syntax_error1(t_info *node,t_status *status)
 		}
 	}
 	return (FALSE);
+	(void)status;
 }
 
 void	is_syntax1(t_info *cmd_info,t_status *status)

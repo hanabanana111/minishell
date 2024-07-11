@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   re_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:29 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/11 16:08:34 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/11 20:36:24 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,12 @@ t_info	*create_info(char *str, char *file, int line)
 	return (ans);
 }
 
-void	re_process(t_cmd *lst, char **env)
+void	re_process(t_cmd *lst, t_status *env_lst)
 {
 	int		i;
 	char	*str;
 	int		fd;
+	t_info *tmp;
 
 	fd = open(lst -> cmd, R_OK);
 	if (fd < 0)
@@ -115,8 +116,11 @@ void	re_process(t_cmd *lst, char **env)
 	while (str != NULL)
 	{
 		//はなさんの関数に直接ぶち込む
-		create_info(str, lst -> cmd, i);
-		(void)env;
+		tmp = create_info(str, lst -> cmd, i);
+		set_lst_details(tmp, env_lst -> envm);
+		parser(tmp, env_lst);
+		ft_miniprocess(tmp, env_lst);
+		// create_info(str, lst -> cmd, i);
 		i++;
 		free(str);
 		str = minishell_gnl(fd);
