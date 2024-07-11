@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 15:16:48 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/10 18:26:47 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:17:23 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	set_token_types(t_info *cmd_info)
 			node->type = RIGHT;
 		else if (!node->is_quote && is_redirect_left(node->str))
 			node->type = LEFT;
-		else if (!node->is_quote && node->pre && node->pre->type == RIGHT)
+		else if (node->pre && node->pre->type == RIGHT)//!node->is_quote && 
 			node->type = OUT;
-		else if (!node->is_quote && node->pre && node->pre->type == LEFT)
+		else if (node->pre && node->pre->type == LEFT)//!node->is_quote &&
 			node->type = IN;
 		else if (node->type == 0)
 		{

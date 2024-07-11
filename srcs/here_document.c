@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/10 17:29:09 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:33:15 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,33 @@ static char	*pipex_gnl(char *eof,t_status *status)
 			break ;
 		if (tmp == '\n')
 			ft_printf("%s",pronpt_ps2(status->envm));
-            // write(1, "> ", 2);
 	}
-	ans[len - ft_strlen(eof) - 1] = '\0';
+	ans[len - ft_strlen(eof)] = '\0';
 	return (ans);
+}
+
+void set_here_doc_env_value(t_info *node,t_status *status)
+{
+	size_t i;
+	t_env_quote_info	e_q_info;
+
+	i = 0;
+	ft_bzero(&e_q_info, sizeof(t_env_quote_info));
+	while (node->str[i])
+	{
+		if(node->str[i] == '$')
+		{
+			treat_doll(&node->str[++i], &e_q_info);
+			find_env(&e_q_info, status);
+			ft_chenge_env_to_value(node, &e_q_info);
+		}
+		i++;
+	}
 }
 
 void	here_doc(t_info *cmd_info,t_status *status)
 {
-	// int		pipe1[2];
-	// char	*str;
 	t_info *node;
-    //char    *pre;
 	char *eof;
 
 	node = cmd_info;
@@ -117,10 +132,11 @@ void	here_doc(t_info *cmd_info,t_status *status)
 	{
 		if (node->type == LEFT && !ft_strncmp(node->str,"<<\0",3)&& node->next)
 		{
-			//pre = node->str;
 			eof = node->next->str;
 			node->next->str = pipex_gnl(eof,status);
 			node->next->str[s_strlen(node->next->str) - 2] = '\0';
+			if(!node->next->is_quote)
+				set_here_doc_env_value(node->next,status);
 			free(eof);
 		}
 		node = node->next;
