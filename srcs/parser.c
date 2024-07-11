@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:24:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/11 15:10:37 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:30:29 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	show_syntax_error(char *str, t_info *node)
 		exit(1);
 }
 
-int	is_syntax_error1(t_info *node)
+int	is_syntax_error1(t_info *node,t_status *status)
 {
 	if (node->type == 0 && !node->pre)
 		return (show_syntax_error(node->str, node), TRUE);
@@ -38,9 +38,15 @@ int	is_syntax_error1(t_info *node)
 		if (!node->next)
 			return (FALSE);
 		if (node->type == 1 && node->next->type != OUT)
+		{
+			status->is_redi_syntax = 1;
 			return (show_syntax_error(node->next->str, node), TRUE);
+		}
 		if (node->type == 2 && node->next->type != IN)
+		{
+			status->is_redi_syntax = 1;
 			return (show_syntax_error(node->next->str, node), TRUE);
+		}
 	}
 	return (FALSE);
 }
@@ -52,7 +58,7 @@ void	is_syntax1(t_info *cmd_info,t_status *status)
 	node = cmd_info;
 	while (node)
 	{
-		if (is_syntax_error1(node))
+		if (is_syntax_error1(node,status))
 		{
 			if(node->type == 0 && node->next && node->next->type == 0)
 				status->is_pipe_syntax = 1;
@@ -103,13 +109,14 @@ void	parser(t_info *cmd_info, t_status *status)
 {
 	if(!cmd_info)
 		return;
+	status->is_redi_syntax = 0;
+	status->is_pipe_syntax = 0;
 	is_syntax1(cmd_info,status);
 	here_doc_pipe(cmd_info,status);
 	if(is_here_document(cmd_info))
 		here_doc(cmd_info,status);
-	is_syntax2(cmd_info);
-	(void)status;
-	(void)cmd_info;
+	if(!status->is_redi_syntax)
+		is_syntax2(cmd_info);
 }
 
 void	debug_print_lst(t_info *cmd_info)

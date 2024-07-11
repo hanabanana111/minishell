@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 15:16:48 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/11 15:17:23 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:48:55 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,14 @@ int	is_redirect_left(char *str)
 	size_t	i;
 
 	i = is_digits_digits(str);
-	if (!ft_strncmp(str, "<\0", 2) || !ft_strncmp(str, "<<\0", 3)
-		|| !ft_strncmp(str, "<<<\0", 4))
+	if (!ft_strncmp(str, "<\0", 2) || !ft_strncmp(str, "<<\0", 3))//!ft_strncmp(str, "<<<\0", 4)
 		return (TRUE);
 	else if (i && !ft_strncmp(&str[i], "<\0", 2))
 		return (TRUE);
 	else if (i && !ft_strncmp(&str[i], "<<\0", 3))
 		return (TRUE);
-	else if (i && !ft_strncmp(&str[i], "<<<\0", 4))
-		return (TRUE);
+	// else if (i && !ft_strncmp(&str[i], "<<<\0", 4))
+	// 	return (TRUE);
 	else
 		return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/11 15:33:15 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:07:01 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,10 +128,13 @@ void	here_doc(t_info *cmd_info,t_status *status)
 	char *eof;
 
 	node = cmd_info;
+	if(status->is_redi_syntax)
+		return;
 	while (node)
 	{
 		if (node->type == LEFT && !ft_strncmp(node->str,"<<\0",3)&& node->next)
 		{
+			// if(node->next->type == LEFT )
 			eof = node->next->str;
 			node->next->str = pipex_gnl(eof,status);
 			node->next->str[s_strlen(node->next->str) - 2] = '\0';

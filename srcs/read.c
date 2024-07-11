@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/10 18:19:59 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:31:47 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	treat_read(t_status *status)
 	char	*tmp;
 	t_info	*cmd_info;
 
-	//line = NULL;
 	setup_terminal(1);
 	while (1)
 	{
@@ -51,10 +50,9 @@ void	treat_read(t_status *status)
 		{
 			cmd_info = lexer(status->line, status);
 			parser(cmd_info, status);
-			debug_print_lst(cmd_info);
+			//debug_print_lst(cmd_info);
 			add_history(status->line);
 		}
-		status->line = "";
 		free(tmp);
 	}
 	write(1, "exit", 4);

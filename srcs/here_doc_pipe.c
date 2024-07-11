@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:27:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/11 15:00:11 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:29:21 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	here_doc_pipe(t_info *cmd_info,t_status *status)
 	t_info *new;
 
 	node = cmd_info;
-	if(status->is_pipe_syntax)
+	if(status->is_pipe_syntax || status->is_redi_syntax)
 		return;
 	while (node->next)
 		node = node->next;
@@ -125,7 +125,6 @@ void	here_doc_pipe(t_info *cmd_info,t_status *status)
 		node->next = new;
 		new->pre = node;
         free(pre);
-        free(new_line);
 	}
 	else
 		return;
