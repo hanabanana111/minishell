@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:24:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/10 17:18:10 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:10:37 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,6 @@ int	is_syntax_error2(t_info *node)
 	{
 		if (!node->next)
 			return (show_syntax_error("newline", node), TRUE);
-		// if (node->type == 1 && node->next->type != OUT)
-		// 	return (show_syntax_error(node->next->str, node), TRUE);
-		// if (node->type == 2 && node->next->type != IN)
-		// 	return (show_syntax_error(node->next->str, node), TRUE);
 	}
 	return (FALSE);
 }
@@ -103,16 +99,10 @@ int is_here_document(t_info *cmd_info)
 	return(FALSE);
 }
 
-// int is_here_document_for_pipe()
-// {
-	
-// }
-
 void	parser(t_info *cmd_info, t_status *status)
 {
-	// t_syn_here	syn_here;
-
-	// ft_bzero(&syn_here, sizeof(t_syn_here));
+	if(!cmd_info)
+		return;
 	is_syntax1(cmd_info,status);
 	here_doc_pipe(cmd_info,status);
 	if(is_here_document(cmd_info))
@@ -131,8 +121,6 @@ void	debug_print_lst(t_info *cmd_info)
 	{
 		printf("cmd = %s\n", node->str);
 		printf("type = %d\n", node->type);
-		// if (node->pre)
-		// 	printf("node->pre = %p\n", node->pre);
 		if (node->is_quote)
 			printf("node->is_quote = %d \n", node->is_quote);
 		node = node->next;
