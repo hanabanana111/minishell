@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/10 18:15:55 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:05:03 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_status
 	char	**exp;
 	char						**envm;
 	int		is_pipe_syntax;
+	int		is_redi_syntax;
 	char *line;
 }								t_status;
 
