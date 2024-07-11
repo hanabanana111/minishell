@@ -6,11 +6,11 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:29 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/05 20:19:38 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/11 16:08:34 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 char	*recreate_minishell(char *str, char tmp)
 {
@@ -36,7 +36,7 @@ char	*minishell_gnl(int fd)
 	char	tmp;
 	int		read_byte;
 
-	ans = (char)malloc(1);
+	ans = (char *)malloc(1);
 	ans[0] = '\0';
 	tmp = '\0';
 	read_byte = 1;
@@ -63,10 +63,13 @@ t_info	*create_info_nord(char *lst_str, char *file, int line)
 	e_str = ft_strjoin2(e_str, ": ");
 	ans = (t_info *)malloc(sizeof(t_info));
 	ans -> str = lst_str;
-	ans -> type = NULL;
+	ans -> type = -1;
 	ans -> errstr = e_str;
 	ans -> flg = 1;
+	ans -> e_flg = 1;
+	ans -> is_quote = 0;
 	ans -> next = NULL;
+	ans -> pre = NULL;
 	return (ans);
 }
 
@@ -87,6 +90,7 @@ t_info	*create_info(char *str, char *file, int line)
 	{
 		tmp = create_info_nord(args[i], file, line);
 		lst -> next = tmp;
+		lst -> next -> pre = tmp;
 		lst = lst -> next;
 		i++;
 	}
@@ -101,13 +105,18 @@ void	re_process(t_cmd *lst, char **env)
 
 	fd = open(lst -> cmd, R_OK);
 	if (fd < 0)
-		error_exit(lst -> cmd);
+	{
+		if (lst -> error_file)
+			printf("%s: ", lst -> error_file);
+		perror(lst -> cmd);
+	}
 	i = 1;
 	str = minishell_gnl(fd);
 	while (str != NULL)
 	{
 		//はなさんの関数に直接ぶち込む
 		create_info(str, lst -> cmd, i);
+		(void)env;
 		i++;
 		free(str);
 		str = minishell_gnl(fd);

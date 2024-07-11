@@ -6,13 +6,13 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 11:12:16 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/05 18:13:44 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/09 17:08:33 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
-static char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin3(char *s1, char const *s2)
 {
 	size_t	s1_len;
 	size_t	s2_len;
@@ -35,22 +35,7 @@ static char	*ft_strjoin(char const *s1, char const *s2)
 	return (result);
 }
 
-char	*relative_path(t_cmd *lst)
-{
-	char	tmp[PATH_MAX];
-	char	*sl_cmd;
-	char	*ab_path;
-
-	if (getcwd(tmp, sizeof(tmp)) == NULL)
-		perror("relative_path");
-	ab_path = ft_strdup(tmp);
-	ab_path = ft_strjoin(ab_path, lst -> cmd);
-	if (access(ab_path, F_OK) < 0)
-		return (strerror(errno));
-	return (ab_path);
-}
-
-char	slide_str(char *str)
+char	*slide_str(char *str)
 {
 	char	*ans;
 	int		i;
@@ -84,7 +69,7 @@ char	**split_path(char **env)
 	if (ans == NULL)
 	{
 		free(path);
-		write_error("split_path");
+		error_exit("split_path");
 	}
 	return (ans);
 }
@@ -100,8 +85,8 @@ char	*search_env(char *cmd, char **env)
 	i = 0;
 	while (paths[i])
 	{
-		paths[i] = ft_strjoin(paths[i], "/");
-		paths[i] = ft_strjoin(paths[i], cmd);
+		paths[i] = ft_strjoin3(paths[i], "/");
+		paths[i] = ft_strjoin3(paths[i], cmd);
 		if (access(paths[i], R_OK) == 0)
 			return (paths[i]);
 		free(paths[i]);

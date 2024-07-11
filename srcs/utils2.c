@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 19:46:43 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/06 09:40:57 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:30:02 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 char	*ft_strjoin2(char *s1, char *s2)
 {
@@ -35,4 +35,20 @@ char	*ft_strjoin2(char *s1, char *s2)
 	ans[i] = '\0';
 	free(s1);
 	return (ans);
+}
+
+t_info	*decide_file(t_info *first)
+{
+	t_info	*lst;
+
+	lst = first;
+	while (lst)
+	{
+		if (lst -> type == RIGHT)
+			lst -> next -> type = OUT;
+		else if (lst -> type == LEFT)
+			lst -> next -> type = IN;
+		lst = lst -> next;
+	}
+	return (first);
 }

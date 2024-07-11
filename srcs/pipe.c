@@ -6,24 +6,23 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:46:28 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/04 21:11:51 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/11 16:51:43 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
-t_cmd	*create_pipe(t_cmd *cmd_lst, t_info *lst)
+t_cmd	*create_pipe(t_cmd *ans, t_info *lst)
 {
-	t_cmd	*ans;
+	t_cmd	*cmd_lst;
 	int		pp[2];
-	int		i;
 
-	ans = lst;
+	cmd_lst = ans;
 	while (lst)
 	{
-		if (lst -> type == IN)
+		if (lst -> type == LEFT)
 			lst = infile_fd(cmd_lst, lst);
-		else if (lst -> type == OUT)
+		else if (lst -> type == RIGHT)
 			lst = outfile_fd(cmd_lst, lst);
 		if (lst -> type == PIPE)
 		{

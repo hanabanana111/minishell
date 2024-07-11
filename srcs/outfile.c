@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   outfile.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:10:54 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/04 15:48:45 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:15:18 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int	outfile_redirect1(char *outfile)
 {
@@ -34,16 +34,23 @@ int	determine_outfile(char *cmd, char *next)
 		return (outfile_redirect2(next));
 	else if (ft_strncmp(cmd, ">\0", 2) == 0)
 		return (outfile_redirect1(next));
+	return (1);
 }
 
 t_info	*outfile_fd(t_cmd *cmd_lst, t_info *lst)
 {
-	cmd_lst -> pipe_1 = determine_out(lst -> str, lst -> next -> str);
+	if (cmd_lst -> pipe_1 != 1)
+		close(cmd_lst -> pipe_1);
+	cmd_lst -> pipe_1 = determine_outfile(lst -> str, lst -> next -> str);
 	if (cmd_lst -> pipe_1 < 0)
 	{
-		cmd_lst -> pipe_1 = errno;
-		cmd_lst -> error_file = ft_strdup(lst -> next -> str);
-		while (lst -> next -> type != PIPE && lst -> next)
+		cmd_lst -> error_file = ft_strjoin(lst -> next -> str, ": ");
+		if (cmd_lst -> error_file == NULL)
+			error_exit("outfile_fd");
+		cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, strerror(errno));
+		if (cmd_lst -> error_file == NULL)
+			error_exit("outfile_fd");
+		while (lst -> next && lst -> next -> type != PIPE)
 			lst = lst -> next;
 	}
 	return (lst);
