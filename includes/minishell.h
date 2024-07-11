@@ -60,6 +60,7 @@ typedef struct s_cmd
 	int				pipe_0;
 	int				pipe_1;
 	char			*error_file;
+	char			*error_str;
 	struct s_cmd	*next;
 }	t_cmd;
 
@@ -71,7 +72,7 @@ typedef struct s_info
 	int							e_flg;
 	char 						*errstr;
 	int							len;
-	int is_quote;
+	int 						is_quote;
 	struct s_info				*pre;
 	struct s_info				*next;
 }								t_info;
@@ -100,29 +101,26 @@ typedef struct s_syntax_heredoc
 	int is_heredoc;
 }	t_syn_here;
 
-size_t	ft_strlen(const char *s);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	ft_miniprocess(t_info *lst, char **env, int *status);
+void	ft_miniprocess(t_info *lst, char **env);
 t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst);
 void	error_exit(char *str);
-t_cmd	*create_nord(void);
+t_cmd	*create_nord(t_info *lst);
 char	**set_args(char *str, char **args);
 int		count_pipe(t_info *lst);
 void	ft_free(char **str);
-char	*relative_path(t_cmd *lst);
 t_cmd	*create_lst(t_info *lst);
-t_cmd	*path_finder(t_cmd *lst, char **env);
+t_cmd	*path_finder(t_cmd *ans, char **env);
 char	*search_env(char *cmd, char **env);
 t_info	*outfile_fd(t_cmd *cmd_lst, t_info *lst);
 t_cmd	*create_pipe(t_cmd *cmd_lst, t_info *lst);
 void	parent_process(t_cmd *lst, int i);
-void	children_process(t_cmd *lst, char **env, t_cmd *first, t_info *info_lst);
 char	*ft_strjoin2(char *s1, char *s2);
-void	ft_echo(char **args);
-void	ft_cd(char **args, char **env);
-void	ft_pwd(char **env);
-char	*export_str(char *str);
-int		ft_strcmp(char *s1,char *s2);
+t_info	*decide_file(t_info *first);
+void	children_process(t_cmd *lst, char **env);
+void	parent_process(t_cmd *lst, int i);
+void	ft_close(t_cmd *first);
+void	re_process(t_cmd *lst, char **env);
+
 
 void							treat_read(t_status *status);
 void							treat_signal(void);
@@ -159,48 +157,3 @@ void	here_doc_pipe(t_info *cmd_info,t_status *status);
 
 void debug_print_lst(t_info *cmd_info);
 #endif
-
-// typedef struct s_cmd
-// {
-// 	char			*cmd;
-// 	char			*path;
-// 	char			**arg;
-// 	int				pipe_0;
-// 	int				pipe_1;
-// 	char			*error_file;
-// 	char			*error_str;
-// 	struct s_cmd	*next;
-// }	t_cmd;
-
-// typedef struct s_info
-// {
-// 	char						*str;
-// 	int							type;
-// 	int 						flg;
-// 	int							e_flg;
-// 	char 						*errstr;
-// 	int							len;
-// 	int 						is_quote;
-// 	struct s_info				*pre;
-// 	struct s_info				*next;
-// }								t_info;
-
-// void	ft_miniprocess(t_info *lst, char **env);
-// t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst);
-// void	error_exit(char *str);
-// t_cmd	*create_nord(t_info *lst);
-// char	**set_args(char *str, char **args);
-// int		count_pipe(t_info *lst);
-// void	ft_free(char **str);
-// t_cmd	*create_lst(t_info *lst);
-// t_cmd	*path_finder(t_cmd *ans, char **env);
-// char	*search_env(char *cmd, char **env);
-// t_info	*outfile_fd(t_cmd *cmd_lst, t_info *lst);
-// t_cmd	*create_pipe(t_cmd *cmd_lst, t_info *lst);
-// void	parent_process(t_cmd *lst, int i);
-// char	*ft_strjoin2(char *s1, char *s2);
-// t_info	*decide_file(t_info *first);
-// void	children_process(t_cmd *lst, char **env);
-// void	parent_process(t_cmd *lst, int i);
-// void	ft_close(t_cmd *first);
-// void	re_process(t_cmd *lst, char **env);
