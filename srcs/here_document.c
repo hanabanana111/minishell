@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_document.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 15:20:50 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:04:05 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,16 @@ static int	checker(char *str, char *eof)
 	return (0);
 }
 
-void	set_readline(t_status *status, char *pronpt, char *line)
+void	set_readline(t_status *status, char **line)
 {
+	char	*pronpt;
+
 	pronpt = pronpt_ps2(status->envm);
-	line = readline(pronpt);
+	*line = readline(pronpt);
 	free(pronpt);
 }
 
-void	set_ans(char *line, size_t *len)
+void	set_ans(char *line, size_t *len, char *ans)
 {
 	(*len) += s_strlen(line);
 	ans[*len] = '\n';
@@ -76,19 +78,19 @@ void	set_ans(char *line, size_t *len)
 	free(line);
 }
 
-static char	*pipex_gnl(char *eof, t_status *status)
+char	*pipex_gnl_rd(char *eof, t_status *status)
 {
 	char	*ans;
 	size_t	len;
-	char	*pronpt;
 	char	*line;
 	char	*pre_ans;
 
 	len = 0;
 	pre_ans = NULL;
+	line = NULL;
 	while (1)
 	{
-		set_readline(status, pronpt, line);
+		set_readline(status, &line);
 		ans = (char *)ft_calloc(sizeof(char), len + s_strlen(line) + 2);
 		if (!ans)
 			return (free(line), NULL);
@@ -96,7 +98,7 @@ static char	*pipex_gnl(char *eof, t_status *status)
 			ft_strlcpy(ans, pre_ans, s_strlen(pre_ans) + 1);
 		ft_strlcpy(ans + len, line, s_strlen(line) + 1);
 		pre_ans = ans;
-		set_ans(line, &len);
+		set_ans(line, &len, ans);
 		if (checker(ans, eof) != 0)
 			break ;
 	}

@@ -6,7 +6,7 @@
 #    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/12 15:37:38 by hakobori         ###   ########.fr        #
+#    Updated: 2024/07/12 15:51:58 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)signal.c \
 			   $(SRCS_DIR)read.c \
 			   $(SRCS_DIR)parser.c \
+			   $(SRCS_DIR)parser2.c \
 			   $(SRCS_DIR)lexer.c \
 			   $(SRCS_DIR)split_to_token.c \
 			   $(SRCS_DIR)quotes.c \
@@ -48,7 +49,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)outfile.c \
 			   $(SRCS_DIR)re_process.c \
 			   $(SRCS_DIR)utils1.c \
-			   $(SRCS_DIR)utils2.c 
+			   $(SRCS_DIR)utils2.c \
 			   $(SRCS_DIR)lexer2.c 
 			   
 OBJS 		 = $(SRCS:.c=.o)

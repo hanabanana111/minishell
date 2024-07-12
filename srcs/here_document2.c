@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_document2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:19:00 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 15:20:00 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:47:17 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	here_doc(t_info *cmd_info, t_status *status)
 			&& node->next)
 		{
 			eof = node->next->str;
-			node->next->str = pipex_gnl(eof, status);
+			node->next->str = pipex_gnl_rd(eof, status);
 			node->next->str[s_strlen(node->next->str) - 1] = '\0';
 			if (!node->next->is_quote)
 				set_here_doc_env_value(node->next, status);
