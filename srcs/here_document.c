@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 12:19:36 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:08:48 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,44 +60,35 @@ static int	checker(char *str, char *eof)
 	return (0);
 }
 
-static char	*re_create(char *str, char tmp)
-{
-	char	*ans;
-	int		i;
-
-	ans = (char *)malloc(ft_strlen(str) + 2);
-	if (ans == NULL)
-		exit(1);
-	i = -1;
-	while (str[++i])
-		ans[i] = str[i];
-	ans[i] = tmp;
-	ans[i + 1] = '\0';
-	free(str);
-	return (ans);
-}
-
 static char	*pipex_gnl(char *eof,t_status *status)
 {
 	char	*ans;
-	char	tmp;
-	int		len;
+	size_t		len;
+	char *pronpt;
+	char *line;
+	char *pre_ans;
 
-	ans = (char *)malloc(1);
-	if (ans == NULL)
-		exit(1);
-	ans[0] = '\0';
-	ft_printf("%s",pronpt_ps2(status->envm));
 	len = 0;
+	pre_ans = NULL;
 	while (1)
 	{
-		read(0, &tmp, 1);
+		pronpt = pronpt_ps2(status->envm);
+		line = readline(pronpt);
+		free(pronpt);
+		ans = (char *)ft_calloc(sizeof(char),len + s_strlen(line) + 2);
+		if(!ans)
+			return(free(line),NULL);
+		if(pre_ans)
+			ft_strlcpy(ans , pre_ans ,s_strlen(pre_ans) + 1);
+		ft_strlcpy(ans + len , line ,s_strlen(line) + 1);
+		pre_ans = ans;
+		len += s_strlen(line);
+		ans[len] = '\n';
+		ans[len + 1] = '\0';
 		len++;
-		ans = re_create(ans, tmp);
+		free(line);
 		if (checker(ans, eof) != 0)
 			break ;
-		if (tmp == '\n')
-			ft_printf("%s",pronpt_ps2(status->envm));
 	}
 	ans[len - ft_strlen(eof)] = '\0';
 	return (ans);
@@ -126,7 +117,6 @@ void	here_doc(t_info *cmd_info,t_status *status)
 {
 	t_info *node;
 	char *eof;
-	//char *pre;
 
 	node = cmd_info;
 	while (node)
@@ -139,12 +129,6 @@ void	here_doc(t_info *cmd_info,t_status *status)
 			if(!node->next->is_quote)
 				set_here_doc_env_value(node->next,status);
 			free(eof);
-			// pre = status->line;
-			// status->line = ft_strjoin(pre,"\n");
-			// free(pre);
-			// pre = status->line;
-			// status->line = ft_strjoin(pre,node->next->str);
-			// free(pre);
 		}
 		node = node->next;
 	}

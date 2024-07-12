@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 12:06:22 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 13:37:08 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@ void	treat_read(t_status *status)
 {
 	char	*tmp;
 	t_info	*cmd_info;
+	char *pronpt;
 
 	setup_terminal(1);
 	while (1)
 	{
-		status->line = readline(pronpt_ps1(status->envm));
+		pronpt = pronpt_ps1(status->envm);
+		status->line = readline(pronpt);
+		free(pronpt);
 		tmp = status->line;
 		if (g_sig)
 			end_status_func(130);

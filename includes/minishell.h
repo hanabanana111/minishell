@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/11 20:37:50 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 13:37:48 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,8 @@ void	set_arr_to_lst(char **arr, t_info **cmd_lst);
 void	check_env(t_info *cmd_lst, char **envm);
 void separator(t_info *cmd_info);
 char	*ft_strndup(char const *s, size_t n);
-const char	*pronpt_ps1(char **env);
-const char	*pronpt_ps2(char **env);
+char	*pronpt_ps1(char **env);
+char	*pronpt_ps2(char **env);
 char *get_value(char **env,char *key);
 void	here_doc(t_info *cmd_info,t_status *status);
 void	here_doc_pipe(t_info *cmd_info,t_status *status);

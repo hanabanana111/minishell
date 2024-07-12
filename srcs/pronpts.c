@@ -6,13 +6,13 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:11:38 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/10 15:04:00 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 13:37:35 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-const char	*pronpt_ps1(char **env)
+char	*pronpt_ps1(char **env)
 {
 	size_t	i;
 	char	*ret;
@@ -34,7 +34,7 @@ const char	*pronpt_ps1(char **env)
 	return (ret);
 }
 
-const char	*pronpt_ps2(char **env)
+char	*pronpt_ps2(char **env)
 {
 	size_t	i;
 	char	*ret;
