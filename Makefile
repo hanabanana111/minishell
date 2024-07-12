@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+         #
+#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/12 14:30:08 by rkawahar         ###   ########.fr        #
+#    Updated: 2024/07/12 15:37:38 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)get_env.c \
 			   $(SRCS_DIR)lst_separate_format.c \
 			   $(SRCS_DIR)here_document.c \
+			   $(SRCS_DIR)here_document2.c \
 			   $(SRCS_DIR)utils3.c \
 			   $(SRCS_DIR)pronpts.c \
 			   $(SRCS_DIR)here_doc_pipe.c \
