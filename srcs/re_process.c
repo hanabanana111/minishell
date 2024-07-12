@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   re_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:29 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/11 22:14:30 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:19:28 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ t_info	*create_info_nord(char *lst_str, char *file, int line)
 	ans -> type = -1;
 	ans -> errstr = e_str;
 	ans -> flg = 1;
-	// printf("errstr = %s, flg = %d\n", ans -> errstr, ans -> flg);
 	ans -> e_flg = 1;
 	ans -> is_quote = 0;
 	ans -> next = NULL;
@@ -102,7 +101,7 @@ void	re_process(t_cmd *lst, t_status *env_lst)
 	int		i;
 	char	*str;
 	int		fd;
-	t_info *tmp;
+	t_info	*tmp;
 
 	fd = open(lst -> cmd, R_OK);
 	if (fd < 0)
@@ -115,13 +114,10 @@ void	re_process(t_cmd *lst, t_status *env_lst)
 	str = minishell_gnl(fd);
 	while (str != NULL)
 	{
-		//はなさんの関数に直接ぶち込む
-		tmp = create_info(str, lst -> cmd, i);
+		tmp = create_info(str, lst -> cmd, i++);
 		set_lst_details(tmp, env_lst -> envm);
 		parser(tmp, env_lst);
 		ft_miniprocess(tmp, env_lst);
-		// create_info(str, lst -> cmd, i);
-		i++;
 		free(str);
 		str = minishell_gnl(fd);
 	}

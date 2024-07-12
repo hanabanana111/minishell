@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   outfile.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:10:54 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/11 17:15:18 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/12 14:44:34 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	determine_outfile(char *cmd, char *next)
 
 t_info	*outfile_fd(t_cmd *cmd_lst, t_info *lst)
 {
+	char	*e_str;
+
 	if (cmd_lst -> pipe_1 != 1)
 		close(cmd_lst -> pipe_1);
 	cmd_lst -> pipe_1 = determine_outfile(lst -> str, lst -> next -> str);
@@ -47,7 +49,8 @@ t_info	*outfile_fd(t_cmd *cmd_lst, t_info *lst)
 		cmd_lst -> error_file = ft_strjoin(lst -> next -> str, ": ");
 		if (cmd_lst -> error_file == NULL)
 			error_exit("outfile_fd");
-		cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, strerror(errno));
+		e_str = strerror(errno);
+		cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, e_str);
 		if (cmd_lst -> error_file == NULL)
 			error_exit("outfile_fd");
 		while (lst -> next && lst -> next -> type != PIPE)

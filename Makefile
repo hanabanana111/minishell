@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
+#    By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/11 20:18:30 by hakobori         ###   ########.fr        #
+#    Updated: 2024/07/12 14:30:08 by rkawahar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)re_process.c \
 			   $(SRCS_DIR)utils1.c \
 			   $(SRCS_DIR)utils2.c 
+			   $(SRCS_DIR)lexer2.c 
 			   
 OBJS 		 = $(SRCS:.c=.o)
 LIBFT 		 = $(LIBFT_DIR)libft.a

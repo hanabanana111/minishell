@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils3.c                                           :+:      :+:    :+:   */
+/*   lexer2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 23:01:32 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 14:17:28 by rkawahar         ###   ########.fr       */
+/*   Created: 2024/07/12 14:27:42 by rkawahar          #+#    #+#             */
+/*   Updated: 2024/07/12 14:28:31 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_strndup(char const *s, size_t n)
+void	set_lst_details(t_info	*cmd_info, char **envm)
 {
-	size_t	i;
-	char	*result;
+	check_env(cmd_info, envm);
+	format_quote(&cmd_info);
+	separator(cmd_info);
+	set_token_types(cmd_info);
+}
 
-	result = (char *)ft_calloc(n + 1, sizeof(char));
-	if (!result)
+t_info	*lexer(char *line, t_status *status)
+{
+	char	**arr;
+	t_info	*cmd_info;
+
+	arr = split_to_token(line, " \t\n");
+	if (!arr)
 		return (NULL);
-	i = 0;
-	while (s[i] && i < n)
-	{
-		result[i] = s[i];
-		i++;
-	}
-	return (result);
+	cmd_info = NULL;
+	set_arr_to_lst(arr, &cmd_info);
+	ft_free_2d_array(arr);
+	set_lst_details(cmd_info, status->envm);
+	return (cmd_info);
 }

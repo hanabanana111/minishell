@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_separate_format.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:16:23 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/10 16:49:11 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:45:15 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_cmd(char *cmd, char *str)
 	cmd_c = cmd[0];
 	while (str[i])
 	{
-		if(cmd_c == '|' && i == 1)
+		if (cmd_c == '|' && i == 1)
 			return (FALSE);
 		if (str[i] != cmd_c || i == 2)
 			return (FALSE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infile.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:26:49 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/11 17:15:53 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/12 14:47:17 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	determine_infile(char *cmd, char *next)
 
 t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst)
 {
+	char	*e_str;
+
 	if (cmd_lst -> pipe_0 != 0)
 		close(cmd_lst -> pipe_0);
 	cmd_lst -> pipe_0 = determine_infile(lst -> str, lst -> next -> str);
@@ -53,7 +55,8 @@ t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst)
 		cmd_lst -> error_file = ft_strjoin(lst -> next -> str, ": ");
 		if (cmd_lst -> error_file == NULL)
 			error_exit("infile_fd");
-		cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, strerror(errno));
+		e_str = strerror(errno);
+		cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, e_str);
 		if (cmd_lst -> error_file == NULL)
 			error_exit("infile_fd");
 		while (lst -> next && lst -> next -> type != PIPE)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 13:37:48 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:22:23 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 # define MINISHELL_H
 
 # include "../libft/libft.h"
-#include <sys/types.h>
-#include <sys/wait.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
-# include <stdio.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 # include <signal.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <termios.h>
 # include <unistd.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 
 extern volatile sig_atomic_t	g_sig;
 
@@ -38,7 +38,7 @@ extern volatile sig_atomic_t	g_sig;
 # define PIPE 0
 // > or >>
 # define RIGHT 1
-// < or << 
+// < or <<
 # define LEFT 2
 // infile
 # define IN 3
@@ -51,30 +51,30 @@ extern volatile sig_atomic_t	g_sig;
 // //<>
 // # define LEFT_RIGHT 7
 
-#define SINGLE 1
-#define DOUBLE 2
+# define SINGLE 1
+# define DOUBLE 2
 
 typedef struct s_cmd
 {
-	char			*cmd;
-	char			*path;
-	char			**arg;
-	int				pipe_0;
-	int				pipe_1;
-	char			*error_file;
-	char			*error_str;
-	struct s_cmd	*next;
-}	t_cmd;
+	char						*cmd;
+	char						*path;
+	char						**arg;
+	int							pipe_0;
+	int							pipe_1;
+	char						*error_file;
+	char						*error_str;
+	struct s_cmd				*next;
+}								t_cmd;
 
 typedef struct s_info
 {
 	char						*str;
 	int							type;
-	int 						flg;
+	int							flg;
 	int							e_flg;
-	char 						*errstr;
+	char						*errstr;
 	int							len;
-	int 						is_quote;
+	int							is_quote;
 	struct s_info				*pre;
 	struct s_info				*next;
 }								t_info;
@@ -90,45 +90,44 @@ typedef struct s_env_quote_info
 
 typedef struct s_status
 {
-	char	**exp;
+	char						**exp;
 	char						**envm;
-	int		is_pipe_syntax;
-	int		is_redi_syntax;
-	char *line;
+	int							is_pipe_syntax;
+	int							is_redi_syntax;
+	char						*line;
 }								t_status;
 
 typedef struct s_syntax_heredoc
 {
-	int is_syntax;
-	int is_heredoc;
-}	t_syn_here;
+	int							is_syntax;
+	int							is_heredoc;
+}								t_syn_here;
 
-void	ft_miniprocess(t_info *first, t_status *env_lst);
-t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst);
-void	error_exit(char *str);
-t_cmd	*create_nord(t_info *lst);
-char	**set_args(char *str, char **args);
-int		count_pipe(t_info *lst);
-void	ft_free(char **str);
-t_cmd	*create_lst(t_info *lst);
-t_cmd	*path_finder(t_cmd *ans, char **env);
-char	*search_env(char *cmd, char **env);
-t_info	*outfile_fd(t_cmd *cmd_lst, t_info *lst);
-t_cmd	*create_pipe(t_cmd *cmd_lst, t_info *lst);
-void	parent_process(t_cmd *lst, int i);
-char	*ft_strjoin2(char *s1, char *s2);
-t_info	*decide_file(t_info *first);
-void	children_process(t_cmd *lst, t_status *env_lst);
-void	parent_process(t_cmd *lst, int i);
-void	ft_close(t_cmd *first);
-void	re_process(t_cmd *lst, t_status *env_lst);
-
+void							ft_miniprocess(t_info *first,
+									t_status *env_lst);
+t_info							*infile_fd(t_cmd *cmd_lst, t_info *lst);
+void							error_exit(char *str);
+t_cmd							*create_nord(t_info *lst);
+char							**set_args(char *str, char **args);
+int								count_pipe(t_info *lst);
+void							ft_free(char **str);
+t_cmd							*create_lst(t_info *lst);
+t_cmd							*path_finder(t_cmd *ans, char **env);
+char							*search_env(char *cmd, char **env);
+t_info							*outfile_fd(t_cmd *cmd_lst, t_info *lst);
+t_cmd							*create_pipe(t_cmd *cmd_lst, t_info *lst);
+void							parent_process(t_cmd *lst, int i);
+char							*ft_strjoin2(char *s1, char *s2);
+t_info							*decide_file(t_info *first);
+void							children_process(t_cmd *lst, t_status *env_lst);
+void							parent_process(t_cmd *lst, int i);
+void							ft_close(t_cmd *first);
+void							re_process(t_cmd *lst, t_status *env_lst);
 
 void							treat_read(t_status *status);
 void							treat_signal(void);
 void							to_new_pronpt(void);
-void							parser(t_info *cmd_info,
-									t_status *status);
+void							parser(t_info *cmd_info, t_status *status);
 t_info							*lexer(char *line, t_status *status);
 char							**split_to_token(char const *s, char *sep);
 int								check_quotes(const char **str);
@@ -139,23 +138,35 @@ t_info							*info_lstnew(char *cmd);
 int								to_parse_lst(t_info **cmd_info);
 char							**treat_env(char **envm);
 void							ft_free_2d_array(char **head);
-void							treat_doll(char const *str, t_env_quote_info *e_q_info);
-void	find_env(t_env_quote_info *e_q_info, char **envm);
+void							treat_doll(char const *str,
+									t_env_quote_info *e_q_info);
+void							find_env(t_env_quote_info *e_q_info,
+									char **envm);
 void							ft_chenge_env_to_value(t_info *node,
 									t_env_quote_info *e_q_info);
 void							format_quote(t_info **cmd_lst);
-int end_status_func(int status);
-size_t	s_strlen(char *str);
-void	set_arr_to_lst(char **arr, t_info **cmd_lst);
-void	check_env(t_info *cmd_lst, char **envm);
-void separator(t_info *cmd_info);
-char	*ft_strndup(char const *s, size_t n);
-char	*pronpt_ps1(char **env);
-char	*pronpt_ps2(char **env);
-char *get_value(char **env,char *key);
-void	here_doc(t_info *cmd_info,t_status *status);
-void	here_doc_pipe(t_info *cmd_info,t_status *status);
-void set_lst_details(t_info	*cmd_info, char **envm);
+int								end_status_func(int status);
+size_t							s_strlen(char *str);
+void							set_arr_to_lst(char **arr, t_info **cmd_lst);
+void							check_env(t_info *cmd_lst, char **envm);
+void							separator(t_info *cmd_info);
+char							*ft_strndup(char const *s, size_t n);
+char							*pronpt_ps1(char **env);
+char							*pronpt_ps2(char **env);
+char							*get_value(char **env, char *key);
+void							here_doc(t_info *cmd_info, t_status *status);
+void							here_doc_pipe(t_info *cmd_info,
+									t_status *status);
+void							set_lst_details(t_info *cmd_info, char **envm);
+void							is_syntax2(t_info *cmd_info);
+void							parser(t_info *cmd_info, t_status *status);
+int								is_here_document(t_info *cmd_info);
+void							set_lst_details(t_info *cmd_info, char **envm);
+void							debug_print_lst(t_info *cmd_info);
+t_info							*lexer(char *line, t_status *status);
+void							set_here_doc_env_value(t_info *node,
+									t_status *status);
+void							here_doc(t_info *cmd_info, t_status *status);
 
-void debug_print_lst(t_info *cmd_info);
+void							debug_print_lst(t_info *cmd_info);
 #endif

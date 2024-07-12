@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 19:46:43 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/08 21:30:02 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/12 14:17:12 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
