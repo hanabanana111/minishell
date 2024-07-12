@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prosses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/11 22:22:02 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:25:28 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_process(t_cmd *first, t_status *env)
 	ft_close(first);
 }
 
-t_cmd *check_cmdlst(t_cmd *first)
+t_cmd	*check_cmdlst(t_cmd *first)
 {
 	t_cmd	*lst;
 	int		i;
@@ -113,12 +113,5 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 	info = path_finder(info, env_lst -> envm);
 	lst = first;
 	info = create_pipe(info, lst);
-	//info = check_cmdlst(info);
 	ft_process(info, env_lst);
-	// printf("ft_miniprocess was passed\n");
-	// if (first -> flg)
-	// {
-	// 	printf("errstr = %s, flg = %d\n", first -> errstr, first -> flg);
-	// 	exit(0);
-	// }
 }

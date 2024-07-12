@@ -3,65 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:44:58 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/10 14:52:13 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:11:26 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char **treat_env(char **env)
+char	**treat_env(char **env)
 {
-    char **ret;
-    size_t i;
+	char	**ret;
+	size_t	i;
 
-    if(!env)
-        return(NULL);
-    i = 0;
-    while(env[i])
-        i++;
-    ret =(char **)ft_calloc(i+1,sizeof(char *));
-    if(!ret)
-        return(NULL);
-    i = 0;
-    while(env[i])
-    {
-        ret[i] = ft_strdup(env[i]);
-        i++;
-    }
-    return(ret);
+	if (!env)
+		return (NULL);
+	i = 0;
+	while (env[i])
+		i++;
+	ret = (char **)ft_calloc(i + 1, sizeof(char *));
+	if (!ret)
+		return (NULL);
+	i = 0;
+	while (env[i])
+	{
+		ret[i] = ft_strdup(env[i]);
+		i++;
+	}
+	return (ret);
 }
 
-char *format_value(char *env, char *key)
+char	*format_value(char *env, char *key)
 {
-    char *ret;
-    size_t value_len;
-    size_t i;
+	char	*ret;
+	size_t	value_len;
+	size_t	i;
 
-    i = 0;
-    while(env[i] == key[i])
-        i++;
-    i++;
-    value_len = s_strlen(&env[i]);
-    ret = (char *)ft_calloc(value_len+1,sizeof(char));
-    if(!ret)
-        return(NULL);
-    ft_strlcpy(ret,&env[i],s_strlen(&env[i]));
-    return(ret);
+	i = 0;
+	while (env[i] == key[i])
+		i++;
+	i++;
+	value_len = s_strlen(&env[i]);
+	ret = (char *)ft_calloc(value_len + 1, sizeof(char));
+	if (!ret)
+		return (NULL);
+	ft_strlcpy(ret, &env[i], s_strlen(&env[i]));
+	return (ret);
 }
 
-char *get_value(char **env,char *key)
+char	*get_value(char **env, char *key)
 {
-    size_t i;
+	size_t	i;
 
-    i = 0;
-    while(env[i])
-    {
-        if(!ft_strncmp(env[i],key,s_strlen(key)))
-            return(format_value(env[i], key));
-        i++;
-    }
-    return("");
+	i = 0;
+	while (env[i])
+	{
+		if (!ft_strncmp(env[i], key, s_strlen(key)))
+			return (format_value(env[i], key));
+		i++;
+	}
+	return ("");
 }

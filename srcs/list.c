@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:43:21 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/11 16:29:16 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/12 14:41:48 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ t_cmd	*insert_info(t_info *first, t_cmd *ans)
 	lst = first;
 	while (lst)
 	{
-		// cmd_lst -> error_str = ft_strdup(lst -> errstr);
 		if (lst -> type == CMD)
 		{
 			cmd_lst -> cmd = ft_strdup(lst -> str);

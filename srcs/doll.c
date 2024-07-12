@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doll.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:09:34 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 12:08:53 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:48:21 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	treat_doll(char const *str, t_env_quote_info *e_q_info)
 		e_q_info->key = "?";
 		e_q_info->is_question = 1;
 		e_q_info->value = ft_itoa(end_status_func(-1));
-		return;
+		return ;
 	}
 	while (str[count] && !ft_strchr("\'\" \n", str[count]))
 		count++;
@@ -82,7 +82,7 @@ void	free_pre_e_q_info(char **pre, t_env_quote_info *e_q_info)
 	e_q_info->value = NULL;
 	*pre = NULL;
 	free(pre_tmp);
-	if(!e_q_info->is_question)
+	if (!e_q_info->is_question)
 		free(key_tmp);
 	free(value_tmp);
 }
@@ -110,7 +110,7 @@ void	ft_chenge_env_to_value(t_info *node, t_env_quote_info *e_q_info)
 		node->str[j++] = *value_tmp++;
 	while (*key_tmp && pre[++i] == *key_tmp)
 		key_tmp++;
-	while (pre[++i])//&& pre[i] != '\n'
+	while (pre[++i])
 		node->str[j++] = pre[i];
 	free_pre_e_q_info(&pre, e_q_info);
 }

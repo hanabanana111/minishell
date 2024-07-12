@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/10 17:20:15 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:46:06 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[], char **env)
 		return (0);
 	(void)argv;
 	end_status_func(0);
-	ft_bzero(&status,sizeof(t_status));
+	ft_bzero(&status, sizeof(t_status));
 	status.envm = treat_env(env);
 	treat_signal();
 	treat_read(&status);
