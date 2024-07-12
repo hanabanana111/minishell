@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 19:00:24 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/12 20:06:58 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void	is_line(t_status *status, t_info *cmd_info)
 	parser(cmd_info, status);
 	if (!status->is_pipe_syntax && !status->is_redi_syntax)
 		ft_miniprocess(cmd_info, status);
+	// printf("%d\n", cmd_info -> e_flg);
+	// if (cmd_info -> e_flg == 1)
+	// 	exit(0);
 	add_history(status->line);
 }
 
@@ -61,9 +64,6 @@ void	treat_read(t_status *status)
 		}
 		else if (*status->line)
 			is_line(status, cmd_info);
-		if (cmd_info -> e_flg == 1)
-			exit()
-		free(tmp);
 	}
 	write(1, "exit", 4);
 }

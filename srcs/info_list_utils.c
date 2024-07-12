@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info_list_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 21:15:25 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/11 21:33:45 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:19:47 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_info	*info_lstnew(char *cmd)
 	p->str = ft_strdup(cmd);
 	p->pre = NULL;
 	p -> type = -1;
+	p -> e_flg = 0;
+	p -> flg = 0;
 	return (p);
 }
 

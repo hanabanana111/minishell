@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
+#    By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/12 15:51:58 by hakobori         ###   ########.fr        #
+#    Updated: 2024/07/12 20:17:00 by rkawahar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ RL_DIR := $(shell brew --prefix readline)
 RL_LIB_DIR 	 = $(addprefix $(RL_DIR)/, lib)
 RL_INC_DIR   = $(addprefix $(RL_DIR)/, include)
 CFLAGS 		 = -Wall -Wextra -Werror -g -I$(INCLUDE_DIR) -I$(RL_INC_DIR)
+# CFLAGS		+= -g -fsanitize=address
 LDFLAGS      = -L$(RL_LIB_DIR) -lreadline
 SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)signal.c \
@@ -50,7 +51,8 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)re_process.c \
 			   $(SRCS_DIR)utils1.c \
 			   $(SRCS_DIR)utils2.c \
-			   $(SRCS_DIR)lexer2.c 
+			   $(SRCS_DIR)lexer2.c \
+			   $(SRCS_DIR)fce.c \
 			   
 OBJS 		 = $(SRCS:.c=.o)
 LIBFT 		 = $(LIBFT_DIR)libft.a

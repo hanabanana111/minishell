@@ -6,11 +6,13 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:29 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/12 18:46:49 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/12 20:16:22 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	fce(char *str, int fd);
 
 char	*recreate_minishell(char *str, char tmp)
 {
@@ -18,7 +20,7 @@ char	*recreate_minishell(char *str, char tmp)
 	int		i;
 
 	i = 0;
-	ans = (char *)malloc(sizeof(str) + 2);
+	ans = (char *)malloc(ft_strlen(str) + 2);
 	while (str[i])
 	{
 		ans[i] = str[i];
@@ -121,6 +123,5 @@ void	re_process(t_cmd *lst, t_status *env_lst)
 		free(str);
 		str = minishell_gnl(fd);
 	}
-	free(str);
-	close(fd);
+	fcl(str, fd);
 }
