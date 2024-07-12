@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/11 20:15:26 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 12:19:36 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,21 +126,25 @@ void	here_doc(t_info *cmd_info,t_status *status)
 {
 	t_info *node;
 	char *eof;
+	//char *pre;
 
 	node = cmd_info;
-	if(status->is_redi_syntax)
-		return;
 	while (node)
 	{
 		if (node->type == LEFT && !ft_strncmp(node->str,"<<\0",3)&& node->next)
 		{
-			// if(node->next->type == LEFT )
 			eof = node->next->str;
 			node->next->str = pipex_gnl(eof,status);
-			node->next->str[s_strlen(node->next->str) - 2] = '\0';
+			node->next->str[s_strlen(node->next->str) - 1] = '\0';
 			if(!node->next->is_quote)
 				set_here_doc_env_value(node->next,status);
 			free(eof);
+			// pre = status->line;
+			// status->line = ft_strjoin(pre,"\n");
+			// free(pre);
+			// pre = status->line;
+			// status->line = ft_strjoin(pre,node->next->str);
+			// free(pre);
 		}
 		node = node->next;
 	}

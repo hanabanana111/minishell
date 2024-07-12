@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 21:15:25 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/09 21:28:47 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:33:45 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_info	*info_lstnew(char *cmd)
 		return (NULL);
 	p->str = ft_strdup(cmd);
 	p->pre = NULL;
+	p -> type = -1;
 	return (p);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 15:16:48 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/11 20:14:54 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:33:03 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,29 @@ int	is_redirect_left(char *str)
 		return (FALSE);
 }
 
+void	cmd_checker(t_info *node)
+{
+	int	flg;
+
+	flg = 0;
+	while (node)
+	{
+		if (node -> type == -1)
+		{
+			if (flg == 0)
+			{
+				node -> type = CMD;
+				flg = 1;
+			}
+			else if (flg)
+				node -> type = OPT;
+		}
+		else if (node -> type == PIPE)
+			flg = 0;
+		node = node -> next;
+	}
+}
+
 void	set_token_types(t_info *cmd_info)
 {
 	t_info	*node;
@@ -69,15 +92,10 @@ void	set_token_types(t_info *cmd_info)
 			node->type = OUT;
 		else if (node->pre && node->pre->type == LEFT)//!node->is_quote &&
 			node->type = IN;
-		else if (node->type == 0)
-		{
-			if (node == cmd_info || (node->pre && node->pre->type == PIPE))
-				node->type = CMD;
-			else
-				node->type = OPT;
-		}
 		node = node->next;
 	}
+	node = cmd_info;
+	cmd_checker(node);
 }
 
 void set_lst_details(t_info	*cmd_info, char **envm)

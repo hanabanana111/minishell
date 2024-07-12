@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/11 21:10:11 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 12:06:22 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	treat_read(t_status *status)
 			end_status_func(130);
 		if (!status->line)
 		{
-			printf("pass !status->line\n");
 			free(tmp);
 			break ;
 		}
@@ -51,7 +50,9 @@ void	treat_read(t_status *status)
 		{
 			cmd_info = lexer(status->line, status);
 			parser(cmd_info, status);
-			ft_miniprocess(cmd_info, status);
+			//debug_print_lst(cmd_info);
+			if(!status->is_pipe_syntax && !status->is_redi_syntax)
+				ft_miniprocess(cmd_info, status);
 			//debug_print_lst(cmd_info);
 			add_history(status->line);
 		}
