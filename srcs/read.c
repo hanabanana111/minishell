@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 17:39:45 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:06:55 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	treat_read(t_status *status)
 		}
 		else if (*status->line)
 			is_line(status, cmd_info);
+		if (cmd_info -> e_flg == 1)
+			exit()
 		free(tmp);
 	}
 	write(1, "exit", 4);
