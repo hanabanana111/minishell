@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 19:46:46 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/12 20:21:46 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ void							set_here_doc_env_value(t_info *node,
 									t_status *status);
 void							here_doc(t_info *cmd_info, t_status *status);
 char							*pipex_gnl_rd(char *eof, t_status *status);
-void							set_token_types(t_info *cmd_info);
+void							set_token_types(t_info **cmd_info);
 void							show_syntax_error(char *str, t_info *node);
 int								is_syntax_error1(t_info *node,
 									t_status *status);
