@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 14:23:54 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/12 18:54:19 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	treat_read(t_status *status)
 		}
 		else if (*status->line)
 			is_line(status, cmd_info);
+		if (cmd_info -> e_flg == 1)
+			exit()
 		free(tmp);
 	}
 	write(1, "exit", 4);
