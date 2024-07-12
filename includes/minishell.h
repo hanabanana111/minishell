@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 15:22:23 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:53:31 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <sys/wait.h>
 # include <termios.h>
 # include <unistd.h>
-# include <readline/history.h>
 # include <readline/readline.h>
+# include <readline/history.h>
 
 extern volatile sig_atomic_t	g_sig;
 
@@ -127,7 +127,6 @@ void							re_process(t_cmd *lst, t_status *env_lst);
 void							treat_read(t_status *status);
 void							treat_signal(void);
 void							to_new_pronpt(void);
-void							parser(t_info *cmd_info, t_status *status);
 t_info							*lexer(char *line, t_status *status);
 char							**split_to_token(char const *s, char *sep);
 int								check_quotes(const char **str);
@@ -167,6 +166,14 @@ t_info							*lexer(char *line, t_status *status);
 void							set_here_doc_env_value(t_info *node,
 									t_status *status);
 void							here_doc(t_info *cmd_info, t_status *status);
+char							*pipex_gnl_rd(char *eof, t_status *status);
+void							set_token_types(t_info *cmd_info);
+void							show_syntax_error(char *str, t_info *node);
+int								is_syntax_error1(t_info *node,
+									t_status *status);
+int								is_syntax_error1_true_false(t_info *node);
+void							is_syntax1(t_info *cmd_info, t_status *status);
+int								is_syntax_error2(t_info *node);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

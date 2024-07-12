@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 18:54:19 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:00:24 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	treat_read(t_status *status)
 	t_info	*cmd_info;
 	char	*pronpt;
 
+	cmd_info = NULL;
 	setup_terminal(1);
 	while (1)
 	{
