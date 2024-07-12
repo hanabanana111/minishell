@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 15:16:48 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 14:29:11 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:05:21 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,22 @@ void	cmd_checker(t_info *node)
 	}
 }
 
-void	set_token_types(t_info *cmd_info)
+void	check_type(t_info *lst)
+{
+	while (lst)
+	{
+		printf("------------------------------\n");
+		printf("str = %s\n", lst -> str);
+		printf("type = %d\n", lst -> type);
+		lst = lst -> next;
+	}
+}
+
+void	set_token_types(t_info **cmd_info)
 {
 	t_info	*node;
 
-	node = cmd_info;
+	node = *cmd_info;
 	while (node)
 	{
 		if (!node->is_quote && !ft_strncmp(node->str, "|\0", 2))
@@ -94,6 +105,10 @@ void	set_token_types(t_info *cmd_info)
 			node->type = IN;
 		node = node->next;
 	}
-	node = cmd_info;
+	// node = cmd_info;
+	// check_type(node);
+	node = *cmd_info;
 	cmd_checker(node);
+	// node = *cmd_info;
+	// check_type(node);
 }

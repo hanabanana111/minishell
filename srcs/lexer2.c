@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:27:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 14:28:31 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/12 18:52:00 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	set_lst_details(t_info	*cmd_info, char **envm)
 	check_env(cmd_info, envm);
 	format_quote(&cmd_info);
 	separator(cmd_info);
-	set_token_types(cmd_info);
+	set_token_types(&cmd_info);
 }
 
 t_info	*lexer(char *line, t_status *status)

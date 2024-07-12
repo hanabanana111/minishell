@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 15:57:47 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:39:45 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	setup_terminal(int n)
 void	is_line(t_status *status, t_info *cmd_info)
 {
 	cmd_info = lexer(status->line, status);
+	//debug_print_lst(cmd_info);
 	parser(cmd_info, status);
 	if (!status->is_pipe_syntax && !status->is_redi_syntax)
 		ft_miniprocess(cmd_info, status);
