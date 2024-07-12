@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:27:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/11 21:04:29 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:56:22 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	*re_create(char *str, char tmp)
     //     ans[1] = '\0';
     //     return(ans);
     // }
-	while (str[i])
+	while	(str[i])
 		ans[j++] = str[i++];
 
 	ans[j] = tmp;
