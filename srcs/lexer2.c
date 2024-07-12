@@ -6,15 +6,34 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:27:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 18:52:00 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/12 20:19:19 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	separator_between_quotes(t_info **cmd_lst)
+{
+	t_info	*node;
+	char	*pre;
+	char	*tmp;
+
+	node = *cmd_lst;
+	while (node)
+	{
+		pre = node->str;
+		tmp = node->str;
+		node->str = delete_quotes_and_strndup(node->str, ft_strlen(node->str),
+				node);
+		node = node->next;
+		free(pre);
+	}
+}
+
 void	set_lst_details(t_info	*cmd_info, char **envm)
 {
 	check_env(cmd_info, envm);
+	
 	format_quote(&cmd_info);
 	separator(cmd_info);
 	set_token_types(&cmd_info);
