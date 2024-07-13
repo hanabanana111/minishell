@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 15:16:48 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 19:05:21 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/13 18:15:30 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ void	set_token_types(t_info **cmd_info)
 			node->type = OUT;
 		else if (node->pre && node->pre->type == LEFT)
 			node->type = IN;
+		// if(node->pre)
+		// 	printf("node->str[%s], node->pre->str[%s], node->pre->type[%d]\n",node->str,node->pre->str,node->pre->type);
 		node = node->next;
 	}
 	// node = cmd_info;
