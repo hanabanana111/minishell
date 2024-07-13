@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/13 14:10:36 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/13 17:10:49 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	treat_read(t_status *status)
 	{
 		pronpt = pronpt_ps1(status->envm);
 		status->line = readline(pronpt);
+		set_get_readline(status->line);
 		free(pronpt);
 		tmp = status->line;
 		if (g_sig)
@@ -68,5 +69,5 @@ void	treat_read(t_status *status)
 		else if (*status->line)
 			is_line(status, cmd_info);
 	}
-	write(1, "exit", 4);
+	write(1, "exit\n", 5);
 }

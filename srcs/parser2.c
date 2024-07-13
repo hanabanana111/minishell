@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:31:35 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 14:34:52 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/13 17:10:15 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ void	debug_print_lst(t_info *cmd_info)
 	node = cmd_info;
 	while (node)
 	{
-		printf("cmd = %s\n", node->str);
-		printf("type = %d\n", node->type);
+		dprintf(2,"--------------------------------\n");
+		dprintf(2,"cmd = %s\n", node->str);
+		dprintf(2, "type = %d\n", node->type);
 		if (node->is_quote)
-			printf("node->is_quote = %d \n", node->is_quote);
+			dprintf(2, "node->is_quote = %d \n", node->is_quote);
 		node = node->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:29 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/13 14:05:03 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/13 17:21:48 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,9 @@ void	re_process(t_cmd *lst, t_status *env_lst)
 	{
 		tmp = create_info(str, lst -> cmd, i++);
 		set_lst_details(tmp, env_lst -> envm);
+		debug_print_lst(tmp);
 		parser(tmp, env_lst);
+		// debug_print_lst(tmp);
 		ft_miniprocess(tmp, env_lst);
 		free(str);
 		str = minishell_gnl(fd);

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/13 14:06:59 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/13 17:26:56 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,6 @@ char							*get_value(char **env, char *key);
 void							here_doc(t_info *cmd_info, t_status *status);
 void							here_doc_pipe(t_info *cmd_info,
 									t_status *status);
-void							set_lst_details(t_info *cmd_info, char **envm);
 void							is_syntax2(t_info *cmd_info);
 void							parser(t_info *cmd_info, t_status *status);
 int								is_here_document(t_info *cmd_info);
@@ -175,6 +174,8 @@ int								is_syntax_error1_true_false(t_info *node);
 void							is_syntax1(t_info *cmd_info, t_status *status);
 int								is_syntax_error2(t_info *node);
 char	*delete_quotes_and_strndup(char *src, size_t n, t_info *node);
+void	separate_cmd(char *cmd, t_info *node, size_t *j);
+char *set_get_readline(char *new);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
