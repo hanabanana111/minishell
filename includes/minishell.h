@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 20:21:46 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/13 14:06:59 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ int								is_syntax_error1(t_info *node,
 int								is_syntax_error1_true_false(t_info *node);
 void							is_syntax1(t_info *cmd_info, t_status *status);
 int								is_syntax_error2(t_info *node);
+char	*delete_quotes_and_strndup(char *src, size_t n, t_info *node);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

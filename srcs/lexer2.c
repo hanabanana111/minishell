@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:27:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 20:19:19 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/13 14:07:32 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ void	separator_between_quotes(t_info **cmd_lst)
 {
 	t_info	*node;
 	char	*pre;
-	char	*tmp;
-
+	
 	node = *cmd_lst;
 	while (node)
 	{
 		pre = node->str;
-		tmp = node->str;
 		node->str = delete_quotes_and_strndup(node->str, ft_strlen(node->str),
 				node);
 		node = node->next;

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:16:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/11 20:05:42 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/13 13:51:40 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ char	*delete_quotes_and_strndup(char *src, size_t n, t_info *node)
 	size_t	j;
 	char	*result;
 	char	q_chr;
-	int		q_count;
+	// int		q_count;
 
 	i = 0;
 	j = 0;
 	q_chr = 0;
-	q_count = 0;
+	// q_count = 0;
 	result = (char *)ft_calloc(n + 1, sizeof(char));
 	if (!result)
 		return (NULL);
@@ -60,13 +60,11 @@ void	format_quote(t_info **cmd_lst)
 {
 	t_info	*node;
 	char	*pre;
-	char	*tmp;
 
 	node = *cmd_lst;
 	while (node)
 	{
 		pre = node->str;
-		tmp = node->str;
 		node->str = delete_quotes_and_strndup(node->str, ft_strlen(node->str),
 				node);
 		node = node->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   re_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:29 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/12 20:16:22 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/13 14:05:03 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,5 @@ void	re_process(t_cmd *lst, t_status *env_lst)
 		free(str);
 		str = minishell_gnl(fd);
 	}
-	fcl(str, fd);
+	fce(str, fd);
 }

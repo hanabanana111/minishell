@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 18:06:41 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/13 13:52:51 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,9 @@ int	is_heredoc(t_info *node)
 void	check_cmd_env(t_info *node, char **envm)
 {
 	int					i;
-	int					len;
 	t_env_quote_info	e_q_info;
 
 	i = 0;
-	len = s_strlen(node->str);
 	ft_bzero(&e_q_info, sizeof(t_env_quote_info));
 	while (node->str[i])
 	{
