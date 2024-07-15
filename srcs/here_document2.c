@@ -6,11 +6,20 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:19:00 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 15:47:17 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:35:23 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int is_here_doc(int num)
+{
+	static int is_heredoc_flg;
+
+	if(num >= 0)
+		is_heredoc_flg = num;
+	return(is_heredoc_flg);
+}
 
 void	set_here_doc_env_value(t_info *node, t_status *status)
 {
@@ -37,6 +46,7 @@ void	here_doc(t_info *cmd_info, t_status *status)
 	char	*eof;
 
 	node = cmd_info;
+	is_here_doc(1);
 	while (node)
 	{
 		if (node->type == LEFT && !ft_strncmp(node->str, "<<\0", 3)
@@ -51,4 +61,5 @@ void	here_doc(t_info *cmd_info, t_status *status)
 		}
 		node = node->next;
 	}
+	is_here_doc(0);
 }

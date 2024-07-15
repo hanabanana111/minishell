@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/13 17:26:56 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/15 19:36:13 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,8 @@ int								is_syntax_error2(t_info *node);
 char	*delete_quotes_and_strndup(char *src, size_t n, t_info *node);
 void	separate_cmd(char *cmd, t_info *node, size_t *j);
 char *set_get_readline(char *new);
+int is_here_doc(int num);
+void *do_nothing(int i);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

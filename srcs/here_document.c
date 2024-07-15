@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 16:04:05 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/15 19:37:50 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	checker(char *str, char *eof)
 	return (0);
 }
 
-void	set_readline(t_status *status, char **line)
+void	set_readline_pronpt2(t_status *status, char **line)
 {
 	char	*pronpt;
 
@@ -88,16 +88,26 @@ char	*pipex_gnl_rd(char *eof, t_status *status)
 	len = 0;
 	pre_ans = NULL;
 	line = NULL;
+	ans = NULL;
 	while (1)
 	{
-		set_readline(status, &line);
+		set_readline_pronpt2(status, &line);
 		ans = (char *)ft_calloc(sizeof(char), len + s_strlen(line) + 2);
 		if (!ans)
 			return (free(line), NULL);
+		if(ans && ans[0] == '\0')
+		{
+			// rl_num_chars_to_read = 1;
+			// rl_event_hook = (void *)do_nothing(-1);
+			break;
+		}
 		if (pre_ans)
 			ft_strlcpy(ans, pre_ans, s_strlen(pre_ans) + 1);
-		ft_strlcpy(ans + len, line, s_strlen(line) + 1);
+		if(line)
+			ft_strlcpy(ans + len, line, s_strlen(line) + 1);
 		pre_ans = ans;
+		if(!line)
+			break;
 		set_ans(line, &len, ans);
 		if (checker(ans, eof) != 0)
 			break ;
