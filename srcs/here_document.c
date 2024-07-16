@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/15 19:37:50 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:02:38 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,28 +89,23 @@ char	*pipex_gnl_rd(char *eof, t_status *status)
 	pre_ans = NULL;
 	line = NULL;
 	ans = NULL;
+	rl_catch_signals = 1;
 	while (1)
 	{
 		set_readline_pronpt2(status, &line);
 		ans = (char *)ft_calloc(sizeof(char), len + s_strlen(line) + 2);
 		if (!ans)
 			return (free(line), NULL);
-		if(ans && ans[0] == '\0')
-		{
-			// rl_num_chars_to_read = 1;
-			// rl_event_hook = (void *)do_nothing(-1);
-			break;
-		}
 		if (pre_ans)
 			ft_strlcpy(ans, pre_ans, s_strlen(pre_ans) + 1);
 		if(line)
 			ft_strlcpy(ans + len, line, s_strlen(line) + 1);
 		pre_ans = ans;
-		if(!line)
-			break;
 		set_ans(line, &len, ans);
 		if (checker(ans, eof) != 0)
 			break ;
+		if(!line)
+			break;
 	}
 	ans[len - ft_strlen(eof)] = '\0';
 	return (ans);

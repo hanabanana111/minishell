@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/15 19:45:01 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:04:25 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,10 @@ void *do_nothing(int i)
 
 void	to_new_pronpt(void)
 {
-	if(is_here_doc(-1))
-	{
-		rl_done = 1;
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-		// rl_num_chars_to_read = 1;
-		// rl_event_hook = (void *)do_nothing(-1);
-		//write(STDOUT_FILENO, "\n", 1);
-	}
-	else
-	{
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-	}
+	rl_on_new_line();
+	rl_replace_line("", 1);
+	write(STDOUT_FILENO, "\n", 1);
+	rl_redisplay();
 }
 
 void	signal_handler_sigint(int signum)
@@ -56,4 +44,9 @@ void	treat_signal(void)
 		perror(strerror(errno));
 		exit(1);
 	}
+}
+
+void treat_readline_signal()
+{
+	
 }
