@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/15 15:43:23 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:22:10 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,8 @@ void	is_line(t_status *status, t_info *cmd_info)
 	if(!cmd_info)
 		return;
 	parser(cmd_info, status);
-	// debug_print_lst(cmd_info);
 	if (!status->is_pipe_syntax && !status->is_redi_syntax)
 		ft_miniprocess(cmd_info, status);
-	// printf("%d\n", cmd_info -> e_flg);
-	// if (cmd_info -> e_flg == 1)
-	// 	exit(0);
 	add_history(status->line);
 }
 
