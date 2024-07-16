@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
+#    By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/12 20:32:58 by hakobori         ###   ########.fr        #
+#    Updated: 2024/07/16 15:55:41 by kawaharadar      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		 = minishell
 SRCS_DIR	 = ./srcs/
+BILT_DIR     = ./builtin/
 INCLUDE_DIR  = ./includes/
 LIBFT_DIR 	 = ./libft/
 RL_DIR := $(shell brew --prefix readline)
@@ -52,8 +53,10 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)utils1.c \
 			   $(SRCS_DIR)utils2.c \
 			   $(SRCS_DIR)lexer2.c \
-			   $(SRCS_DIR)fce.c 
-			   
+			   $(SRCS_DIR)fce.c \
+			   $(BILT_DIR)builtin.c \
+			   $(BILT_DIR)echo.c 
+
 OBJS 		 = $(SRCS:.c=.o)
 LIBFT 		 = $(LIBFT_DIR)libft.a
 

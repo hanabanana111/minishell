@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:51:31 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/16 15:15:04 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:09:12 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,18 @@
 // 	return(count);
 // }
 
-int	check_option_n(t_info *lst)
+int	check_option_n(char *str)
 {
 	char	*opt;
 	size_t	i;
 
 	i = 0;
-	if (!lst->str)
+	if (!str)
 		return (FALSE);
-	opt = lst->str;
+	opt = str;
 	if (opt[0] == '-')
 		i++;
 	else
-		return (FALSE);
-	if (lst->is_quote)
 		return (FALSE);
 	while (opt[i])
 	{
@@ -52,30 +50,47 @@ int	check_option_n(t_info *lst)
 	return (TRUE);
 }
 
-t_info	*find_echo_part(t_info *lst)
+int	find_echo_part(char **arg)
 {
-	t_info	*node;
+	int	i;
 
-	node = lst;
-	while (node && check_option_n(node))
-		node = node->next;
-	return (node);
+	i = 1;
+	while (arg[i] && check_option_n(arg[i]))
+		i++;
+	return (i);
 }
 
-void	echo_func(t_info *lst)
+int	echo_func(t_cmd *lst)
 {
-	t_info	*echo_part;
-	size_t p_count;
+	int	echo_part;
 	
-	pirntf("pass\n");
-	p_count = count_pipe(lst);
-	echo_part = find_echo_part(lst);
+	printf("builtin\n");
+	echo_part = find_echo_part(lst -> arg);
 	if (!echo_part)
-		return ;
-	while (echo_part)
+		return (1);
+	if (echo_part > 1)
 	{
-		if (echo_part->str)
-			printf("%s", echo_part->str);
-		echo_part = echo_part->next;
+		while (lst -> arg[echo_part])
+		{
+			printf("%s", lst -> arg[echo_part]);
+			if(!lst -> arg[echo_part + 1])
+				return (1);
+			else
+				printf(" ");
+			echo_part++;
+		}
 	}
+	else
+	{
+		while (lst -> arg[echo_part])
+		{
+			printf("%s", lst -> arg[echo_part]);
+			if(!lst -> arg[echo_part + 1])
+				printf("\n");
+			else
+				printf(" ");
+			echo_part++;
+		}
+	}
+	return (1);
 }

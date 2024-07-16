@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/16 15:15:22 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:50:11 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,8 @@ void	separate_cmd(char *cmd, t_info *node, size_t *j);
 char *set_get_readline(char *new);
 int is_here_doc(int num);
 void *do_nothing(int i);
-void	echo_func(t_info *lst);
+int	echo_func(t_cmd *lst);
+int	built_in(t_cmd *lst);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

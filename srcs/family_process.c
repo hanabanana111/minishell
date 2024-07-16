@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   family_process.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:01:23 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 14:48:29 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:51:21 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	children_process(t_cmd *lst, t_status *env_lst)
 		}
 		close(lst -> pipe_1);
 	}
+	if (built_in(lst))
+		exit(0);
 	if (execve(lst -> path, lst -> arg, env_lst -> envm) < 0)
 		re_process(lst, env_lst);
 }
