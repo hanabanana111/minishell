@@ -6,16 +6,16 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/16 15:04:25 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:05:51 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void *do_nothing(int i)
+void	*do_nothing(int i)
 {
 	(void)i;
-	return(NULL);
+	return (NULL);
 }
 
 void	to_new_pronpt(void)
@@ -44,9 +44,4 @@ void	treat_signal(void)
 		perror(strerror(errno));
 		exit(1);
 	}
-}
-
-void treat_readline_signal()
-{
-	
 }

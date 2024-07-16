@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/15 19:36:13 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:15:22 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ void	separate_cmd(char *cmd, t_info *node, size_t *j);
 char *set_get_readline(char *new);
 int is_here_doc(int num);
 void *do_nothing(int i);
+void	echo_func(t_info *lst);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
