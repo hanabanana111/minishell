@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 16:35:51 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 17:37:28 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,9 @@ char							*expdup2(char *ans, char *tmp);
 void							create_export(char **env);
 char							**add_export(char **exp, char *str);
 char							**remove_exp(char **exp, char *str);
+char							*key_format(char *str);
+int								change_key_value(t_status *status, char *key, char *new);
+int								add_env(t_status *status, char *new);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

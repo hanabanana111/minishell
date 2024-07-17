@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:44:58 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 15:11:26 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:45:45 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,36 @@ char	*format_value(char *env, char *key)
 char	*get_value(char **env, char *key)
 {
 	size_t	i;
+	size_t	key_len;
 
 	i = 0;
+	if (!key)
+		return (NULL);
+	key_len = s_strlen(key);
 	while (env[i])
 	{
-		if (!ft_strncmp(env[i], key, s_strlen(key)))
+		if (!ft_strncmp(env[i], key, key_len) && env[i][key_len] == '=')
 			return (format_value(env[i], key));
 		i++;
 	}
 	return ("");
+}
+
+char	*key_format(char *str)
+{
+	size_t	i;
+	char	*result;
+
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i] != '=')
+		i++;
+	if (!str[i])
+		return (NULL);
+	result = (char *)ft_calloc(i + 1, sizeof(char));
+	if (!result)
+		return (NULL);
+	ft_strlcpy(result, str, i + 1);
+	return (result);
 }
