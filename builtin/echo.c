@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:51:31 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 19:51:09 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 23:12:29 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,23 @@ int	find_echo_part(char **arg)
 int	echo_func(t_cmd *lst)
 {
 	int	echo_part;
+	int i;
 
 	echo_part = find_echo_part(lst->arg);
 	if (!echo_part)
 		return (1);
-	while (lst->arg[echo_part])
+	i = echo_part;
+	while (lst->arg[i])
 	{
-		printf("%s", lst->arg[echo_part]);
-		if (!lst->arg[echo_part + 1])
+		printf("%s", lst->arg[i]);
+		if (!lst->arg[i + 1])
 		{
 			if (echo_part == 1)
 				printf("\n");
 			return (1);
 		}
 		printf(" ");
-		echo_part++;
+		i++;
 	}
 	return (1);
 }
