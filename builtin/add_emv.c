@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:09:17 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 16:25:30 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 17:32:57 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,44 @@ size_t	count_env_l(char **pre_env)
 	size_t	count;
 
 	count = 0;
-	while(pre_env[count])
+	while (pre_env[count])
 		count++;
 	return (count);
 }
 
-void	set_pre_to_current(char **pre_env, char **result)
+char	**set_pre_to_current(char **pre_env, size_t env_l)
 {
-	size_t i;
+	size_t	i;
+	char	**result;
 
 	i = 0;
-	if (!pre_env)
-		return;
-	while(pre_env[i])
+	result = (char **)ft_calloc(env_l + 2, sizeof(char *));
+	if (!result)
+		return (NULL);
+	while (pre_env[i])
 		result[i] = pre_env[i++];
+	return (result);
 }
- 
-char	**add_env(t_status *status, )
+
+int	add_new_key(t_status *status, char **pre_env, size_t env_l, char *new)
+{
+	status->envm = set_pre_to_current(pre_env, env_l);
+	free(pre_env);
+	status->envm[env_l] = new;
+	return (TRUE);
+}
+
+int	add_env(t_status *status, char *new)
 {
 	char	**pre_env;
-	char	**result;
+	char	*key;
 	size_t	env_l;
 
 	pre_env = status->envm;
-	
+	key = key_format(new);
 	env_l = count_env_l(pre_env);
-	result = (char **)ft_calloc(env_l + 2, sizeof(char *));
-	if(!result)
-		return(NULL);
-	set_pre_to_current(pre_env, result);
-	
+	if (!key)
+		return (add_new_key(status, pre_env, env_l, new));
+	else
+		return (change_key_value(status, key, new));
 }

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:44:58 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 16:38:08 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:45:45 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,23 @@ char	*get_value(char **env, char *key)
 		i++;
 	}
 	return ("");
+}
+
+char	*key_format(char *str)
+{
+	size_t	i;
+	char	*result;
+
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i] != '=')
+		i++;
+	if (!str[i])
+		return (NULL);
+	result = (char *)ft_calloc(i + 1, sizeof(char));
+	if (!result)
+		return (NULL);
+	ft_strlcpy(result, str, i + 1);
+	return (result);
 }
