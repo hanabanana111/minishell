@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 23:52:19 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 23:59:47 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ extern volatile sig_atomic_t	g_sig;
 # define CMD 5
 // option or arg
 # define OPT 6
-// //<>
-// # define LEFT_RIGHT 7
 
 # define SINGLE 1
 # define DOUBLE 2
@@ -63,6 +61,7 @@ typedef struct s_cmd
 	int							pipe_1;
 	char						*error_file;
 	char						*error_str;
+	struct s_cmd				*pre;
 	struct s_cmd				*next;
 }								t_cmd;
 
@@ -123,7 +122,6 @@ void							children_process(t_cmd *lst, t_status *env_lst);
 void							parent_process(t_cmd *lst, int i);
 void							ft_close(t_cmd *first);
 void							re_process(t_cmd *lst, t_status *env_lst);
-
 void							treat_read(t_status *status);
 void							treat_signal(void);
 void							to_new_pronpt(void);
@@ -209,6 +207,8 @@ void							ft_expjoin2(char *tmp, char *ans, int index, char *str);
 int								check_eq2(char *tmp);
 char							*ft_expstr(char *tmp, char *tmp2);
 
+int								env_func(char **env);
+int 							exit_func(t_cmd *lst);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

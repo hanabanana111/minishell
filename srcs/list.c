@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:43:21 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 14:41:48 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/17 23:43:30 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_cmd	*create_nord(t_info *lst)
 	else
 		ans -> error_str = NULL;
 	ans -> next = NULL;
+	ans -> pre = NULL;
 	return (ans);
 }
 
@@ -117,6 +118,7 @@ t_cmd	*create_lst(t_info *first)
 	while (i > 0)
 	{
 		nord -> next = create_nord(first);
+		nord -> next->pre = nord;
 		nord = nord -> next;
 		i--;
 	}
