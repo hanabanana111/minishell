@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:31:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 17:55:11 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 19:13:13 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	find_i_of_key(char *key, char **env)
 
 int	change_key_value(t_status *status, char *key, char *new, int is_plus)
 {
-	int key_i;
-	char *pre_str;
-	char *new_value;
+	int		key_i;
+	char	*pre_str;
+	char	*new_value;
 
 	key_i = find_i_of_key(key, status->envm);
 	pre_str = status->envm[key_i];
