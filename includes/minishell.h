@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 20:01:57 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 23:47:31 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,10 @@ int								is_join(char *key);
 char							*format_value(char *env, char *key);
 char							**eq_exp(char **exp, char *str);
 char							**add_export(char **exp, char *str);
+void							ft_expjoin2(char *tmp, char *ans, int index, char *str);
+int								check_eq2(char *tmp);
+char							*ft_expstr(char *tmp, char *tmp2);
+
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

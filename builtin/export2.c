@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:25:17 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 20:02:29 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 23:46:40 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,25 +78,14 @@ char	*ft_expjoin(char *tmp, char *str)
 {
 	int		index;
 	char	*ans;
-	int		i;
 
 	index = 0;
 	while (str[index] != '=')
 		index++;
-	ans = malloc(ft_strlen(tmp) + ft_strlen(str) - ft_strlen(&str[index]));
+	ans = malloc(ft_strlen(tmp) + ft_strlen(str) - index - 1);
 	if (ans == NULL)
 		error_exit("ft_expjoin");
-	i = 0;
-	while (tmp[i])
-	{
-		ans[i] = tmp[i];
-		i++;
-	}
-	i--;
-	while (str[index])
-		ans[i++] = str[index++];
-	ans[i++] = '"';
-	ans[i] = '\0';
+	ft_expjoin2(tmp, ans, index, str);
 	free(tmp);
 	return (ans);
 }
@@ -118,7 +107,11 @@ char	**plus_eq_exp(char **exp, char *str)
 	{
 		tmp2 = ft_strdup(exp[check_exp(exp, tmp)]);
 		tmp2 = ft_strtrim2(tmp2, 11);
-		tmp2 = ft_expjoin(tmp2, str);
+		printf("tmp2 = %s, str = %s\n", tmp2, str);
+		if (check_eq2(tmp2))
+			tmp2 = ft_expjoin(tmp2, str);
+		else
+			tmp2 = ft_expstr(str, tmp2);
 		exp = remove_exp(exp, tmp);
 		exp = add_export(exp, tmp2);
 		free(tmp);
