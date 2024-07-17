@@ -6,11 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/07/17 21:41:41 by kawaharadar      ###   ########.fr       */
-=======
-/*   Updated: 2024/07/17 23:47:31 by kawaharadar      ###   ########.fr       */
->>>>>>> fix_builtin.c
+/*   Updated: 2024/07/17 23:52:19 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
