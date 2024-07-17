@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 21:58:55 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 23:41:32 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_cmd
 	int							pipe_1;
 	char						*error_file;
 	char						*error_str;
+	struct s_cmd				*pre;
 	struct s_cmd				*next;
 }								t_cmd;
 

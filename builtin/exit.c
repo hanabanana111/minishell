@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:27:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 22:53:22 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 23:44:36 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,25 @@ int is_end_status_digits(t_cmd *lst)
 	}
 	return (TRUE);
 }
+int	write_error_invalid_argment(char *cmd)
+{
+	write(2, &"minishell: exit: ", 17);
+	write(2, cmd, s_strlen(cmd));
+	write(2, &": numeric argument required\n", 28);
+	return (2);
+}
+int write_error_str(char *str)
+{
+	write(2, str, s_strlen(str));
+	return (2);
+}
+
+int is_pipe(t_cmd *lst)
+{
+	if (lst->pre || lst->next)
+		return (TRUE);
+	return (FALSE);
+}
 
 int exit_func(t_cmd *lst)
 {
@@ -34,19 +53,14 @@ int exit_func(t_cmd *lst)
 
 	end_status = 0;
 	node = lst;
-	printf("exit\n");
+	if (!is_pipe(lst))
+		printf("exit\n");
 	if (!node->arg[1])
 		end_status = 0;
 	else if(!is_end_status_digits(lst))
-	{
-		printf("minishell: exit: %s: numeric argument required\n", node->arg[1]);
-		end_status = 2;
-	}
+		end_status = write_error_invalid_argment(lst->arg[1]);
 	else if (node->arg[2])
-	{
-		printf("minishell: exit: too many arguments\n");
-		end_status = 2;
-	}
+		end_status = write_error_str("minishell: exit: too many arguments\n");
 	else if (is_end_status_digits(lst))
 		end_status = (unsigned char)ft_atoi(node->arg[1]);
 	end_status_func(end_status);
