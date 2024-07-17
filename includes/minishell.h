@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 15:38:59 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:35:51 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ int								ft_strcmp(char *str1, char *str2);
 char							*expdup2(char *ans, char *tmp);
 void							create_export(char **env);
 char							**add_export(char **exp, char *str);
+char							**remove_exp(char **exp, char *str);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
