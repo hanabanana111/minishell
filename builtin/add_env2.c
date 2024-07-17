@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:31:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 17:33:55 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 17:55:11 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	is_join(char *key)
 
 	key_len = s_strlen(key);
 	if (key[key_len - 1] == '+')
+	{
+		key[key_len - 1] = '\0';
 		return (TRUE);
+	}
 	return (FALSE);
 }
 
@@ -38,7 +41,7 @@ int	find_i_of_key(char *key, char **env)
 	return (-1);
 }
 
-int	change_key_value(t_status *status, char *key, char *new)
+int	change_key_value(t_status *status, char *key, char *new, int is_plus)
 {
 	int key_i;
 	char *pre_str;
@@ -49,7 +52,7 @@ int	change_key_value(t_status *status, char *key, char *new)
 	new_value = format_value(new, key);
 	if (key_i < 0)
 		return (FALSE);
-	if (is_join(key))
+	if (is_plus)
 	{
 		status->envm[key_i] = ft_strjoin(pre_str, new_value);
 		free(new_value);
