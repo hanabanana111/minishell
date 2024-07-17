@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"MAN.C": "cpp"
+		"MAN.C": "cpp",
+		"libft.h": "c"
 	}
 }

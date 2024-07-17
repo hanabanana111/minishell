@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 21:41:41 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 21:58:55 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ char							**add_export(char **exp, char *str);
 int								export_func2(char **arg, t_status *status, t_cmd *first);
 void							print_export(char **exp);
 int								check_builtin(char *cmd);
+int								env_func(char **env);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
