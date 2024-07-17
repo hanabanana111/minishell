@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 23:52:49 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 15:31:16 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 19:58:09 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	check_eq(char *str)
 
 char	*expdup(char *str)
 {
-	int		i;;
 	char	*ans;
 	char	*tmp;
 
@@ -72,7 +71,7 @@ char	**add_export(char **exp, char *str)
 		ans[i] = exp[i - 1];
 		i++;
 	}
-	ans[i] == NULL;
+	ans[i] = NULL;
 	i = 0;
 	while (exp[i])
 		free(exp[i++]);
@@ -81,7 +80,7 @@ char	**add_export(char **exp, char *str)
 	return (ans);
 }
 
-void	create_export(char **env)
+char	**create_export(char **env)
 {
 	char	**exp;
 	int		i;

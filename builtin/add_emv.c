@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_emv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:09:17 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 19:04:25 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 19:52:34 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ char	**set_pre_to_current(char **pre_env, size_t env_l)
 	if (!result)
 		return (NULL);
 	while (pre_env[i])
-		result[i] = pre_env[i++];
+	{
+		result[i] = pre_env[i];
+		i++;
+	}
 	return (result);
 }
 

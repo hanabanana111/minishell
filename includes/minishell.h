@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 19:24:38 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 20:01:57 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,8 +184,7 @@ int								echo_func(t_cmd *lst);
 int								built_in(t_cmd *lst, t_status *status);
 int								ft_strcmp(char *str1, char *str2);
 char							*expdup2(char *ans, char *tmp);
-void							create_export(char **env);
-char							**add_export(char **exp, char *str);
+char							**create_export(char **env);
 char							**remove_exp(char **exp, char *str);
 int								ft_len(char **exp);
 int								ft_lstlen(t_cmd *first);
@@ -195,7 +194,14 @@ int								change_key_value(t_status *status, char *key, char *new, int is_plus)
 int								add_env(t_status *status, char *new);
 int								find_i_of_key(char *key, char **env);
 char							*ft_strtrim2(char *str, int index);
-char		**plus_eq_exp(char **exp, char *str);
+char							**plus_eq_exp(char **exp, char *str);
+int								export_func(char **arg, t_status *status, t_cmd *first);
+int								builtin2(t_cmd *lst, t_status *status);
+int								pwd_func(char **env);
+int								is_join(char *key);
+char							*format_value(char *env, char *key);
+char							**eq_exp(char **exp, char *str);
+char							**add_export(char **exp, char *str);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

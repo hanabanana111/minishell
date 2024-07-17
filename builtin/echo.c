@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:51:31 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 15:13:57 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 19:51:09 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	echo_func(t_cmd *lst)
 		printf("%s", lst->arg[echo_part]);
 		if (!lst->arg[echo_part + 1])
 		{
-			if (echo_part = 1)
+			if (echo_part == 1)
 				printf("\n");
 			return (1);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prosses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/17 14:53:33 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 19:41:16 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 	info = create_pipe(info, lst);
 	//builtin2!
 	cmd_first = info;
-	if (builtin2(cmd_first))
+	if (builtin2(cmd_first, env_lst))
 		return ;
-	//info = check_cmdlst(info);
+	// info = check_cmdlst(info);
 	ft_process(info, env_lst);
 }

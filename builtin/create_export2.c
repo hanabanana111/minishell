@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:42:22 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 15:28:15 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 19:59:02 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*expdup2(char *ans, char *tmp)
 		i++;
 	}
 	ans[i++] = '"';
-	ans[i] = "\0";
+	ans[i] = '\0';
 	free(tmp);
 	return (ans);
 }

@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:37:15 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 17:46:19 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 20:04:04 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_export(char **exp)
 	}
 }
 
-int	check_type(char *str)
+int	check_type2(char *str)
 {
 	int	i;
 
@@ -50,36 +50,36 @@ char	**no_eq_exp(char **exp, char *str)
 	return (exp);
 }
 
-void	ft_mini_export(char **exp, char **env, char *arg)
+void	ft_mini_export(t_status *status, char *arg)
 {
-	if (check_type(arg) == 1)
-		exp = no_eq_exp(exp, arg);
-	else if (check_type(arg) == 2)
+	if (check_type2(arg) == 1)
+		status -> exp = no_eq_exp(status -> exp, arg);
+	else if (check_type2(arg) == 2)
 	{
-		exp = eq_exp(exp, arg);
-		//はなさんの作ってくれた優秀関数
+		status -> exp = eq_exp(status -> exp, arg);
+		add_env(status, arg);
 	}
 	else
 	{
-		exp = plus_eq_exp(exp, arg);
-		//はなさんの作った優秀関数
+		status -> exp = plus_eq_exp(status -> exp, arg);
+		add_env(status, arg);
 	}
 }
 
-int	export_func(char **arg, char **exp, char **env, t_cmd *first)
+int	export_func(char **arg, t_status *status, t_cmd *first)
 {
 	int	i;
 
 	if (ft_lstlen(first) > 1)
 		return (0);
 	if (ft_len(arg) == 1)
-		print_export(exp);
+		print_export(status -> exp);
 	else
 	{
 		i = 1;
 		while (arg[i])
 		{
-			ft_mini_export(exp, env, arg[i]);
+			ft_mini_export(status, arg[i]);
 			i++;
 		}
 	}

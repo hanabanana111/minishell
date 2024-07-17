@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:44:04 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 16:35:19 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 20:03:21 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	check_exp(char **exp, char *str)
 	int		ans;
 
 	ans = -1;
-	tmp = strjoin("declare -x ", str);
+	tmp = ft_strjoin("declare -x ", str);
 	if (tmp == NULL)
 		error_exit("check_exp");
-	tmp2 = strjoin(tmp, "=");
+	tmp2 = ft_strjoin(tmp, "=");
 	if (tmp2 == NULL)
 		error_exit("check_exp");
 	i = 0;

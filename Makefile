@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
+#    By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/17 17:35:28 by hakobori         ###   ########.fr        #
+#    Updated: 2024/07/17 19:56:33 by kawaharadar      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,15 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(BILT_DIR)builtin.c \
 			   $(BILT_DIR)echo.c \
 			   $(BILT_DIR)pwd.c \
-			   $(BILT_DIR)add_env.c \
-			   $(BILT_DIR)add_env2.c 
+			   $(BILT_DIR)add_emv.c \
+			   $(BILT_DIR)add_env2.c \
+			   $(BILT_DIR)create_export.c \
+			   $(BILT_DIR)create_export2.c \
+			   $(BILT_DIR)export.c \
+			   $(BILT_DIR)export2.c \
+			   $(BILT_DIR)export3.c \
+			   $(BILT_DIR)remove_exp.c \
+
 
 
 OBJS 		 = $(SRCS:.c=.o)

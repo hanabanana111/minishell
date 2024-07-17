@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:25:17 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 19:21:22 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 20:02:29 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	**plus_eq_exp(char **exp, char *str)
 	if (check_exp(exp, tmp) < 0)
 	{
 		tmp = ft_strjoin4(tmp, str, '=');
-		exp = add_exp(exp, tmp);
+		exp = add_export(exp, tmp);
 		free(tmp);
 		return (exp);
 	}
