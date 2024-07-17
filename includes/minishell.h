@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 16:35:51 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 17:17:47 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,9 @@ char							*expdup2(char *ans, char *tmp);
 void							create_export(char **env);
 char							**add_export(char **exp, char *str);
 char							**remove_exp(char **exp, char *str);
+int								ft_len(char **exp);
+int								ft_lstlen(t_cmd *first);
+int								check_exp(char **exp, char *str);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
