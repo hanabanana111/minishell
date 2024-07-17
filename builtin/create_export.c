@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 23:52:49 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 19:58:09 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 20:58:50 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	check_eq(char *str)
 	{
 		if (str[i] == '=')
 			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -60,18 +61,18 @@ char	**add_export(char **exp, char *str)
 	ans = (char **)malloc(sizeof(char *) * (ft_len(exp) + 2));
 	exp_str = expdup(str);
 	i = 0;
-	while (exp[i] && ft_strcmp(exp[i], str) < 0)
+	while (exp[i] && ft_strcmp(exp[i], exp_str) < 0)
 	{
 		ans[i] = ft_strdup(exp[i]);
 		i++;
 	}
-	ans[i++] = exp_str;
-	while (exp[i - 1])
+	ans[i] = exp_str;
+	while (exp[i])
 	{
-		ans[i] = exp[i - 1];
+		ans[i + 1] = ft_strdup(exp[i]);
 		i++;
 	}
-	ans[i] = NULL;
+	ans[i + 1] = NULL;
 	i = 0;
 	while (exp[i])
 		free(exp[i++]);
@@ -86,11 +87,13 @@ char	**create_export(char **env)
 	int		i;
 
 	exp = (char **)malloc(sizeof(char *));
-	exp = NULL;
+	if (exp == NULL)
+		error_exit("create_exit");
+	exp[0] = NULL;
 	i = 0;
 	while (env[i])
 	{
-		if (ft_strncmp(env[i], "_=/usr/bin/env\0", 15))
+		if (ft_strncmp(env[i], "_=", 2))
 			exp = add_export(exp, env[i]);
 		i++;
 	}

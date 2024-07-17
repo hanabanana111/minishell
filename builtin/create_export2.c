@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:42:22 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 19:59:02 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 20:40:43 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_strcmp(char *str1, char *str2)
 	len = ft_strlen(str1);
 	if (len < ft_strlen(str2))
 		len = ft_strlen(str2);
-	return (ft_strncmp(str1, str2, len));
+	return (ft_strncmp(str1, str2, len + 1));
 }
 
 char	*expdup2(char *ans, char *tmp)
@@ -27,7 +27,7 @@ char	*expdup2(char *ans, char *tmp)
 	int	i;
 
 	i = 0;
-	while (tmp[i] && tmp[i] == '=')
+	while (tmp[i] && tmp[i] != '=')
 	{
 		ans[i] = tmp[i];
 		i++;
