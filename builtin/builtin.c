@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:33:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 15:27:08 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:33:04 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	built_in(t_cmd *lst, t_status *status)
 	else if (strncmp(lst -> cmd, "echo\0", 5) == 0)
 		return (echo_func(lst));
 	if (strncmp(lst -> cmd, "/bin/pwd\0", 9) == 0)
-		return (pwd_func(status->exp));
+		return (pwd_func(status->env));
 	else if (strncmp(lst -> cmd, "pwd\0", 4) == 0)
-		return (pwd_func(status->exp));
+		return (pwd_func(status->env));
 	return (0);
 }
