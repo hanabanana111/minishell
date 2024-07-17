@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   prosses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/07/16 16:33:57 by hakobori         ###   ########.fr       */
+=======
+/*   Updated: 2024/07/16 15:51:38 by kawaharadar      ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 

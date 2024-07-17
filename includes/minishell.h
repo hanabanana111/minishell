@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/16 16:38:02 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:50:11 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <sys/wait.h>
 # include <termios.h>
 # include <unistd.h>
-# include <readline/readline.h>
 # include <readline/history.h>
+# include <readline/readline.h>
 
 extern volatile sig_atomic_t	g_sig;
 
@@ -173,12 +173,15 @@ int								is_syntax_error1(t_info *node,
 int								is_syntax_error1_true_false(t_info *node);
 void							is_syntax1(t_info *cmd_info, t_status *status);
 int								is_syntax_error2(t_info *node);
-char	*delete_quotes_and_strndup(char *src, size_t n, t_info *node);
-void	separate_cmd(char *cmd, t_info *node, size_t *j);
-char *set_get_readline(char *new);
-int is_here_doc(int num);
-void *do_nothing(int i);
-void	echo_func(t_info *lst);
+char							*delete_quotes_and_strndup(char *src, size_t n,
+									t_info *node);
+void							separate_cmd(char *cmd, t_info *node,
+									size_t *j);
+char							*set_get_readline(char *new);
+int								is_here_doc(int num);
+void							*do_nothing(int i);
+int								echo_func(t_cmd *lst);
+int								built_in(t_cmd *lst);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
