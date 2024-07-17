@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 14:50:11 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:28:27 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,8 @@ char							*set_get_readline(char *new);
 int								is_here_doc(int num);
 void							*do_nothing(int i);
 int								echo_func(t_cmd *lst);
-int								built_in(t_cmd *lst);
+int								built_in(t_cmd *lst, t_status *status);
+int 							pwd_func(char **exp);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

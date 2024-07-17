@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+         #
+#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/16 15:55:41 by kawaharadar      ###   ########.fr        #
+#    Updated: 2024/07/17 15:25:48 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,8 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)lexer2.c \
 			   $(SRCS_DIR)fce.c \
 			   $(BILT_DIR)builtin.c \
-			   $(BILT_DIR)echo.c 
+			   $(BILT_DIR)echo.c \
+			   $(BILT_DIR)pwd.c 
 
 OBJS 		 = $(SRCS:.c=.o)
 LIBFT 		 = $(LIBFT_DIR)libft.a
