@@ -6,7 +6,11 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/07/17 21:41:41 by kawaharadar      ###   ########.fr       */
+=======
+/*   Updated: 2024/07/17 23:47:31 by kawaharadar      ###   ########.fr       */
+>>>>>>> fix_builtin.c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +209,10 @@ char							**add_export(char **exp, char *str);
 int								export_func2(char **arg, t_status *status, t_cmd *first);
 void							print_export(char **exp);
 int								check_builtin(char *cmd);
+void							ft_expjoin2(char *tmp, char *ans, int index, char *str);
+int								check_eq2(char *tmp);
+char							*ft_expstr(char *tmp, char *tmp2);
+
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:44:04 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 20:03:21 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 22:13:45 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	**remove_exp(char **exp, char *str)
 	while (exp[++i])
 	{
 		if (i != remove_index)
-			ans[l++] = exp[i];
+			ans[l++] = ft_strdup(exp[i]);
 	}
 	ans[l] = NULL;
 	i = 0;
