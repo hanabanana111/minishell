@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 17:39:27 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:33:57 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,17 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 {
 	t_cmd	*info;
 	t_info	*lst;
+	t_cmd	*cmd_first;
 
 	lst = first;
 	info = create_lst(lst);
 	info = path_finder(info, env_lst -> envm);
 	lst = first;
 	info = create_pipe(info, lst);
+	//builtin2!
+	cmd_first = info;
+	if (builtin2(cmd_first))
+		return ;
 	//info = check_cmdlst(info);
 	ft_process(info, env_lst);
 }
