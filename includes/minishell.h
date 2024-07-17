@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 23:41:32 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 23:46:34 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ extern volatile sig_atomic_t	g_sig;
 # define CMD 5
 // option or arg
 # define OPT 6
-// //<>
-// # define LEFT_RIGHT 7
 
 # define SINGLE 1
 # define DOUBLE 2
@@ -124,7 +122,6 @@ void							children_process(t_cmd *lst, t_status *env_lst);
 void							parent_process(t_cmd *lst, int i);
 void							ft_close(t_cmd *first);
 void							re_process(t_cmd *lst, t_status *env_lst);
-
 void							treat_read(t_status *status);
 void							treat_signal(void);
 void							to_new_pronpt(void);
@@ -207,6 +204,7 @@ int								export_func2(char **arg, t_status *status, t_cmd *first);
 void							print_export(char **exp);
 int								check_builtin(char *cmd);
 int								env_func(char **env);
+int 							exit_func(t_cmd *lst);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
