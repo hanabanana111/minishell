@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:51:31 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/16 16:09:12 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 15:13:57 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// size_t count_pipe(t_info *lst)
-// {
-// 	t_info *node;
-// 	size_t count;
-
-// 	count = 0;
-// 	node = lst;
-// 	while(node)
-// 	{
-// 		if(!ft_strncmp(node->str,"|\0",2))
-// 			count++;
-// 		node = node->next;
-// 	}
-// 	return(count);
-// }
 
 int	check_option_n(char *str)
 {
@@ -63,34 +47,21 @@ int	find_echo_part(char **arg)
 int	echo_func(t_cmd *lst)
 {
 	int	echo_part;
-	
-	printf("builtin\n");
-	echo_part = find_echo_part(lst -> arg);
+
+	echo_part = find_echo_part(lst->arg);
 	if (!echo_part)
 		return (1);
-	if (echo_part > 1)
+	while (lst->arg[echo_part])
 	{
-		while (lst -> arg[echo_part])
+		printf("%s", lst->arg[echo_part]);
+		if (!lst->arg[echo_part + 1])
 		{
-			printf("%s", lst -> arg[echo_part]);
-			if(!lst -> arg[echo_part + 1])
-				return (1);
-			else
-				printf(" ");
-			echo_part++;
-		}
-	}
-	else
-	{
-		while (lst -> arg[echo_part])
-		{
-			printf("%s", lst -> arg[echo_part]);
-			if(!lst -> arg[echo_part + 1])
+			if (echo_part = 1)
 				printf("\n");
-			else
-				printf(" ");
-			echo_part++;
+			return (1);
 		}
+		printf(" ");
+		echo_part++;
 	}
 	return (1);
 }
