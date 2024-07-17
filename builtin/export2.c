@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:25:17 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 20:02:29 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/17 21:33:13 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,4 +125,12 @@ char	**plus_eq_exp(char **exp, char *str)
 		free(tmp2);
 		return (exp);
 	}
+}
+
+int	export_func2(char **arg, t_status *status, t_cmd *first)
+{
+	(void)first;
+	if (ft_len(arg) == 1)
+		print_export(status -> exp);
+	return (1);
 }
