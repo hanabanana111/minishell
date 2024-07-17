@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 15:28:27 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:38:59 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,10 @@ int								is_here_doc(int num);
 void							*do_nothing(int i);
 int								echo_func(t_cmd *lst);
 int								built_in(t_cmd *lst, t_status *status);
-int 							pwd_func(char **exp);
+int								ft_strcmp(char *str1, char *str2);
+char							*expdup2(char *ans, char *tmp);
+void							create_export(char **env);
+char							**add_export(char **exp, char *str);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
