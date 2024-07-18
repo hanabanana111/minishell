@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 23:59:47 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/18 00:26:45 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,8 +207,8 @@ void							ft_expjoin2(char *tmp, char *ans, int index, char *str);
 int								check_eq2(char *tmp);
 char							*ft_expstr(char *tmp, char *tmp2);
 
-int								env_func(char **env);
-int 							exit_func(t_cmd *lst);
+int								env_func(char **env, t_cmd *lst);
+int 							exit_func(t_cmd *lst, int is_parents);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

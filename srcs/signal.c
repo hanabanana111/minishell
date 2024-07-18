@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/16 15:42:56 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:10:02 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ void	to_new_pronpt(void)
 	}
 	else if(is_here_doc(-1))
 	{
-		// rl_on_new_line();
+		rl_on_new_line();
 		rl_done = 1;
-		
 		write(STDOUT_FILENO, "\n", 1);
 		// rl_redisplay();
 	}

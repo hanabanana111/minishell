@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:27:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/18 00:08:44 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/18 01:02:45 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 int	is_end_status_digits(t_cmd *lst)
 {
-	t_cmd	*node;
 	size_t	i;
 
 	i = 0;
-	node = lst->next;
-	while (node->arg)
+	while (lst->arg[1][i])
 	{
-		if (!ft_isdigit(node->arg[1][i++]))
+		if (!ft_isdigit(lst->arg[1][i++]))
 			return (FALSE);
 	}
 	return (TRUE);
@@ -46,14 +44,14 @@ int	is_pipe(t_cmd *lst)
 	return (FALSE);
 }
 
-int	exit_func(t_cmd *lst)
+int	exit_func(t_cmd *lst, int is_parents)
 {
 	int		end_status;
 	t_cmd	*node;
 
 	end_status = 0;
 	node = lst;
-	if (!is_pipe(lst))
+	if (!is_pipe(lst) && is_parents)
 		printf("exit\n");
 	if (!node->arg[1])
 		end_status = 0;
@@ -62,7 +60,11 @@ int	exit_func(t_cmd *lst)
 	else if (node->arg[2])
 		end_status = write_error_str("minishell: exit: too many arguments\n");
 	else if (is_end_status_digits(lst))
-		end_status = (unsigned char)ft_atoi(node->arg[1]);
-	exit(end_status);
-	return (TRUE);
+		end_status = (unsigned char)ft_atoi(node->arg[1]);	
+	if (is_parents && !is_pipe(lst))
+		exit(end_status);
+	dprintf(2,"exit func : end_status = [%d]\n",end_status);
+	if (!is_parents)
+		exit(end_status);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:25:17 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 23:50:55 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/18 00:19:32 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ char	**plus_eq_exp(char **exp, char *str)
 	{
 		tmp2 = ft_strdup(exp[check_exp(exp, tmp)]);
 		tmp2 = ft_strtrim2(tmp2, 11);
-		printf("tmp2 = %s, str = %s\n", tmp2, str);
 		if (check_eq2(tmp2))
 			tmp2 = ft_expjoin(tmp2, str);
 		else
@@ -124,6 +123,6 @@ int	export_func2(char **arg, t_status *status, t_cmd *first)
 {
 	(void)first;
 	if (ft_len(arg) == 1)
-		print_export(status -> exp);
+		print_export(status->exp);
 	return (1);
 }

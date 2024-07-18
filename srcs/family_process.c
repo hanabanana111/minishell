@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   family_process.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:01:23 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/17 21:17:58 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/18 01:16:15 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ void	parent_process(t_cmd *lst, int i)
 		while (i-- > 0)
 		{
 			waitpid(-1, &end_status, 0);
-			end_status_func(end_status);
-		}
+			if (WIFEXITED(end_status))
+				end_status_func(WEXITSTATUS(end_status));
+			else if (WIFSIGNALED(end_status))
+				end_status_func(WEXITSTATUS(end_status));
+        }
 	}
 }
 

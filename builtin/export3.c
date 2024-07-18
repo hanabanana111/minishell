@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:57:30 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 23:47:13 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/18 00:21:14 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ char	*ft_expstr(char *tmp, char *tmp2)
 		i++;
 	}
 	ans[i] = '\0';
-	printf("ans = %s\n", ans);
 	free(tmp2);
 	return (ans);
 }
