@@ -6,13 +6,13 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:53:24 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 17:19:07 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/19 19:12:00 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	set_pwd(t_status *status)
+int	set_pwd_init(t_status *status)
 {
 	char	*pwd_tmp;
 
