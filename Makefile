@@ -6,7 +6,7 @@
 #    By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/19 17:30:46 by kawaharadar      ###   ########.fr        #
+#    Updated: 2024/07/19 17:34:25 by kawaharadar      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(BILT_DIR)remove_exp.c \
 			   $(BILT_DIR)env.c \
 			   $(BILT_DIR)exit.c \
-			   $(BILT_DIR)home_utils.c
+			   $(BILT_DIR)home_utils.c \
 			   $(BILT_DIR)cd.c \
 			   $(BILT_DIR)cd2.c \
 

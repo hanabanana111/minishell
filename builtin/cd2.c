@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 15:38:45 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/19 16:53:01 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/19 17:53:21 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**remove_env(char **env, char *key)
 			ans[i] = ft_strdup(env[i]);
 		i++;
 	}
-	ans[i] == NULL;
+	ans[i] = NULL;
 	i = 0;
 	while (env[i])
 		free(env[i++]);
@@ -44,7 +44,7 @@ void	change_oldpwd(t_status *status, char *old_path)
 	if (str == NULL)
 		error_exit("change_oldpwd");
 	free(old_path);
-	status -> envm =  add_env(status, str);
+	add_env(status, str);
 	status -> exp = remove_exp(status -> exp, "OLDPWD");
 	status -> exp = add_export(status -> exp, str);
 	free(str);
@@ -58,7 +58,7 @@ void	change_pwd(t_status *status, char *path)
 	if (str == NULL)
 		error_exit("change_pwd");
 	free(path);
-	status -> envm = add_env(status, str);
+	add_env(status, str);
 	status -> exp = remove_exp(status -> exp, "PWD");
 	status -> exp = add_export(status -> exp, str);
 	free(str);
@@ -102,10 +102,10 @@ char	**replace_home(char **arg, t_status *status)
 			error_exit("replace_home");
 		i++;
 	}
-	arg[i] == NULL;
+	arg[i] = NULL;
 	i = 0;
 	while (arg[i])
-		free(arg[i]);
+		free(arg[i++]);
 	free(arg[i]);
 	free(arg);
 	return (ans);
