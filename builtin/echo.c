@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:51:31 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 23:12:29 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:19:33 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	find_echo_part(char **arg)
 int	echo_func(t_cmd *lst)
 {
 	int	echo_part;
-	int i;
+	int	i;
 
 	echo_part = find_echo_part(lst->arg);
 	if (!echo_part)

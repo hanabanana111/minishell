@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_emv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:09:17 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 19:52:34 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/19 17:19:17 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ int	add_new_key(t_status *status, char **pre_env, char *new, int is_plus)
 {
 	size_t	env_l;
 	size_t	i;
-	size_t move_size;
+	size_t	move_size;
 
 	env_l = count_env_l(pre_env);
 	status->envm = set_pre_to_current(pre_env, env_l);
 	free(pre_env);
-	if(is_plus)
+	if (is_plus)
 	{
 		i = 0;
-		while(new[i] != '=')
+		while (new[i] != '=')
 			i++;
 		move_size = s_strlen(new) - i + 1;
 		ft_memmove(&new[i - 1], &new[i], move_size);
@@ -64,8 +64,8 @@ int	add_env(t_status *status, char *new)
 {
 	char	**pre_env;
 	char	*key;
-	int	is_plus;
-	int is_key_i;
+	int		is_plus;
+	int		is_key_i;
 
 	pre_env = status->envm;
 	key = key_format(new);
