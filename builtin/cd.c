@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/19 17:20:59 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/19 17:53:27 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*ft_home_path(char *str)
 	int		i;
 	int		l;
 
+	i = 0;
 	while (str[i] && str[i] != '=')
 		i++;
 	if (str[i] == '\0')
@@ -25,7 +26,7 @@ char	*ft_home_path(char *str)
 		ans = (char *)malloc(2);
 		if (ans == NULL)
 			error_exit("ft_home_path");
-		ans = ft_strlcpy(ans, ".\0", 2);
+		ft_strlcpy(ans, ".\0", 2);
 		return (ans);
 	}
 	ans = (char *)malloc(ft_strlen(str) - 4);
@@ -34,11 +35,11 @@ char	*ft_home_path(char *str)
 	l = 0;
 	while (str[++i])
 		ans[l++] = str[i];
-	ans[0] = '\0';
+	ans[i] = '\0';
 	return (ans);
 }
 
-char	ft_old_path(char **env)
+char	*ft_old_path(char **env)
 {
 	int		i;
 	int		l;
@@ -104,6 +105,7 @@ int	move_home(char **env, t_status *status)
 int	ft_cd(t_cmd *first, t_status *status)
 {
 	char	*old_path;
+
 	if (ft_lstlen(first) > 1)
 		return (0);
 	if (first -> arg[1] == NULL)
