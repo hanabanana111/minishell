@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 16:37:34 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:28:51 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,10 @@ int								env_func(char **env, t_cmd *lst);
 int 							exit_func(t_cmd *lst, int is_parents);
 int 							set_pwd(t_status *status);
 int 							set_home(t_status *status);
+void							change_oldpwd(t_status *status, char *old_path);
+char							**remove_env(char **env, char *key);
+char							**replace_home(char **arg, t_status *status);
+int								ft_cd(t_cmd *first, t_status *status);
 
 
 void							debug_print_lst(t_info *cmd_info);

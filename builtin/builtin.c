@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:33:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 16:27:56 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:28:04 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	built_in(t_cmd *lst, t_status *status)
 		return (exit_func(lst, 0));
 	if (ft_strncmp(lst->cmd, "env\0", 4) == 0)
 		return (env_func(status->envm, lst));
+	if (ft_strncmp(lst->cmd, "cd\0", 3) == 0)
+		return (1);
 	return (0);
 }
 
@@ -39,6 +41,8 @@ int	builtin2(t_cmd *lst, t_status *status)
 		return (exit_func(lst, 1));
 	if (ft_strncmp(lst->cmd, "env\0", 4) == 0)
 		return (env_func(status->envm, lst));
+	if (ft_strncmp(lst->cmd, "cd\0", 3) == 0)
+		return (ft_cd(lst, status));
 	return (0);
 }
 
@@ -57,6 +61,8 @@ int	check_builtin(char *cmd)
 	if (ft_strncmp(cmd, "exit\0", 5) == 0)
 		return (1);
 	if (ft_strncmp(cmd, "env\0", 4) == 0)
+		return (1);
+	if (ft_strncmp(cmd, "cd\0", 3) == 0)
 		return (1);
 	return (0);
 }
