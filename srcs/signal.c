@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/18 17:10:02 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:14:06 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	to_new_pronpt(void)
 	if(set_get_readline(NULL) && !ft_strncmp("cat\0",set_get_readline(NULL),4))
 	{
 		write(STDOUT_FILENO, "\n", 1);
+		set_get_readline("");
 		return;
 	}
 	else if(is_here_doc(-1))

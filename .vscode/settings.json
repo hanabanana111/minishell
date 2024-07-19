@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"MAN.C": "cpp",
-		"libft.h": "c"
+		"libft.h": "c",
+		"minishell.h": "c"
 	}
 }
