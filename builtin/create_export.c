@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 23:52:49 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 23:07:25 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/19 00:11:25 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	**create_export(char **env)
 	i = 0;
 	while (env[i])
 	{
-		if (ft_strncmp(env[i], "_=", 2))
+		if (ft_strncmp(env[i], "_=", 2) && ft_strncmp(env[i], "OLDPWD=", 7))
 			exp = add_export(exp, env[i]);
 		i++;
 	}

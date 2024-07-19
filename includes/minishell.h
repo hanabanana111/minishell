@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 23:59:47 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/19 17:21:18 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,10 @@ int								check_builtin(char *cmd);
 void							ft_expjoin2(char *tmp, char *ans, int index, char *str);
 int								check_eq2(char *tmp);
 char							*ft_expstr(char *tmp, char *tmp2);
+void							change_oldpwd(t_status *status, char *old_path);
+char							**remove_env(char **env, char *key);
+char							**replace_home(char **arg, t_status *status);
+int								ft_cd(t_cmd *first, t_status *status);
 
 int								env_func(char **env);
 int 							exit_func(t_cmd *lst);

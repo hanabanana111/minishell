@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:25:17 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 23:50:55 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/19 00:22:50 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ char	**plus_eq_exp(char **exp, char *str)
 	{
 		tmp2 = ft_strdup(exp[check_exp(exp, tmp)]);
 		tmp2 = ft_strtrim2(tmp2, 11);
-		printf("tmp2 = %s, str = %s\n", tmp2, str);
 		if (check_eq2(tmp2))
 			tmp2 = ft_expjoin(tmp2, str);
 		else
