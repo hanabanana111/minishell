@@ -6,23 +6,23 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:53:24 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 16:28:29 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:42:21 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 int set_pwd(t_status *status)
 {
-	char *value;
+	char *pwd_tmp;
 	
-	value = get_value(status->envm,"PWD");
-	if(!value || value[0] == '\0')
+	pwd_tmp = get_value(status->envm,"PWD");
+	if(!pwd_tmp || pwd_tmp[0] == '\0')
 		return(FALSE);
-	status->pwd = value;
+	status->pwd = pwd_tmp;
 	return(TRUE);
 }
 
-int	find_pwd_get_cwd(void)
+int	find_pwd_get_pwd(void)
 {
 	char *value;
 	
@@ -50,7 +50,7 @@ int find_pwd_status(t_status * status)
 
 int pwd_func(t_status *status)
 {
-	if(find_pwd_get_cwd())
+	if(find_pwd_get_pwd())
 		return (TRUE);
 	if(find_pwd_status(status))
 		return (TRUE);

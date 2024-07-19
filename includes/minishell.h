@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 16:27:21 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:37:34 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_status
 	char						**exp;
 	char						**envm;
 	char 						*pwd;
+	char 						*home;
 	int							is_pipe_syntax;
 	int							is_redi_syntax;
 	char						*line;
@@ -210,6 +211,7 @@ char							*ft_expstr(char *tmp, char *tmp2);
 int								env_func(char **env, t_cmd *lst);
 int 							exit_func(t_cmd *lst, int is_parents);
 int 							set_pwd(t_status *status);
+int 							set_home(t_status *status);
 
 
 void							debug_print_lst(t_info *cmd_info);
