@@ -6,7 +6,7 @@
 #    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/22 20:23:51 by hakobori         ###   ########.fr        #
+#    Updated: 2024/07/22 20:31:38 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBFT_DIR 	 = ./libft/
 RL_DIR := $(shell brew --prefix readline)
 RL_LIB_DIR 	 = $(addprefix $(RL_DIR)/, lib)
 RL_INC_DIR   = $(addprefix $(RL_DIR)/, include)
-CFLAGS 		 = -Wall -Wextra -Werror -g -I$(INCLUDE_DIR) -I$(RL_INC_DIR)
+CFLAGS 		 = -Wall -Wextra -Werror -g -O0 -I$(INCLUDE_DIR) -I$(RL_INC_DIR)
 # CFLAGS		+= -g -fsanitize=address
 LDFLAGS      = -L$(RL_LIB_DIR) -lreadline
 SRCS 		 = $(SRCS_DIR)main.c \

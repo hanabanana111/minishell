@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/16 15:02:38 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/20 23:01:43 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,17 @@ char	*pipex_gnl_rd(char *eof, t_status *status)
 	line = NULL;
 	ans = NULL;
 	rl_catch_signals = 1;
+	is_here_doc(1);
 	while (1)
 	{
+		if(g_sig == SIGINT)
+		{
+			free(line);
+			free(ans);
+			ans = NULL;
+			g_sig = 0;
+			break;
+		}
 		set_readline_pronpt2(status, &line);
 		ans = (char *)ft_calloc(sizeof(char), len + s_strlen(line) + 2);
 		if (!ans)
@@ -107,6 +116,8 @@ char	*pipex_gnl_rd(char *eof, t_status *status)
 		if(!line)
 			break;
 	}
-	ans[len - ft_strlen(eof)] = '\0';
+	if(ans)
+		ans[len - ft_strlen(eof)] = '\0';
+	is_here_doc(0);
 	return (ans);
 }

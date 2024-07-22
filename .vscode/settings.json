@@ -2,6 +2,7 @@
 	"files.associations": {
 		"MAN.C": "cpp",
 		"libft.h": "c",
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"signal.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/13 13:52:51 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/20 14:41:54 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	check_cmd_env(t_info *node, char **envm)
 	{
 		if (!is_heredoc(node) && node->str[i] == '$' && e_q_info.q_chr != '\'')
 		{
-			if (!ft_strchr(" \0", node->str[i + 1]) || node->str[i \
+			if (!ft_strchr(" \0", node->str[i + 1]) && node->str[i \
 				+ 1] != e_q_info.q_chr)
 			{
 				treat_doll(&node->str[++i], &e_q_info);
