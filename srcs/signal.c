@@ -6,17 +6,11 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/22 20:15:27 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/22 20:20:43 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	*do_nothing(int i)
-{
-	(void)i;
-	return (NULL);
-}
 
 void	to_new_pronpt(void)
 {
@@ -26,13 +20,13 @@ void	to_new_pronpt(void)
 		set_get_readline("");
 		return;
 	}
-	else if(is_here_doc(-1))
-	{
-		//rl_on_new_line();
-		rl_done = 1;
-		//write(STDOUT_FILENO, "\n", 1);
-		// rl_redisplay();
-	}
+	// else if(is_here_doc(-1))
+	// {
+	// 	//rl_on_new_line();
+	// 	rl_done = 1;
+	// 	//write(STDOUT_FILENO, "\n", 1);
+	// 	// rl_redisplay();
+	// }
 	else
 	{
 		rl_on_new_line();

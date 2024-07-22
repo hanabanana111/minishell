@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+         #
+#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/22 19:45:34 by kawaharadar      ###   ########.fr        #
+#    Updated: 2024/07/22 20:23:51 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ CFLAGS 		 = -Wall -Wextra -Werror -g -I$(INCLUDE_DIR) -I$(RL_INC_DIR)
 LDFLAGS      = -L$(RL_LIB_DIR) -lreadline
 SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)signal.c \
+			   $(SRCS_DIR)signal2.c \
 			   $(SRCS_DIR)read.c \
 			   $(SRCS_DIR)parser.c \
 			   $(SRCS_DIR)parser2.c \
