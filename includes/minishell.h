@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/22 20:29:22 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:07:40 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,13 @@ typedef struct s_syntax_heredoc
 	int							is_syntax;
 	int							is_heredoc;
 }								t_syn_here;
+
+typedef struct s_gnl
+{
+	char	buf[42];
+	char	*bufp;
+	int	n;
+} t_gnl;
 
 void							ft_miniprocess(t_info *first,
 									t_status *env_lst);
@@ -228,6 +235,8 @@ void 							sig_reset_all(void);
 void 							sig_reset(int signum);
 void 							sig_ign_all(void);
 void 							sig_set_ignore(int signum);
+void 							sig_set_handler(int signum);
+
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
