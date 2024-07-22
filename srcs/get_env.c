@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:44:58 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 16:45:45 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:53:05 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*format_value(char *env, char *key)
 	ret = (char *)ft_calloc(value_len + 1, sizeof(char));
 	if (!ret)
 		return (NULL);
-	ft_strlcpy(ret, &env[i], s_strlen(&env[i]));
+	ft_strlcpy(ret, &env[i], s_strlen(&env[i]) + 1);
 	return (ret);
 }
 

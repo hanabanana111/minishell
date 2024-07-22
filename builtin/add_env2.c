@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_env2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:31:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/22 18:02:20 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/22 18:54:23 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,15 @@ int	change_key_value(t_status *status, char *key, char *new, int is_plus)
 	new_value = format_value(new, key);
 	if (key_i < 0)
 		return (FALSE);
-	if (is_plus)
+	if (!is_plus)
 	{
-		status->envm[key_i] = ft_strjoin(pre_str, new_value);
-		free(new_value);
+		pre_str = status->envm[key_i];
+		status->envm[key_i] = ft_strjoin(key, "=");
+		free(pre_str);
+		pre_str = status->envm[key_i];
 	}
-	else
-		status->envm[key_i] = new_value;
+	status->envm[key_i] = ft_strjoin(pre_str, new_value);
+	free(new_value);
 	free(pre_str);
 	return (TRUE);
 }
