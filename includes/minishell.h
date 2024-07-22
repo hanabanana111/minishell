@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 17:38:36 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/19 19:12:29 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ int								check_eq2(char *tmp);
 char							*ft_expstr(char *tmp, char *tmp2);
 int								env_func(char **env, t_cmd *lst);
 int 							exit_func(t_cmd *lst, int is_parents);
-int 							set_pwd(t_status *status);
+int 							set_pwd_init(t_status *status);
 int 							set_home(t_status *status);
 void							change_oldpwd(t_status *status, char *old_path);
 char							**remove_env(char **env, char *key);
