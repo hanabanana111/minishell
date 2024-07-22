@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:33:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 17:28:04 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/22 19:50:10 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	built_in(t_cmd *lst, t_status *status)
 		return (env_func(status->envm, lst));
 	if (ft_strncmp(lst->cmd, "cd\0", 3) == 0)
 		return (1);
+	if (ft_strncmp(lst->cmd, "unset\0", 6) == 0)
+		return (1);
 	return (0);
 }
 
@@ -43,6 +45,8 @@ int	builtin2(t_cmd *lst, t_status *status)
 		return (env_func(status->envm, lst));
 	if (ft_strncmp(lst->cmd, "cd\0", 3) == 0)
 		return (ft_cd(lst, status));
+	if (ft_strncmp(lst->cmd, "unset\0", 6) == 0)
+		return (unset_func(status, lst));
 	return (0);
 }
 
@@ -63,6 +67,8 @@ int	check_builtin(char *cmd)
 	if (ft_strncmp(cmd, "env\0", 4) == 0)
 		return (1);
 	if (ft_strncmp(cmd, "cd\0", 3) == 0)
+		return (1);
+	if (ft_strncmp(cmd, "unset\0", 6) == 0)
 		return (1);
 	return (0);
 }

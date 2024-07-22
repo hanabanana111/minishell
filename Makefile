@@ -6,7 +6,7 @@
 #    By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/22 19:19:31 by kawaharadar      ###   ########.fr        #
+#    Updated: 2024/07/22 19:45:34 by kawaharadar      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(BILT_DIR)cd.c \
 			   $(BILT_DIR)cd2.c \
 			   $(BILT_DIR)cd3.c \
+			   $(BILT_DIR)unset.c
 
 OBJS 		 = $(SRCS:.c=.o)
 LIBFT 		 = $(LIBFT_DIR)libft.a
