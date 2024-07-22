@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/22 12:34:54 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/22 19:18:58 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	move_home(char **env, t_status *status)
 int	ft_cd(t_cmd *first, t_status *status)
 {
 	char	*old_path;
+	char	*path;
 
 	if (ft_lstlen(first) > 1)
 		return (0);
@@ -118,7 +119,9 @@ int	ft_cd(t_cmd *first, t_status *status)
 		return (1);
 	if (check_oldpwd(status -> exp))
 		change_oldpwd(status, old_path);
-	change_pwd(status, first -> arg[1]);
+	path = ft_pwddup();
+	change_pwd(status, path);
 	free(old_path);
+	free(path);
 	return (1);
 }
