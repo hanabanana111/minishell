@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/22 20:17:45 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/22 20:28:11 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,12 @@ void							change_pwd(t_status *status, char *path);
 char							*ft_pwddup(void);
 int								unset_func(t_status *status, t_cmd *first);
 int								check_env_path(char **env);
+void 							sig_ign_all(void);
+void							sig_reset_all(void);
+void 							sig_reset(int signum);
+void 							sig_set_ignore(int signum);
+
+
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
