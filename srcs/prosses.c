@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prosses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/17 21:43:26 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/20 22:03:54 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,18 @@ void	ft_process(t_cmd *first, t_status *env)
 			if (check_cmd_exist(cmd_lst -> path, cmd_lst))
 			{
 				i++;
+				sig_set_ignore(SIGQUIT);
+				sig_set_ignore(SIGINT);
 				pid = fork();
 				if (pid == 0)
+				{
+					sig_reset_all();
 					children_process(cmd_lst, env);
+				}
 				else if (pid > 0)
+				{
 					parent_process(cmd_lst, i);
+				}
 			}
 		}
 		cmd_lst = cmd_lst -> next;

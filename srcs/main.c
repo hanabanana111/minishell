@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 19:12:48 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/20 21:56:46 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char *argv[], char **env)
 	end_status_func(0);
 	ft_bzero(&status, sizeof(t_status));
 	status.envm = treat_env(env);
-	if(!set_pwd_init(&status)*set_home(&status))
+	if(!set_pwd_init(&status) && set_home(&status))
 		exit(end_status_func(-1));
 	status.exp = create_export(status.envm);
 	treat_signal();

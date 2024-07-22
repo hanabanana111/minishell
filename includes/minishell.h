@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 19:12:29 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:36:32 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,10 @@ char							**remove_env(char **env, char *key);
 char							**replace_home(char **arg, t_status *status);
 int								ft_cd(t_cmd *first, t_status *status);
 void							change_pwd(t_status *status, char *path);
-
+void 							sig_reset_all(void);
+void 							sig_reset(int signum);
+void 							sig_ign_all(void);
+void 							sig_set_ignore(int signum);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
