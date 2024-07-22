@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:41:23 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/11 16:34:42 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/22 20:19:32 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,20 @@ t_cmd	*path_finder(t_cmd *ans, char **env)
 	{
 		if (lst -> cmd)
 		{
-			if (check_sl(lst -> cmd))
+			if (check_env_path(env))
 			{
-				if (lst -> cmd[0] == '/' || lst -> cmd[0] == '.')
-					lst -> path = path(lst);
+				if (check_sl(lst -> cmd))
+				{
+					if (lst -> cmd[0] == '/' || lst -> cmd[0] == '.')
+						lst -> path = path(lst);
+					else
+						lst -> path = "No such file or directory\0";
+				}
 				else
-					lst -> path = "No such file or directory\0";
+					lst -> path = search_env(lst -> cmd, env);
 			}
 			else
-				lst -> path = search_env(lst -> cmd, env);
+				lst -> path = "No such file or directory\0";
 		}
 		lst = lst -> next;
 	}
