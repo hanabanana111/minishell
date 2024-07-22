@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_env2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:31:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/17 19:13:13 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:02:20 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

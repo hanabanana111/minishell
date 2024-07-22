@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_emv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:09:17 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 17:19:17 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:01:37 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

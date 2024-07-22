@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 15:38:45 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/19 17:53:21 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/22 12:13:25 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	change_oldpwd(t_status *status, char *old_path)
 	str = ft_strjoin("OLDPWD=\0", old_path);
 	if (str == NULL)
 		error_exit("change_oldpwd");
-	free(old_path);
 	add_env(status, str);
 	status -> exp = remove_exp(status -> exp, "OLDPWD");
 	status -> exp = add_export(status -> exp, str);
@@ -57,10 +56,11 @@ void	change_pwd(t_status *status, char *path)
 	str = ft_strjoin("PWD=\0", path);
 	if (str == NULL)
 		error_exit("change_pwd");
-	free(path);
 	add_env(status, str);
 	status -> exp = remove_exp(status -> exp, "PWD");
 	status -> exp = add_export(status -> exp, str);
+	free(status -> pwd);
+	status -> pwd = ft_strdup(path);
 	free(str);
 }
 
@@ -70,7 +70,7 @@ char	*cd_strjoin(char *arg, char *home)
 	int		i;
 	int		l;
 
-	ans = (char *)malloc(ft_strlen(arg) + ft_strlen(home));
+	ans = (char *)malloc(ft_strlen(arg) + ft_strlen(home) + 1);
 	if (ans == NULL)
 		error_exit("cd_strjoin");
 	i = -1;

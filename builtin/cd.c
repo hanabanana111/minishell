@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/19 17:53:27 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/22 12:34:54 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	check_oldpwd(char **exp)
 	int	i;
 
 	i = 0;
-	while (exp[i] && ft_strncmp(exp[i], "OLDPWD", 6))
+	while (exp[i] && ft_strncmp(exp[i], "declare -x OLDPWD", 17))
 		i++;
 	if (exp[i])
 		return (1);
