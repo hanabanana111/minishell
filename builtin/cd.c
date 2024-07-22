@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/22 19:18:58 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/22 21:22:41 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ int	ft_cd(t_cmd *first, t_status *status)
 	if (first -> arg[1] == NULL)
 		return (move_home(status -> envm, status));
 	first -> arg = replace_home(first -> arg, status);
+	if (ft_strncmp(first -> arg[1], "..\0", 3) == 0)
+		first -> arg[1] = re_pwd(status, first -> arg[1]);
 	if (chdir(first -> arg[1]) < 0)
 		return (printf("minishell: cd: %s: %s\n", first -> arg[1], strerror(errno)));
 	old_path = ft_old_path(status -> envm);

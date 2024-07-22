@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/22 22:07:40 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/22 23:19:30 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@ void 							sig_reset(int signum);
 void 							sig_ign_all(void);
 void 							sig_set_ignore(int signum);
 void 							sig_set_handler(int signum);
-
+char							*re_pwd(t_status *status, char *str);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
