@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 17:27:24 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:47:57 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	to_new_pronpt(void)
 	}
 	else if(is_here_doc(-1))
 	{
-		rl_on_new_line();
-		rl_done = 1;
-		write(STDOUT_FILENO, "\n", 1);
+		// rl_on_new_line();
+		// rl_done = 1;
+		// write(STDOUT_FILENO, "\n", 1);
 		// rl_redisplay();
 	}
 	else if(set_get_readline(NULL))
@@ -40,7 +40,7 @@ void	to_new_pronpt(void)
 		write(STDOUT_FILENO, "\n", 1);
 		rl_redisplay();
 	}
-	printf("pass\n");
+	// printf("pass\n");
 }
 
 void	signal_handler_sigint(int signum)
@@ -51,7 +51,7 @@ void	signal_handler_sigint(int signum)
 
 void	treat_signal(void)
 {
-	if (signal(SIGINT, (void (*)(int))signal_handler_sigint) == SIG_ERR)
+	if (signal(SIGINT, (void *)signal_handler_sigint))
 	{
 		perror(strerror(errno));
 		exit(1);

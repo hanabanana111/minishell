@@ -6,7 +6,7 @@
 #    By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/22 19:45:34 by kawaharadar      ###   ########.fr        #
+#    Updated: 2024/07/23 17:48:32 by kawaharadar      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,8 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)utils2.c \
 			   $(SRCS_DIR)lexer2.c \
 			   $(SRCS_DIR)fce.c \
+			   $(SRCS_DIR)path3.c \
+			   $(SRCS_DIR)error.c \
 			   $(BILT_DIR)builtin.c \
 			   $(BILT_DIR)echo.c \
 			   $(BILT_DIR)pwd.c \

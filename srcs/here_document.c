@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_document.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/16 15:02:38 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/23 20:07:56 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,13 @@ char	*pipex_gnl_rd(char *eof, t_status *status)
 	pre_ans = NULL;
 	line = NULL;
 	ans = NULL;
-	rl_catch_signals = 1;
+	// rl_catch_signals = 1;
 	while (1)
 	{
 		set_readline_pronpt2(status, &line);
+		// if(!line)
+		// write(1 ,"\n", 1);
+			break;
 		ans = (char *)ft_calloc(sizeof(char), len + s_strlen(line) + 2);
 		if (!ans)
 			return (free(line), NULL);

@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/22 21:10:34 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/23 18:59:27 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,10 @@ char							*ft_pwddup(void);
 int								unset_func(t_status *status, t_cmd *first);
 int								check_env_path(char **env);
 char							*re_pwd(t_status *status, char *str);
+void							ft_free_paths(int i, char **paths);
+void							print_s1(char **env);
+void							free_cmd(t_cmd *lst);
+void							re_free(char *str, t_info *lst);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

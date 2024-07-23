@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   re_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:29 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/13 17:55:05 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:58:20 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*recreate_minishell(char *str, char tmp)
 
 	i = 0;
 	ans = (char *)malloc(ft_strlen(str) + 2);
+	if (ans == NULL)
+		error_exit("recreate_minishell");
 	while (str[i])
 	{
 		ans[i] = str[i];
@@ -39,6 +41,8 @@ char	*minishell_gnl(int fd)
 	int		read_byte;
 
 	ans = (char *)malloc(1);
+	if (ans == NULL)
+		error_exit("minishell_gnl");
 	ans[0] = '\0';
 	tmp = '\0';
 	read_byte = 1;
@@ -61,8 +65,14 @@ t_info	*create_info_nord(char *lst_str, char *file, int line)
 
 	e_str = ft_strdup(file);
 	e_str = ft_strjoin2(e_str, ": line ");
+	if (e_str == NULL)
+		error_exit("create_info_nord");
 	e_str = ft_strjoin2(e_str, ft_itoa(line));
+	if (e_str == NULL)
+		error_exit("create_info_nord");
 	ans = (t_info *)malloc(sizeof(t_info));
+	if (ans == NULL)
+		error_exit("create_info_nord");
 	ans -> str = lst_str;
 	ans -> type = -1;
 	ans -> errstr = e_str;
@@ -83,6 +93,8 @@ t_info	*create_info(char *str, char *file, int line)
 	char	**args;
 
 	args = ft_split(str, ' ');
+	if (args == NULL)
+		error_exit("create_info");
 	i = 0;
 	ans = create_info_nord(args[i], file, line);
 	lst = ans;
@@ -108,6 +120,7 @@ void	re_process(t_cmd *lst, t_status *env_lst)
 	fd = open(lst -> cmd, R_OK);
 	if (fd < 0)
 	{
+		print_s1(env_lst -> envm);
 		if (lst -> error_file)
 			printf("%s: ", lst -> error_file);
 		perror(lst -> cmd);
@@ -118,11 +131,9 @@ void	re_process(t_cmd *lst, t_status *env_lst)
 	{
 		tmp = create_info(str, lst -> cmd, i++);
 		set_lst_details(tmp, env_lst -> envm);
-		// debug_print_lst(tmp);
 		parser(tmp, env_lst);
-		// debug_print_lst(tmp);
 		ft_miniprocess(tmp, env_lst);
-		free(str);
+		re_free(str, tmp);
 		str = minishell_gnl(fd);
 	}
 	fce(str, fd);

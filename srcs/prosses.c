@@ -6,13 +6,13 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/22 20:13:26 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/23 20:18:08 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	check_cmd_exist(char *path, t_cmd *lst)
+int	check_cmd_exist(char *path, t_cmd *lst, t_status *status)
 {
 	if (check_builtin(lst -> cmd))
 		return (1);
@@ -22,6 +22,7 @@ int	check_cmd_exist(char *path, t_cmd *lst)
 		close(lst -> pipe_0);
 	if (lst -> pipe_1 > 1)
 		close(lst -> pipe_1);
+	print_s1(status -> envm);
 	if (lst -> error_str)
 		printf("%s: ", lst -> error_str);
 	if (lst -> cmd)
@@ -29,10 +30,11 @@ int	check_cmd_exist(char *path, t_cmd *lst)
 	return (0);
 }
 
-int	check_fd(int pipe_0, int pipe_1, t_cmd *lst)
+int	check_fd(int pipe_0, int pipe_1, t_cmd *lst, t_status *status)
 {
 	if (pipe_0 < 0)
 	{
+		print_s1(status -> envm);
 		if (lst -> error_str)
 			printf("%s: ", lst -> error_str);
 		printf("%s\n", lst -> error_file);
@@ -42,6 +44,7 @@ int	check_fd(int pipe_0, int pipe_1, t_cmd *lst)
 	}
 	if (pipe_1 < 0)
 	{
+		print_s1(status -> envm);
 		if (lst -> error_str)
 			printf("%s: ", lst -> error_str);
 		printf("%s\n", lst -> error_file);
@@ -62,9 +65,9 @@ void	ft_process(t_cmd *first, t_status *env)
 	cmd_lst = first;
 	while (cmd_lst)
 	{
-		if (check_fd(cmd_lst -> pipe_0, cmd_lst -> pipe_1, cmd_lst))
+		if (check_fd(cmd_lst -> pipe_0, cmd_lst -> pipe_1, cmd_lst, env))
 		{
-			if (check_cmd_exist(cmd_lst -> path, cmd_lst))
+			if (check_cmd_exist(cmd_lst -> path, cmd_lst, env))
 			{
 				i++;
 				pid = fork();
@@ -116,10 +119,15 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 	info = path_finder(info, env_lst -> envm);
 	lst = first;
 	info = create_pipe(info, lst);
-	//builtin2!
+	if (info == NULL)
+	{
+		free_cmd(info);
+		return ;
+	}
 	cmd_first = info;
 	if (builtin2(cmd_first, env_lst))
 		return ;
 	// info = check_cmdlst(info);
 	ft_process(info, env_lst);
+	free_cmd(info);
 }
