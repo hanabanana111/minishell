@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/22 23:19:30 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/23 20:52:52 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,10 @@ void 							sig_ign_all(void);
 void 							sig_set_ignore(int signum);
 void 							sig_set_handler(int signum);
 char							*re_pwd(t_status *status, char *str);
+void							ft_free_paths(int i, char **paths);
+void							print_s1(char **env);
+void							free_cmd(t_cmd *lst);
+void							re_free(char *str, t_info *lst);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:41:23 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/22 20:34:18 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/23 20:56:10 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,19 @@ static int	check_sl(char *str)
 
 char	*path(t_cmd *lst)
 {
+	char	*ans;
+
 	if (access(lst -> cmd, X_OK) < 0)
 	{
-		printf("minishell: ");
-		return (strerror(errno));
+		ans = ft_strdup(strerror(errno));
+		if (ans == NULL)
+			error_exit("path");
+		return (ans);
 	}
-	else
-		return (ft_strdup(lst -> cmd));
+	ans = ft_strdup(lst -> cmd);
+	if (ans == NULL)
+		error_exit("path");
+	return (ans);
 }
 
 t_cmd	*path_finder(t_cmd *ans, char **env)
@@ -46,20 +52,19 @@ t_cmd	*path_finder(t_cmd *ans, char **env)
 	{
 		if (lst -> cmd)
 		{
-			if (check_env_path(env))
+			if (check_sl(lst -> cmd))
 			{
-				if (check_sl(lst -> cmd))
-				{
-					if (lst -> cmd[0] == '/' || lst -> cmd[0] == '.')
-						lst -> path = path(lst);
-					else
-						lst -> path = "No such file or directory\0";
-				}
+				if (lst -> cmd[0] == '/' || lst -> cmd[0] == '.')
+					lst -> path = path(lst);
 				else
-					lst -> path = search_env(lst -> cmd, env);
+				{
+					lst -> path = ft_strdup("No such file or directory\0");
+					if (lst -> path == NULL)
+						error_exit("path_finder");
+				}
 			}
 			else
-				lst -> path = "No such file or directory\0";
+				lst -> path = search_env(lst -> cmd, env);
 		}
 		lst = lst -> next;
 	}

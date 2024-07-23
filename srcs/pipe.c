@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:46:28 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 14:46:49 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:03:40 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_cmd	*create_pipe(t_cmd *ans, t_info *lst)
 		if (lst->type == PIPE)
 		{
 			if (pipe(pp) < 0)
-				error_exit("create_pipe");
+				return (NULL);
 			if (cmd_lst->pipe_1 == 1)
 				cmd_lst->pipe_1 = pp[1];
 			else

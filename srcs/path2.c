@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 11:12:16 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/09 17:08:33 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/23 16:30:36 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	**split_path(char **env)
 	int		i;
 
 	i = 0;
-	while (ft_strncmp(env[i], "PATH=", 5) && env[i])
+	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
 		i++;
 	if (env[i] == NULL)
 		return (NULL);
@@ -78,20 +78,35 @@ char	*search_env(char *cmd, char **env)
 {
 	int		i;
 	char	**paths;
+	char	*ans;
 
 	paths = split_path(env);
 	if (paths == NULL)
-		return ("Command not found\0");
+	{
+		ans = ft_strdup("Command not found\0");
+		if (ans == NULL)
+			error_exit("serach_env");
+		return (ans);
+	}
 	i = 0;
 	while (paths[i])
 	{
 		paths[i] = ft_strjoin3(paths[i], "/");
 		paths[i] = ft_strjoin3(paths[i], cmd);
 		if (access(paths[i], R_OK) == 0)
-			return (paths[i]);
+		{
+			ans = ft_strdup(paths[i]);
+			if (ans == NULL)
+				error_exit("search_env");
+			ft_free_paths(i, paths);
+			return (ans);
+		}
 		free(paths[i]);
 		i++;
 	}
 	free(paths);
-	return ("Command not found\0");
+	ans = ft_strdup("Command not found\0");
+	if (ans == NULL)
+		error_exit("serach_env");
+	return (ans);
 }

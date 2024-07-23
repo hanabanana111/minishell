@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:43:21 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/17 23:43:30 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:45:38 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ t_cmd	*create_nord(t_info *lst)
 	ans -> pipe_1 = 1;
 	ans -> error_file = NULL;
 	if (lst -> errstr)
+	{
 		ans -> error_str = ft_strdup(lst -> errstr);
+		if (ans -> error_str == NULL)
+			error_exit("create_nord");
+	}	
 	else
 		ans -> error_str = NULL;
 	ans -> next = NULL;
