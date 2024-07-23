@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/22 21:28:18 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:45:16 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void	treat_read(t_status *status)
 		free(pronpt);
 		tmp = status->line;
 		if (g_sig)
+		{
+			g_sig = 0;
 			end_status_func(130);
+		}
 		if (!status->line)
 		{
 			free(tmp);

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/22 22:52:15 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/23 20:28:19 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ void	to_new_pronpt(void)
 {
 	if(set_get_readline(NULL) && !ft_strncmp("cat\0",set_get_readline(NULL),4))
 	{
-		printf("pass1\n");
 		write(STDOUT_FILENO, "\n", 1);
 		set_get_readline("");
 	}
+	else if(is_here_doc(-1))
+	{
+		// printf("pass");
+	}
 	else
 	{
-		printf("pass3\n");
 		rl_on_new_line();
 		rl_replace_line("", 1);
 		write(STDOUT_FILENO, "\n", 1);
