@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/23 21:59:58 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/23 22:50:44 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ char	*pipex_gnl_rd(char *eof, t_status *status)
 		free (line);
 		if(g_sig == SIGINT)
 		{
-	printf("hello\n");
+			free(ans);
+			ans = NULL;
 			g_sig = 0;
 			break;
 		}
 	}
-
 	is_here_doc(0);
 	return (ans);
 }

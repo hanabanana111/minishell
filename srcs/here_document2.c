@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:19:00 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/23 20:35:21 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/23 22:26:10 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	here_doc(t_info *cmd_info, t_status *status)
 			node->next->str = pipex_gnl_rd(eof, status);
 			if(node->next->str)
 				node->next->str[s_strlen(node->next->str) - 1] = '\0';
-			if (node->next && !node->next->is_quote)
+			if (!node && node->next && !node->next->is_quote)
 				set_here_doc_env_value(node->next, status);
 			free(eof);
 		}

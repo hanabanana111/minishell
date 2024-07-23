@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/23 21:59:33 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/23 22:47:19 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	signal_handler_sigint(int signum)
 
 void sig_set_ignore(int signum)
 {
-	if (signal(SIGINT, (void *)signal_handler_sigint))
+	char *pronpt;
+	
+	if (signal(signum, SIG_IGN) == SIG_ERR)
 	{
 		pronpt = pronpt_ps1(NULL);
 		write(2, pronpt, s_strlen(pronpt));
