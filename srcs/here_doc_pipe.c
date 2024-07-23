@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:27:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 15:36:08 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/22 20:44:54 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,14 @@ static char	*pipex_gnl(t_status *status)
 	char	*ans;
 	char	tmp;
 	int		len;
+	char	*pronpt;
 
 	ans = (char *)malloc(1);
 	if (ans == NULL)
 		exit(1);
 	ans[0] = '\0';
-	ft_printf("%s", pronpt_ps2(status->envm));
+	pronpt = pronpt_ps2(status->envm);
+	write(1, pronpt, s_strlen(pronpt));
 	len = 0;
 	while (1)
 	{
@@ -67,8 +69,9 @@ static char	*pipex_gnl(t_status *status)
 		else if (tmp == '\n')
 			break ;
 	}
-	ans[len - 1] = '\0';
-	return (ans);
+	if(ans)
+		ans[len - 1] = '\0';
+	return (free(pronpt), ans);
 }
 
 char	*s_strjoin(char const *s1, char const *s2)

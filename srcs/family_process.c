@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:01:23 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/18 01:16:15 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/22 20:30:16 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	children_process(t_cmd *lst, t_status *env_lst)
 {
+	sig_reset_all();
 	if (lst -> pipe_0 != 0)
 	{
 		if (dup2(lst -> pipe_0, 0) < 0)
@@ -54,6 +55,7 @@ void	parent_process(t_cmd *lst, int i)
 				end_status_func(WEXITSTATUS(end_status));
 			else if (WIFSIGNALED(end_status))
 				end_status_func(WEXITSTATUS(end_status));
+			treat_signal();
         }
 	}
 }

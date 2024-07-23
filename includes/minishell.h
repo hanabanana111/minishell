@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/23 18:59:27 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/23 20:52:52 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,13 @@ typedef struct s_syntax_heredoc
 	int							is_syntax;
 	int							is_heredoc;
 }								t_syn_here;
+
+typedef struct s_gnl
+{
+	char	buf[42];
+	char	*bufp;
+	int	n;
+} t_gnl;
 
 void							ft_miniprocess(t_info *first,
 									t_status *env_lst);
@@ -220,6 +227,15 @@ void							change_pwd(t_status *status, char *path);
 char							*ft_pwddup(void);
 int								unset_func(t_status *status, t_cmd *first);
 int								check_env_path(char **env);
+void 							sig_ign_all(void);
+void							sig_reset_all(void);
+void 							sig_reset(int signum);
+void 							sig_set_ignore(int signum);
+void 							sig_reset_all(void);
+void 							sig_reset(int signum);
+void 							sig_ign_all(void);
+void 							sig_set_ignore(int signum);
+void 							sig_set_handler(int signum);
 char							*re_pwd(t_status *status, char *str);
 void							ft_free_paths(int i, char **paths);
 void							print_s1(char **env);

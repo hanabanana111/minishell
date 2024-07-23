@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/23 20:18:08 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/23 20:51:57 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,13 @@ void	ft_process(t_cmd *first, t_status *env)
 			if (check_cmd_exist(cmd_lst -> path, cmd_lst, env))
 			{
 				i++;
+				sig_ign_all();
 				pid = fork();
 				if (pid == 0)
+				{
+					sig_reset_all();
 					children_process(cmd_lst, env);
+				}
 				else if (pid > 0)
 					parent_process(cmd_lst, i);
 			}
