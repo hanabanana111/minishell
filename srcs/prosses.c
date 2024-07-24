@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/23 22:49:11 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:04:59 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,7 @@ void	ft_process(t_cmd *first, t_status *env)
 				sig_ign_all();
 				pid = fork();
 				if (pid == 0)
-				{
-					sig_reset_all();
 					children_process(cmd_lst, env);
-				}
 				else if (pid > 0)
 					parent_process(cmd_lst, i);
 			}

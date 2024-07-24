@@ -6,28 +6,11 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/23 22:35:10 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:47:27 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	setup_terminal(int n)
-{
-	struct termios	term;
-
-	rl_outstream = stderr;
-	if (isatty(STDIN_FILENO) == 0)
-		return ;
-	if (tcgetattr(STDIN_FILENO, &term) == -1)
-		exit(1);
-	if (n == 0)
-		term.c_lflag &= ~ECHOCTL;
-	else
-		term.c_lflag |= ECHOCTL;
-	if (tcsetattr(STDIN_FILENO, TCSANOW, &term) == -1)
-		exit(1);
-}
 
 void	is_line(t_status *status, t_info *cmd_info)
 {
@@ -36,7 +19,7 @@ void	is_line(t_status *status, t_info *cmd_info)
 	if(!cmd_info)
 		return;
 	parser(cmd_info, status);
-	if (!status->is_pipe_syntax && !status->is_redi_syntax)
+	if (!status->is_pipe_syntax && !status->is_redi_syntax && !g_sig)
 		ft_miniprocess(cmd_info, status);
 }
 
@@ -47,7 +30,6 @@ void	treat_read(t_status *status)
 	char	*pronpt;
 
 	cmd_info = NULL;
-	setup_terminal(1);
 	while (1)
 	{
 		pronpt = pronpt_ps1(status->envm);
