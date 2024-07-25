@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/24 20:04:59 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 12:02:01 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	check_cmd_exist(char *path, t_cmd *lst, t_status *status)
 		close(lst -> pipe_0);
 	if (lst -> pipe_1 > 1)
 		close(lst -> pipe_1);
-	print_s1(status -> envm);
+	if (lst -> error_str || lst -> cmd)
+		print_s1(status -> envm);
 	if (lst -> error_str)
 		printf("%s: ", lst -> error_str);
 	if (lst -> cmd)
