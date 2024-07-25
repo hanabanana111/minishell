@@ -6,27 +6,12 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:27:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/13 15:59:36 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:37:11 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	separator_between_quotes(t_info **cmd_lst)
-{
-	t_info	*node;
-	char	*pre;
-	
-	node = *cmd_lst;
-	while (node)
-	{
-		pre = node->str;
-		node->str = delete_quotes_and_strndup(node->str, ft_strlen(node->str),
-				node);
-		node = node->next;
-		free(pre);
-	}
-}
 void	find_separater_n(t_info *node, size_t *i)
 {
 	if (!ft_strncmp(&node->str[*i], "|", 1))
