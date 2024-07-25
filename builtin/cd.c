@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/25 14:46:13 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:41:58 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,14 @@ int	move_home(char **env, t_status *status)
 	while (env[i] && ft_strncmp(env[i], "HOME", 4))
 		i++;
 	if (env[i] == NULL)
-		return (printf("cd: HOME not set\n"));
+		return (printf_error_cd3(status -> envm));
 	path = ft_home_path(env[i]);
 	old_path = ft_old_path(env);
 	if (chdir(path) < 0)
 	{
 		free(path);
 		free(old_path);
-		return (printf("cd: %s: %s\n", path, strerror(errno)));
+		return (printf_error_cd2(path, status -> envm));
 	}
 	if (old_path == NULL)
 		return (1);
@@ -116,7 +116,7 @@ int	ft_cd(t_cmd *first, t_status *status)
 	if (ft_strncmp(first -> arg[1], "..\0", 3) == 0)
 		first -> arg[1] = re_pwd(status, first -> arg[1]);
 	if (chdir(first -> arg[1]) < 0)
-		return (printf("minishell: cd: %s: %s\n", first -> arg[1], strerror(errno)));
+		return (printf_error_cd(status -> envm, first));
 	old_path = ft_old_path(status -> envm);
 	if (old_path == NULL)
 		return (1);

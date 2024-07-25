@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 14:45:43 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:39:55 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,10 @@ void							free_cmd(t_cmd *lst);
 void							re_free(char *str, t_info *lst);
 void							set_sigint_here_doc(int signum);
 void							set_sigint_child(int signum);
+void							perror_s1(char **env);
+int								printf_error_cd(char **env, t_cmd *lst);
+int								printf_error_cd2(char *path, char **env);
+int								printf_error_cd3(char **env);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

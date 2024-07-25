@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prosses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/25 14:40:24 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:53:00 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	check_cmd_exist(char *path, t_cmd *lst, t_status *status)
 		return (1);
 	if (access(path, X_OK) == 0)
 		return (1);
+	
 	if (lst->pipe_0 > 0)
 		close(lst->pipe_0);
 	if (lst->pipe_1 > 1)
