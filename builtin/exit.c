@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:27:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 17:18:57 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:42:18 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	is_end_status_digits(t_cmd *lst)
 	}
 	return (TRUE);
 }
+
 int	write_error_invalid_argment(char *cmd)
 {
 	char	*pronpt;
@@ -35,6 +36,7 @@ int	write_error_invalid_argment(char *cmd)
 	write(2, &": numeric argument required\n", 28);
 	return (2);
 }
+
 int	write_error_str(char *str)
 {
 	char	*pronpt;

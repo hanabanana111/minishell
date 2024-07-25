@@ -6,17 +6,17 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 19:34:25 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 12:29:13 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:41:02 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void sig_default(int signum)
+void	sig_default(int signum)
 {
-	char *pronpt;
-	
-	if(signal(signum, SIG_DFL) == SIG_ERR)
+	char	*pronpt;
+
+	if (signal(signum, SIG_DFL) == SIG_ERR)
 	{
 		pronpt = pronpt_ps1(NULL);
 		write(2, pronpt, s_strlen(pronpt));
@@ -25,16 +25,17 @@ void sig_default(int signum)
 		perror(strerror(errno));
 	}
 }
-void sig_default_all(void)
+
+void	sig_default_all(void)
 {
 	sig_default(SIGINT);
 	sig_default(SIGQUIT);
 }
 
-void set_ignore(int signum)
+void	set_ignore(int signum)
 {
-	char *pronpt;
-	
+	char	*pronpt;
+
 	if (signal(signum, SIG_IGN) == SIG_ERR)
 	{
 		pronpt = pronpt_ps1(NULL);
@@ -45,7 +46,7 @@ void set_ignore(int signum)
 	}
 }
 
-void sig_ign_all(void)
+void	sig_ign_all(void)
 {
 	set_ignore(SIGINT);
 	set_ignore(SIGQUIT);

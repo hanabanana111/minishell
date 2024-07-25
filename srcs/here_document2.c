@@ -6,19 +6,19 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:19:00 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/25 12:36:45 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:35:42 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int is_here_doc(int num)
+int	is_here_doc(int num)
 {
-	static int is_heredoc_flg;
+	static int	is_heredoc_flg;
 
-	if(num >= 0)
+	if (num >= 0)
 		is_heredoc_flg = num;
-	return(is_heredoc_flg);
+	return (is_heredoc_flg);
 }
 
 void	set_here_doc_env_value(t_info *node, t_status *status)
@@ -55,7 +55,7 @@ void	here_doc(t_info *cmd_info, t_status *status)
 			set_sigint_here_doc(SIGINT);
 			node->next->str = pipex_gnl_rd(eof, status);
 			set_handler_sigint(SIGINT);
-			if(node->next->str)
+			if (node->next->str)
 				node->next->str[s_strlen(node->next->str) - 1] = '\0';
 			if (node->next && !node->next->is_quote)
 				set_here_doc_env_value(node->next, status);

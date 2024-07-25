@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:31:35 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/23 22:34:30 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:44:41 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	is_here_document(t_info *cmd_info)
 			return (FALSE);
 		if (node->type == LEFT && !ft_strncmp(node->str, "<<\0", 3))
 		{
-			if (node -> next)
+			if (node->next)
 				return (TRUE);
 		}
 		node = node->next;
@@ -56,20 +56,4 @@ void	parser(t_info *cmd_info, t_status *status)
 		here_doc(cmd_info, status);
 	if (!status->is_redi_syntax || !status->is_pipe_syntax)
 		is_syntax2(cmd_info);
-}
-
-void	debug_print_lst(t_info *cmd_info)
-{
-	t_info	*node;
-
-	node = cmd_info;
-	while (node)
-	{
-		dprintf(2,"--------------------------------\n");
-		dprintf(2,"cmd = %s\n", node->str);
-		dprintf(2, "type = %d\n", node->type);
-		if (node->is_quote)
-			dprintf(2, "node->is_quote = %d \n", node->is_quote);
-		node = node->next;
-	}
 }
