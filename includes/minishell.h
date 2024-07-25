@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/23 20:52:52 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/25 14:45:43 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ typedef struct s_status
 {
 	char						**exp;
 	char						**envm;
-	char 						*pwd;
-	char 						*home;
+	char						*pwd;
+	char						*home;
 	int							is_pipe_syntax;
 	int							is_redi_syntax;
 	char						*line;
@@ -106,10 +106,10 @@ typedef struct s_syntax_heredoc
 
 typedef struct s_gnl
 {
-	char	buf[42];
-	char	*bufp;
-	int	n;
-} t_gnl;
+	char						buf[42];
+	char						*bufp;
+	int							n;
+}								t_gnl;
 
 void							ft_miniprocess(t_info *first,
 									t_status *env_lst);
@@ -197,28 +197,32 @@ int								ft_len(char **exp);
 int								ft_lstlen(t_cmd *first);
 int								check_exp(char **exp, char *str);
 char							*key_format(char *str);
-int								change_key_value(t_status *status, char *key, char *new, int is_plus);
+int								change_key_value(t_status *status, char *key,
+									char *new, int is_plus);
 int								add_env(t_status *status, char *new);
 int								find_i_of_key(char *key, char **env);
 char							*ft_strtrim2(char *str, int index);
 char							**plus_eq_exp(char **exp, char *str);
-int								export_func(char **arg, t_status *status, t_cmd *first);
+int								export_func(char **arg, t_status *status,
+									t_cmd *first);
 int								builtin2(t_cmd *lst, t_status *status);
 int								pwd_func(t_status *status);
 int								is_join(char *key);
 char							*format_value(char *env, char *key);
 char							**eq_exp(char **exp, char *str);
 char							**add_export(char **exp, char *str);
-int								export_func2(char **arg, t_status *status, t_cmd *first);
+int								export_func2(char **arg, t_status *status,
+									t_cmd *first);
 void							print_export(char **exp);
 int								check_builtin(char *cmd);
-void							ft_expjoin2(char *tmp, char *ans, int index, char *str);
+void							ft_expjoin2(char *tmp, char *ans, int index,
+									char *str);
 int								check_eq2(char *tmp);
 char							*ft_expstr(char *tmp, char *tmp2);
 int								env_func(char **env, t_cmd *lst);
-int 							exit_func(t_cmd *lst, int is_parents);
-int 							set_pwd_init(t_status *status);
-int 							set_home(t_status *status);
+int								exit_func(t_cmd *lst, int is_parents);
+int								set_pwd_init(t_status *status);
+int								set_home(t_status *status);
 void							change_oldpwd(t_status *status, char *old_path);
 char							**remove_env(char **env, char *key);
 char							**replace_home(char **arg, t_status *status);
@@ -227,20 +231,18 @@ void							change_pwd(t_status *status, char *path);
 char							*ft_pwddup(void);
 int								unset_func(t_status *status, t_cmd *first);
 int								check_env_path(char **env);
-void 							sig_ign_all(void);
-void							sig_reset_all(void);
-void 							sig_reset(int signum);
-void 							sig_set_ignore(int signum);
-void 							sig_reset_all(void);
-void 							sig_reset(int signum);
-void 							sig_ign_all(void);
-void 							sig_set_ignore(int signum);
-void 							sig_set_handler(int signum);
+void							sig_default(int signum);
+void							sig_default_all(void);
+void							set_ignore(int signum);
+void							sig_ign_all(void);
+void							set_handler_sigint(int signum);
 char							*re_pwd(t_status *status, char *str);
 void							ft_free_paths(int i, char **paths);
 void							print_s1(char **env);
 void							free_cmd(t_cmd *lst);
 void							re_free(char *str, t_info *lst);
+void							set_sigint_here_doc(int signum);
+void							set_sigint_child(int signum);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 16:41:07 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/13 16:44:34 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:43:15 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ int	end_status_func(int status)
 		return (end_status);
 	return (0);
 }
-char *set_get_readline(char *new)
+
+char	*set_get_readline(char *new)
 {
-	static char * line;
-	
-	if(new)
+	static char	*line;
+
+	if (new)
 		line = new;
-	return(line);
+	return (line);
 }

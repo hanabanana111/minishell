@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:16:23 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/13 15:31:22 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:43:54 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	separate_and_add_node(t_info *node, size_t i)
 	node->next = info_lstnew(&pre_str[i]);
 	node->next->pre = pre_node;
 	node->next->next = next_node;
-	if(node->next->next)
+	if (node->next->next)
 		node->next->next->pre = node->next;
 	free(pre_str);
 }

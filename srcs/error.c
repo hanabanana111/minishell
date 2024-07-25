@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:12:20 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/23 18:35:45 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/25 14:42:55 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	print_s1(char **env)
 		free(str);
 	}
 }
+
 void	free_cmd(t_cmd *lst)
 {
 	int		i;
