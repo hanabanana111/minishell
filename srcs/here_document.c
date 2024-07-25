@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/25 14:36:14 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:52:46 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static int	checker(char *str, char *eof)
 {
-	int	i;
-
-	i = 0;
 	if (ft_strncmp(str, eof, s_strlen(eof)) == 0)
 	{
 		if (str[s_strlen(eof)] == '\0')

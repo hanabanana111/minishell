@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   home_utils.c                                       :+:      :+:    :+:   */
+/*   signal3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/19 16:35:05 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 17:36:17 by hakobori         ###   ########.fr       */
+/*   Created: 2024/07/25 17:09:13 by hakobori          #+#    #+#             */
+/*   Updated: 2024/07/25 17:55:43 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	set_home(t_status *status)
+int	is_execve(int num)
 {
-	char	*home_tmp;
+	static int	is_exe_flg;
 
-	home_tmp = get_value(status->envm, "HOME");
-	if (!home_tmp || home_tmp[0] == '\0')
+	if (num >= 0)
+		is_exe_flg = num;
+	return (is_exe_flg);
+}
+
+int is_minishell(char *path)
+{
+	size_t len;
+	size_t i;
+	char *tmp;
+
+	len = ft_strlen(path);
+	if (len < 10)
 		return (FALSE);
-	status->home = home_tmp;
-	return (TRUE);
+	tmp = ft_strdup("minishell");
+	i = 9;
+	while(i >= 0)
+	{
+		if(tmp[i] != )
+		i--;
+	}
 }

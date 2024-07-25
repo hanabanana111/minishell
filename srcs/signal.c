@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 14:18:44 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:39:45 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,18 @@
 void	handler_sigint(int signum)
 {
 	g_sig = (sig_atomic_t)signum;
-	rl_on_new_line();
-	rl_replace_line("", 1);
-	write(2, "\n", 1);
-	rl_redisplay();
+	if (is_execve(-1))
+	{
+		end_status_func(130);
+		write(1,"\n",1);	
+	}
+	else
+	{
+		rl_on_new_line();
+		rl_replace_line("", 1);
+		write(2, "\n", 1);
+		rl_redisplay();
+	}
 }
 
 void	set_handler_sigint(int signum)
@@ -35,25 +43,24 @@ void	set_handler_sigint(int signum)
 	}
 }
 
-void	treat_signal(void)
-{
-	set_ignore(SIGQUIT);
-	set_handler_sigint(SIGINT);
-}
-
-void	handler_here_doc(int signum)
+void	handler_sigquit(int signum)
 {
 	g_sig = (sig_atomic_t)signum;
-	rl_on_new_line();
-	rl_replace_line("", 1);
-	write(2, "\n", 1);
+	if (is_execve(-1))
+	{
+		end_status_func(131);
+		write(1,"\n",1);	
+	}
+	else
+	{
+	}
 }
 
-void	set_sigint_here_doc(int signum)
+void	set_handler_sigquit(int signum)
 {
 	char	*pronpt;
 
-	if (signal(signum, handler_here_doc) == SIG_ERR)
+	if (signal(signum, handler_sigquit) == SIG_ERR)
 	{
 		pronpt = pronpt_ps1(NULL);
 		write(2, pronpt, s_strlen(pronpt));
@@ -62,3 +69,10 @@ void	set_sigint_here_doc(int signum)
 		perror(strerror(errno));
 	}
 }
+
+void	treat_signal(void)
+{
+	set_handler_sigquit(SIGQUIT);
+	set_handler_sigint(SIGINT);
+}
+

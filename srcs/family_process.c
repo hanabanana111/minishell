@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:01:23 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/25 14:39:23 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:40:12 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ void	children_process(t_cmd *lst, t_status *env_lst)
 	}
 	if (built_in(lst, env_lst))
 		exit(0);
+	is_execve(1);
 	if (execve(lst->path, lst->arg, env_lst->envm) < 0)
 		re_process(lst, env_lst);
+	is_execve(1);
 }
 
 void	parent_process(t_cmd *lst, int i)
@@ -55,6 +57,7 @@ void	parent_process(t_cmd *lst, int i)
 				end_status_func(WEXITSTATUS(end_status));
 			else if (WIFSIGNALED(end_status))
 				end_status_func(WEXITSTATUS(end_status));
+			write(1, "\n", 1);
 			treat_signal();
 		}
 	}

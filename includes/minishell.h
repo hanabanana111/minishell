@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 14:45:43 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:10:19 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,8 @@ void							free_cmd(t_cmd *lst);
 void							re_free(char *str, t_info *lst);
 void							set_sigint_here_doc(int signum);
 void							set_sigint_child(int signum);
+void							sig_child(int signum);
+int								is_execve(int num);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
