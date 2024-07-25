@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 17:39:55 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/26 01:53:17 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ t_cmd							*create_pipe(t_cmd *cmd_lst, t_info *lst);
 void							parent_process(t_cmd *lst, int i);
 char							*ft_strjoin2(char *s1, char *s2);
 t_info							*decide_file(t_info *first);
-void							children_process(t_cmd *lst, t_status *env_lst);
+void							children_process(t_cmd *lst, t_status *env_lst, t_cmd *first);
 void							parent_process(t_cmd *lst, int i);
 void							ft_close(t_cmd *first);
 void							re_process(t_cmd *lst, t_status *env_lst);

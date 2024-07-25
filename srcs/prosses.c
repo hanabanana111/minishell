@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/25 15:53:00 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/26 01:53:35 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,13 @@ void	ft_process(t_cmd *first, t_status *env)
 				sig_ign_all();
 				pid = fork();
 				if (pid == 0)
-					children_process(cmd_lst, env);
+					children_process(cmd_lst, env, first);
 				else if (pid > 0)
 					parent_process(cmd_lst, i);
 			}
 		}
 		cmd_lst = cmd_lst->next;
 	}
-	ft_close(first);
 }
 
 t_cmd	*check_cmdlst(t_cmd *first)
