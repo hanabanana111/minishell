@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_document.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/24 21:01:30 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:53:11 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static int	checker(char *str, char *eof)
 {
-	int		i;
-
-	i = 0;
 	if (ft_strncmp(str, eof, s_strlen(eof)) == 0)
 	{
 		if (str[s_strlen(eof)] == '\0')
