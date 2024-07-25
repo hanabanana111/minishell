@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/23 20:52:52 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/25 14:04:14 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,20 +227,18 @@ void							change_pwd(t_status *status, char *path);
 char							*ft_pwddup(void);
 int								unset_func(t_status *status, t_cmd *first);
 int								check_env_path(char **env);
+void 							sig_default(int signum);
+void							sig_default_all(void);
+void 							set_ignore(int signum);
 void 							sig_ign_all(void);
-void							sig_reset_all(void);
-void 							sig_reset(int signum);
-void 							sig_set_ignore(int signum);
-void 							sig_reset_all(void);
-void 							sig_reset(int signum);
-void 							sig_ign_all(void);
-void 							sig_set_ignore(int signum);
-void 							sig_set_handler(int signum);
+void 							set_handler_sigint(int signum);
 char							*re_pwd(t_status *status, char *str);
 void							ft_free_paths(int i, char **paths);
 void							print_s1(char **env);
 void							free_cmd(t_cmd *lst);
 void							re_free(char *str, t_info *lst);
+void 							set_sigint_here_doc(int signum);
+void 							set_sigint_child(int signum);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
