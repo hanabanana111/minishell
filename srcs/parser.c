@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:24:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 14:41:15 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/26 18:47:25 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	show_syntax_error(char *str, t_info *node)
 	else
 		head = ft_strdup("minishell");
 	printf("%s: syntax error near unexpected token `%s'\n", head, str);
+	end_status_func(2);
 	if (!node->flg)
 		free(head);
 	if (node->flg)
