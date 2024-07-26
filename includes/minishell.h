@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/26 17:41:17 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/26 18:15:03 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_cmd
 typedef struct s_info
 {
 	char						*str;
+	char						*key;
 	int							type;
 	int							flg;
 	int							e_flg;
@@ -127,7 +128,8 @@ t_cmd							*create_pipe(t_cmd *cmd_lst, t_info *lst);
 void							parent_process(t_cmd *lst, int i);
 char							*ft_strjoin2(char *s1, char *s2);
 t_info							*decide_file(t_info *first);
-void							children_process(t_cmd *lst, t_status *env_lst, t_cmd *first);
+void							children_process(t_cmd *lst, t_status *env_lst,
+									t_cmd *first);
 void							parent_process(t_cmd *lst, int i);
 void							ft_close(t_cmd *first);
 void							re_process(t_cmd *lst, t_status *env_lst);
@@ -145,7 +147,7 @@ int								to_parse_lst(t_info **cmd_info);
 char							**treat_env(char **envm);
 void							ft_free_2d_array(char **head);
 void							treat_doll(char const *str,
-									t_env_quote_info *e_q_info);
+									t_env_quote_info *e_q_info, t_info *node);
 void							find_env(t_env_quote_info *e_q_info,
 									char **envm);
 void							ft_chenge_env_to_value(t_info *node,

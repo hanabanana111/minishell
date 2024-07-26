@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doll.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:09:34 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/12 14:48:21 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/07/26 18:35:10 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	find_env(t_env_quote_info *e_q_info, char **envm)
 	e_q_info->value = NULL;
 }
 
-void	treat_doll(char const *str, t_env_quote_info *e_q_info)
+void	treat_doll(char const *str, t_env_quote_info *e_q_info, t_info *node)
 {
 	size_t	count;
 
@@ -60,6 +60,7 @@ void	treat_doll(char const *str, t_env_quote_info *e_q_info)
 		return ;
 	}
 	ft_strlcpy(e_q_info->key, str, count + 1);
+	node->key = ft_strjoin("$", e_q_info->key);
 }
 
 size_t	s_strlen(char *str)
