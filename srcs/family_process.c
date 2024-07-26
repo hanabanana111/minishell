@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:01:23 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/26 17:40:55 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/26 17:50:03 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	parent_process(t_cmd *lst, int i)
 				end_status_func(WEXITSTATUS(end_status));
 			else if (WIFSIGNALED(end_status))
 				end_status_func(WEXITSTATUS(end_status));
-			write(1, "\n", 1);
 			treat_signal();
 		}
 	}
