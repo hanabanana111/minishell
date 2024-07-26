@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/26 17:39:41 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/26 17:40:44 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	check_cmd_exist(char *path, t_cmd *lst, t_status *status)
 		return (1);
 	if (access(path, X_OK) == 0)
 		return (1);
+	
 	if (lst->pipe_0 > 0)
 		close(lst->pipe_0);
 	if (lst->pipe_1 > 1)
@@ -75,14 +76,13 @@ void	ft_process(t_cmd *first, t_status *env)
 					sig_ign_all();
 				pid = fork();
 				if (pid == 0)
-					children_process(cmd_lst, env);
+					children_process(cmd_lst, env, first);
 				else if (pid > 0)
 					parent_process(cmd_lst, i);
 			}
 		}
 		cmd_lst = cmd_lst->next;
 	}
-	ft_close(first);
 }
 
 t_cmd	*check_cmdlst(t_cmd *first)

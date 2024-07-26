@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 17:10:19 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/26 17:41:17 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ t_cmd							*create_pipe(t_cmd *cmd_lst, t_info *lst);
 void							parent_process(t_cmd *lst, int i);
 char							*ft_strjoin2(char *s1, char *s2);
 t_info							*decide_file(t_info *first);
-void							children_process(t_cmd *lst, t_status *env_lst);
+void							children_process(t_cmd *lst, t_status *env_lst, t_cmd *first);
 void							parent_process(t_cmd *lst, int i);
 void							ft_close(t_cmd *first);
 void							re_process(t_cmd *lst, t_status *env_lst);
@@ -245,6 +245,10 @@ void							set_sigint_here_doc(int signum);
 void							set_sigint_child(int signum);
 void							sig_child(int signum);
 int								is_execve(int num);
+void							perror_s1(char **env);
+int								printf_error_cd(char **env, t_cmd *lst);
+int								printf_error_cd2(char *path, char **env);
+int								printf_error_cd3(char **env);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

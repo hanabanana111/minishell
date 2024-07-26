@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:08:51 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/22 21:24:19 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/07/25 17:39:33 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,33 @@ char	*re_pwd(t_status *status, char *str)
 	ans[i] = '\0';
 	free(str);
 	return (ans);
+}
+
+int	printf_error_cd(char **env, t_cmd *lst)
+{
+	perror_s1(env);
+	write(2, "cd: ", 3);
+	write(2, lst -> arg[1], ft_strlen(lst -> arg[1]));
+	write(2, ": ", 2);
+	write(2, strerror(errno), ft_strlen(strerror(errno)));
+	write(2, "\n", 1);
+	return (1);
+}
+
+int	printf_error_cd2(char *path, char **env)
+{
+	perror_s1(env);
+	write(2, "cd: ", 3);
+	write(2, path, ft_strlen(path));
+	write(2, ": ", 2);
+	write(2, strerror(errno), ft_strlen(strerror(errno)));
+	write(2, "\n", 1);
+	return (1);
+}
+
+int	printf_error_cd3(char **env)
+{
+	perror_s1(env);
+	write(2, "cd: HOME not set\n", 17);
+	return (1);
 }
