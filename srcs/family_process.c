@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:01:23 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/28 18:29:06 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:44:04 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	children_process(t_cmd *lst, t_status *env_lst, t_cmd *first)
 {
-	if(!is_minishell(lst->path))
+	if (!is_minishell(lst->path))
 	{
 		set_handler_sigquit(SIGQUIT);
 		set_handler_sigint(SIGINT);
@@ -38,7 +38,7 @@ void	parent_process(t_cmd *lst, int i)
 	if (lst->pipe_1 != 1)
 		close(lst->pipe_1);
 	if (lst->pipe_0 > 2)
-		close(lst -> pipe_0);
+		close(lst->pipe_0);
 	if (lst->next == NULL)
 	{
 		while (i-- > 0)
@@ -55,10 +55,10 @@ void	ft_close(t_cmd *lst)
 {
 	while (lst)
 	{
-		if (lst -> pipe_0 > 2)
-			close(lst -> pipe_0);
-		if (lst -> pipe_1 > 2)
-			close(lst -> pipe_1);
-		lst = lst -> next;
+		if (lst->pipe_0 > 2)
+			close(lst->pipe_0);
+		if (lst->pipe_1 > 2)
+			close(lst->pipe_1);
+		lst = lst->next;
 	}
 }

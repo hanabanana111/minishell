@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 19:34:25 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/28 17:33:22 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:43:54 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	sig_ign_all(void)
 	set_ignore(SIGINT);
 	set_ignore(SIGQUIT);
 }
-
 
 void	handler_here_doc(int signum)
 {

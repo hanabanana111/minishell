@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:24:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/28 17:49:07 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:43:28 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	show_syntax_error(char *str, t_info *node)
 		head = node->errstr;
 	else
 		head = ft_strdup("minishell");
-	write(2,head,ft_strlen(head));
-	write(2,": syntax error near unexpected token `",38);
-	write(2,str, ft_strlen(str));
-	write(2,"'\n",2);
+	write(2, head, ft_strlen(head));
+	write(2, ": syntax error near unexpected token `", 38);
+	write(2, str, ft_strlen(str));
+	write(2, "'\n", 2);
 	end_status_func(2);
 	if (!node->flg)
 		free(head);
