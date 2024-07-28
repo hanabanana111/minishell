@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/28 18:29:49 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:35:31 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	check_cmd_exist(char *path, t_cmd *lst, t_status *status)
 		return (1);
 	if (access(path, X_OK) == 0)
 		return (1);
-	
 	if (lst->pipe_0 > 0)
 		close(lst->pipe_0);
 	if (lst->pipe_1 > 1)
@@ -72,7 +71,7 @@ void	ft_process(t_cmd *first, t_status *env)
 			if (check_cmd_exist(cmd_lst->path, cmd_lst, env))
 			{
 				i++;
-				if(is_minishell(cmd_lst->path))
+				if (is_minishell(cmd_lst->path))
 					sig_ign_all();
 				else
 					sig_status_all();
