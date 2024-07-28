@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/26 18:15:03 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:22:43 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,6 +251,9 @@ void							perror_s1(char **env);
 int								printf_error_cd(char **env, t_cmd *lst);
 int								printf_error_cd2(char *path, char **env);
 int								printf_error_cd3(char **env);
+void							set_handler_sigquit(int signum);
+void							sig_status_all(void);
+int								is_minishell(char *path);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

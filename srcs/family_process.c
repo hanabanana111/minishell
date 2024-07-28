@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:01:23 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/26 17:50:03 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:29:06 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 void	children_process(t_cmd *lst, t_status *env_lst, t_cmd *first)
 {
-	treat_signal();
+	if(!is_minishell(lst->path))
+	{
+		set_handler_sigquit(SIGQUIT);
+		set_handler_sigint(SIGINT);
+	}
 	if (lst->pipe_0 != 0)
 		dup2(lst->pipe_0, 0);
 	if (lst->pipe_1 != 1)
@@ -22,10 +26,8 @@ void	children_process(t_cmd *lst, t_status *env_lst, t_cmd *first)
 	ft_close(first);
 	if (built_in(lst, env_lst))
 		exit(0);
-	is_execve(1);
 	if (execve(lst->path, lst->arg, env_lst->envm) < 0)
 		re_process(lst, env_lst);
-	is_execve(1);
 }
 
 void	parent_process(t_cmd *lst, int i)
@@ -43,8 +45,6 @@ void	parent_process(t_cmd *lst, int i)
 		{
 			waitpid(-1, &end_status, 0);
 			if (WIFEXITED(end_status))
-				end_status_func(WEXITSTATUS(end_status));
-			else if (WIFSIGNALED(end_status))
 				end_status_func(WEXITSTATUS(end_status));
 			treat_signal();
 		}

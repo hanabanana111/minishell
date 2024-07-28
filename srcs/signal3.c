@@ -6,35 +6,49 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:09:13 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/26 17:39:39 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:24:56 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_execve(int num)
+int is_minishell(char *path)
 {
-	static int	is_exe_flg;
-
-	if (num >= 0)
-		is_exe_flg = num;
-	return (is_exe_flg);
+	size_t len;
+	len = ft_strlen(path);
+	if(len < 10)
+		return (FALSE);
+	len -= 10;
+	if(!ft_strncmp(&path[len],"/minishell",11))
+		return (TRUE);
+	return (FALSE);
 }
 
-// int is_minishell(char *path)
-// {
-// 	size_t len;
-// 	size_t i;
-// 	char *tmp;
+void	handler_status(int signum)
+{	
+	if (signum == SIGINT)
+		end_status_func(130);
+	else if (signum == SIGQUIT)
+		end_status_func(131);
+	write(1,"\n",1);
+}
 
-// 	len = ft_strlen(path);
-// 	if (len < 10)
-// 		return (FALSE);
-// 	tmp = ft_strdup("minishell");
-// 	i = 9;
-// 	while(i >= 0 && len >= 0)
-// 	{
-// 		if(tmp[i] != path[--len])
-// 		i--;
-// 	}
-// }
+void	set_sig_status(int signum)
+{
+	char	*pronpt;
+
+	if (signal(signum, handler_status) == SIG_ERR)
+	{
+		pronpt = pronpt_ps1(NULL);
+		write(2, pronpt, s_strlen(pronpt));
+		free(pronpt);
+		write(2, &": ", 2);
+		perror(strerror(errno));
+	}
+}
+
+void	sig_status_all(void)
+{
+	set_sig_status(SIGINT);
+	set_sig_status(SIGQUIT);
+}

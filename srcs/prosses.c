@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/26 18:38:49 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:29:49 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ void	ft_process(t_cmd *first, t_status *env)
 			if (check_cmd_exist(cmd_lst->path, cmd_lst, env))
 			{
 				i++;
-				sig_ign_all();
+				if(is_minishell(cmd_lst->path))
+					sig_ign_all();
+				else
+					sig_status_all();
 				pid = fork();
 				if (pid == 0)
 					children_process(cmd_lst, env, first);

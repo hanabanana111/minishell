@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 14:36:33 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:19:00 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ void	treat_read(t_status *status)
 		status->line = readline(pronpt);
 		set_get_readline(status->line);
 		free(pronpt);
-		if (g_sig)
+		if (g_sig == SIGINT || g_sig == SIGQUIT)
 		{
 			g_sig = 0;
-			end_status_func(130);
+			if (g_sig == SIGINT)
+				end_status_func(130);
+			else if (g_sig == SIGQUIT)
+				end_status_func(131);
 		}
 		if (!status->line)
 			break ;

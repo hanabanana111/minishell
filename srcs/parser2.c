@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:31:35 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/25 14:44:41 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 17:50:09 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ void	parser(t_info *cmd_info, t_status *status)
 	here_doc_pipe(cmd_info, status);
 	if (is_here_document(cmd_info))
 		here_doc(cmd_info, status);
-	if (!status->is_redi_syntax || !status->is_pipe_syntax)
+	if (!status->is_redi_syntax && !status->is_pipe_syntax)
 		is_syntax2(cmd_info);
 }
