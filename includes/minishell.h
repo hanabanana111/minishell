@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/28 18:22:43 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 20:53:29 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ char							*get_value(char **env, char *key);
 void							here_doc(t_info *cmd_info, t_status *status);
 void							here_doc_pipe(t_info *cmd_info,
 									t_status *status);
-void							is_syntax2(t_info *cmd_info);
+void							is_syntax2(t_info *cmd_info, t_status *status);
 void							parser(t_info *cmd_info, t_status *status);
 int								is_here_document(t_info *cmd_info);
 void							set_lst_details(t_info *cmd_info, char **envm);
@@ -222,7 +222,8 @@ void							ft_expjoin2(char *tmp, char *ans, int index,
 int								check_eq2(char *tmp);
 char							*ft_expstr(char *tmp, char *tmp2);
 int								env_func(char **env, t_cmd *lst);
-int								exit_func(t_cmd *lst, int is_parents);
+int								exit_func(t_cmd *lst, int is_parents,
+									t_status *status);
 int								set_pwd_init(t_status *status);
 int								set_home(t_status *status);
 void							change_oldpwd(t_status *status, char *old_path);

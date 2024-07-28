@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:01:23 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/28 18:44:04 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 20:51:46 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,15 @@ void	parent_process(t_cmd *lst, int i)
 			waitpid(-1, &end_status, 0);
 			if (WIFEXITED(end_status))
 				end_status_func(WEXITSTATUS(end_status));
-			treat_signal();
+			else if (WIFSIGNALED(end_status))
+			{
+				if (WTERMSIG(end_status) == SIGINT)
+					end_status_func(130);
+				else if (WTERMSIG(end_status) == SIGQUIT)
+					end_status_func(131);
+			}
 		}
+		treat_signal();
 	}
 }
 

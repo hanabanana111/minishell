@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:33:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/23 22:00:42 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 20:44:51 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	built_in(t_cmd *lst, t_status *status)
 	if (ft_strncmp(lst->cmd, "export\0", 7) == 0)
 		return (export_func2(lst->arg, status, lst));
 	if (ft_strncmp(lst->cmd, "exit\0", 5) == 0)
-		return (exit_func(lst, 0));
+		return (exit_func(lst, 0, status));
 	if (ft_strncmp(lst->cmd, "env\0", 4) == 0)
 		return (env_func(status->envm, lst));
 	if (ft_strncmp(lst->cmd, "cd\0", 3) == 0)
@@ -42,7 +42,7 @@ int	builtin2(t_cmd *lst, t_status *status)
 	if (ft_strncmp(lst->cmd, "export\0", 7) == 0)
 		return (export_func(lst->arg, status, lst));
 	if (ft_strncmp(lst->cmd, "exit\0", 5) == 0)
-		return (exit_func(lst, 1));
+		return (exit_func(lst, 1, status));
 	if (ft_strncmp(lst->cmd, "env\0", 4) == 0)
 		return (env_func(status->envm, lst));
 	if (ft_strncmp(lst->cmd, "cd\0", 3) == 0)

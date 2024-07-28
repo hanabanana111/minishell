@@ -6,13 +6,13 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:31:35 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/28 17:50:09 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/28 19:36:04 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	is_syntax2(t_info *cmd_info)
+void	is_syntax2(t_info *cmd_info, t_status *status)
 {
 	t_info	*node;
 
@@ -20,7 +20,10 @@ void	is_syntax2(t_info *cmd_info)
 	while (node)
 	{
 		if (is_syntax_error2(node))
+		{
+			status->is_redi_syntax = 1;
 			break ;
+		}
 		node = node->next;
 	}
 }
@@ -55,5 +58,5 @@ void	parser(t_info *cmd_info, t_status *status)
 	if (is_here_document(cmd_info))
 		here_doc(cmd_info, status);
 	if (!status->is_redi_syntax && !status->is_pipe_syntax)
-		is_syntax2(cmd_info);
+		is_syntax2(cmd_info, status);
 }
