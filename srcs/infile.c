@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infile.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:26:49 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/23 21:18:56 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/30 05:24:50 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	infile_redirect1(char *infile)
 {
 	int	fd;
 
+	if (ft_strlen(infile) == 0)
+		return (-2);
 	fd = open(infile, O_RDONLY);
 	return (fd);
 }
@@ -46,6 +48,16 @@ int	determine_infile(char *cmd, char *next)
 	return (0);
 }
 
+void	ambiguous_func(t_cmd *cmd_lst, t_info *lst)
+{
+	cmd_lst -> error_file = ft_strjoin(lst -> next -> key, ": ");
+	if (cmd_lst -> error_file == NULL)
+		error_exit("ambiguous_func");
+	cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, "ambiguous redirect");
+	if (cmd_lst -> error_file == NULL)
+		error_exit("ambiguous_func");
+}
+
 t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst)
 {
 	char	*e_str;
@@ -55,13 +67,18 @@ t_info	*infile_fd(t_cmd *cmd_lst, t_info *lst)
 	cmd_lst -> pipe_0 = determine_infile(lst -> str, lst -> next -> str);
 	if (cmd_lst -> pipe_0 < 0)
 	{
-		cmd_lst -> error_file = ft_strjoin(lst -> next -> str, ": ");
-		if (cmd_lst -> error_file == NULL)
-			error_exit("infile_fd");
-		e_str = strerror(errno);
-		cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, e_str);
-		if (cmd_lst -> error_file == NULL)
-			error_exit("infile_fd");
+		if (cmd_lst -> pipe_0 == -2)
+			ambiguous_func(cmd_lst, lst);
+		else
+		{
+			cmd_lst -> error_file = ft_strjoin(lst -> next -> str, ": ");
+			if (cmd_lst -> error_file == NULL)
+				error_exit("infile_fd");
+			e_str = strerror(errno);
+			cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, e_str);
+			if (cmd_lst -> error_file == NULL)
+				error_exit("infile_fd");
+		}
 		while (lst -> next && lst -> next -> type != PIPE)
 			lst = lst -> next;
 	}
