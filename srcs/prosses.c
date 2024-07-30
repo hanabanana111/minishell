@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prosses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/28 18:35:31 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/31 04:28:46 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,20 @@ int	check_cmd_exist(char *path, t_cmd *lst, t_status *status)
 	if (access(path, X_OK) == 0)
 		return (1);
 	if (lst->pipe_0 > 0)
+	{
 		close(lst->pipe_0);
+		end_status_func(1);
+	}
 	if (lst->pipe_1 > 1)
+	{
 		close(lst->pipe_1);
+		end_status_func(1);
+	}
 	if (lst->error_str || lst->cmd)
+	{
 		print_s1(status->envm);
+		end_status_func(127);
+	}
 	if (lst->error_str)
 		printf("%s: ", lst->error_str);
 	if (lst->cmd)
@@ -41,6 +50,7 @@ int	check_fd(int pipe_0, int pipe_1, t_cmd *lst, t_status *status)
 		printf("%s\n", lst->error_file);
 		if (pipe_1 > 1)
 			close(pipe_1);
+		end_status_func(1);
 		return (0);
 	}
 	if (pipe_1 < 0)
@@ -51,6 +61,7 @@ int	check_fd(int pipe_0, int pipe_1, t_cmd *lst, t_status *status)
 		printf("%s\n", lst->error_file);
 		if (pipe_0 > 0)
 			close(pipe_0);
+		end_status_func(1);
 		return (0);
 	}
 	return (1);
