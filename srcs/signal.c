@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/28 20:50:07 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:51:35 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,8 @@ void	handler_sigint(int signum)
 
 void	set_handler_sigint(int signum)
 {
-	char	*pronpt;
-
 	if (signal(signum, handler_sigint) == SIG_ERR)
-	{
-		pronpt = pronpt_ps1(NULL);
-		write(2, pronpt, s_strlen(pronpt));
-		free(pronpt);
-		write(2, &": ", 2);
 		perror(strerror(errno));
-	}
 }
 
 void	handler_sigquit(int signum)
@@ -43,16 +35,8 @@ void	handler_sigquit(int signum)
 
 void	set_handler_sigquit(int signum)
 {
-	char	*pronpt;
-
 	if (signal(signum, handler_sigquit) == SIG_ERR)
-	{
-		pronpt = pronpt_ps1(NULL);
-		write(2, pronpt, s_strlen(pronpt));
-		free(pronpt);
-		write(2, &": ", 2);
 		perror(strerror(errno));
-	}
 }
 
 void	treat_signal(void)

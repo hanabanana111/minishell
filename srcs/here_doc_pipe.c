@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:27:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 14:39:50 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:48:58 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char	*pipex_gnl(t_status *status)
 		len++;
 		ans = re_create(ans, tmp);
 		if (tmp == '\n' && !ans_checker(ans))
-			ft_printf("%s", pronpt_ps2(status->envm));
+			ft_printf(1,"%s", pronpt_ps2(status->envm));
 		else if (tmp == '\n')
 			break ;
 	}

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:09:13 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/28 18:35:21 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:51:21 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,8 @@ void	handler_status(int signum)
 
 void	set_sig_status(int signum)
 {
-	char	*pronpt;
-
 	if (signal(signum, handler_status) == SIG_ERR)
-	{
-		pronpt = pronpt_ps1(NULL);
-		write(2, pronpt, s_strlen(pronpt));
-		free(pronpt);
-		write(2, &": ", 2);
 		perror(strerror(errno));
-	}
 }
 
 void	sig_status_all(void)

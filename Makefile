@@ -6,7 +6,7 @@
 #    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/07/25 17:20:54 by hakobori         ###   ########.fr        #
+#    Updated: 2024/07/31 13:17:24 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(BILT_DIR)remove_exp.c \
 			   $(BILT_DIR)env.c \
 			   $(BILT_DIR)exit.c \
+			   $(BILT_DIR)exit2.c \
 			   $(BILT_DIR)home_utils.c \
 			   $(BILT_DIR)cd.c \
 			   $(BILT_DIR)cd2.c \

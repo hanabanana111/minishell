@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_treat_cs.c                                      :+:      :+:    :+:   */
+/*   exit2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/25 16:58:59 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/31 14:40:04 by hakobori         ###   ########.fr       */
+/*   Created: 2024/07/31 13:15:20 by hakobori          #+#    #+#             */
+/*   Updated: 2024/07/31 13:43:59 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_treat_char(int c, int fd)
+int	write_error_str(t_status *status,char *str)
 {
-	ft_putchar_fd(c, fd);
-	return (1);
-}
+	char	*pronpt;
 
-int	ft_treat_string(char *s, int fd)
-{
-	if (!s)
-	{
-		ft_putstr_fd("(null)", fd);
-		return (6);
-	}
-	ft_putstr_fd(s, fd);
-	return (ft_strlen(s));
+	pronpt = pronpt_ps1(status->envm);
+	write(2, pronpt, s_strlen(pronpt));
+	write(2, str, s_strlen(str));
+	free(pronpt);
+	return (2);
 }

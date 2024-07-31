@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:08:29 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/09 23:10:18 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:54:41 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,17 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 
 // printf
-int					ft_treat_char(int c);
-int					ft_treat_string(char *s);
+int					ft_treat_char(int c, int fd);
+int					ft_treat_string(char *s, int fd);
 void				ft_putnbr_base_fd(unsigned long n, int fd, int *ret,
 						char *base);
-int					ft_treat_hex(unsigned int num, char c);
-int					ft_treat_p(void *p);
+int					ft_treat_hex(unsigned int num, char c, int fd);
+int					ft_treat_p(void *p, int fd);
 int					ft_get_digits(int num);
-int					ft_treat_u(unsigned int num);
-int					ft_trest_di(int num);
-int					ft_printf(const char *fmt, ...);
-int					ft_treat_smt(char *str, va_list args);
+int					ft_treat_u(unsigned int num, int fd);
+int					ft_trest_di(int num, int fd);
+int					ft_printf(int fd, const char *fmt, ...);
+int					ft_treat_smt(char *str, va_list args, int fd);
 
 // added
 long				ft_atol(const char *str);

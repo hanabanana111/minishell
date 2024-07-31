@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_treat_di.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:56:46 by hakobori          #+#    #+#             */
-/*   Updated: 2024/05/29 17:37:05 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:39:55 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	ft_get_digits(int num)
 	return (count);
 }
 
-int	ft_trest_di(int num)
+int	ft_trest_di(int num, int fd)
 {
-	ft_putnbr_fd(num, 1);
+	ft_putnbr_fd(num, fd);
 	return (ft_get_digits(num));
 }
