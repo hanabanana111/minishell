@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/31 15:05:34 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:55:23 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,19 @@ char	*pipex_gnl_rd(char *eof, t_status *status)
 	char	*ans;
 	char	*line;
 	char	*pronpt;
+	static	int count;
 
 	init_variables(&line, &ans);
 	while (!g_sig)
 	{
 		pronpt = pronpt_ps2(status->envm);
 		line = readline(pronpt);
+		count++;
 		if (!line)
 		{
-			ft_printf(2,"%s: warning: here-document at line delimited by end-of-file (wanted `%s')\n",pronpt,eof);
+			if (ans)
+				ans = join_n(ans);
+			ft_printf(2,"%s: warning: here-document at line %d delimited by end-of-file (wanted `%s')\n",pronpt, count, eof);
 			free(pronpt);
 			break;
 		}
