@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/26 18:33:07 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:59:50 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	set_arr_to_lst(char **arr, t_info **cmd_lst)
 	t_info	*pre;
 
 	i = 0;
+	node = *cmd_lst;
 	while (arr[i])
 	{
 		if (!*cmd_lst)
