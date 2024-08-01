@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:27:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/31 13:44:05 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:02:08 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	is_es_digits(t_cmd *lst, int *is_minus)
 	size_t	i;
 
 	i = 0;
+	if (!lst->arg[1])
+		return (TRUE);
 	while (ft_isspace(lst->arg[1][i]))
 		i++;
 	if (lst->arg[1][i] == '-' || lst->arg[1][i] == '+')
@@ -61,6 +63,8 @@ static int	is_oflow(const char *str, int is_minus)
 
 	res = 0;
 	num = 0;
+	if (!str)
+		return (FALSE);
 	ul_max = (unsigned long)LONG_MAX;
 	while (*str && ft_isspace(*str))
 		str++;
@@ -95,9 +99,9 @@ int	exit_func(t_cmd *lst, int is_parents, t_status *status)
 		end_status = 0;
 	if (!is_es_digits(lst, &is_minus) || is_oflow(lst->arg[1], is_minus))
 		end_status = write_error_invalid_argment(lst->arg[1], status);
-	else if (lst->arg[2] != NULL)
+	else if (lst->arg[1] && lst->arg[2])
 		end_status = write_error_str(status, ": exit: too many arguments\n");
-	else if (is_es_digits(lst, &is_minus) && !is_oflow(lst->arg[1], is_minus)
+	else if (lst->arg[1]  && is_es_digits(lst, &is_minus) && !is_oflow(lst->arg[1], is_minus)
 		&& !lst->arg[2])
 		end_status = (unsigned char)ft_atol(lst->arg[1]);
 	if (is_parents && !is_pipe(lst))

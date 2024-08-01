@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:09:13 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/31 13:51:21 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:18:10 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@ void	handler_status(int signum)
 		end_status_func(130);
 	else if (signum == SIGQUIT)
 		end_status_func(131);
-	write(1, "\n", 1);
+	if (!is_pipe_exist(NULL))
+	{
+		if (signum == SIGQUIT)
+			ft_printf(2, "Quit (core dumped)");
+		write(1, "\n", 1);
+	}
 }
 
 void	set_sig_status(int signum)

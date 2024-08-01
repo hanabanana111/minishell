@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:19:00 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/01 14:03:55 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/01 14:42:06 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	here_doc(t_info *cmd_info, t_status *status)
 {
 	t_info	*node;
 	char	*eof;
+	int fd;
 
 	node = cmd_info;
 	while (node)
@@ -54,6 +55,8 @@ void	here_doc(t_info *cmd_info, t_status *status)
 			eof = node->next->str;
 			set_sigint_here_doc(SIGINT);
 			node->next->str = pipex_gnl_rd(eof, status);
+			fd = set_get_std_in(-1);
+			dup2(fd, STDIN_FILENO);
 			set_handler_sigint(SIGINT);
 			if (node->next->str)
 				node->next->str[s_strlen(node->next->str) - 1] = '\0';

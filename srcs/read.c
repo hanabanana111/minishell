@@ -6,11 +6,30 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/28 18:19:00 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:22:00 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int is_pipe_exist(t_info *cmd_info)
+{
+	static int is_pipe;
+	t_info *node;
+	
+	node = cmd_info;
+	if (!cmd_info)
+		return (is_pipe);
+	if (cmd_info)
+		is_pipe = 0;
+	while(node)
+	{
+		if (node -> type == PIPE)
+			is_pipe++;
+		node = node -> next;
+	}
+	return (is_pipe);
+}
 
 void	is_line(t_status *status, t_info *cmd_info)
 {
@@ -19,6 +38,7 @@ void	is_line(t_status *status, t_info *cmd_info)
 	if (!cmd_info)
 		return ;
 	parser(cmd_info, status);
+	is_pipe_exist(cmd_info);
 	if (!status->is_pipe_syntax && !status->is_redi_syntax && !g_sig)
 		ft_miniprocess(cmd_info, status);
 }

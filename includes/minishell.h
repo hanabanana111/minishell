@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/31 13:43:42 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:15:38 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,7 @@ void							sig_status_all(void);
 int								is_minishell(char *path);
 int 							set_get_std_in(int fd);
 int								write_error_str(t_status *status,char *str);
+int 							is_pipe_exist(t_info *cmd_info);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

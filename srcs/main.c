@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 17:35:54 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:03:21 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ int	main(int argc, char *argv[], char **env)
 	treat_signal();
 	treat_read(&status);
 	ft_free_2d_array(status.envm);
-	return (0);
 	exit(end_status_func(-1));
 }
