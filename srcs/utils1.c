@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:31:41 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/09 13:20:49 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/01 16:04:29 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void	ft_free(char **str)
 		free(str[i]);
 		i++;
 	}
+	free(str[i]);
 	free(str);
 }
