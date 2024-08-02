@@ -6,20 +6,25 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/01 14:40:03 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:52:58 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	checker(char *str, char *eof)
+static int	checker(char *line, char *eof, char **ans)
 {
-	if (ft_strncmp(str, eof, s_strlen(eof)) == 0)
+	if (ft_strncmp(line, eof, s_strlen(eof)) == 0)
 	{
-		if (str[s_strlen(eof)] == '\0')
-			return (1);
+		if (line[s_strlen(eof)] == '\0')
+		{
+			if (*ans)
+				*ans = join_n(*ans);
+			free (line);
+			return (TRUE);
+		}
 	}
-	return (0);
+	return (FALSE);
 }
 
 char	*join_n(char *ans)
@@ -35,7 +40,7 @@ char	*join_n(char *ans)
 
 void	init_variables(char **line, char **ans)
 {
-	int fd;
+	int	fd;
 
 	fd = dup(STDIN_FILENO);
 	set_get_std_in(fd);
@@ -58,10 +63,10 @@ char	*join_newline(char *ans, char *line)
 
 char	*pipex_gnl_rd(char *eof, t_status *status)
 {
-	char	*ans;
-	char	*line;
-	char	*pronpt;
-	static	int count;
+	char		*ans;
+	char		*line;
+	char		*pronpt;
+	static int	count;
 
 	init_variables(&line, &ans);
 	while (!g_sig)
@@ -71,22 +76,14 @@ char	*pipex_gnl_rd(char *eof, t_status *status)
 		count++;
 		if (!line)
 		{
-			if (ans)
-				ans = join_n(ans);
-			if(!g_sig)
-				ft_printf(2,"%s: warning: here-document at line %d delimited by end-of-file (wanted `%s')\n",pronpt, count, eof);
-			free(pronpt);
-			break;
+			error_ctr_d_exit_heredoc(count, eof, pronpt, &ans);
+			break ;
 		}
 		free(pronpt);
-		if(g_sig == SIGINT)
+		if (g_sig == SIGINT)
 			break ;
-		if (checker(line, eof) != 0)
-		{
-			if (ans)
-				ans = join_n(ans);
+		if (checker(line, eof, &ans) != 0)
 			break ;
-		}
 		ans = join_newline(ans, line);
 	}
 	return (ans);

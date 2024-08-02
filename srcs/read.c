@@ -6,40 +6,40 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/02 13:37:55 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:28:09 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int is_pipe_exist(t_info *cmd_info)
+int	is_pipe_exist(t_info *cmd_info)
 {
-	static int is_pipe;
-	t_info *node;
-	
+	static int	is_pipe;
+	t_info		*node;
+
 	node = cmd_info;
 	if (!cmd_info)
 		return (is_pipe);
 	if (cmd_info)
 		is_pipe = 0;
-	while(node)
+	while (node)
 	{
-		if (node -> type == PIPE)
+		if (node->type == PIPE)
 			is_pipe++;
-		node = node -> next;
+		node = node->next;
 	}
 	return (is_pipe);
 }
 
-void free_t_info(t_info **cmd_info)
+void	free_t_info(t_info **cmd_info)
 {
-	t_info *node;
-	t_info *tmp;
-	
+	t_info	*node;
+	t_info	*tmp;
+
 	node = *cmd_info;
-	if(!*cmd_info)
-		return;
-	while(node)
+	if (!*cmd_info)
+		return ;
+	while (node)
 	{
 		tmp = node;
 		free(node->str);
@@ -62,6 +62,15 @@ void	is_line(t_status *status, t_info **cmd_info)
 		ft_miniprocess(*cmd_info, status);
 }
 
+void	read_set_end_status(void)
+{
+	if (g_sig == SIGINT)
+		end_status_func(130);
+	else if (g_sig == SIGQUIT)
+		end_status_func(131);
+	g_sig = 0;
+}
+
 void	treat_read(t_status *status)
 {
 	t_info	*cmd_info;
@@ -75,13 +84,7 @@ void	treat_read(t_status *status)
 		status->line = readline(pronpt);
 		free(pronpt);
 		if (g_sig == SIGINT || g_sig == SIGQUIT)
-		{
-			g_sig = 0;
-			if (g_sig == SIGINT)
-				end_status_func(130);
-			else if (g_sig == SIGQUIT)
-				end_status_func(131);
-		}
+			read_set_end_status();
 		if (!status->line)
 			break ;
 		else if (status->line)
