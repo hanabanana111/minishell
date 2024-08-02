@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/02 14:13:45 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:18:19 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	check_cmd_env(t_info *node, char **envm)
 	ft_bzero(&e_q_info, sizeof(t_env_quote_info));
 	if(!node->str)
 		return ;
-	while (node->str[i])
+	while (node->str && node->str[i])
 	{
 		if (!is_heredoc(node) && node->str[i] == '$' && e_q_info.q_chr != '\'')
 		{
@@ -91,8 +91,10 @@ void	check_cmd_env(t_info *node, char **envm)
 				find_env(&e_q_info, envm);
 				ft_chenge_env_to_value(node, &e_q_info);
 			}
+			if (!node->str[0])
+				break ;
 		}
-		if (node->str[i] && ft_strchr("\'\"", (node->str[i])))
+		if (node->str && node->str[0] && node->str[i] && ft_strchr("\'\"", (node->str[i])))
 			count_quotes(node->str[i], &e_q_info);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:09:34 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/02 14:18:44 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:19:29 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	find_env(t_env_quote_info *e_q_info, char **envm)
 		}
 		i++;
 	}
-	e_q_info->value = NULL;
+	e_q_info->value = (char *)ft_calloc(1, sizeof(char));;
 }
 
 void	treat_doll(char const *str, t_env_quote_info *e_q_info, t_info *node)
