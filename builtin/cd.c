@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/25 17:41:58 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/02 14:12:07 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_home_path(char *str)
 	l = 0;
 	while (str[++i])
 		ans[l++] = str[i];
-	ans[i] = '\0';
+	ans[l] = '\0';
 	return (ans);
 }
 
