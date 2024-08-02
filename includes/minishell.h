@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/02 13:31:42 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:53:07 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,8 @@ int 							set_get_std_in(int fd);
 int								write_error_str(t_status *status,char *str);
 int 							is_pipe_exist(t_info *cmd_info);
 void							free_t_info(t_info **cmd_info);
+void							error_ctr_d_exit_heredoc(int count, char *eof,char *pronpt, char **ans);
+char							*join_n(char *ans);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
