@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:27:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/01 16:23:15 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:04:07 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ void	separate_outsize_of_qoute(t_info **cmd_info)
 	}
 }
 
-void	set_lst_details(t_info *cmd_info, char **envm)
+void	set_lst_details(t_info **cmd_info, char **envm)
 {
 	check_env(cmd_info, envm);
-	separate_outsize_of_qoute(&cmd_info);
-	format_quote(&cmd_info);
+	separate_outsize_of_qoute(cmd_info);
+	format_quote(cmd_info);
 	separator(cmd_info);
-	set_token_types(&cmd_info);
+	set_token_types(cmd_info);
 }
 
 t_info	*lexer(char *line, t_status *status)
@@ -84,6 +84,6 @@ t_info	*lexer(char *line, t_status *status)
 	cmd_info = NULL;
 	set_arr_to_lst(arr, &cmd_info);
 	ft_free_2d_array(arr);
-	set_lst_details(cmd_info, status->envm);
+	set_lst_details(&cmd_info, status->envm);
 	return (cmd_info);
 }

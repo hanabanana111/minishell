@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:16:23 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/01 16:21:31 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:01:30 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,11 @@ void	find_separater(t_info *node)
 	}
 }
 
-void	separator(t_info *cmd_info)
+void	separator(t_info **cmd_info)
 {
 	t_info	*node;
 
-	node = cmd_info;
+	node = *cmd_info;
 	while (node)
 	{
 		if (node->str && !node->is_quote)

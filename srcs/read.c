@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/01 16:15:34 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:37:55 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,29 @@ void free_t_info(t_info **cmd_info)
 	t_info *tmp;
 	
 	node = *cmd_info;
+	if(!*cmd_info)
+		return;
 	while(node)
 	{
-		tmp = node->next;
+		tmp = node;
 		free(node->str);
 		free(node->key);
 		free(node->errstr);
-		free(node->pre);
-		free(node->next);
-		free(node);
-		node = tmp;
+		node = node->next;
+		free(tmp);
 	}
 }
 
-void	is_line(t_status *status, t_info *cmd_info)
+void	is_line(t_status *status, t_info **cmd_info)
 {
 	add_history(status->line);
-	cmd_info = lexer(status->line, status);
-	if (!cmd_info)
+	*cmd_info = lexer(status->line, status);
+	if (!*cmd_info)
 		return ;
-	parser(cmd_info, status);
-	is_pipe_exist(cmd_info);
+	parser(*cmd_info, status);
+	is_pipe_exist(*cmd_info);
 	if (!status->is_pipe_syntax && !status->is_redi_syntax && !g_sig)
-		ft_miniprocess(cmd_info, status);
+		ft_miniprocess(*cmd_info, status);
 }
 
 void	treat_read(t_status *status)
@@ -70,6 +70,7 @@ void	treat_read(t_status *status)
 	cmd_info = NULL;
 	while (1)
 	{
+		cmd_info = NULL;
 		pronpt = pronpt_ps1(status->envm);
 		status->line = readline(pronpt);
 		free(pronpt);
@@ -82,14 +83,13 @@ void	treat_read(t_status *status)
 				end_status_func(131);
 		}
 		if (!status->line)
-		{
-			free_t_info(&cmd_info);
 			break ;
+		else if (status->line)
+		{
+			is_line(status, &cmd_info);
+			free_t_info(&cmd_info);
 		}
-		else if (*status->line)
-			is_line(status, cmd_info);
 		free(status->line);
-		free_t_info(&cmd_info);
 	}
 	write(1, "exit\n", 5);
 }

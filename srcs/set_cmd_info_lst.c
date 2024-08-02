@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/01 15:59:50 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:10:07 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	set_arr_to_lst(char **arr, t_info **cmd_lst)
 	node = *cmd_lst;
 	while (arr[i])
 	{
-		if (!*cmd_lst)
+		if (!*cmd_lst && i == 0)
 		{
 			*cmd_lst = info_lstnew(arr[i]);
 			node = *cmd_lst;
@@ -36,6 +36,7 @@ void	set_arr_to_lst(char **arr, t_info **cmd_lst)
 		}
 		i++;
 	}
+	
 }
 
 void	count_quotes(char current_quote, t_env_quote_info *e_q_info)
@@ -95,11 +96,11 @@ void	check_cmd_env(t_info *node, char **envm)
 	}
 }
 
-void	check_env(t_info *cmd_lst, char **envm)
+void	check_env(t_info **cmd_lst, char **envm)
 {
 	t_info	*node;
 
-	node = cmd_lst;
+	node = *cmd_lst;
 	while (node)
 	{
 		check_cmd_env(node, envm);
