@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prosses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/02 14:19:50 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/02 17:25:48 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,10 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 	}
 	cmd_first = info;
 	if (builtin2(cmd_first, env_lst))
+	{
+		free_cmd(info);
 		return ;
+	}
 	// info = check_cmdlst(info);
 	ft_process(info, env_lst);
 	free_cmd(info);
