@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/25 17:41:58 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/01 18:18:17 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_home_path(char *str)
 	l = 0;
 	while (str[++i])
 		ans[l++] = str[i];
-	ans[i] = '\0';
+	ans[l] = '\0';
 	return (ans);
 }
 

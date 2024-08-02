@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:43:21 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/26 18:38:30 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:08:15 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ char	**set_args(char *str, char **args)
 
 	i = 0;
 	if (args[i] == NULL)
+	{
+		ft_free(args);
 		return (set_cmd(str));
+	}
 	while (args[i])
 		i++;
 	ans = (char **)malloc(sizeof(char *) * (i + 2));
