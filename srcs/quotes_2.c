@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:16:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 14:37:51 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:22:51 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	format_quote(t_info **cmd_lst)
 		pre = node->str;
 		node->str = delete_quotes_and_strndup(node->str, ft_strlen(node->str),
 				node);
-		node = node->next;
 		free(pre);
+		node = node->next;
 	}
 }

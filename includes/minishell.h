@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/01 15:15:38 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:31:42 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,8 +156,8 @@ void							format_quote(t_info **cmd_lst);
 int								end_status_func(int status);
 size_t							s_strlen(char *str);
 void							set_arr_to_lst(char **arr, t_info **cmd_lst);
-void							check_env(t_info *cmd_lst, char **envm);
-void							separator(t_info *cmd_info);
+void							check_env(t_info **cmd_lst, char **envm);
+void							separator(t_info **cmd_info);
 char							*ft_strndup(char const *s, size_t n);
 char							*pronpt_ps1(char **env);
 char							*pronpt_ps2(char **env);
@@ -168,7 +168,7 @@ void							here_doc_pipe(t_info *cmd_info,
 void							is_syntax2(t_info *cmd_info, t_status *status);
 void							parser(t_info *cmd_info, t_status *status);
 int								is_here_document(t_info *cmd_info);
-void							set_lst_details(t_info *cmd_info, char **envm);
+void							set_lst_details(t_info **cmd_info, char **envm);
 void							debug_print_lst(t_info *cmd_info);
 t_info							*lexer(char *line, t_status *status);
 void							set_here_doc_env_value(t_info *node,
@@ -186,7 +186,6 @@ char							*delete_quotes_and_strndup(char *src, size_t n,
 									t_info *node);
 void							separate_cmd(char *cmd, t_info *node,
 									size_t *j);
-char							*set_get_readline(char *new);
 int								is_here_doc(int num);
 void							*do_nothing(int i);
 int								echo_func(t_cmd *lst);
@@ -258,6 +257,7 @@ int								is_minishell(char *path);
 int 							set_get_std_in(int fd);
 int								write_error_str(t_status *status,char *str);
 int 							is_pipe_exist(t_info *cmd_info);
+void							free_t_info(t_info **cmd_info);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

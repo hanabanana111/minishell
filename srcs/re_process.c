@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   re_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:29 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/23 18:58:20 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/02 13:03:21 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	re_process(t_cmd *lst, t_status *env_lst)
 	while (str != NULL)
 	{
 		tmp = create_info(str, lst -> cmd, i++);
-		set_lst_details(tmp, env_lst -> envm);
+		set_lst_details(&tmp, env_lst -> envm);
 		parser(tmp, env_lst);
 		ft_miniprocess(tmp, env_lst);
 		re_free(str, tmp);

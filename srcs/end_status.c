@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 16:41:07 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 14:43:15 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:32:15 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,4 @@ int	end_status_func(int status)
 	else
 		return (end_status);
 	return (0);
-}
-
-char	*set_get_readline(char *new)
-{
-	static char	*line;
-
-	if (new)
-		line = new;
-	return (line);
 }
