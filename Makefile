@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
+#    By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/08/02 14:22:30 by hakobori         ###   ########.fr        #
+#    Updated: 2024/08/02 17:35:45 by kawaharadar      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

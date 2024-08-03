@@ -6,7 +6,7 @@
 /*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 15:38:45 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/25 17:36:50 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/02 17:06:07 by kawaharadar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char	**replace_home(char **arg, t_status *status)
 			error_exit("replace_home");
 		i++;
 	}
-	arg[i] = NULL;
+	ans[i] = NULL;
 	i = 0;
 	while (arg[i])
 		free(arg[i++]);
