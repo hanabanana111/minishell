@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/02 16:53:07 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/04 23:35:40 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,6 @@ char							*key_format(char *str);
 int								change_key_value(t_status *status, char *key,
 									char *new, int is_plus);
 int								add_env(t_status *status, char *new);
-int								find_i_of_key(char *key, char **env);
 char							*ft_strtrim2(char *str, int index);
 char							**plus_eq_exp(char **exp, char *str);
 int								export_func(char **arg, t_status *status,
@@ -220,7 +219,7 @@ void							ft_expjoin2(char *tmp, char *ans, int index,
 									char *str);
 int								check_eq2(char *tmp);
 char							*ft_expstr(char *tmp, char *tmp2);
-int								env_func(char **env, t_cmd *lst);
+int								env_func(t_status *status, t_cmd *lst);
 int								exit_func(t_cmd *lst, int is_parents,
 									t_status *status);
 int								set_pwd_init(t_status *status);
@@ -260,6 +259,7 @@ int 							is_pipe_exist(t_info *cmd_info);
 void							free_t_info(t_info **cmd_info);
 void							error_ctr_d_exit_heredoc(int count, char *eof,char *pronpt, char **ans);
 char							*join_n(char *ans);
+int								find_i_of_key(char *key, char **env);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:31:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/22 18:54:23 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/04 23:49:07 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 int	is_join(char *key)
 {
-	size_t	key_len;
+	size_t	i;
 
-	key_len = s_strlen(key);
-	if (key[key_len - 1] == '+')
+	i = 0;
+	while(key[i])
 	{
-		key[key_len - 1] = '\0';
-		return (TRUE);
+		if (i > 1 && key[i] == '=' && key[i - 1] == '+')
+		{
+			return (TRUE);
+		}
+		i++;
 	}
 	return (FALSE);
 }
@@ -41,7 +44,7 @@ int	find_i_of_key(char *key, char **env)
 	return (-1);
 }
 
-int	change_key_value(t_status *status, char *key, char *new, int is_plus)
+int	change_key_value(t_status *status, char *key, char *new, int is_join)
 {
 	int		key_i;
 	char	*pre_str;
@@ -52,7 +55,7 @@ int	change_key_value(t_status *status, char *key, char *new, int is_plus)
 	new_value = format_value(new, key);
 	if (key_i < 0)
 		return (FALSE);
-	if (!is_plus)
+	if (!is_join)
 	{
 		pre_str = status->envm[key_i];
 		status->envm[key_i] = ft_strjoin(key, "=");

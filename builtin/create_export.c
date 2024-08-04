@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_export.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 23:52:49 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/19 00:11:25 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/04 22:25:13 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

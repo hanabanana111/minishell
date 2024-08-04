@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:44:58 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/22 18:53:05 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/04 23:57:43 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ char	*format_value(char *env, char *key)
 	i = 0;
 	while (env[i] == key[i])
 		i++;
+	if (env[i] == '+')
+		i++;
 	i++;
 	value_len = s_strlen(&env[i]);
 	ret = (char *)ft_calloc(value_len + 1, sizeof(char));
@@ -78,7 +80,7 @@ char	*key_format(char *str)
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (str[i] != '=')
+	while (str[i] != '=' && str[i] != '+')
 		i++;
 	if (!str[i])
 		return (NULL);

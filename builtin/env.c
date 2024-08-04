@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 21:53:44 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/25 15:42:12 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/04 21:41:30 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,21 @@ int	check_env_path(char **env)
 	return (0);
 }
 
-int	env_func(char **env, t_cmd *lst)
+int	env_func(t_status *status, t_cmd *lst)
 {
 	size_t	i;
 
 	i = 0;
-	if (check_env_path(env) == 0)
+	if (check_env_path(status->envm) == 0)
 		return (1);
 	if (lst->pre || lst->next)
 		return (0);
-	if (!env || !env[i])
+	if (!status->envm || !status->envm[i])
 	{
 		printf("\n");
 		return (0);
 	}
-	while (env[i])
-		printf("%s\n", env[i++]);
+	while (status->envm[i])
+		printf("%s\n", status->envm[i++]);
 	return (1);
 }
