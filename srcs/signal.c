@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:10:53 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/31 13:51:35 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 20:12:42 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	handler_sigint(int signum)
 	end_status_func(130);
 	rl_on_new_line();
 	rl_replace_line("", 1);
-	write(2, "\n", 1);
+	write(STDIN_FILENO, "aaa\n", 4);
 	rl_redisplay();
 }
 
