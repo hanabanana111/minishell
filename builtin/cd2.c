@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd2.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 15:38:45 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/02 17:06:07 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/10 16:41:00 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,22 @@
 char	**remove_env(char **env, char *key)
 {
 	char	**ans;
+	size_t	len;
 	int		i;
 
-	ans = (char **)malloc(sizeof(char *) * ft_len(env));
+	len = ft_len(env);
+	// printf("len = [%zu]\n",len);
+	ans = (char **)malloc(sizeof(char *) * len);
 	if (ans == NULL)
 		error_exit("remove_env");
 	i = 0;
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], key, ft_strlen(key)))
+		{
+			// printf("cmp = %d, env[i] = [%s]\n",ft_strncmp(env[i], key, ft_strlen(key)),env[i]);
 			ans[i] = ft_strdup(env[i]);
+		}
 		i++;
 	}
 	ans[i] = NULL;
