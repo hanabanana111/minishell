@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/02 16:52:58 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 14:04:30 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,14 @@ char	*pipex_gnl_rd(char *eof, t_status *status)
 	char		*ans;
 	char		*line;
 	char		*pronpt;
-	static int	count;
 
 	init_variables(&line, &ans);
 	while (!g_sig)
 	{
 		pronpt = pronpt_ps2(status->envm);
 		line = readline(pronpt);
-		count++;
-		if (!line)
-		{
-			error_ctr_d_exit_heredoc(count, eof, pronpt, &ans);
-			break ;
-		}
 		free(pronpt);
-		if (g_sig == SIGINT)
+		if (g_sig == SIGINT || !line)
 			break ;
 		if (checker(line, eof, &ans) != 0)
 			break ;

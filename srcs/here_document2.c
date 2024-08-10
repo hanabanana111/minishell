@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:19:00 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/04 21:14:52 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 14:04:20 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,3 @@ void	here_doc(t_info *cmd_info, t_status *status)
 	}
 }
 
-void	error_ctr_d_exit_heredoc(int count, char *eof, char *pronpt, char **ans)
-{
-	if (*ans)
-		*ans = join_n(*ans);
-	if (!g_sig)
-	{
-		ft_printf(2, "%s: warning: here-document at line ", pronpt);
-		ft_printf(2, "%d delimited by end-of-file (wanted `%s')\n", count, eof);
-	}
-	free(pronpt);
-}
