@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 19:34:25 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/10 20:13:53 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 20:39:22 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	sig_ign_all(void)
 void	handler_here_doc(int signum)
 {
 	g_sig = (sig_atomic_t)signum;
-	// rl_on_new_line();
-	write(STDIN_FILENO, "bbb\n", 4);
+	write(STDIN_FILENO, "\n", 1);
 	close(0);
 }
 

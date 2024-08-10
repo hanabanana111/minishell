@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/10 19:03:26 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 21:22:55 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ extern volatile sig_atomic_t	g_sig;
 
 # define SINGLE 1
 # define DOUBLE 2
+
+typedef struct s_buf
+{
+	char	buf[42];
+	char	*bufp;
+	int		n;
+}			t_buf;
 
 typedef struct s_cmd
 {
@@ -146,8 +153,7 @@ t_info							*info_lstnew(char *cmd);
 int								to_parse_lst(t_info **cmd_info);
 char							**treat_env(char **envm);
 void							ft_free_2d_array(char **head);
-void							treat_doll(char const *str,
-									t_env_quote_info *e_q_info, t_info *node);
+void							treat_doll(char const *str, t_env_quote_info *e_q_info, t_info *node);
 void							find_env(t_env_quote_info *e_q_info,
 									char **envm);
 void							ft_chenge_env_to_value(t_info *node,
@@ -260,6 +266,8 @@ char							*join_n(char *ans);
 int								find_i_of_key(char *key, char **env);
 int 							is_digits_all(t_cmd *lst);
 void 							check_valid_env(size_t *count,const char *str);
+char							*get_next_line(int fd, t_buf	*bufs);
+int 							is_doll(char *str);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

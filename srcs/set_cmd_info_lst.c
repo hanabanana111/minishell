@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/10 19:25:27 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 21:55:46 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,11 @@ int	is_heredoc(t_info *node)
 void	check_cmd_env(t_info *node, char **envm)
 {
 	int					i;
+	int					is_changed;
 	t_env_quote_info	e_q_info;
 
 	i = 0;
+	is_changed = 0;
 	ft_bzero(&e_q_info, sizeof(t_env_quote_info));
 	if (!node->str)
 		return ;
@@ -89,14 +91,28 @@ void	check_cmd_env(t_info *node, char **envm)
 				treat_doll(&node->str[++i], &e_q_info, node);
 				find_env(&e_q_info, envm);
 				ft_chenge_env_to_value(node, &e_q_info);
-				printf("node->str[%s]\n",node->str);
+				i = ft_strlen(e_q_info.value);
+				is_changed = 1;
 			}
 			if (!node->str[0] || !node->str[1])
+			{
+				free (e_q_info.key);
+				e_q_info.key = NULL;
 				break ;
+			}
 		}
 		if (node->str[i] && ft_strchr("\'\"", (node->str[i])))
 			count_quotes(node->str[i], &e_q_info);
-		i++;
+		if(!is_changed)
+			i++;
+		is_changed = 0;
+		if (node->key)
+		{
+			free(node->key);
+			node->key =NULL;
+		}
+		free (e_q_info.key);
+		e_q_info.key = NULL;
 	}
 }
 

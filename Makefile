@@ -6,7 +6,7 @@
 #    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/08/10 18:39:19 by hakobori         ###   ########.fr        #
+#    Updated: 2024/08/10 21:38:08 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)fce.c \
 			   $(SRCS_DIR)path3.c \
 			   $(SRCS_DIR)error.c \
+			   $(SRCS_DIR)get_next_line.c \
 			   $(BILT_DIR)builtin.c \
 			   $(BILT_DIR)echo.c \
 			   $(BILT_DIR)pwd.c \
