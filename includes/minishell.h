@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/10 16:02:43 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 17:49:17 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,8 +220,7 @@ void							ft_expjoin2(char *tmp, char *ans, int index,
 int								check_eq2(char *tmp);
 char							*ft_expstr(char *tmp, char *tmp2);
 int								env_func(t_status *status, t_cmd *lst);
-int								exit_func(t_cmd *lst, int is_parents,
-									t_status *status);
+int								exit_func(t_cmd *lst, int is_parents);
 int								set_pwd_init(t_status *status);
 int								set_home(t_status *status);
 void							change_oldpwd(t_status *status, char *old_path);
@@ -254,11 +253,12 @@ void							set_handler_sigquit(int signum);
 void							sig_status_all(void);
 int								is_minishell(char *path);
 int 							set_get_std_in(int fd);
-int								write_error_str(t_status *status,char *str);
+int								write_error_str(char *str);
 int 							is_pipe_exist(t_info *cmd_info);
 void							free_t_info(t_info **cmd_info);
 char							*join_n(char *ans);
 int								find_i_of_key(char *key, char **env);
+int 							is_digits_all(t_cmd *lst);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

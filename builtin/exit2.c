@@ -6,19 +6,41 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/31 13:43:59 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 17:45:55 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	write_error_str(t_status *status,char *str)
+int	write_error_str(char *str)
 {
-	char	*pronpt;
-
-	pronpt = pronpt_ps1(status->envm);
-	write(2, pronpt, s_strlen(pronpt));
-	write(2, str, s_strlen(str));
-	free(pronpt);
+	ft_printf(2, "minishell %s", str);
 	return (2);
+}
+
+int	is_digits_all(t_cmd *lst)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 1;
+	if (!lst->arg[1])
+		return (TRUE);
+	while (lst->arg[j])
+	{
+		i = 0;
+		while (ft_isspace(lst->arg[j][i]))
+			i++;
+		if (lst->arg[j][i] == '-' || lst->arg[j][i] == '+')
+			i++;
+		while (lst->arg[j][i])
+		{
+			if (ft_isdigit(lst->arg[j][i]) == 0)
+				return (FALSE);
+			i++;
+		}
+		j++;
+	}
+	return (TRUE);
 }
