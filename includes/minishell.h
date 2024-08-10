@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/10 17:49:17 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 19:03:26 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,7 @@ void							free_t_info(t_info **cmd_info);
 char							*join_n(char *ans);
 int								find_i_of_key(char *key, char **env);
 int 							is_digits_all(t_cmd *lst);
+void 							check_valid_env(size_t *count,const char *str);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+         #
+#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/08/10 17:31:09 by rkawahar         ###   ########.fr        #
+#    Updated: 2024/08/10 18:39:19 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)set_cmd_info_lst.c \
 			   $(SRCS_DIR)info_list_utils.c \
 			   $(SRCS_DIR)doll.c \
+			   $(SRCS_DIR)doll2.c \
 			   $(SRCS_DIR)end_status.c \
 			   $(SRCS_DIR)get_env.c \
 			   $(SRCS_DIR)lst_separate_format.c \
