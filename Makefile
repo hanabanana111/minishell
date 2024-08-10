@@ -6,15 +6,7 @@
 #    By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-<<<<<<< HEAD
-<<<<<<< HEAD
-#    Updated: 2024/08/01 17:38:34 by rkawahar         ###   ########.fr        #
-=======
-#    Updated: 2024/08/02 13:40:12 by hakobori         ###   ########.fr        #
->>>>>>> refs/remotes/origin/main
-=======
-#    Updated: 2024/08/02 14:48:25 by rkawahar         ###   ########.fr        #
->>>>>>> leaks
+#    Updated: 2024/08/10 17:31:09 by rkawahar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

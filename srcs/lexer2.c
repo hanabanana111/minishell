@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:27:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/02 13:04:07 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:30:39 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	is_redi_pipe_next_to_quotes(t_info *node)
 		}
 		i++;
 	}
-	if (ft_strncmp(tmp,node->str,ft_strlen(node->str)))
+	if (ft_strncmp(tmp, node->str, ft_strlen(node->str)))
 		free(tmp);
 }
 

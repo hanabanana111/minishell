@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/02 13:10:07 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/03 13:38:52 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	set_arr_to_lst(char **arr, t_info **cmd_lst)
 		}
 		i++;
 	}
-	
 }
 
 void	count_quotes(char current_quote, t_env_quote_info *e_q_info)
@@ -78,19 +77,23 @@ void	check_cmd_env(t_info *node, char **envm)
 
 	i = 0;
 	ft_bzero(&e_q_info, sizeof(t_env_quote_info));
-	while (node->str[i])
+	if (!node->str)
+		return ;
+	while (node->str && node->str[i])
 	{
 		if (!is_heredoc(node) && node->str[i] == '$' && e_q_info.q_chr != '\'')
 		{
-			if (!ft_strchr(" \0", node->str[i + 1]) && node->str[i \
-				+ 1] != e_q_info.q_chr)
+			if (node->str[i + 1] && !ft_strchr(" \0", node->str[i + 1])
+				&& node->str[i + 1] != e_q_info.q_chr)
 			{
 				treat_doll(&node->str[++i], &e_q_info, node);
 				find_env(&e_q_info, envm);
 				ft_chenge_env_to_value(node, &e_q_info);
 			}
+			if (!node->str[0] || !node->str[1])
+				break ;
 		}
-		if (ft_strchr("\'\"", (node->str[i])))
+		if (node->str[i] && ft_strchr("\'\"", (node->str[i])))
 			count_quotes(node->str[i], &e_q_info);
 		i++;
 	}

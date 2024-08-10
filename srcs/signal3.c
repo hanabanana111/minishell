@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:09:13 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/01 15:18:10 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 14:30:07 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int	is_minishell(char *path)
 
 void	handler_status(int signum)
 {
-	if (signum == SIGINT)
-		end_status_func(130);
-	else if (signum == SIGQUIT)
-		end_status_func(131);
+	end_status_func(128 + signum);
 	if (!is_pipe_exist(NULL))
 	{
 		if (signum == SIGQUIT)

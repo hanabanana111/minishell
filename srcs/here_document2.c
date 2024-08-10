@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:19:00 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/01 14:42:06 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 14:04:20 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,22 @@ void	set_here_doc_env_value(t_info *node, t_status *status)
 	}
 }
 
+int	set_get_std_in(int fd)
+{
+	static int	std_in;
+
+	if (fd >= 0)
+		std_in = fd;
+	else
+		return (std_in);
+	return (0);
+}
+
 void	here_doc(t_info *cmd_info, t_status *status)
 {
 	t_info	*node;
 	char	*eof;
-	int fd;
+	int		fd;
 
 	node = cmd_info;
 	while (node)
@@ -68,13 +79,3 @@ void	here_doc(t_info *cmd_info, t_status *status)
 	}
 }
 
-int set_get_std_in(int fd)
-{
-	static int std_in;
-
-	if (fd >= 0)
-		std_in = fd;
-	else
-		return (std_in);
-	return (0);
-}

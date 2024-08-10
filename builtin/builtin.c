@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:33:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/28 20:44:51 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 16:02:52 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	built_in(t_cmd *lst, t_status *status)
 	if (ft_strncmp(lst->cmd, "exit\0", 5) == 0)
 		return (exit_func(lst, 0, status));
 	if (ft_strncmp(lst->cmd, "env\0", 4) == 0)
-		return (env_func(status->envm, lst));
+		return (env_func(status, lst));
 	if (ft_strncmp(lst->cmd, "cd\0", 3) == 0)
 		return (1);
 	if (ft_strncmp(lst->cmd, "unset\0", 6) == 0)
@@ -44,7 +44,7 @@ int	builtin2(t_cmd *lst, t_status *status)
 	if (ft_strncmp(lst->cmd, "exit\0", 5) == 0)
 		return (exit_func(lst, 1, status));
 	if (ft_strncmp(lst->cmd, "env\0", 4) == 0)
-		return (env_func(status->envm, lst));
+		return (env_func(status, lst));
 	if (ft_strncmp(lst->cmd, "cd\0", 3) == 0)
 		return (ft_cd(lst, status));
 	if (ft_strncmp(lst->cmd, "unset\0", 6) == 0)
