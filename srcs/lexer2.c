@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:27:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/02 16:30:39 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:01:19 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	is_redi_pipe_next_to_quotes(t_info *node)
 	char	q_char;
 
 	i = 0;
+	q_char = 0;
 	tmp = node->str;
 	while (tmp[i])
 	{
