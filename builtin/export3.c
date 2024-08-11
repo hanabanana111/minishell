@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:57:30 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/18 00:21:14 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 16:24:41 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,47 @@ char	*ft_expstr(char *tmp, char *tmp2)
 	}
 	ans[i] = '\0';
 	free(tmp2);
+	return (ans);
+}
+
+char	**check_arg_name(char **arg, t_cmd *lst)
+{
+	int		i;
+	int		l;
+	int		index;
+	char	**ans;
+
+	i = 0;
+	index = 1;
+	while (arg[i])
+	{
+		if (check_name(arg[i]))
+			index++;
+		else
+			error_printf(arg[i], lst);
+		i++;
+	}
+	if (index == 1)
+		return (NULL);
+	ans = (char **)malloc(sizeof(char *) * (index + 1));
+	if (ans == NULL)
+		error_exit("check_env_name");
+	i = 0;
+	l = 0;
+	while (arg[i])
+	{
+		if (check_name(arg[i]))
+		{
+			ans[l] = ft_strdup(arg[i]);
+			l++;
+		}
+		i++;
+	}
+	ans[l] = NULL;
+	i = 0;
+	while (arg[i])
+		free(arg[i++]);
+	free(arg[i]);
+	free(arg);
 	return (ans);
 }

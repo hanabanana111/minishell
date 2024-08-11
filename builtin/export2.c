@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:25:17 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/04 22:18:37 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:10:43 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup_index(char *str, char c)
 	i = 0;
 	while (str[i] != c)
 		i++;
-	ans = (char *)malloc(i+1);
+	ans = (char *)malloc(i + 1);
 	if (ans == NULL)
 		error_exit("ft_strdup_index");
 	i = 0;

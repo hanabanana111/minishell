@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/08/10 21:22:55 by hakobori         ###   ########.fr       */
+=======
+/*   Updated: 2024/08/11 16:36:40 by rkawahar         ###   ########.fr       */
+>>>>>>> origin
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,9 +256,9 @@ void							set_sigint_child(int signum);
 void							sig_child(int signum);
 int								is_execve(int num);
 void							perror_s1(char **env);
-int								printf_error_cd(char **env, t_cmd *lst);
-int								printf_error_cd2(char *path, char **env);
-int								printf_error_cd3(char **env);
+int								printf_error_cd(t_cmd *lst);
+int								printf_error_cd2(char *path, t_cmd *lst);
+int								printf_error_cd3(t_cmd *lst);
 void							set_handler_sigquit(int signum);
 void							sig_status_all(void);
 int								is_minishell(char *path);
@@ -266,8 +270,14 @@ char							*join_n(char *ans);
 int								find_i_of_key(char *key, char **env);
 int 							is_digits_all(t_cmd *lst);
 void 							check_valid_env(size_t *count,const char *str);
+<<<<<<< HEAD
 char							*get_next_line(int fd, t_buf	*bufs);
 int 							is_doll(char *str);
+=======
+char							**check_arg_name(char **arg, t_cmd *lst);
+int								check_name(char *arg);
+void							error_printf(char *arg, t_cmd *lst);
+>>>>>>> origin
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

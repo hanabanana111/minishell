@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
+#    By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2024/08/10 21:38:08 by hakobori         ###   ########.fr        #
+=======
+#    Updated: 2024/08/11 16:46:56 by rkawahar         ###   ########.fr        #
+>>>>>>> origin
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +23,7 @@ RL_DIR := $(shell brew --prefix readline)
 RL_LIB_DIR 	 = $(addprefix $(RL_DIR)/, lib)
 RL_INC_DIR   = $(addprefix $(RL_DIR)/, include)
 CFLAGS 		 = -Wall -Wextra -Werror -I$(INCLUDE_DIR) -I$(RL_INC_DIR)
-# CFLAGS		+= -g -fsanitize=address
+CFLAGS		+= -g -fsanitize=address
 LDFLAGS      = -L$(RL_LIB_DIR) -lreadline
 SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)signal.c \
@@ -78,7 +82,8 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(BILT_DIR)cd.c \
 			   $(BILT_DIR)cd2.c \
 			   $(BILT_DIR)cd3.c \
-			   $(BILT_DIR)unset.c
+			   $(BILT_DIR)unset.c \
+			   $(BILT_DIR)export4.c
 
 OBJS 		 = $(SRCS:.c=.o)
 LIBFT 		 = $(LIBFT_DIR)libft.a

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:37:15 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 23:50:46 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/11 16:46:09 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	export_func(char **arg, t_status *status, t_cmd *first)
 		print_export(status -> exp);
 	else
 	{
+		arg = check_arg_name(arg, first);
 		i = 1;
 		while (arg[i])
 		{

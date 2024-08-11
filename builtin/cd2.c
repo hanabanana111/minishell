@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd2.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 15:38:45 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/10 16:41:00 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:10:28 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	**remove_env(char **env, char *key)
 	char	**ans;
 	size_t	len;
 	int		i;
+	int		l;
 
 	len = ft_len(env);
 	// printf("len = [%zu]\n",len);
@@ -24,16 +25,17 @@ char	**remove_env(char **env, char *key)
 	if (ans == NULL)
 		error_exit("remove_env");
 	i = 0;
+	l = 0;
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], key, ft_strlen(key)))
 		{
-			// printf("cmp = %d, env[i] = [%s]\n",ft_strncmp(env[i], key, ft_strlen(key)),env[i]);
-			ans[i] = ft_strdup(env[i]);
+			ans[l] = ft_strdup(env[i]);
+			l++;
 		}
 		i++;
 	}
-	ans[i] = NULL;
+	ans[l] = NULL;
 	i = 0;
 	while (env[i])
 		free(env[i++]);
