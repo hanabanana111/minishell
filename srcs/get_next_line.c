@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:41:49 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/10 20:44:55 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:23:25 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*get_next_line(int fd, t_buf *bufs)
 	{
 		first = result;
 		c = ft_getchar(fd, bufs);
-		if (c == EOF)
+		if (c == EOF && !result)
 			break ;
 		if (c == -2)
 			return (free(result), NULL);
