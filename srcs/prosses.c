@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/11 16:48:06 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:36:27 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 	cmd_first = info;
 	if (builtin2(cmd_first, env_lst))
 	{
-		// free_cmd(info);
+		free_cmd(info);
 		return ;
 	}
 	// info = check_cmdlst(info);

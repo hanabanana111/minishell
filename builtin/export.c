@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:37:15 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/11 16:46:09 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:47:02 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,21 @@ void	ft_mini_export(t_status *status, char *arg)
 	}
 }
 
-int	export_func(char **arg, t_status *status, t_cmd *first)
+int	export_func(t_status *status, t_cmd *first)
 {
 	int	i;
 
 	if (ft_lstlen(first) > 1)
 		return (0);
-	if (ft_len(arg) == 1)
+	if (ft_len(first -> arg) == 1)
 		print_export(status -> exp);
 	else
 	{
-		arg = check_arg_name(arg, first);
+		first -> arg = check_arg_name(first -> arg, first);
 		i = 1;
-		while (arg[i])
+		while (first -> arg[i])
 		{
-			ft_mini_export(status, arg[i]);
+			ft_mini_export(status, first -> arg[i]);
 			i++;
 		}
 	}

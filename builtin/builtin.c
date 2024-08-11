@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:33:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/10 17:49:04 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:44:28 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	builtin2(t_cmd *lst, t_status *status)
 	if (lst -> cmd == NULL)
 		return (0);
 	if (ft_strncmp(lst->cmd, "export\0", 7) == 0)
-		return (export_func(lst->arg, status, lst));
+		return (export_func(status, lst));
 	if (ft_strncmp(lst->cmd, "exit\0", 5) == 0)
 		return (exit_func(lst, 1));
 	if (ft_strncmp(lst->cmd, "env\0", 4) == 0)

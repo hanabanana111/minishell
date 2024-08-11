@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/11 17:18:10 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:46:18 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,8 +209,7 @@ int								change_key_value(t_status *status, char *key,
 int								add_env(t_status *status, char *new);
 char							*ft_strtrim2(char *str, int index);
 char							**plus_eq_exp(char **exp, char *str);
-int								export_func(char **arg, t_status *status,
-									t_cmd *first);
+int								export_func(t_status *status, t_cmd *first);
 int								builtin2(t_cmd *lst, t_status *status);
 int								pwd_func(t_status *status);
 int								is_join(char *key);
