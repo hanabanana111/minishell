@@ -1,46 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit2.c                                            :+:      :+:    :+:   */
+/*   doll2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 13:15:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/10 17:45:55 by hakobori         ###   ########.fr       */
+/*   Created: 2024/08/10 18:37:20 by hakobori          #+#    #+#             */
+/*   Updated: 2024/08/10 19:04:34 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	write_error_str(char *str)
-{
-	ft_printf(2, "minishell %s", str);
-	return (2);
-}
-
-int	is_digits_all(t_cmd *lst)
+void	check_valid_env(size_t *count, const char *str)
 {
 	size_t	i;
-	size_t	j;
 
 	i = 0;
-	j = 1;
-	if (!lst->arg[1])
-		return (TRUE);
-	while (lst->arg[j])
+	if (!str || !str[0])
+		return ;
+	if (ft_isdigit(str[i]))
 	{
-		i = 0;
-		while (ft_isspace(lst->arg[j][i]))
-			i++;
-		if (lst->arg[j][i] == '-' || lst->arg[j][i] == '+')
-			i++;
-		while (lst->arg[j][i])
-		{
-			if (ft_isdigit(lst->arg[j][i]) == 0)
-				return (FALSE);
-			i++;
-		}
-		j++;
+		(*count)++;
+		return ;
 	}
-	return (TRUE);
+	while (str[i])
+	{
+		if (!ft_isalpha(str[i]) && !ft_isdigit(str[i]) && !ft_strchr("_",
+				str[i]))
+			break ;
+		i++;
+		(*count)++;
+	}
 }

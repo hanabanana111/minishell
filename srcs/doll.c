@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:09:34 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/03 13:39:32 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/10 19:04:45 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	treat_doll(char const *str, t_env_quote_info *e_q_info, t_info *node)
 		e_q_info->value = ft_itoa(end_status_func(-1));
 		return ;
 	}
-	while (str[count] && !ft_strchr("\'\" \n", str[count]))
-		count++;
+	check_valid_env(&count,str);
 	e_q_info->key = (char *)ft_calloc(count + 1, sizeof(char));
 	if (!e_q_info->key)
 	{
