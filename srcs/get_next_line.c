@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:41:49 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/11 17:23:25 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 18:30:24 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ char	*get_next_line(int fd, t_buf *bufs)
 			break ;
 		if (c == -2)
 			return (free(result), NULL);
-		if (c == '\n')
-			break ;
 		str[0] = c;
 		result = ft_strjoin(result, str);
 		if (!result)
 			return (free(first), NULL);
 		free(first);
+		if (c == '\n')
+			break ;
 	}
 	return (result);
 }

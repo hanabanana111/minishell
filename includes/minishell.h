@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/11 17:18:10 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:51:18 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,6 +271,8 @@ int 							is_doll(char *str);
 char							**check_arg_name(char **arg, t_cmd *lst);
 int								check_name(char *arg);
 void							error_printf(char *arg, t_cmd *lst);
+int								is_space_till_end(char *str);
+int								ft_isspace_tab_space(int c);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

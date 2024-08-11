@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/11 17:22:47 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 18:36:38 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	checker(char *line, char *eof, char **ans)
 {
 	if (ft_strncmp(line, eof, s_strlen(eof)) == 0)
 	{
-		if (line[s_strlen(eof)] == '\0')
+		if (line[s_strlen(eof)] == '\n')
 		{
 			if (*ans)
 				*ans = join_n(*ans);
@@ -56,7 +56,6 @@ char	*join_newline(char *ans, char *line)
 	pre = ans;
 	ret = ft_strjoin(pre, line);
 	free(pre);
-	ret = join_n(ret);
 	free(line);
 	return (ret);
 }
@@ -79,6 +78,7 @@ char	*pipex_gnl_rd(char *eof, t_status *status)
 			break ;
 		if (!line)
 		{
+			ans = join_n(ans);
 			write(1,"\n",1);
 			break;
 		}
