@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/11 17:59:22 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 18:45:19 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ int is_space_till_end(char *str)
 
 int	ft_isspace_tab_space(int c)
 {
-	return (c >= '\t' || c == ' ');
+	return (c == '\t' || c == ' ');
 }
