@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd3.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:08:51 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/25 17:39:33 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/11 16:42:41 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,31 +60,46 @@ char	*re_pwd(t_status *status, char *str)
 	return (ans);
 }
 
-int	printf_error_cd(char **env, t_cmd *lst)
+int	printf_error_cd(t_cmd *lst)
 {
-	perror_s1(env);
+	if (lst -> error_str)
+		write(2, lst -> error_str, ft_strlen(lst -> error_str));
+	else
+		write(2, "minishell", 9);
+	write(2, ": ", 2);
 	write(2, "cd: ", 3);
 	write(2, lst -> arg[1], ft_strlen(lst -> arg[1]));
 	write(2, ": ", 2);
 	write(2, strerror(errno), ft_strlen(strerror(errno)));
 	write(2, "\n", 1);
+	end_status_func(1);
 	return (1);
 }
 
-int	printf_error_cd2(char *path, char **env)
+int	printf_error_cd2(char *path, t_cmd *lst)
 {
-	perror_s1(env);
+	if (lst -> error_str)
+		write(2, lst -> error_str, ft_strlen(lst -> error_str));
+	else
+		write(2, "minishell", 9);
+	write(2, ": ", 2);
 	write(2, "cd: ", 3);
 	write(2, path, ft_strlen(path));
 	write(2, ": ", 2);
 	write(2, strerror(errno), ft_strlen(strerror(errno)));
 	write(2, "\n", 1);
+	end_status_func(1);
 	return (1);
 }
 
-int	printf_error_cd3(char **env)
+int	printf_error_cd3(t_cmd *lst)
 {
-	perror_s1(env);
+	if (lst -> error_str)
+		write(2, lst -> error_str, ft_strlen(lst -> error_str));
+	else
+		write(2, "minishell", 9);
+	write(2, ": ", 2);
 	write(2, "cd: HOME not set\n", 17);
+	end_status_func(1);
 	return (1);
 }

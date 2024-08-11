@@ -6,13 +6,13 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/11 14:10:57 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/11 16:48:06 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	check_cmd_exist(char *path, t_cmd *lst, t_status *status)
+int	check_cmd_exist(char *path, t_cmd *lst)
 {
 	if (check_builtin(lst->cmd))
 		return (1);
@@ -30,23 +30,25 @@ int	check_cmd_exist(char *path, t_cmd *lst, t_status *status)
 	}
 	if (lst->error_str || lst->cmd)
 	{
-		print_s1(status->envm);
+		if (lst->error_str)
+			printf("%s: ", lst->error_str);
+		else
+			printf("minishell: ");
 		end_status_func(127);
 	}
-	if (lst->error_str)
-		printf("%s: ", lst->error_str);
 	if (lst->cmd)
 		printf("%s: %s\n", lst->cmd, lst->path);
 	return (0);
 }
 
-int	check_fd(int pipe_0, int pipe_1, t_cmd *lst, t_status *status)
+int	check_fd(int pipe_0, int pipe_1, t_cmd *lst)
 {
 	if (pipe_0 < 0)
 	{
-		print_s1(status->envm);
 		if (lst->error_str)
 			printf("%s: ", lst->error_str);
+		else
+			printf("minishell: ");
 		printf("%s\n", lst->error_file);
 		if (pipe_1 > 1)
 			close(pipe_1);
@@ -55,9 +57,10 @@ int	check_fd(int pipe_0, int pipe_1, t_cmd *lst, t_status *status)
 	}
 	if (pipe_1 < 0)
 	{
-		print_s1(status->envm);
 		if (lst->error_str)
 			printf("%s: ", lst->error_str);
+		else
+			printf("minishell: ");
 		printf("%s\n", lst->error_file);
 		if (pipe_0 > 0)
 			close(pipe_0);
@@ -77,9 +80,9 @@ void	ft_process(t_cmd *first, t_status *env)
 	cmd_lst = first;
 	while (cmd_lst)
 	{
-		if (check_fd(cmd_lst->pipe_0, cmd_lst->pipe_1, cmd_lst, env))
+		if (check_fd(cmd_lst->pipe_0, cmd_lst->pipe_1, cmd_lst))
 		{
-			if (check_cmd_exist(cmd_lst->path, cmd_lst, env))
+			if (check_cmd_exist(cmd_lst->path, cmd_lst))
 			{
 				i++;
 				if (is_minishell(cmd_lst->path))
@@ -142,7 +145,7 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 	cmd_first = info;
 	if (builtin2(cmd_first, env_lst))
 	{
-		free_cmd(info);
+		// free_cmd(info);
 		return ;
 	}
 	// info = check_cmdlst(info);

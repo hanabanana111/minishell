@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/10 17:30:17 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/11 16:41:52 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	check_oldpwd(char **exp)
 	return (0);
 }
 
-int	move_home(char **env, t_status *status)
+int	move_home(char **env, t_status *status, t_cmd *lst)
 {
 	char	*path;
 	char	*old_path;
@@ -84,14 +84,14 @@ int	move_home(char **env, t_status *status)
 	while (env[i] && ft_strncmp(env[i], "HOME", 4))
 		i++;
 	if (env[i] == NULL)
-		return (printf_error_cd3(status -> envm));
+		return (printf_error_cd3(lst));
 	path = ft_home_path(env[i]);
 	old_path = ft_old_path(env);
 	if (chdir(path) < 0)
 	{
 		free(path);
 		free(old_path);
-		return (printf_error_cd2(path, status -> envm));
+		return (printf_error_cd2(path, lst));
 	}
 	if (old_path == NULL)
 		return (1);
@@ -111,12 +111,12 @@ int	ft_cd(t_cmd *first, t_status *status)
 	if (ft_lstlen(first) > 1)
 		return (0);
 	if (first -> arg[1] == NULL)
-		return (move_home(status -> envm, status));
+		return (move_home(status -> envm, status, first));
 	first -> arg = replace_home(first -> arg, status);
 	if (ft_strncmp(first -> arg[1], "..\0", 3) == 0)
 		first -> arg[1] = re_pwd(status, first -> arg[1]);
 	if (chdir(first -> arg[1]) < 0)
-		return (printf_error_cd(status -> envm, first));
+		return (printf_error_cd(first));
 	old_path = ft_old_path(status -> envm);
 	if (old_path == NULL)
 		return (1);
