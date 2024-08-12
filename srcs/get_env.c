@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:44:58 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/04 23:57:43 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 08:29:05 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,27 @@ char	**treat_env(char **env)
 {
 	char	**ret;
 	size_t	i;
+	size_t	count;
 
 	if (!env)
 		return (NULL);
 	i = 0;
+	count = 0;
 	while (env[i])
-		i++;
-	ret = (char **)ft_calloc(i + 1, sizeof(char *));
+		if (ft_strncmp("OLDPWD=", env[i++], 7))
+			count++;
+	ret = (char **)ft_calloc(count + 1, sizeof(char *));
 	if (!ret)
 		return (NULL);
 	i = 0;
+	count = 0;
 	while (env[i])
 	{
-		ret[i] = ft_strdup(env[i]);
+		if (ft_strncmp("OLDPWD=", env[i], 7))
+			ret[count++] = ft_strdup(env[i]);
 		i++;
 	}
+	ret[count] = NULL;
 	return (ret);
 }
 
