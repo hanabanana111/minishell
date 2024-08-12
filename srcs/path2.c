@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 11:12:16 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/01 15:56:38 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 00:08:13 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*search_env(char *cmd, char **env)
 	paths = split_path(env);
 	if (paths == NULL)
 	{
-		ans = ft_strdup("Command not found\0");
+		ans = ft_strdup("command not found\0");
 		if (ans == NULL)
 			error_exit("serach_env");
 		return (ans);
@@ -106,7 +106,7 @@ char	*search_env(char *cmd, char **env)
 		i++;
 	}
 	free(paths);
-	ans = ft_strdup("Command not found\0");
+	ans = ft_strdup("command not found\0");
 	if (ans == NULL)
 		error_exit("serach_env");
 	return (ans);
