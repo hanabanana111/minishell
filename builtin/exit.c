@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:27:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/11 19:09:19 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/12 23:39:39 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,13 @@ int	exit_func(t_cmd *lst, int is_parents)
 	if (!is_es_digits(lst, &is_minus) || is_oflow(lst->arg[1], is_minus))
 		end_status = write_error_invalid_argment(lst->arg[1]);
 	else if (lst->arg[1] && lst->arg[2])
+	{
 		end_status = write_error_str(": exit: too many arguments\n");
+		return (end_status_func(1), 1);
+	}
 	else if (lst->arg[1] && is_es_digits(lst, &is_minus)
 		&& !is_oflow(lst->arg[1], is_minus) && !lst->arg[2])
 		end_status = (unsigned char)ft_atol(lst->arg[1]);
-	if (!is_digits_all(lst))
-		return (end_status_func(1), 1);
 	if (is_parents && !is_pipe(lst))
 		exit(end_status);
 	if (!is_parents)
