@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:30:09 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/11 16:50:02 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 03:12:20 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	check_name(char *arg)
 		else
 		{
 			if (arg[i] != '_' && !ft_isalpha(arg[i]) && !ft_isdigit(arg[i]))
-				return (0);
+			{
+				if (arg[i] != '+' || (arg[i] == '+' && arg[i + 1] != '='))
+					return (0);
+			}
 		}
 		i++;
 	}
