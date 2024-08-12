@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/11 18:36:38 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:10:43 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	checker(char *line, char *eof, char **ans)
 		{
 			if (*ans)
 				*ans = join_n(*ans);
-			free (line);
+			free(line);
 			return (TRUE);
 		}
 	}
@@ -62,16 +62,16 @@ char	*join_newline(char *ans, char *line)
 
 char	*pipex_gnl_rd(char *eof, t_status *status)
 {
-	char		*ans;
-	char		*line;
-	char		*pronpt;
+	char			*ans;
+	char			*line;
+	char			*pronpt;
 	static t_buf	bufs;
 
 	init_variables(&line, &ans);
 	while (!g_sig)
 	{
 		pronpt = pronpt_ps2(status->envm);
-		write(1,pronpt,ft_strlen(pronpt));
+		write(1, pronpt, ft_strlen(pronpt));
 		line = get_next_line(0, &bufs);
 		free(pronpt);
 		if (g_sig == SIGINT)
@@ -79,8 +79,8 @@ char	*pipex_gnl_rd(char *eof, t_status *status)
 		if (!line)
 		{
 			ans = join_n(ans);
-			write(1,"\n",1);
-			break;
+			write(1, "\n", 1);
+			break ;
 		}
 		if (checker(line, eof, &ans) != 0)
 			break ;

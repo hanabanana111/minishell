@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/11 18:45:19 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:05:08 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	is_digits_all(t_cmd *lst)
 			i++;
 		while (lst->arg[j][i])
 		{
-			if (!ft_isdigit(lst->arg[j][i]) && !is_space_till_end(&lst->arg[j][i]))
+			if (!ft_isdigit(lst->arg[j][i])
+				&& !is_space_till_end(&lst->arg[j][i]))
 				return (FALSE);
 			i++;
 		}
@@ -45,14 +46,14 @@ int	is_digits_all(t_cmd *lst)
 	return (TRUE);
 }
 
-int is_space_till_end(char *str)
+int	is_space_till_end(char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		if(str[i] != '\t' && str[i] != ' ')
+		if (str[i] != '\t' && str[i] != ' ')
 			return (FALSE);
 		i++;
 	}

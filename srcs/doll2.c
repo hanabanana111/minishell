@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 18:37:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/10 21:22:33 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:12:12 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	check_valid_env(size_t *count, const char *str)
 	i = 0;
 	if (!str || !str[0])
 		return ;
-	if (ft_isdigit(str[i]) || ft_strchr("$",str[i]))
+	if (ft_isdigit(str[i]) || ft_strchr("$", str[i]))
 	{
 		(*count)++;
 		return ;
@@ -34,14 +34,14 @@ void	check_valid_env(size_t *count, const char *str)
 	}
 }
 
-int is_doll(char *str)
+int	is_doll(char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (!str)
 		return (FALSE);
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '$')
 			return (TRUE);

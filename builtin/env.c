@@ -6,13 +6,14 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 21:53:44 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/04 21:41:30 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:10:14 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	perror_s1(char **env){
+void	perror_s1(char **env)
+{
 	int		i;
 	char	*str;
 	int		l;

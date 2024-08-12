@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:31:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/04 23:49:07 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:09:52 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_join(char *key)
 	size_t	i;
 
 	i = 0;
-	while(key[i])
+	while (key[i])
 	{
 		if (i > 1 && key[i] == '=' && key[i - 1] == '+')
 		{

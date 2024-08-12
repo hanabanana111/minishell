@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/04 20:39:32 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:11:07 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ volatile sig_atomic_t	g_sig = 0;
 
 void	free_t_status(t_status *status)
 {
-	// ft_free_2d_array(status->envm);
 	ft_free_2d_array(status->exp);
 	free(status->pwd);
 	free(status->home);

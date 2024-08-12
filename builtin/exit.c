@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:27:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/11 18:45:54 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:09:19 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	is_es_digits(t_cmd *lst, int *is_minus)
 
 int	write_error_invalid_argment(char *cmd)
 {
-	ft_printf(2,"minishell : exit: %s: numeric argument required\n",cmd);
+	ft_printf(2, "minishell : exit: %s: numeric argument required\n", cmd);
 	return (2);
 }
 
@@ -49,7 +49,7 @@ int	is_pipe(t_cmd *lst)
 	return (FALSE);
 }
 
-static int	is_oflow(const char *str, int is_minus)
+static int	is_oflow(const char *str, int minus)
 {
 	unsigned long	res;
 	unsigned long	ul_max;
@@ -57,23 +57,21 @@ static int	is_oflow(const char *str, int is_minus)
 
 	res = 0;
 	num = 0;
-	if (!str)
-		return (FALSE);
 	ul_max = (unsigned long)LONG_MAX;
 	while (*str && ft_isspace(*str))
 		str++;
 	if (*str == '-' || *str == '+')
-		is_minus = (*str++ == '-');
+		minus = (*str++ == '-');
 	while (*str && ft_isdigit(*str))
 	{
 		num = *str - '0';
-		if (!is_minus && res > ul_max / 10)
+		if (!minus && res > ul_max / 10)
 			return (TRUE);
-		else if (!is_minus && res == ul_max / 10 && num > ul_max % 10)
+		else if (!minus && res == ul_max / 10 && num > ul_max % 10)
 			return (TRUE);
-		else if (is_minus && res > ul_max / 10)
+		else if (minus && res > ul_max / 10)
 			return (TRUE);
-		else if (is_minus && res == ul_max / 10 && num > (ul_max + 1) % 10)
+		else if (minus && res == ul_max / 10 && num > (ul_max + 1) % 10)
 			return (TRUE);
 		res = res * 10 + *str++ - '0';
 	}
@@ -99,7 +97,7 @@ int	exit_func(t_cmd *lst, int is_parents)
 		&& !is_oflow(lst->arg[1], is_minus) && !lst->arg[2])
 		end_status = (unsigned char)ft_atol(lst->arg[1]);
 	if (!is_digits_all(lst))
-		return (end_status_func(1),1);
+		return (end_status_func(1), 1);
 	if (is_parents && !is_pipe(lst))
 		exit(end_status);
 	if (!is_parents)

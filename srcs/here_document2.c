@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:19:00 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/11 18:29:20 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:13:17 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,3 @@ void	here_doc(t_info *cmd_info, t_status *status)
 		node = node->next;
 	}
 }
-
