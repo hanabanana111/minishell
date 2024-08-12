@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/12 20:27:06 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 00:19:17 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_cmd_exist(char *path, t_cmd *lst)
 {
 	if (check_builtin(lst->cmd))
 		return (1);
-	if (access(path, X_OK) == 0)
+	if (path != NULL && access(path, X_OK) == 0)
 		return (1);
 	if (lst->pipe_0 > 0)
 	{
