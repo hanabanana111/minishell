@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_exp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:44:04 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/17 22:13:45 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/13 03:33:55 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

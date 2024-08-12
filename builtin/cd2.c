@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 15:38:45 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/11 14:10:28 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 05:50:04 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ char	**remove_env(char **env, char *key)
 {
 	char	**ans;
 	size_t	len;
+	char	*env_str;
 	int		i;
 	int		l;
 
 	len = ft_len(env);
-	// printf("len = [%zu]\n",len);
+	env_str = ft_strjoin(key, "=");
 	ans = (char **)malloc(sizeof(char *) * len);
 	if (ans == NULL)
 		error_exit("remove_env");
@@ -28,11 +29,8 @@ char	**remove_env(char **env, char *key)
 	l = 0;
 	while (env[i])
 	{
-		if (ft_strncmp(env[i], key, ft_strlen(key)))
-		{
-			ans[l] = ft_strdup(env[i]);
-			l++;
-		}
+		if (ft_strncmp(env[i], env_str, ft_strlen(env_str)))
+			ans[l++] = ft_strdup(env[i]);
 		i++;
 	}
 	ans[l] = NULL;
@@ -41,6 +39,7 @@ char	**remove_env(char **env, char *key)
 		free(env[i++]);
 	free(env[i]);
 	free(env);
+	free(env_str);
 	return (ans);
 }
 
