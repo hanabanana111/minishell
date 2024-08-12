@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:24:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/28 18:43:28 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 03:10:13 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ int	is_syntax_error1(t_info *node, t_status *status)
 	{
 		if (!node->next)
 			return (FALSE);
-		if (node->type == 1 && node->next->type != OUT)
+		if (node->type == 1 && (!node->next || node->next->type != OUT))
 			status->is_redi_syntax = 1;
-		if (node->type == 2 && node->next->type != IN)
+		if (node->type == 2 && (!node->next || node->next->type != IN))
 			status->is_redi_syntax = 1;
-		if (node->type == 1 && node->next->type != OUT)
+		if (node->type == 1 && (!node->next || node->next->type != OUT))
 			return (show_syntax_error(node->next->str, node), TRUE);
-		if (node->type == 2 && node->next->type != IN)
+		if (node->type == 2 && (!node->next || node->next->type != IN))
 			return (show_syntax_error(node->next->str, node), TRUE);
 	}
 	return (FALSE);

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:27:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/11 19:01:19 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 03:15:52 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 void	find_separater_n(t_info *node, size_t *i)
 {
-	if (!ft_strncmp(&node->str[*i], "|", 1))
+	if (!node->str || !node->str[(*i)])
+		return ;
+	else if (!ft_strncmp(&node->str[(*i)], "|", 1))
 		separate_cmd("|", node, i);
-	else if (!ft_strncmp(&node->str[*i], "<<", 2))
+	else if (ft_strlen(&node->str[(*i)]) > 1 && !ft_strncmp(&node->str[(*i)], "<<", 2))
 		separate_cmd("<<", node, i);
-	else if (!ft_strncmp(&node->str[*i], "<", 1))
+	else if (!ft_strncmp(&node->str[(*i)], "<", 1))
 		separate_cmd("<", node, i);
-	else if (!ft_strncmp(&node->str[*i], ">>", 2))
+	else if (ft_strlen(&node->str[(*i)]) > 1 && !ft_strncmp(&node->str[(*i)], ">>", 2))
 		separate_cmd(">>", node, i);
-	else if (!ft_strncmp(&node->str[*i], ">", 1))
+	else if (!ft_strncmp(&node->str[(*i)], ">", 1))
 		separate_cmd(">", node, i);
 }
 

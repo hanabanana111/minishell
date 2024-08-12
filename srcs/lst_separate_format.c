@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:16:23 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/02 13:01:30 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 06:17:22 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,22 @@ int	check_cmd(char *cmd, char *str)
 	return (TRUE);
 }
 
-void	separate_and_add_node(t_info *node, size_t i)
+void	separate_and_add_node(t_info **node, size_t i)
 {
 	char	*pre_str;
 	t_info	*pre_node;
 	t_info	*next_node;
 
-	pre_str = node->str;
-	pre_node = node;
-	next_node = node->next;
-	node->str = ft_strndup(pre_str, i);
-	node->next = info_lstnew(&pre_str[i]);
-	node->next->pre = pre_node;
-	node->next->next = next_node;
-	if (node->next->next)
-		node->next->next->pre = node->next;
+	pre_str = (*node)->str;
+	pre_node = (*node);
+	next_node = (*node)->next;
+	(*node)->str = ft_strndup(pre_str, i);
+	(*node)->next = info_lstnew(&pre_str[i]);
+	(*node)->next->pre = pre_node;
+	(*node)->next->next = next_node;
+	free (pre_str);
+	if ((*node)->next->next)
+		(*node)->next->next->pre = (*node)->next;
 }
 
 void	separate_cmd(char *cmd, t_info *node, size_t *j)
@@ -61,13 +62,13 @@ void	separate_cmd(char *cmd, t_info *node, size_t *j)
 		{
 			if (check_cmd(cmd, node->str))
 				break ;
-			separate_and_add_node(node, cmd_len);
+			separate_and_add_node(&node, cmd_len);
 			(*j) = (*j) + cmd_len - 1;
 			break ;
 		}
 		else if (i != 0 && !ft_strncmp(&node->str[i], cmd, cmd_len))
 		{
-			separate_and_add_node(node, i);
+			separate_and_add_node(&node, (i + 1));
 			break ;
 		}
 		i++;
