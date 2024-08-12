@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   outfile.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:10:54 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/30 05:39:47 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/13 07:41:49 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,24 @@ int	determine_outfile(char *cmd, char *next)
 
 void	ambiguous_outfile(t_cmd *cmd_lst, t_info *lst)
 {
-	cmd_lst -> error_file = ft_strjoin(lst -> next -> key, ": ");
-	if (cmd_lst -> error_file == NULL)
-		error_exit("outfile_fd");
-	cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, "ambiguous redirect");
-	if (cmd_lst -> error_file == NULL)
-		error_exit("outfile_fd");
+	if (lst -> next -> key)
+	{
+		cmd_lst -> error_file = ft_strjoin(lst -> next -> key, ": ");
+		if (cmd_lst -> error_file == NULL)
+			error_exit("outfile_fd");
+		cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, "ambiguous redirect");
+		if (cmd_lst -> error_file == NULL)
+			error_exit("outfile_fd");
+	}
+	else
+	{
+		cmd_lst -> error_file = ft_strjoin(lst -> next -> key, ": ");
+		if (cmd_lst -> error_file == NULL)
+			error_exit("outfile_fd");
+		cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, "No such file or directory");
+		if (cmd_lst -> error_file == NULL)
+			error_exit("outfile_fd");
+	}
 }
 
 t_info	*outfile_fd(t_cmd *cmd_lst, t_info *lst)
