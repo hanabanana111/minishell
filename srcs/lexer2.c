@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:27:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/13 03:15:52 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 06:56:07 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,13 @@ void	is_redi_pipe_next_to_quotes(t_info *node)
 			else if (q_char == tmp[i])
 				q_char = 0;
 		}
+		if (tmp != node->str)
+		{
+			free(tmp);
+			tmp = node->str;
+		}
 		i++;
 	}
-	if (ft_strncmp(tmp, node->str, ft_strlen(node->str)))
-		free(tmp);
 }
 
 void	separate_outsize_of_qoute(t_info **cmd_info)
