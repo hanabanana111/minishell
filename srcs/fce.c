@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   fce.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 20:14:49 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/07/12 20:17:17 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 01:32:48 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	fce(char *str, int fd)
+void	fce(char *str, int fd, t_cmd *lst)
 {
+	free_cmd(lst);
 	free(str);
 	close(fd);
 	exit(0);
