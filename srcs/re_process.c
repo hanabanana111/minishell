@@ -6,13 +6,13 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:29 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 00:54:41 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 01:54:36 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	fce(char *str, int fd);
+void	fce(char *str, int fd, t_cmd *lst);
 
 char	*recreate_minishell(char *str, char tmp)
 {
@@ -23,7 +23,7 @@ char	*recreate_minishell(char *str, char tmp)
 	ans = (char *)malloc(ft_strlen(str) + 2);
 	if (ans == NULL)
 		error_exit("recreate_minishell");
-	while (str[i])
+	while (str && str[i])
 	{
 		ans[i] = str[i];
 		i++;
@@ -40,10 +40,7 @@ char	*minishell_gnl(int fd)
 	char	tmp;
 	int		read_byte;
 
-	ans = (char *)malloc(1);
-	if (ans == NULL)
-		error_exit("minishell_gnl");
-	ans[0] = '\0';
+	ans = NULL;
 	tmp = '\0';
 	read_byte = 1;
 	while (1)
@@ -138,5 +135,5 @@ void	re_process(t_cmd *lst, t_status *env_lst)
 		re_free(str, tmp);
 		str = minishell_gnl(fd);
 	}
-	fce(str, fd);
+	fce(str, fd, lst);
 }
