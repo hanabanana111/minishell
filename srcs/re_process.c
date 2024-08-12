@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:29 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 01:54:36 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 02:23:13 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_info	*create_info_nord(char *lst_str, char *file, int line)
 	if (ans == NULL)
 		error_exit("create_info_nord");
 	ft_bzero(ans, sizeof(t_info));
-	ans -> str = lst_str;
+	ans -> str = ft_strdup(lst_str);
 	ans -> type = -1;
 	ans -> errstr = e_str;
 	ans -> flg = 1;
@@ -106,6 +106,7 @@ t_info	*create_info(char *str, char *file, int line)
 		lst = lst -> next;
 		i++;
 	}
+	ft_free_2d_array(args);
 	return (ans);
 }
 
