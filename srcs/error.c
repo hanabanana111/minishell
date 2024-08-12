@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:12:20 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/11 14:10:53 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/12 23:07:16 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,18 @@ void	free_cmd(t_cmd *lst)
 void	re_free(char *str, t_info *lst)
 {
 	t_info	*tmp;
+	t_info	*node;
 
+	node = lst;
 	free(str);
-	while (lst)
+	str = NULL;
+	while (node)
 	{
-		free(lst -> errstr);
-		free(lst -> str);
-		tmp = lst;
-		lst = lst -> next;
+		tmp = node;
+		free(node->str);
+		free(node->key);
+		free(node->errstr);
+		node = node->next;
 		free(tmp);
 	}
 }

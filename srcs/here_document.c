@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:12:16 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/11 19:10:43 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:57:19 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_variables(char **line, char **ans)
 	fd = dup(STDIN_FILENO);
 	set_get_std_in(fd);
 	*line = NULL;
-	*ans = NULL;
+	*ans = ft_strndup("\0", 1);
 }
 
 char	*join_newline(char *ans, char *line)

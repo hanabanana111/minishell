@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/11 19:16:08 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:53:26 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	check_cmd_env(t_info *node, char **envm)
 	t_env_quote_info	e_q_info;
 
 	i = 0;
+	is_changed = 0;
 	ft_bzero(&e_q_info, sizeof(t_env_quote_info));
 	if (!node->str)
 		return ;
