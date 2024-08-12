@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/11 17:36:27 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:27:06 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 	info = create_pipe(info, lst);
 	if (info == NULL)
 	{
-		free_cmd(info);
+		// free_cmd(info);
 		return ;
 	}
 	cmd_first = info;

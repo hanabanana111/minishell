@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:46:28 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/23 18:03:40 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/12 20:40:51 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 t_cmd	*create_pipe(t_cmd *ans, t_info *lst)
 {
 	t_cmd	*cmd_lst;
+	 t_info *first;
 	int		pp[2];
 
+	first = lst;
 	cmd_lst = ans;
 	while (lst)
 	{
@@ -27,7 +29,7 @@ t_cmd	*create_pipe(t_cmd *ans, t_info *lst)
 		if (lst->type == PIPE)
 		{
 			if (pipe(pp) < 0)
-				return (NULL);
+				return (free_cmd(ans), NULL);
 			if (cmd_lst->pipe_1 == 1)
 				cmd_lst->pipe_1 = pp[1];
 			else
