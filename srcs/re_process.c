@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:29 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/02 13:03:21 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 00:54:41 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,25 +62,27 @@ t_info	*create_info_nord(char *lst_str, char *file, int line)
 {
 	char	*e_str;
 	t_info	*ans;
+	char	*num;
 
+	num = ft_itoa(line);
 	e_str = ft_strdup(file);
 	e_str = ft_strjoin2(e_str, ": line ");
 	if (e_str == NULL)
 		error_exit("create_info_nord");
-	e_str = ft_strjoin2(e_str, ft_itoa(line));
+	e_str = ft_strjoin2(e_str, num);
+	free (num);
 	if (e_str == NULL)
 		error_exit("create_info_nord");
 	ans = (t_info *)malloc(sizeof(t_info));
 	if (ans == NULL)
 		error_exit("create_info_nord");
+	ft_bzero(ans, sizeof(t_info));
 	ans -> str = lst_str;
 	ans -> type = -1;
 	ans -> errstr = e_str;
 	ans -> flg = 1;
 	ans -> e_flg = 1;
 	ans -> is_quote = 0;
-	ans -> next = NULL;
-	ans -> pre = NULL;
 	return (ans);
 }
 
