@@ -6,13 +6,14 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/13 22:09:45 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 23:54:11 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# define _POSIX_C_SOURCE 1
 # include "../libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
@@ -273,6 +274,7 @@ int								is_space_till_end(char *str);
 int								ft_isspace_tab_space(int c);
 int								check_pwd(char **exp);
 int								ft_isspace_isdigit_str(char *str);
+char 							**set_env_if_null(void);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
