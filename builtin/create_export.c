@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 23:52:49 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 11:32:14 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:34:41 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ char	**create_export(char **env)
 	char	**exp;
 	int		i;
 
-	exp = (char **)malloc(sizeof(char *));
+	exp = (char **)ft_calloc(sizeof(char *), 1);
 	if (exp == NULL)
 		error_exit("create_exit");
-	exp[0] = NULL;
+	// exp[0] = NULL;
 	i = 0;
-	while (env[i])
+	while (env && env[i])
 	{
 		if (ft_strncmp(env[i], "_=", 2) && ft_strncmp(env[i], "OLDPWD=", 7))
 			exp = add_export(exp, env[i]);

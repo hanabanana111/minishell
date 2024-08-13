@@ -6,11 +6,31 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:44:58 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/13 11:09:41 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:01:14 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*shell_level(char *env)
+{
+	size_t	i;
+	int		tmp;
+	char	*a_num;
+	char	*ret;
+
+	i = 6;
+	tmp = ft_atoi(&env[i]);
+	tmp++;
+	if (tmp >= 1000)
+		tmp = 1;
+	if (tmp < 0)
+		tmp = 0;
+	a_num = ft_itoa(tmp);
+	ret = ft_strjoin("SHLVL=", a_num);
+	free(a_num);
+	return (ret);
+}
 
 char	**treat_env(char **env)
 {
@@ -32,11 +52,12 @@ char	**treat_env(char **env)
 	count = 0;
 	while (env[i])
 	{
-		if (ft_strncmp("OLDPWD=", env[i], 7))
+		if (ft_strncmp("SHLVL=", env[i], 6) == 0)
+			ret[count++] = shell_level(env[i]);
+		else if (ft_strncmp("OLDPWD=", env[i], 7))
 			ret[count++] = ft_strdup(env[i]);
 		i++;
 	}
-	ret[count] = NULL;
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/13 11:12:43 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:41:46 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**change_under_bar(char	**env)
 	char	**ans;
 
 	i = ft_len(env);
-	ans = (char **)malloc(sizeof(char *) * (i + 1));
+	ans = (char **)ft_calloc(sizeof(char *), (i + 1));
 	if (ans == NULL)
 		error_exit("change_under_bar");
 	i = -1;
@@ -64,22 +64,24 @@ char	**change_under_bar(char	**env)
 
 int	main(int argc, char *argv[], char **env)
 {
-	t_status	status;
+	t_status	*status;
 
 	if (argc > 1)
 		return (0);
 	(void)argv;
 	end_status_func(0);
-	ft_bzero(&status, sizeof(t_status));
-	status.envm = treat_env(env);
-	status.envm = change_under_bar(status.envm);
-	if (!set_pwd_init(&status))
+	status = (t_status *)ft_calloc(1, sizeof(t_status));
+	if (!status)
+		return (1);
+	status->envm = treat_env(env);
+	status->envm = change_under_bar(status->envm);
+	if (!set_pwd_init(status))
 		exit(end_status_func(-1));
-	if (!set_home(&status))
+	if (!set_home(status))
 		exit(end_status_func(-1));
-	status.exp = create_export(status.envm);
+	status->exp = create_export(status->envm);
 	treat_signal();
-	treat_read(&status);
-	free_t_status(&status);
+	treat_read(status);
+	free_t_status(status);
 	exit(end_status_func(-1));
 }
