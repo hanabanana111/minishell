@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:44:58 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/13 08:29:05 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:09:41 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ char	**treat_env(char **env)
 	size_t	i;
 	size_t	count;
 
-	if (!env)
-		return (NULL);
 	i = 0;
 	count = 0;
+	if (!env || !env[i])
+		return (NULL);
 	while (env[i])
 		if (ft_strncmp("OLDPWD=", env[i++], 7))
 			count++;
