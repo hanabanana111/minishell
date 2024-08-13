@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:31:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 10:08:48 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:17:25 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,40 @@ int	check_env_exist(char **env, char *str)
 	return (0);
 }
 
+char	**change_shlvl_exp(char **exp)
+{
+	int	i;
+
+	i = 0;
+	while (exp[i])
+	{
+		if (ft_strncmp(exp[i], "declare -x SHLVL=", 17) == 0)
+		{
+			free(exp[i]);
+			exp[i] = ft_strdup("declare -x SHLVL=\"0\"");
+		}
+		i++;
+	}
+	return (exp);
+}
+
+char	**change_shlvl_env(char **env)
+{
+	int	i;
+
+	i = 0;
+	while (env[i])
+	{
+		if (ft_strncmp(env[i], "SHLVL=", 6) == 0)
+		{
+			free(env[i]);
+			env[i] = ft_strdup("SHLVL=0");
+		}
+		i++;
+	}
+	return (env);
+}
+
 int	unset_func(t_status *status, t_cmd *first)
 {
 	int	i;
@@ -41,7 +75,12 @@ int	unset_func(t_status *status, t_cmd *first)
 	i = 1;
 	while (first -> arg[i])
 	{
-		if (ft_strncmp(first -> arg[i], "_\0", 2))
+		if (ft_strncmp(first -> arg[i], "SHLVL\0", 6) == 0)
+		{
+			status -> exp = change_shlvl_exp(status -> exp);
+			status -> envm = change_shlvl_env(status -> envm);
+		}
+		else if (ft_strncmp(first -> arg[i], "_\0", 2))
 		{
 			status -> exp = remove_exp(status -> exp, first -> arg[i]);
 			if (check_env_exist(status -> envm, first -> arg[i]))
