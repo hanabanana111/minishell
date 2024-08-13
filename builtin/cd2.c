@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 15:38:45 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 05:50:04 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 09:30:31 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	change_oldpwd(t_status *status, char *old_path)
 	str = ft_strjoin("OLDPWD=\0", old_path);
 	if (str == NULL)
 		error_exit("change_oldpwd");
-	add_env(status, str);
+	if (old_path)
+		add_env(status, str);
 	status -> exp = remove_exp(status -> exp, "OLDPWD");
 	status -> exp = add_export(status -> exp, str);
 	free(str);
