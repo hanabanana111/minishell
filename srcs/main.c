@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/14 00:04:52 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:26:47 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int	main(int argc, char *argv[], char **env)
 		exit(end_status_func(-1));
 	if (!set_home(status))
 		exit(end_status_func(-1));
-	printf("pass\n");
 	status->exp = create_export(status->envm);
 	treat_signal();
 	treat_read(status);
