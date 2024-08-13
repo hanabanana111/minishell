@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:30:09 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/13 03:12:20 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 23:56:26 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,45 @@ void	error_printf(char *arg, t_cmd *lst)
 	write(2, arg, ft_strlen(arg));
 	write(2, "': not a valid identifier\n", 26);
 	end_status_func(1);
+}
+
+int	check_export_shlvl(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != '=')
+		i++;
+	if (str[i] == '\0')
+		return (1);
+	while (str[++i])
+	{
+		if (!ft_isdigit(str[i]) && !ft_isspace(str[i]))
+			return (0);
+	}
+	return (1);
+}
+
+void	shlvl_export(char *str, t_status *status)
+{
+	if (str[5] && str[5] == '=' && str[6] == '\0')
+	{
+		add_env(status, "SHLVL=0");
+		status -> exp = eq_exp(status -> exp, str);
+	}
+	else if (check_export_shlvl(str))
+	{
+		if (check_type2(str) == 1)
+			return ;
+		if (check_type2(str) == 2)
+		{
+			status -> exp = eq_exp(status -> exp, str);
+			add_env(status, str);
+		}
+		else
+		{
+			status -> exp = plus_eq_exp(status -> exp, str);
+			add_env(status, str);
+		}
+	}
 }

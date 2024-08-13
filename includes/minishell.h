@@ -6,7 +6,11 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/08/13 22:09:45 by hakobori         ###   ########.fr       */
+=======
+/*   Updated: 2024/08/13 22:29:15 by rkawahar         ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,6 +277,8 @@ int								is_space_till_end(char *str);
 int								ft_isspace_tab_space(int c);
 int								check_pwd(char **exp);
 int								ft_isspace_isdigit_str(char *str);
+int								check_type2(char *str);
+void							shlvl_export(char *str, t_status *status);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
