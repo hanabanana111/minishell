@@ -6,13 +6,13 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 09:32:40 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:48:36 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_home_path(char *str)
+char	*ft_home_path(char *str, t_status *status)
 {
 	char	*ans;
 	int		i;
@@ -22,13 +22,7 @@ char	*ft_home_path(char *str)
 	while (str[i] && str[i] != '=')
 		i++;
 	if (str[i] == '\0')
-	{
-		ans = (char *)malloc(2);
-		if (ans == NULL)
-			error_exit("ft_home_path");
-		ft_strlcpy(ans, ".\0", 2);
-		return (ans);
-	}
+		return (ft_strdup(status -> pwd));
 	ans = (char *)malloc(ft_strlen(str) - 4);
 	if (ans == NULL)
 		error_exit("ft_home_path");
@@ -85,16 +79,21 @@ int	move_home(char **env, t_status *status, t_cmd *lst)
 		i++;
 	if (env[i] == NULL)
 		return (printf_error_cd3(lst));
-	path = ft_home_path(env[i]);
-	old_path = ft_old_path(env);
+	path = ft_home_path(env[i], status);
+	old_path = ft_strdup(status -> pwd);
 	if (chdir(path) < 0)
 	{
 		free(path);
 		free(old_path);
 		return (printf_error_cd2(path, lst));
 	}
-	if (old_path == NULL)
+	if (!check_pwd(status -> exp))
+	{
+		change_oldpwd(status, NULL);
+		free(path);
+		free(old_path);
 		return (1);
+	}
 	if (check_oldpwd(status -> exp))
 		change_oldpwd(status, old_path);
 	change_pwd(status, path);
@@ -117,9 +116,15 @@ int	ft_cd(t_cmd *first, t_status *status)
 		first -> arg[1] = re_pwd(status, first -> arg[1]);
 	if (chdir(first -> arg[1]) < 0)
 		return (printf_error_cd(first));
-	old_path = ft_old_path(status -> envm);
+	old_path = ft_strdup(status -> pwd);
 	if (old_path == NULL)
 		return (1);
+	if (!check_pwd(status -> exp))
+	{
+		change_oldpwd(status, NULL);
+		free(old_path);
+		return (1);
+	}
 	if (check_oldpwd(status -> exp))
 		change_oldpwd(status, old_path);
 	path = ft_pwddup();

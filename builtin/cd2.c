@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd2.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 15:38:45 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 08:58:01 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 09:54:20 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ void	change_oldpwd(t_status *status, char *old_path)
 	str = ft_strjoin("OLDPWD=\0", old_path);
 	if (str == NULL)
 		error_exit("change_oldpwd");
-	add_env(status, str);
-	status->exp = remove_exp(status->exp, "OLDPWD");
-	status->exp = add_export(status->exp, str);
+	if (old_path)
+		add_env(status, str);
+	status -> exp = remove_exp(status -> exp, "OLDPWD");
+	status -> exp = add_export(status -> exp, str);
 	free(str);
 }
 

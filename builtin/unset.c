@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:31:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 05:52:28 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:08:48 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@ int	unset_func(t_status *status, t_cmd *first)
 	i = 1;
 	while (first -> arg[i])
 	{
-		status -> exp = remove_exp(status -> exp, first -> arg[i]);
-		if (check_env_exist(status -> envm, first -> arg[i]))
-			status -> envm = remove_env(status -> envm, first -> arg[i]);
+		if (ft_strncmp(first -> arg[i], "_\0", 2))
+		{
+			status -> exp = remove_exp(status -> exp, first -> arg[i]);
+			if (check_env_exist(status -> envm, first -> arg[i]))
+				status -> envm = remove_env(status -> envm, first -> arg[i]);
+		}
 		i++;
 	}
 	return (1);

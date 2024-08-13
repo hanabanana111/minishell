@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/13 09:07:33 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 09:53:34 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,6 +271,7 @@ int								check_name(char *arg);
 void							error_printf(char *arg, t_cmd *lst);
 int								is_space_till_end(char *str);
 int								ft_isspace_tab_space(int c);
+int								check_pwd(char **exp);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

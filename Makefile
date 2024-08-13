@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
+#    By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/08/13 06:31:14 by hakobori         ###   ########.fr        #
+#    Updated: 2024/08/13 09:06:56 by rkawahar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(BILT_DIR)cd.c \
 			   $(BILT_DIR)cd2.c \
 			   $(BILT_DIR)cd3.c \
+			   $(BILT_DIR)cd4.c \
 			   $(BILT_DIR)unset.c \
 			   $(BILT_DIR)export4.c
 
