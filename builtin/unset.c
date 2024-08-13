@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:31:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 11:14:59 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:17:25 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	unset_func(t_status *status, t_cmd *first)
 	i = 1;
 	while (first -> arg[i])
 	{
-		if (ft_strncmo(first -> arg[i], "SHLVL\0", 6) == 0)
+		if (ft_strncmp(first -> arg[i], "SHLVL\0", 6) == 0)
 		{
 			status -> exp = change_shlvl_exp(status -> exp);
 			status -> envm = change_shlvl_env(status -> envm);
