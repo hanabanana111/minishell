@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/13 09:53:34 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:29:15 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +272,8 @@ void							error_printf(char *arg, t_cmd *lst);
 int								is_space_till_end(char *str);
 int								ft_isspace_tab_space(int c);
 int								check_pwd(char **exp);
+int								check_type2(char *str);
+void							shlvl_export(char *str, t_status *status);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

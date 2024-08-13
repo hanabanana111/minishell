@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:37:15 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 08:42:01 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:13:23 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ char	**no_eq_exp(char **exp, char *str)
 
 void	ft_mini_export(t_status *status, char *arg)
 {
-	if (check_type2(arg) == 1)
+	if (strncmp(arg, "SHLVL", 5) == 0)
+		shlvl_export(arg, status);
+	else if (check_type2(arg) == 1)
 		status -> exp = no_eq_exp(status -> exp, arg);
 	else if (check_type2(arg) == 2)
 	{
