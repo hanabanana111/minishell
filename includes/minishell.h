@@ -6,17 +6,14 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/08/13 22:09:45 by hakobori         ###   ########.fr       */
-=======
-/*   Updated: 2024/08/13 22:29:15 by rkawahar         ###   ########.fr       */
->>>>>>> refs/remotes/origin/main
+/*   Updated: 2024/08/14 00:25:47 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# define _POSIX_C_SOURCE 1
 # include "../libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
@@ -279,6 +276,7 @@ int								check_pwd(char **exp);
 int								ft_isspace_isdigit_str(char *str);
 int								check_type2(char *str);
 void							shlvl_export(char *str, t_status *status);
+char 							**set_env_if_null(void);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
