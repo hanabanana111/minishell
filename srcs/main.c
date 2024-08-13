@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:16:41 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/13 10:35:43 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:50:23 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	**change_under_bar(char	**env)
 		if (ans[i] == NULL)
 			error_exit("change_under_bar");
 	}
-	env[i] == NULL;
+	env[i] = NULL;
 	free_env(env);
 	return (ans);
 }
