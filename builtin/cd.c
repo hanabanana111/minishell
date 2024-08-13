@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 09:47:06 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:00:21 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ int	move_home(char **env, t_status *status, t_cmd *lst)
 		return (printf_error_cd3(lst));
 	path = ft_home_path(env[i], status);
 	old_path = ft_strdup(status -> pwd);
+	if (ft_strlen(path) == 0)
+		return(free(path), free(old_path), 1);
 	if (chdir(path) < 0)
 	{
-		free(path);
 		free(old_path);
 		return (printf_error_cd2(path, lst));
 	}

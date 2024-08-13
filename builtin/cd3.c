@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd3.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:08:51 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/11 16:42:41 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:59:24 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	printf_error_cd2(char *path, t_cmd *lst)
 	write(2, ": ", 2);
 	write(2, strerror(errno), ft_strlen(strerror(errno)));
 	write(2, "\n", 1);
+	free(path);
 	end_status_func(1);
 	return (1);
 }
