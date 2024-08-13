@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 15:38:45 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 09:30:31 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 09:54:20 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**remove_env(char **env, char *key)
 
 	len = ft_len(env);
 	env_str = ft_strjoin(key, "=");
-	ans = (char **)malloc(sizeof(char *) * len);
+	ans = (char **)ft_calloc(sizeof(char *), len);
 	if (ans == NULL)
 		error_exit("remove_env");
 	i = 0;
@@ -33,11 +33,9 @@ char	**remove_env(char **env, char *key)
 			ans[l++] = ft_strdup(env[i]);
 		i++;
 	}
-	ans[l] = NULL;
 	i = 0;
 	while (env[i])
 		free(env[i++]);
-	free(env[i]);
 	free(env);
 	free(env_str);
 	return (ans);
@@ -65,10 +63,10 @@ void	change_pwd(t_status *status, char *path)
 	if (str == NULL)
 		error_exit("change_pwd");
 	add_env(status, str);
-	status -> exp = remove_exp(status -> exp, "PWD");
-	status -> exp = add_export(status -> exp, str);
-	free(status -> pwd);
-	status -> pwd = ft_strdup(path);
+	status->exp = remove_exp(status->exp, "PWD");
+	status->exp = add_export(status->exp, str);
+	free(status->pwd);
+	status->pwd = ft_strdup(path);
 	free(str);
 }
 
@@ -103,7 +101,7 @@ char	**replace_home(char **arg, t_status *status)
 	while (arg[i])
 	{
 		if (arg[i][0] == '~')
-			ans[i] = cd_strjoin(arg[i], status -> home);
+			ans[i] = cd_strjoin(arg[i], status->home);
 		else
 			ans[i] = ft_strdup(arg[i]);
 		if (ans[i] == NULL)

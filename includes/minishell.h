@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/13 09:06:22 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/13 09:53:34 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,6 @@ void							set_sigint_here_doc(int signum);
 void							set_sigint_child(int signum);
 void							sig_child(int signum);
 int								is_execve(int num);
-void							perror_s1(char **env);
 int								printf_error_cd(t_cmd *lst);
 int								printf_error_cd2(char *path, t_cmd *lst);
 int								printf_error_cd3(t_cmd *lst);
