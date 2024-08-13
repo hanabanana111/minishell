@@ -6,7 +6,7 @@
 #    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/08/13 11:26:02 by hakobori         ###   ########.fr        #
+#    Updated: 2024/08/13 23:49:03 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)doll2.c \
 			   $(SRCS_DIR)end_status.c \
 			   $(SRCS_DIR)get_env.c \
+			   $(SRCS_DIR)get_env2.c \
 			   $(SRCS_DIR)lst_separate_format.c \
 			   $(SRCS_DIR)here_document.c \
 			   $(SRCS_DIR)here_document2.c \
@@ -55,6 +56,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)re_process.c \
 			   $(SRCS_DIR)utils1.c \
 			   $(SRCS_DIR)utils2.c \
+			   $(SRCS_DIR)utils4.c \
 			   $(SRCS_DIR)lexer2.c \
 			   $(SRCS_DIR)fce.c \
 			   $(SRCS_DIR)path3.c \
