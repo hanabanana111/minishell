@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:33:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/11 17:44:28 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:43:03 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	builtin2(t_cmd *lst, t_status *status)
 	if (ft_strncmp(lst->cmd, "exit\0", 5) == 0)
 		return (exit_func(lst, 1));
 	if (ft_strncmp(lst->cmd, "env\0", 4) == 0)
-		return (env_func(status, lst));
+		return (env_func2(status, lst));
 	if (ft_strncmp(lst->cmd, "cd\0", 3) == 0)
 		return (ft_cd(lst, status));
 	if (ft_strncmp(lst->cmd, "unset\0", 6) == 0)
