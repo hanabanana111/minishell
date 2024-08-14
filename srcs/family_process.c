@@ -6,9 +6,10 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:01:23 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/14 22:52:32 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/14 22:52:51 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/minishell.h"
 
@@ -34,23 +35,12 @@ void	parent_process(t_cmd *lst, int i)
 {
 	int	end_status;
 
+	(void)i;
 	end_status = 0;
 	if (lst->pipe_1 != 1)
 		close(lst->pipe_1);
 	if (lst->pipe_0 > 2)
 		close(lst->pipe_0);
-	if (lst->next == NULL)
-	{
-		while (i-- > 0)
-		{
-			waitpid(-1, &end_status, 0);
-			if (WIFEXITED(end_status))
-				end_status_func(WEXITSTATUS(end_status));
-			else if (WIFSIGNALED(end_status))
-				end_status_func(128 + WTERMSIG(end_status));
-		}
-		treat_signal();
-	}
 }
 
 void	ft_close(t_cmd *lst)
