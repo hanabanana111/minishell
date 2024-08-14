@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/14 19:03:01 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:15:17 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void	treat_read(t_status *status)
 		pronpt = pronpt_ps1(status->envm);
 		status->line = readline(pronpt);
 		free(pronpt);
+		if (g_sig)
+			g_sig = 0;
 		if (!status->line)
 			break ;
 		else if (status->line)
