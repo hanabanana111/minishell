@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:27:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/02 16:56:58 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/14 22:02:06 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	*pipex_gnl(t_status *status)
 	int		len;
 	char	*pronpt;
 
-	ans = (char *)malloc(1);
+	ans = (char *)ft_calloc(1,sizeof(char));
 	if (ans == NULL)
 		exit(1);
 	ans[0] = '\0';
@@ -117,6 +117,7 @@ void	here_doc_pipe(t_info *cmd_info, t_status *status)
 		new = lexer(new_line, status);
 		node->next = new;
 		new->pre = node;
+		free (new_line);
 		free(pre);
 	}
 	else
