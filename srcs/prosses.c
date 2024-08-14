@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/13 00:19:17 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/14 22:45:43 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	check_cmd_exist(char *path, t_cmd *lst)
 	if (lst->error_str || lst->cmd)
 	{
 		if (lst->error_str)
-			printf("%s: ", lst->error_str);
+			ft_printf(2, "%s: ", lst->error_str);
 		else
-			printf("minishell: ");
+			ft_printf(2, "minishell: ");
 		end_status_func(127);
 	}
 	if (lst->cmd)
-		printf("%s: %s\n", lst->cmd, lst->path);
+		ft_printf(2, "%s: %s\n", lst->cmd, lst->path);
 	return (0);
 }
 
@@ -46,10 +46,10 @@ int	check_fd(int pipe_0, int pipe_1, t_cmd *lst)
 	if (pipe_0 < 0)
 	{
 		if (lst->error_str)
-			printf("%s: ", lst->error_str);
+			ft_printf(2, "%s: ", lst->error_str);
 		else
-			printf("minishell: ");
-		printf("%s\n", lst->error_file);
+			ft_printf(2, "minishell: ");
+		ft_printf(2, "%s\n", lst->error_file);
 		if (pipe_1 > 1)
 			close(pipe_1);
 		end_status_func(1);
@@ -58,10 +58,10 @@ int	check_fd(int pipe_0, int pipe_1, t_cmd *lst)
 	if (pipe_1 < 0)
 	{
 		if (lst->error_str)
-			printf("%s: ", lst->error_str);
+			ft_printf(2, "%s: ", lst->error_str);
 		else
-			printf("minishell: ");
-		printf("%s\n", lst->error_file);
+			ft_printf(2, "minishell: ");
+		ft_printf(2, "%s\n", lst->error_file);
 		if (pipe_0 > 0)
 			close(pipe_0);
 		end_status_func(1);
@@ -75,6 +75,7 @@ void	ft_process(t_cmd *first, t_status *env)
 	pid_t	pid;
 	int		i;
 	t_cmd	*cmd_lst;
+	int		end_status;
 
 	i = 0;
 	cmd_lst = first;
@@ -98,6 +99,16 @@ void	ft_process(t_cmd *first, t_status *env)
 		}
 		cmd_lst = cmd_lst->next;
 	}
+	while (i-- > 0)
+	{
+		waitpid(-1, &end_status, 0);
+		if (WIFEXITED(end_status))
+			end_status_func(WEXITSTATUS(end_status));
+		else if (WIFSIGNALED(end_status))
+			end_status_func(128 + WTERMSIG(end_status));
+	}
+	treat_signal();
+
 }
 
 t_cmd	*check_cmdlst(t_cmd *first)
