@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/13 11:14:11 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:03:01 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void	free_t_info(t_info **cmd_info)
 
 void	is_line(t_status *status, t_info **cmd_info)
 {
-	add_history(status->line);
+	if (!ft_strncmp(status->line,"\0",1))
+		return ;
+	else
+		add_history(status->line);
 	*cmd_info = lexer(status->line, status);
 	if (!*cmd_info)
 		return ;
@@ -83,8 +86,6 @@ void	treat_read(t_status *status)
 		pronpt = pronpt_ps1(status->envm);
 		status->line = readline(pronpt);
 		free(pronpt);
-		if (g_sig == SIGINT || g_sig == SIGQUIT)
-			read_set_end_status();
 		if (!status->line)
 			break ;
 		else if (status->line)

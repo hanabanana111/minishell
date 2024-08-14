@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 21:53:44 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/14 00:46:54 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:56:36 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ int	env_func(t_status *status, t_cmd *lst)
 	i = 0;
 	if (check_env_path(status->envm) == 0)
 		return (1);
-	// if (lst->pre || lst->next)
-	// 	return (0);
 	if (!status->envm || !status->envm[i])
 	{
 		printf("\n");
@@ -71,7 +69,7 @@ int	env_func(t_status *status, t_cmd *lst)
 	}
 	while (status->envm[i])
 	{
-		if (strncmp(status->envm[i], "SHLVL=", 6) == 0)
+		if (ft_strncmp(status->envm[i], "SHLVL=", 6) == 0)
 			printf_shlvl(status->envm[i], lst);
 		else
 			printf("%s\n", status->envm[i]);
@@ -96,7 +94,7 @@ int	env_func2(t_status *status, t_cmd *lst)
 	}
 	while (status->envm[i])
 	{
-		if (strncmp(status->envm[i], "SHLVL=", 6) == 0)
+		if (ft_strncmp(status->envm[i], "SHLVL=", 6) == 0)
 			printf_shlvl(status->envm[i], lst);
 		else
 			printf("%s\n", status->envm[i]);

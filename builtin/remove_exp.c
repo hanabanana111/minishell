@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_exp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:44:04 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 03:33:55 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:57:03 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	check_exp(char **exp, char *str)
 	i = 0;
 	while (exp[i])
 	{
-		if (strncmp(exp[i], tmp, ft_strlen(tmp) + 1) == 0)
+		if (ft_strncmp(exp[i], tmp, ft_strlen(tmp) + 1) == 0)
 			ans = i;
-		if (strncmp(exp[i], tmp2, ft_strlen(tmp2)) == 0)
+		if (ft_strncmp(exp[i], tmp2, ft_strlen(tmp2)) == 0)
 			ans = i;
 		i++;
 	}

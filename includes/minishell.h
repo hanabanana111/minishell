@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/14 00:50:12 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:02:57 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define _POSIX_C_SOURCE 1
 # include "../libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
@@ -237,8 +236,6 @@ void							change_pwd(t_status *status, char *path);
 char							*ft_pwddup(void);
 int								unset_func(t_status *status, t_cmd *first);
 int								check_env_path(char **env);
-void							sig_default(int signum);
-void							sig_default_all(void);
 void							set_ignore(int signum);
 void							sig_ign_all(void);
 void							set_handler_sigint(int signum);
