@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:53:24 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/14 00:04:44 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:36:34 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int	find_pwd_status(t_status *status)
 
 int	pwd_func(t_status *status)
 {
-	if (find_pwd_get_pwd())
-		return (TRUE);
 	if (find_pwd_status(status))
+		return (TRUE);
+	if (find_pwd_get_pwd())
 		return (TRUE);
 	return (FALSE);
 }
