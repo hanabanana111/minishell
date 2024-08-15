@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:30:09 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/13 23:56:26 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:07:00 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,16 @@ void	shlvl_export(char *str, t_status *status)
 		add_env(status, "SHLVL=0");
 		status -> exp = eq_exp(status -> exp, str);
 	}
-	else if (check_export_shlvl(str))
+	if (check_type2(str) == 1)
+		return ;
+	if (check_type2(str) == 2)
 	{
-		if (check_type2(str) == 1)
-			return ;
-		if (check_type2(str) == 2)
-		{
-			status -> exp = eq_exp(status -> exp, str);
-			add_env(status, str);
-		}
-		else
-		{
-			status -> exp = plus_eq_exp(status -> exp, str);
-			add_env(status, str);
-		}
+		status -> exp = eq_exp(status -> exp, str);
+		add_env(status, str);
+	}
+	else
+	{
+		status -> exp = plus_eq_exp(status -> exp, str);
+		add_env(status, str);
 	}
 }
