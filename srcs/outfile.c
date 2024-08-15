@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   outfile.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:10:54 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 07:41:49 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:06:19 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,24 @@ int	determine_outfile(char *cmd, char *next)
 
 void	ambiguous_outfile(t_cmd *cmd_lst, t_info *lst)
 {
-	if (lst -> next -> key)
+	if (lst->next->key)
 	{
-		cmd_lst -> error_file = ft_strjoin(lst -> next -> key, ": ");
-		if (cmd_lst -> error_file == NULL)
+		cmd_lst->error_file = ft_strjoin(lst->next->key, ": ");
+		if (cmd_lst->error_file == NULL)
 			error_exit("outfile_fd");
-		cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, "ambiguous redirect");
-		if (cmd_lst -> error_file == NULL)
+		cmd_lst->error_file = ft_strjoin2(cmd_lst->error_file,
+				"ambiguous redirect");
+		if (cmd_lst->error_file == NULL)
 			error_exit("outfile_fd");
 	}
 	else
 	{
-		cmd_lst -> error_file = ft_strjoin(lst -> next -> key, ": ");
-		if (cmd_lst -> error_file == NULL)
+		cmd_lst->error_file = ft_strjoin(lst->next->key, ": ");
+		if (cmd_lst->error_file == NULL)
 			error_exit("outfile_fd");
-		cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, "No such file or directory");
-		if (cmd_lst -> error_file == NULL)
+		cmd_lst->error_file = ft_strjoin2(cmd_lst->error_file,
+				"No such file or directory");
+		if (cmd_lst->error_file == NULL)
 			error_exit("outfile_fd");
 	}
 }
@@ -67,25 +69,25 @@ t_info	*outfile_fd(t_cmd *cmd_lst, t_info *lst)
 {
 	char	*e_str;
 
-	if (cmd_lst -> pipe_1 != 1)
-		close(cmd_lst -> pipe_1);
-	cmd_lst -> pipe_1 = determine_outfile(lst -> str, lst -> next -> str);
-	if (cmd_lst -> pipe_1 < 0)
+	if (cmd_lst->pipe_1 != 1)
+		close(cmd_lst->pipe_1);
+	cmd_lst->pipe_1 = determine_outfile(lst->str, lst->next->str);
+	if (cmd_lst->pipe_1 < 0)
 	{
-		if (cmd_lst -> pipe_1 == -2)
+		if (cmd_lst->pipe_1 == -2)
 			ambiguous_outfile(cmd_lst, lst);
 		else
 		{
-			cmd_lst -> error_file = ft_strjoin(lst -> next -> str, ": ");
-			if (cmd_lst -> error_file == NULL)
+			cmd_lst->error_file = ft_strjoin(lst->next->str, ": ");
+			if (cmd_lst->error_file == NULL)
 				error_exit("outfile_fd");
 			e_str = strerror(errno);
-			cmd_lst -> error_file = ft_strjoin2(cmd_lst -> error_file, e_str);
-			if (cmd_lst -> error_file == NULL)
+			cmd_lst->error_file = ft_strjoin2(cmd_lst->error_file, e_str);
+			if (cmd_lst->error_file == NULL)
 				error_exit("outfile_fd");
 		}
-		while (lst -> next && lst -> next -> type != PIPE)
-			lst = lst -> next;
+		while (lst->next && lst->next->type != PIPE)
+			lst = lst->next;
 	}
 	return (lst);
 }

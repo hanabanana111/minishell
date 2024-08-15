@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/14 21:05:37 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:50:46 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	is_line(t_status *status, t_info **cmd_info)
 	*cmd_info = lexer(status->line, status);
 	if (!*cmd_info)
 		return ;
-	parser(*cmd_info, status);
+	if (!parser(*cmd_info, status))
+		return ;
 	is_pipe_exist(*cmd_info);
 	if (!status->is_pipe_syntax && !status->is_redi_syntax && !g_sig)
 		ft_miniprocess(*cmd_info, status);

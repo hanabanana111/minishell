@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+         #
+#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/08/15 16:16:04 by rkawahar         ###   ########.fr        #
+#    Updated: 2024/08/15 17:00:50 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)quotes.c \
 			   $(SRCS_DIR)quotes_2.c \
 			   $(SRCS_DIR)set_cmd_info_lst.c \
+			   $(SRCS_DIR)set_cmd_info_lst2.c \
 			   $(SRCS_DIR)info_list_utils.c \
 			   $(SRCS_DIR)doll.c \
 			   $(SRCS_DIR)doll2.c \
@@ -46,6 +47,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)pronpts.c \
 			   $(SRCS_DIR)here_doc_pipe.c \
 			   $(SRCS_DIR)prosses.c \
+			   $(SRCS_DIR)prosses2.c \
 			   $(SRCS_DIR)list.c \
 			   $(SRCS_DIR)path.c \
 			   $(SRCS_DIR)path2.c \
