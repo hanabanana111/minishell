@@ -6,16 +6,16 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:46:28 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/15 15:14:59 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 20:43:51 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	set_pipe_cmd_lst_next(t_cmd *cmd_lst, int pp)
+void	set_pipe_cmd_lst_next(t_cmd **cmd_lst, int pp)
 {
-	cmd_lst->next->pipe_0 = pp;
-	cmd_lst = cmd_lst->next;
+	(*cmd_lst)->next->pipe_0 = pp;
+	(*cmd_lst) = (*cmd_lst)->next;
 }
 
 t_cmd	*create_pipe(t_cmd *ans, t_info *lst)
@@ -40,7 +40,7 @@ t_cmd	*create_pipe(t_cmd *ans, t_info *lst)
 				cmd_lst->pipe_1 = pp[1];
 			else
 				close(pp[1]);
-			set_pipe_cmd_lst_next(cmd_lst, pp[0]);
+			set_pipe_cmd_lst_next(&cmd_lst, pp[0]);
 		}
 		lst = lst->next;
 	}
