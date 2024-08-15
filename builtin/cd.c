@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/15 16:24:22 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:34:26 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int	move_home(char **env, t_status *status, t_cmd *lst)
 int	ft_cd(t_cmd *first, t_status *status)
 {
 	char	*old_path;
-	char	*path;
 
 	if (ft_lstlen(first) > 1)
 		return (0);
@@ -108,5 +107,5 @@ int	ft_cd(t_cmd *first, t_status *status)
 	if (chdir(first -> arg[1]) < 0)
 		return (printf_error_cd(first));
 	old_path = ft_strdup(status -> pwd);
-	return (ft_cd2(status, old_path, path, first));
+	return (ft_cd2(status, old_path, first));
 }

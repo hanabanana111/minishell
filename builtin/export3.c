@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:57:30 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/15 16:13:29 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:33:20 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ char	*ft_expstr(char *tmp, char *tmp2)
 char	**check_arg_name(char **arg, t_cmd *lst)
 {
 	int		i;
-	int		l;
 	int		index;
 	char	**ans;
 

@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 08:59:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/15 16:24:33 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:34:47 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ int	move_home2(t_status *status, char *old_path, char *path)
 	return (1);
 }
 
-int	ft_cd2(t_status *status, char *old_path, char *path, t_cmd *first)
+int	ft_cd2(t_status *status, char *old_path, t_cmd *first)
 {
+	char	*path;
+
 	if (old_path == NULL)
 		return (1);
 	if (!check_pwd(status -> exp))

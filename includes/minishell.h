@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/15 16:25:27 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:36:21 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,7 +277,8 @@ int								env_func2(t_status *status, t_cmd *lst);
 char 							**set_env_if_null(void);
 char							**check_arg_name2(char **arg, int index);
 int								move_home2(t_status *status, char *old_path, char *path);
-int								ft_cd2(t_status *status, char *old_path, char *path, t_cmd *first);
+int								ft_cd2(t_status *status, char *old_path, t_cmd *first);
+int								check_oldpwd(char **exp);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
