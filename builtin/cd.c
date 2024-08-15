@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 11:00:21 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:41:47 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,10 @@ int	move_home(char **env, t_status *status, t_cmd *lst)
 	}
 	if (!check_pwd(status -> exp))
 	{
-		change_oldpwd(status, NULL);
+		if (check_oldpwd(status -> exp))
+			change_oldpwd(status, old_path);
+		free(status -> pwd);
+		status -> pwd = ft_strdup(path);
 		free(path);
 		free(old_path);
 		return (1);
@@ -112,6 +115,8 @@ int	ft_cd(t_cmd *first, t_status *status)
 		return (0);
 	if (first -> arg[1] == NULL)
 		return (move_home(status -> envm, status, first));
+	if (ft_strncmp(first -> arg[1], ".\0", 2) == 0)
+		return (1);
 	first -> arg = replace_home(first -> arg, status);
 	if (ft_strncmp(first -> arg[1], "..\0", 3) == 0)
 		first -> arg[1] = re_pwd(status, first -> arg[1]);
@@ -122,7 +127,10 @@ int	ft_cd(t_cmd *first, t_status *status)
 		return (1);
 	if (!check_pwd(status -> exp))
 	{
-		change_oldpwd(status, NULL);
+		if (check_oldpwd(status -> exp))
+			change_oldpwd(status, old_path);
+		free(status -> pwd);
+		status -> pwd = ft_strdup(first -> arg[1]);
 		free(old_path);
 		return (1);
 	}
