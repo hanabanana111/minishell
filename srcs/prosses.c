@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prosses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/14 22:45:43 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:15:07 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	ft_process(t_cmd *first, t_status *env)
 			end_status_func(128 + WTERMSIG(end_status));
 	}
 	treat_signal();
-
 }
 
 t_cmd	*check_cmdlst(t_cmd *first)
@@ -149,17 +148,13 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 	lst = first;
 	info = create_pipe(info, lst);
 	if (info == NULL)
-	{
-		// free_cmd(info);
 		return ;
-	}
 	cmd_first = info;
 	if (builtin2(cmd_first, env_lst))
 	{
 		free_cmd(info);
 		return ;
 	}
-	// info = check_cmdlst(info);
 	ft_process(info, env_lst);
 	free_cmd(info);
 }
