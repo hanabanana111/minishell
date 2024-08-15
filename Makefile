@@ -6,7 +6,7 @@
 #    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/08/14 22:59:01 by hakobori         ###   ########.fr        #
+#    Updated: 2024/08/15 15:19:41 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)quotes.c \
 			   $(SRCS_DIR)quotes_2.c \
 			   $(SRCS_DIR)set_cmd_info_lst.c \
+			   $(SRCS_DIR)set_cmd_info_lst2.c \
 			   $(SRCS_DIR)info_list_utils.c \
 			   $(SRCS_DIR)doll.c \
 			   $(SRCS_DIR)doll2.c \

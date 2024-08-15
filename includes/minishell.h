@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/14 20:09:54 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:35:23 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_env_quote_info
 	char						q_chr;
 	int							q_count;
 	int							is_question;
+	int							is_changed;
 	char						*key;
 	char						*value;
 }								t_env_quote_info;
@@ -275,6 +276,7 @@ int								check_type2(char *str);
 void							shlvl_export(char *str, t_status *status);
 int								env_func2(t_status *status, t_cmd *lst);
 char 							**set_env_if_null(void);
+void							check_cmd_env(t_info *node, char **envm);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
