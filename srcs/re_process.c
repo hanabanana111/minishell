@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:29 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/15 16:57:16 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:17:11 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,8 @@ t_info	*create_info(char *str, char *file, int line)
 
 void	re_process(t_cmd *lst, t_status *env_lst)
 {
-	int		i;
 	char	*str;
 	int		fd;
-	t_info	*tmp;
 
 	fd = open(lst -> cmd, R_OK);
 	if (fd < 0)
@@ -125,21 +123,7 @@ void	re_process(t_cmd *lst, t_status *env_lst)
 			printf("%s: ", lst -> error_file);
 		perror(lst -> cmd);
 	}
-	i = 1;
 	str = minishell_gnl(fd);
-	while (str != NULL)
-	{
-		tmp = create_info(str, lst -> cmd, i++);
-		set_lst_details(&tmp, env_lst -> envm);
-		if(!parser(tmp, env_lst))
-		{
-			re_free(str, tmp);
-			str = minishell_gnl(fd);
-			continue;
-		}
-		ft_miniprocess(tmp, env_lst);
-		re_free(str, tmp);
-		str = minishell_gnl(fd);
-	}
+	re_process2(str, lst, env_lst, fd);
 	fce(str, fd, lst);
 }

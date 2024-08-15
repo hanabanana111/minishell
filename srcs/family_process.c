@@ -6,10 +6,9 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:01:23 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/14 22:52:51 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:04:39 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/minishell.h"
 

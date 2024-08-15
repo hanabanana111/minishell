@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/15 16:11:33 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:07:59 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	ft_process(t_cmd *first, t_status *env)
 			{
 				i++;
 				process_sig(cmd_lst);
-				fork_and_process( first , cmd_lst, env, i);
+				fork_and_process(first, cmd_lst, env, i);
 			}
 		}
 		cmd_lst = cmd_lst->next;

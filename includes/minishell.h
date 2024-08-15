@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/15 17:00:41 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:15:13 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ extern volatile sig_atomic_t	g_sig;
 
 typedef struct s_buf
 {
-	char	buf[42];
-	char	*bufp;
-	int		n;
-}			t_buf;
+	char						buf[42];
+	char						*bufp;
+	int							n;
+}								t_buf;
 
 typedef struct s_cmd
 {
@@ -154,7 +154,8 @@ t_info							*info_lstnew(char *cmd);
 int								to_parse_lst(t_info **cmd_info);
 char							**treat_env(char **envm);
 void							ft_free_2d_array(char **head);
-void							treat_doll(char const *str, t_env_quote_info *e_q_info, t_info *node);
+void							treat_doll(char const *str,
+									t_env_quote_info *e_q_info, t_info *node);
 void							find_env(t_env_quote_info *e_q_info,
 									char **envm);
 void							ft_chenge_env_to_value(t_info *node,
@@ -255,16 +256,16 @@ int								printf_error_cd3(t_cmd *lst);
 void							set_handler_sigquit(int signum);
 void							sig_status_all(void);
 int								is_minishell(char *path);
-int 							set_get_std_in(int fd);
+int								set_get_std_in(int fd);
 int								write_error_str(char *str);
-int 							is_pipe_exist(t_info *cmd_info);
+int								is_pipe_exist(t_info *cmd_info);
 void							free_t_info(t_info **cmd_info);
 char							*join_n(char *ans);
 int								find_i_of_key(char *key, char **env);
-int 							is_digits_all(t_cmd *lst);
-void 							check_valid_env(size_t *count,const char *str);
-char							*get_next_line(int fd, t_buf	*bufs);
-int 							is_doll(char *str);
+int								is_digits_all(t_cmd *lst);
+void							check_valid_env(size_t *count, const char *str);
+char							*get_next_line(int fd, t_buf *bufs);
+int								is_doll(char *str);
 char							**check_arg_name(char **arg, t_cmd *lst);
 int								check_name(char *arg);
 void							error_printf(char *arg, t_cmd *lst);
@@ -275,19 +276,29 @@ int								ft_isspace_isdigit_str(char *str);
 int								check_type2(char *str);
 void							shlvl_export(char *str, t_status *status);
 int								env_func2(t_status *status, t_cmd *lst);
-char 							**set_env_if_null(void);
+char							**set_env_if_null(void);
 char							**check_arg_name2(char **arg, int index);
-int								move_home2(t_status *status, char *old_path, char *path);
-int								ft_cd2(t_status *status, char *old_path, t_cmd *first);
+int								move_home2(t_status *status, char *old_path,
+									char *path);
+int								ft_cd2(t_status *status, char *old_path,
+									t_cmd *first);
 int								check_oldpwd(char **exp);
 void							check_cmd_env(t_info *node, char **envm);
 void							waitpid_set_endstatus(void);
 void							process_sig(t_cmd *cmd_lst);
-void							fork_and_process(t_cmd *first , t_cmd *cmd_lst, t_status *env, int i);
+void							fork_and_process(t_cmd *first, t_cmd *cmd_lst,
+									t_status *env, int i);
 void							ps2_pronpt(char **env);
 char							*get_next_line2(int fd, t_buf *bufs);
 char							*join_newline(char *ans, char *line);
 void							init_variables(char **line, char **ans);
+void							re_process2(char *str, t_cmd *lst,
+									t_status *env_lst, int fd);
+char							*recreate_minishell(char *str, char tmp);
+char							*minishell_gnl(int fd);
+t_info							*create_info_nord(char *lst_str, char *file,
+									int line);
+t_info							*create_info(char *str, char *file, int line);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

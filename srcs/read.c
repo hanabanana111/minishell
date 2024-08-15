@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/15 16:50:46 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:07:15 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	free_t_info(t_info **cmd_info)
 
 void	is_line(t_status *status, t_info **cmd_info)
 {
-	if (!ft_strncmp(status->line,"\0",1))
+	if (!ft_strncmp(status->line, "\0", 1))
 		return ;
 	else
 		add_history(status->line);

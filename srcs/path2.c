@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 11:12:16 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 00:08:13 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:21:49 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,11 @@ char	**split_path(char **env)
 	return (ans);
 }
 
-char	*search_env(char *cmd, char **env)
+char	*search_env2(char **paths, char *cmd)
 {
 	int		i;
-	char	**paths;
 	char	*ans;
 
-	paths = split_path(env);
-	if (paths == NULL)
-	{
-		ans = ft_strdup("command not found\0");
-		if (ans == NULL)
-			error_exit("serach_env");
-		return (ans);
-	}
 	i = 0;
 	while (paths[i])
 	{
@@ -110,4 +101,20 @@ char	*search_env(char *cmd, char **env)
 	if (ans == NULL)
 		error_exit("serach_env");
 	return (ans);
+}
+
+char	*search_env(char *cmd, char **env)
+{
+	char	**paths;
+	char	*ans;
+
+	paths = split_path(env);
+	if (paths == NULL)
+	{
+		ans = ft_strdup("command not found\0");
+		if (ans == NULL)
+			error_exit("serach_env");
+		return (ans);
+	}
+	return (search_env2(paths, cmd));
 }

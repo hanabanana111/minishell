@@ -6,7 +6,7 @@
 #    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/08/15 17:00:50 by hakobori         ###   ########.fr        #
+#    Updated: 2024/08/15 17:13:03 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)infile.c \
 			   $(SRCS_DIR)outfile.c \
 			   $(SRCS_DIR)re_process.c \
+			   $(SRCS_DIR)re_process2.c \
 			   $(SRCS_DIR)utils1.c \
 			   $(SRCS_DIR)utils2.c \
 			   $(SRCS_DIR)utils4.c \
