@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/15 15:35:23 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:52:11 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,10 +170,10 @@ char							*pronpt_ps1(char **env);
 char							*pronpt_ps2(char **env);
 char							*get_value(char **env, char *key);
 void							here_doc(t_info *cmd_info, t_status *status);
-void							here_doc_pipe(t_info *cmd_info,
+int								here_doc_pipe(t_info *cmd_info,
 									t_status *status);
 void							is_syntax2(t_info *cmd_info, t_status *status);
-void							parser(t_info *cmd_info, t_status *status);
+int								parser(t_info *cmd_info, t_status *status);
 int								is_here_document(t_info *cmd_info);
 void							set_lst_details(t_info **cmd_info, char **envm);
 void							debug_print_lst(t_info *cmd_info);
@@ -277,6 +277,13 @@ void							shlvl_export(char *str, t_status *status);
 int								env_func2(t_status *status, t_cmd *lst);
 char 							**set_env_if_null(void);
 void							check_cmd_env(t_info *node, char **envm);
+void							waitpid_set_endstatus(void);
+void							process_sig(t_cmd *cmd_lst);
+void							fork_and_process(t_cmd *first , t_cmd *cmd_lst, t_status *env, int i);
+void							ps2_pronpt(char **env);
+char							*get_next_line2(int fd, t_buf *bufs);
+char							*join_newline(char *ans, char *line);
+void							init_variables(char **line, char **ans);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif

@@ -6,7 +6,7 @@
 #    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/08/15 15:19:41 by hakobori         ###   ########.fr        #
+#    Updated: 2024/08/15 16:53:26 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)pronpts.c \
 			   $(SRCS_DIR)here_doc_pipe.c \
 			   $(SRCS_DIR)prosses.c \
+			   $(SRCS_DIR)prosses2.c \
 			   $(SRCS_DIR)list.c \
 			   $(SRCS_DIR)path.c \
 			   $(SRCS_DIR)path2.c \

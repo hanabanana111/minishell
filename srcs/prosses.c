@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/15 15:15:07 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:11:33 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,8 @@ int	check_fd(int pipe_0, int pipe_1, t_cmd *lst)
 
 void	ft_process(t_cmd *first, t_status *env)
 {
-	pid_t	pid;
 	int		i;
 	t_cmd	*cmd_lst;
-	int		end_status;
 
 	i = 0;
 	cmd_lst = first;
@@ -86,27 +84,14 @@ void	ft_process(t_cmd *first, t_status *env)
 			if (check_cmd_exist(cmd_lst->path, cmd_lst))
 			{
 				i++;
-				if (is_minishell(cmd_lst->path))
-					sig_ign_all();
-				else
-					sig_status_all();
-				pid = fork();
-				if (pid == 0)
-					children_process(cmd_lst, env, first);
-				else if (pid > 0)
-					parent_process(cmd_lst, i);
+				process_sig(cmd_lst);
+				fork_and_process( first , cmd_lst, env, i);
 			}
 		}
 		cmd_lst = cmd_lst->next;
 	}
 	while (i-- > 0)
-	{
-		waitpid(-1, &end_status, 0);
-		if (WIFEXITED(end_status))
-			end_status_func(WEXITSTATUS(end_status));
-		else if (WIFSIGNALED(end_status))
-			end_status_func(128 + WTERMSIG(end_status));
-	}
+		waitpid_set_endstatus();
 	treat_signal();
 }
 

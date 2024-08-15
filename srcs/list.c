@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:43:21 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/11 16:43:14 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:40:22 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,23 @@ t_cmd	*create_nord(t_info *lst)
 	ans = (t_cmd *)malloc(sizeof(t_cmd));
 	if (ans == NULL)
 		error_exit("create_nord");
-	ans -> cmd = NULL;
-	ans -> path = NULL;
-	ans -> arg = (char **)malloc(sizeof(char *));
-	ans -> arg[0] = NULL;
-	ans -> pipe_0 = 0;
-	ans -> pipe_1 = 1;
-	ans -> error_file = NULL;
-	if (lst -> errstr)
+	ans->cmd = NULL;
+	ans->path = NULL;
+	ans->arg = (char **)malloc(sizeof(char *));
+	ans->arg[0] = NULL;
+	ans->pipe_0 = 0;
+	ans->pipe_1 = 1;
+	ans->error_file = NULL;
+	if (lst->errstr)
 	{
-		ans -> error_str = ft_strdup(lst -> errstr);
-		if (ans -> error_str == NULL)
+		ans->error_str = ft_strdup(lst->errstr);
+		if (ans->error_str == NULL)
 			error_exit("create_nord");
-	}	
+	}
 	else
-		ans -> error_str = NULL;
-	ans -> next = NULL;
-	ans -> pre = NULL;
+		ans->error_str = NULL;
+	ans->next = NULL;
+	ans->pre = NULL;
 	return (ans);
 }
 
@@ -60,10 +60,7 @@ char	**set_args(char *str, char **args)
 
 	i = 0;
 	if (args[i] == NULL)
-	{
-		ft_free(args);
-		return (set_cmd(str));
-	}
+		return (ft_free(args), set_cmd(str));
 	while (args[i])
 		i++;
 	ans = (char **)malloc(sizeof(char *) * (i + 2));
@@ -94,18 +91,18 @@ t_cmd	*insert_info(t_info *first, t_cmd *ans)
 	lst = first;
 	while (lst)
 	{
-		if (lst -> type == CMD)
+		if (lst->type == CMD)
 		{
-			cmd_lst -> cmd = ft_strdup(lst -> str);
-			if (cmd_lst -> cmd == NULL)
+			cmd_lst->cmd = ft_strdup(lst->str);
+			if (cmd_lst->cmd == NULL)
 				error_exit("insert_info");
-			cmd_lst -> arg = set_args(lst -> str, cmd_lst -> arg);
+			cmd_lst->arg = set_args(lst->str, cmd_lst->arg);
 		}
-		else if (lst -> type == OPT)
-			cmd_lst -> arg = set_args(lst -> str, cmd_lst -> arg);
-		else if (lst -> type == PIPE)
-			cmd_lst = cmd_lst -> next;
-		lst = lst -> next;
+		else if (lst->type == OPT)
+			cmd_lst->arg = set_args(lst->str, cmd_lst->arg);
+		else if (lst->type == PIPE)
+			cmd_lst = cmd_lst->next;
+		lst = lst->next;
 	}
 	return (ans);
 }
@@ -124,9 +121,9 @@ t_cmd	*create_lst(t_info *first)
 	i = count_pipe(lst);
 	while (i > 0)
 	{
-		nord -> next = create_nord(first);
-		nord -> next->pre = nord;
-		nord = nord -> next;
+		nord->next = create_nord(first);
+		nord->next->pre = nord;
+		nord = nord->next;
 		i--;
 	}
 	lst = first;

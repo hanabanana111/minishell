@@ -6,30 +6,11 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:27:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/14 22:02:06 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:54:17 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static char	*re_create(char *str, char tmp)
-{
-	char	*ans;
-	int		i;
-	int		j;
-
-	ans = (char *)malloc(ft_strlen(str) + 2);
-	if (ans == NULL)
-		exit(1);
-	i = 0;
-	j = 0;
-	while (str[i])
-		ans[j++] = str[i++];
-	ans[j] = tmp;
-	ans[j + 1] = '\0';
-	free(str);
-	return (ans);
-}
 
 int	ans_checker(char *ans)
 {
@@ -43,35 +24,6 @@ int	ans_checker(char *ans)
 		i++;
 	}
 	return (FALSE);
-}
-
-static char	*pipex_gnl(t_status *status)
-{
-	char	*ans;
-	char	tmp;
-	int		len;
-	char	*pronpt;
-
-	ans = (char *)ft_calloc(1,sizeof(char));
-	if (ans == NULL)
-		exit(1);
-	ans[0] = '\0';
-	pronpt = pronpt_ps2(status->envm);
-	write(1, pronpt, s_strlen(pronpt));
-	len = 0;
-	while (1)
-	{
-		read(0, &tmp, 1);
-		len++;
-		ans = re_create(ans, tmp);
-		if (tmp == '\n' && !ans_checker(ans))
-			ft_printf(1, "%s", pronpt_ps2(status->envm));
-		else if (tmp == '\n')
-			break ;
-	}
-	if (ans)
-		ans[len - 1] = '\0';
-	return (free(pronpt), ans);
 }
 
 char	*s_strjoin(char const *s1, char const *s2)
@@ -97,30 +49,20 @@ char	*s_strjoin(char const *s1, char const *s2)
 	return (result);
 }
 
-void	here_doc_pipe(t_info *cmd_info, t_status *status)
+int	here_doc_pipe(t_info *cmd_info, t_status *status)
 {
-	char	*new_line;
-	char	*pre;
 	t_info	*node;
-	t_info	*new;
 
 	node = cmd_info;
 	if (status->is_pipe_syntax || status->is_redi_syntax)
-		return ;
+		return (FALSE);
 	while (node->next)
 		node = node->next;
 	if (node->type == PIPE && !node->next)
 	{
-		new_line = pipex_gnl(status);
-		pre = status->line;
-		status->line = s_strjoin(status->line, new_line);
-		new = lexer(new_line, status);
-		node->next = new;
-		new->pre = node;
-		free (new_line);
-		free(pre);
+		ft_printf(1, "Invalid end with pipe\n");
+		return (TRUE);
 	}
 	else
-		return ;
-	here_doc_pipe(cmd_info, status);
+		return (FALSE);
 }

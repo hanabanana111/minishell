@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:27:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/13 06:56:07 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:41:04 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ void	find_separater_n(t_info *node, size_t *i)
 		return ;
 	else if (!ft_strncmp(&node->str[(*i)], "|", 1))
 		separate_cmd("|", node, i);
-	else if (ft_strlen(&node->str[(*i)]) > 1 && !ft_strncmp(&node->str[(*i)], "<<", 2))
+	else if (ft_strlen(&node->str[(*i)]) > 1 && !ft_strncmp(&node->str[(*i)],
+			"<<", 2))
 		separate_cmd("<<", node, i);
 	else if (!ft_strncmp(&node->str[(*i)], "<", 1))
 		separate_cmd("<", node, i);
-	else if (ft_strlen(&node->str[(*i)]) > 1 && !ft_strncmp(&node->str[(*i)], ">>", 2))
+	else if (ft_strlen(&node->str[(*i)]) > 1 && !ft_strncmp(&node->str[(*i)],
+			">>", 2))
 		separate_cmd(">>", node, i);
 	else if (!ft_strncmp(&node->str[(*i)], ">", 1))
 		separate_cmd(">", node, i);
