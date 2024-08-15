@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
+#    By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/08/14 22:59:01 by hakobori         ###   ########.fr        #
+#    Updated: 2024/08/15 16:16:04 by rkawahar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,8 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(BILT_DIR)cd3.c \
 			   $(BILT_DIR)cd4.c \
 			   $(BILT_DIR)unset.c \
-			   $(BILT_DIR)export4.c
+			   $(BILT_DIR)export4.c \
+			   $(BILT_DIR)export5.c
 
 OBJS 		 = $(SRCS:.c=.o)
 LIBFT 		 = $(LIBFT_DIR)libft.a

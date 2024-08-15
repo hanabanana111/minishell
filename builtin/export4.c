@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:30:09 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/15 15:07:00 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:13:39 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,28 @@ void	shlvl_export(char *str, t_status *status)
 		status -> exp = plus_eq_exp(status -> exp, str);
 		add_env(status, str);
 	}
+}
+
+char	**check_arg_name2(char **arg, int index)
+{
+	char	**ans;
+	int		i;
+	int		l;
+
+	ans = (char **)malloc(sizeof(char *) * (index + 1));
+	if (ans == NULL)
+		error_exit("check_env_name");
+	i = 0;
+	l = 0;
+	while (arg[i])
+	{
+		if (check_name(arg[i]))
+		{
+			ans[l] = ft_strdup(arg[i]);
+			l++;
+		}
+		i++;
+	}
+	ans[l] = NULL;
+	return (ans);
 }

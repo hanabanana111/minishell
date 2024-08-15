@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/15 15:41:47 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:24:22 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,28 +82,13 @@ int	move_home(char **env, t_status *status, t_cmd *lst)
 	path = ft_home_path(env[i], status);
 	old_path = ft_strdup(status -> pwd);
 	if (ft_strlen(path) == 0)
-		return(free(path), free(old_path), 1);
+		return (free(path), free(old_path), 1);
 	if (chdir(path) < 0)
 	{
 		free(old_path);
 		return (printf_error_cd2(path, lst));
 	}
-	if (!check_pwd(status -> exp))
-	{
-		if (check_oldpwd(status -> exp))
-			change_oldpwd(status, old_path);
-		free(status -> pwd);
-		status -> pwd = ft_strdup(path);
-		free(path);
-		free(old_path);
-		return (1);
-	}
-	if (check_oldpwd(status -> exp))
-		change_oldpwd(status, old_path);
-	change_pwd(status, path);
-	free(path);
-	free(old_path);
-	return (1);
+	return (move_home2(status, old_path, path));
 }
 
 int	ft_cd(t_cmd *first, t_status *status)
@@ -123,22 +108,5 @@ int	ft_cd(t_cmd *first, t_status *status)
 	if (chdir(first -> arg[1]) < 0)
 		return (printf_error_cd(first));
 	old_path = ft_strdup(status -> pwd);
-	if (old_path == NULL)
-		return (1);
-	if (!check_pwd(status -> exp))
-	{
-		if (check_oldpwd(status -> exp))
-			change_oldpwd(status, old_path);
-		free(status -> pwd);
-		status -> pwd = ft_strdup(first -> arg[1]);
-		free(old_path);
-		return (1);
-	}
-	if (check_oldpwd(status -> exp))
-		change_oldpwd(status, old_path);
-	path = ft_pwddup();
-	change_pwd(status, path);
-	free(old_path);
-	free(path);
-	return (1);
+	return (ft_cd2(status, old_path, path, first));
 }

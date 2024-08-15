@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:31:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 11:17:25 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:08:26 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_env_exist(char **env, char *str)
 		if (ft_strncmp(env[i], env_str, ft_strlen(env_str)) == 0)
 		{
 			free(env_str);
-			return(1);
+			return (1);
 		}
 		i++;
 	}

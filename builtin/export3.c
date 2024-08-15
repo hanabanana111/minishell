@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:57:30 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/11 16:24:41 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:13:29 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,21 +104,7 @@ char	**check_arg_name(char **arg, t_cmd *lst)
 	}
 	if (index == 1)
 		return (NULL);
-	ans = (char **)malloc(sizeof(char *) * (index + 1));
-	if (ans == NULL)
-		error_exit("check_env_name");
-	i = 0;
-	l = 0;
-	while (arg[i])
-	{
-		if (check_name(arg[i]))
-		{
-			ans[l] = ft_strdup(arg[i]);
-			l++;
-		}
-		i++;
-	}
-	ans[l] = NULL;
+	ans = check_arg_name2(arg, index);
 	i = 0;
 	while (arg[i])
 		free(arg[i++]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_export.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 23:52:49 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 11:34:41 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:17:02 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ char	**create_export(char **env)
 	exp = (char **)ft_calloc(sizeof(char *), 1);
 	if (exp == NULL)
 		error_exit("create_exit");
-	// exp[0] = NULL;
 	i = 0;
 	while (env && env[i])
 	{
