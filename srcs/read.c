@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 05:13:06 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/15 17:07:15 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/18 06:21:24 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,6 @@ void	is_line(t_status *status, t_info **cmd_info)
 	is_pipe_exist(*cmd_info);
 	if (!status->is_pipe_syntax && !status->is_redi_syntax && !g_sig)
 		ft_miniprocess(*cmd_info, status);
-}
-
-void	read_set_end_status(void)
-{
-	if (g_sig == SIGINT)
-		end_status_func(130);
-	else if (g_sig == SIGQUIT)
-		end_status_func(131);
-	g_sig = 0;
 }
 
 void	treat_read(t_status *status)
