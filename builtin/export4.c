@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export4.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:30:09 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/15 16:13:39 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/19 08:24:12 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ int	check_name(char *arg)
 	int	i;
 
 	i = 0;
+	// added "export =" error case
+	// start
+	if (arg[i] && arg[i] == '=')
+		return (0);
+	// end
 	while (arg[i] && arg[i] != '=')
 	{
 		if (i == 0)
@@ -39,8 +44,8 @@ int	check_name(char *arg)
 
 void	error_printf(char *arg, t_cmd *lst)
 {
-	if (lst -> error_str)
-		write(2, lst -> error_str, ft_strlen(lst -> error_str));
+	if (lst->error_str)
+		write(2, lst->error_str, ft_strlen(lst->error_str));
 	else
 		write(2, "minishell", 9);
 	write(2, ": ", 2);
@@ -72,18 +77,18 @@ void	shlvl_export(char *str, t_status *status)
 	if (str[5] && str[5] == '=' && str[6] == '\0')
 	{
 		add_env(status, "SHLVL=0");
-		status -> exp = eq_exp(status -> exp, str);
+		status->exp = eq_exp(status->exp, str);
 	}
 	if (check_type2(str) == 1)
 		return ;
 	if (check_type2(str) == 2)
 	{
-		status -> exp = eq_exp(status -> exp, str);
+		status->exp = eq_exp(status->exp, str);
 		add_env(status, str);
 	}
 	else
 	{
-		status -> exp = plus_eq_exp(status -> exp, str);
+		status->exp = plus_eq_exp(status->exp, str);
 		add_env(status, str);
 	}
 }

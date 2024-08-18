@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/15 16:34:26 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/19 08:14:07 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_home_path(char *str, t_status *status)
 	while (str[i] && str[i] != '=')
 		i++;
 	if (str[i] == '\0')
-		return (ft_strdup(status -> pwd));
+		return (ft_strdup(status->pwd));
 	ans = (char *)malloc(ft_strlen(str) - 4);
 	if (ans == NULL)
 		error_exit("ft_home_path");
@@ -80,7 +80,7 @@ int	move_home(char **env, t_status *status, t_cmd *lst)
 	if (env[i] == NULL)
 		return (printf_error_cd3(lst));
 	path = ft_home_path(env[i], status);
-	old_path = ft_strdup(status -> pwd);
+	old_path = ft_strdup(status->pwd);
 	if (ft_strlen(path) == 0)
 		return (free(path), free(old_path), 1);
 	if (chdir(path) < 0)
@@ -97,15 +97,20 @@ int	ft_cd(t_cmd *first, t_status *status)
 
 	if (ft_lstlen(first) > 1)
 		return (0);
-	if (first -> arg[1] == NULL)
-		return (move_home(status -> envm, status, first));
-	if (ft_strncmp(first -> arg[1], ".\0", 2) == 0)
+	if (first->arg[1] == NULL)
+		return (move_home(status->envm, status, first));
+	// added if args are too many
+	// start
+	if (first->arg[2])
+		return (is_cd_too_many_args(), 1);
+	// end
+	if (ft_strncmp(first->arg[1], ".\0", 2) == 0)
 		return (1);
-	first -> arg = replace_home(first -> arg, status);
-	if (ft_strncmp(first -> arg[1], "..\0", 3) == 0)
-		first -> arg[1] = re_pwd(status, first -> arg[1]);
-	if (chdir(first -> arg[1]) < 0)
+	first->arg = replace_home(first->arg, status);
+	if (ft_strncmp(first->arg[1], "..\0", 3) == 0)
+		first->arg[1] = re_pwd(status, first->arg[1]);
+	if (chdir(first->arg[1]) < 0)
 		return (printf_error_cd(first));
-	old_path = ft_strdup(status -> pwd);
+	old_path = ft_strdup(status->pwd);
 	return (ft_cd2(status, old_path, first));
 }

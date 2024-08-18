@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/18 15:56:32 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/18 16:30:37 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,8 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 	if (info == NULL)
 		return ;
 	cmd_first = info;
+	//debug
+	// check_cmdlst(cmd_first);
 	if (builtin2(cmd_first, env_lst))
 	{
 		free_cmd(info);

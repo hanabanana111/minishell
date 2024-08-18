@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/18 15:56:53 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/19 08:08:29 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -298,6 +298,7 @@ char							*minishell_gnl(int fd);
 t_info							*create_info_nord(char *lst_str, char *file,
 									int line);
 t_info							*create_info(char *str, char *file, int line);
+void							is_cd_too_many_args(void);
 
 void							debug_print_lst(t_info *cmd_info);
 #endif
