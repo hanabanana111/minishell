@@ -6,36 +6,37 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:09:34 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/11 19:11:39 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/18 16:00:46 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	find_env(t_env_quote_info *e_q_info, char **envm)
+void	find_env(t_env_quote_info **e_q_info, char **envm)
 {
 	size_t	i;
 	size_t	n_len;
 	size_t	env_len;
 
 	i = 0;
-	n_len = s_strlen(e_q_info->key);
-	if (e_q_info->is_question)
+	n_len = s_strlen((*e_q_info)->key);
+	if ((*e_q_info)->is_question)
 		return ;
 	while (envm[i])
 	{
-		if (!ft_strncmp(e_q_info->key, envm[i], n_len) && envm[i][n_len] == '=')
+		if (!ft_strncmp((*e_q_info)->key, envm[i], n_len)
+			&& envm[i][n_len] == '=')
 		{
 			env_len = s_strlen(envm[i]) - n_len;
-			e_q_info->value = (char *)ft_calloc(env_len, sizeof(char));
-			if (!e_q_info->value)
+			(*e_q_info)->value = (char *)ft_calloc(env_len, sizeof(char));
+			if (!(*e_q_info)->value)
 				return ;
-			ft_strlcpy(e_q_info->value, &envm[i][n_len + 1], env_len);
+			ft_strlcpy((*e_q_info)->value, &envm[i][n_len + 1], env_len);
 			return ;
 		}
 		i++;
 	}
-	e_q_info->value = (char *)ft_calloc(1, sizeof(char));
+	(*e_q_info)->value = (char *)ft_calloc(1, sizeof(char));
 }
 
 void	treat_doll(char const *str, t_env_quote_info *e_q_info, t_info *node)

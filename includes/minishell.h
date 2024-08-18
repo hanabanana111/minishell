@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/15 17:15:13 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:56:53 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ char							**treat_env(char **envm);
 void							ft_free_2d_array(char **head);
 void							treat_doll(char const *str,
 									t_env_quote_info *e_q_info, t_info *node);
-void							find_env(t_env_quote_info *e_q_info,
+void							find_env(t_env_quote_info **e_q_info,
 									char **envm);
 void							ft_chenge_env_to_value(t_info *node,
 									t_env_quote_info *e_q_info);
@@ -177,7 +177,6 @@ void							is_syntax2(t_info *cmd_info, t_status *status);
 int								parser(t_info *cmd_info, t_status *status);
 int								is_here_document(t_info *cmd_info);
 void							set_lst_details(t_info **cmd_info, char **envm);
-void							debug_print_lst(t_info *cmd_info);
 t_info							*lexer(char *line, t_status *status);
 void							set_here_doc_env_value(t_info *node,
 									t_status *status);

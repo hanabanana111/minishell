@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:43:55 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/15 17:05:29 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/18 14:53:48 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	waitpid_set_endstatus(void)
 	if (WIFEXITED(end_status))
 		end_status_func(WEXITSTATUS(end_status));
 	else if (WIFSIGNALED(end_status))
-		end_status_func(128 + WTERMSIG(end_status));
+	{
+		if (WTERMSIG(end_status) != SIGPIPE)
+			end_status_func(128 + WTERMSIG(end_status));
+	}
 }
 
 void	process_sig(t_cmd *cmd_lst)

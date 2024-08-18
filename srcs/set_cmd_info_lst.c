@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:13:28 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/15 15:34:00 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:54:38 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ void	check_cmd_env_part1(t_info *node, int *i, char **envm,
 		t_env_quote_info *e_q_info)
 {
 	treat_doll(&node->str[++(*i)], e_q_info, node);
-	find_env(e_q_info, envm);
+	find_env(&e_q_info, envm);
 	ft_chenge_env_to_value(node, e_q_info);
 	(*i) = ft_strlen(e_q_info->value);
+	e_q_info->is_question = 0;
 	e_q_info->is_changed = 1;
 }
 

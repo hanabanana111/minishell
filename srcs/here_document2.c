@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:19:00 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/14 20:57:42 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:35:29 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,18 @@ void	set_here_doc_env_value(t_info *node, t_status *status)
 {
 	size_t				i;
 	t_env_quote_info	e_q_info;
+	t_env_quote_info	*p_e_q_info;	
 
 	i = 0;
-	ft_bzero(&e_q_info, sizeof(t_env_quote_info));
+	p_e_q_info = &e_q_info;
+	ft_bzero(p_e_q_info, sizeof(t_env_quote_info));
 	while (node && node->str && node->str[i])
 	{
 		if (node->str[i] == '$')
 		{
-			treat_doll(&node->str[++i], &e_q_info, node);
-			find_env(&e_q_info, status->envm);
-			ft_chenge_env_to_value(node, &e_q_info);
+			treat_doll(&node->str[++i], p_e_q_info, node);
+			find_env(&p_e_q_info, status->envm);
+			ft_chenge_env_to_value(node, p_e_q_info);
 		}
 		i++;
 	}

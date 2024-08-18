@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 15:16:48 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/24 22:34:38 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/18 16:00:04 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,19 @@ void	cmd_checker(t_info *node)
 	flg = 0;
 	while (node)
 	{
-		if (node -> type == -1)
+		if (node->type == -1)
 		{
 			if (flg == 0)
 			{
-				node -> type = CMD;
+				node->type = CMD;
 				flg = 1;
 			}
 			else if (flg)
-				node -> type = OPT;
+				node->type = OPT;
 		}
-		else if (node -> type == PIPE)
+		else if (node->type == PIPE)
 			flg = 0;
-		node = node -> next;
+		node = node->next;
 	}
 }
 
