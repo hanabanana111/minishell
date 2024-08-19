@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:12:20 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/12 23:07:16 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:58:01 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	re_free(char *str, t_info *lst)
 	t_info	*node;
 
 	node = lst;
-	free(str);
 	str = NULL;
 	while (node)
 	{

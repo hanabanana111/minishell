@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:44:58 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/13 23:47:41 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/19 13:55:51 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*get_value(char **env, char *key)
 			return (format_value(env[i], key));
 		i++;
 	}
-	return ("");
+	return (ft_strdup(""));
 }
 
 char	*key_format(char *str)
