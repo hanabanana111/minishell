@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/19 13:34:54 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/20 07:54:56 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/types.h>
+# include <dirent.h>
 # include <sys/wait.h>
 # include <termios.h>
 # include <unistd.h>
