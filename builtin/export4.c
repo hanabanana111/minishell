@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:30:09 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/19 08:24:12 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/19 12:46:03 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@ int	check_name(char *arg)
 	int	i;
 
 	i = 0;
-	// added "export =" error case
-	// start
 	if (arg[i] && arg[i] == '=')
 		return (0);
-	// end
 	while (arg[i] && arg[i] != '=')
 	{
 		if (i == 0)

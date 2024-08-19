@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/19 08:08:29 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/19 12:43:51 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,9 +149,7 @@ char							**split_to_token(char const *s, char *sep);
 int								check_quotes(const char **str);
 char							*consider_quotes_and_strndup(char const *s,
 									size_t n);
-t_info							*treat_info_lst(char **arr, t_status *status);
 t_info							*info_lstnew(char *cmd);
-int								to_parse_lst(t_info **cmd_info);
 char							**treat_env(char **envm);
 void							ft_free_2d_array(char **head);
 void							treat_doll(char const *str,
@@ -246,9 +244,6 @@ void							print_s1(char **env);
 void							free_cmd(t_cmd *lst);
 void							re_free(char *str, t_info *lst);
 void							set_sigint_here_doc(int signum);
-void							set_sigint_child(int signum);
-void							sig_child(int signum);
-int								is_execve(int num);
 int								printf_error_cd(t_cmd *lst);
 int								printf_error_cd2(char *path, t_cmd *lst);
 int								printf_error_cd3(t_cmd *lst);
@@ -300,5 +295,4 @@ t_info							*create_info_nord(char *lst_str, char *file,
 t_info							*create_info(char *str, char *file, int line);
 void							is_cd_too_many_args(void);
 
-void							debug_print_lst(t_info *cmd_info);
 #endif
