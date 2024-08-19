@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 15:16:48 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/18 16:00:04 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/19 13:56:54 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	cmd_checker(t_info *node)
 	{
 		if (node->type == -1)
 		{
-			if (flg == 0)
+			if (flg == 0 && !(ft_strncmp(node->str, "\0", 1) == 0 && node->key))
 			{
 				node->type = CMD;
 				flg = 1;

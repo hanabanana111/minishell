@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kawaharadaryou <kawaharadaryou@student.    +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:41:23 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/07/23 20:56:10 by kawaharadar      ###   ########.fr       */
+/*   Updated: 2024/08/19 14:50:27 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int	check_sl(char *str)
 char	*path(t_cmd *lst)
 {
 	char	*ans;
+	int		fd;
 
 	if (access(lst -> cmd, X_OK) < 0)
 	{
@@ -37,6 +38,16 @@ char	*path(t_cmd *lst)
 			error_exit("path");
 		return (ans);
 	}
+	fd = open(lst -> cmd, O_WRONLY);
+	if (fd < 0)
+	{
+		ans = ft_strdup(strerror(errno));
+		if (ans == NULL)
+			error_exit("path");
+		end_status_func(126);
+		return (ans);
+	}
+	close(fd);
 	ans = ft_strdup(lst -> cmd);
 	if (ans == NULL)
 		error_exit("path");
@@ -57,12 +68,10 @@ t_cmd	*path_finder(t_cmd *ans, char **env)
 				if (lst -> cmd[0] == '/' || lst -> cmd[0] == '.')
 					lst -> path = path(lst);
 				else
-				{
 					lst -> path = ft_strdup("No such file or directory\0");
-					if (lst -> path == NULL)
-						error_exit("path_finder");
-				}
 			}
+			else if (lst -> cmd[0] == '\0')
+				lst -> path = ft_strdup("command not found");
 			else
 				lst -> path = search_env(lst -> cmd, env);
 		}

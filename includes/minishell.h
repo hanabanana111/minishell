@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/19 12:43:51 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/19 13:34:54 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,5 +294,6 @@ t_info							*create_info_nord(char *lst_str, char *file,
 									int line);
 t_info							*create_info(char *str, char *file, int line);
 void							is_cd_too_many_args(void);
+t_info							*skip_empty_env(t_info *first);
 
 #endif
