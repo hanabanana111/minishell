@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd4.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 08:59:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/19 13:37:05 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:06:32 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_cd2(t_status *status, char *old_path, t_cmd *first)
 		change_oldpwd(status, old_path);
 	path = ft_pwddup_2();
 	 if (!status->pwd)
-			status->pwd = ft_strdup(first->arg[1]);
+		status->pwd = ft_strdup(first->arg[1]);
 	change_pwd(status, path);
 	free(old_path);
 	free(path);
