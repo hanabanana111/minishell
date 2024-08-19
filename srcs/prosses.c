@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/19 12:39:36 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/19 12:57:51 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 	lst = first;
 	info = create_pipe(info, lst);
 	if (info == NULL)
+		return ;
+	if (ft_strncmp(lst -> str, "\0", 1) == 0 && lst -> key && !(lst -> next))
 		return ;
 	cmd_first = info;
 	if (builtin2(cmd_first, env_lst))

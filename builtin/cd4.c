@@ -6,11 +6,32 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 08:59:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/19 08:08:03 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/19 13:03:42 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*ft_pwddup_2(void)
+{
+	char	*ans;
+	char	tmp[PATH_MAX];
+	int		i;
+
+	if (getcwd(tmp, sizeof(tmp)) < 0)
+		return (NULL);
+	i = 0;
+	while (tmp[i])
+		i++;
+	ans = (char *)malloc(i + 1);
+	if (ans == NULL)
+		return (NULL);
+	i = -1;
+	while (tmp[++i])
+		ans[i] = tmp[i];
+	ans[i] = '\0';
+	return (ans);
+}
 
 int	check_pwd(char **exp)
 {
@@ -57,7 +78,9 @@ int	ft_cd2(t_status *status, char *old_path, t_cmd *first)
 		if (check_oldpwd(status->exp))
 			change_oldpwd(status, old_path);
 		free(status->pwd);
-		status->pwd = ft_strdup(first->arg[1]);
+		status->pwd = ft_pwddup_2();
+		if (!status->pwd)
+			status->pwd = ft_strdup(first->arg[1]);
 		free(old_path);
 		return (1);
 	}
