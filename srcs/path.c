@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:41:23 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/19 14:50:27 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/20 07:53:15 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	check_sl(char *str)
 char	*path(t_cmd *lst)
 {
 	char	*ans;
-	int		fd;
+	DIR		*fd;
 
 	if (access(lst -> cmd, X_OK) < 0)
 	{
@@ -38,8 +38,8 @@ char	*path(t_cmd *lst)
 			error_exit("path");
 		return (ans);
 	}
-	fd = open(lst -> cmd, O_WRONLY);
-	if (fd < 0)
+	fd = opendir(lst -> cmd);
+	if (fd)
 	{
 		ans = ft_strdup(strerror(errno));
 		if (ans == NULL)
@@ -47,7 +47,6 @@ char	*path(t_cmd *lst)
 		end_status_func(126);
 		return (ans);
 	}
-	close(fd);
 	ans = ft_strdup(lst -> cmd);
 	if (ans == NULL)
 		error_exit("path");
