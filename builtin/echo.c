@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:51:31 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/20 10:32:46 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:52:00 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,28 @@ int	find_echo_part(char **arg)
 	return (i);
 }
 
-// void	echo_print_word_split()
-// {
-	
-// }
+void	echo_print_word_split(char *arg)
+{
+	size_t i;
+
+	i = 0;
+	while(arg[i] == ' ' || arg[i] == '\t')
+		i++;
+	while(arg[i])
+	{
+		if (arg[i] == ' ' || arg[i] == '\t')
+		{
+			while(arg[i] == ' ' || arg[i] == '\t')
+				i++;
+			if (arg[i])
+				ft_printf(1, " ");
+			else
+				break ;
+		}
+		ft_printf(1, "%c", arg[i]);
+		i++;
+	}
+}
 
 int	echo_func(t_cmd *lst)
 {
@@ -60,14 +78,14 @@ int	echo_func(t_cmd *lst)
 	i = echo_part;
 	while (lst->arg[i])
 	{
-		printf("%s", lst->arg[i]);
+		echo_print_word_split(lst->arg[i]);
 		if (!lst->arg[i + 1])
 		{
 			if (echo_part == 1)
 				printf("\n");
 			return (1);
 		}
-		printf(" ");
+		ft_printf(1, " ");
 		i++;
 	}
 	return (1);
