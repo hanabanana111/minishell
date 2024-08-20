@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:09:34 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/19 07:57:25 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/20 08:53:58 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	treat_doll(char const *str, t_env_quote_info *e_q_info, t_info *node)
 		return ;
 	}
 	ft_strlcpy(e_q_info->key, str, count + 1);
+	free(node->key);
 	node->key = ft_strjoin("$", e_q_info->key);
 }
 

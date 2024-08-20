@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/20 07:54:56 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:33:52 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <sys/types.h>
 # include <dirent.h>
 # include <sys/wait.h>
+# include <ncursesw/curses.h>
+# include <term.h>
 # include <termios.h>
 # include <unistd.h>
 # include <readline/history.h>
@@ -296,5 +298,6 @@ t_info							*create_info_nord(char *lst_str, char *file,
 t_info							*create_info(char *str, char *file, int line);
 void							is_cd_too_many_args(void);
 t_info							*skip_empty_env(t_info *first);
+void							set_quotes_char(char str_char, char *quote_char);
 
 #endif

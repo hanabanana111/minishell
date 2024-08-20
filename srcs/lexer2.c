@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:27:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/18 16:00:27 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/20 08:16:13 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,10 @@ void	is_redi_pipe_next_to_quotes(t_info *node)
 	{
 		if (!q_char && ft_strchr("\\<\\|\\>", tmp[i]))
 			find_separater_n(node, &i);
-		if (ft_strchr("\'\"", tmp[i]))
-		{
-			if (!q_char)
-				q_char = tmp[i];
-			else if (q_char == tmp[i])
-				q_char = 0;
-		}
+		if (i >= ft_strlen(node->str))
+			return (free(tmp));
+		if (tmp[i] && ft_strchr("\'\"", tmp[i]))
+			set_quotes_char(tmp[i], &q_char);
 		if (tmp != node->str)
 		{
 			free(tmp);

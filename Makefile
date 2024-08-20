@@ -6,7 +6,7 @@
 #    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/08/15 17:13:03 by hakobori         ###   ########.fr        #
+#    Updated: 2024/08/20 08:15:36 by hakobori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)parser.c \
 			   $(SRCS_DIR)parser2.c \
 			   $(SRCS_DIR)lexer.c \
+			   $(SRCS_DIR)lexer2.c \
+			   $(SRCS_DIR)lexer3.c \
 			   $(SRCS_DIR)split_to_token.c \
 			   $(SRCS_DIR)quotes.c \
 			   $(SRCS_DIR)quotes_2.c \
@@ -60,7 +62,6 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)utils1.c \
 			   $(SRCS_DIR)utils2.c \
 			   $(SRCS_DIR)utils4.c \
-			   $(SRCS_DIR)lexer2.c \
 			   $(SRCS_DIR)fce.c \
 			   $(SRCS_DIR)path3.c \
 			   $(SRCS_DIR)error.c \
