@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:51:31 by hakobori          #+#    #+#             */
-/*   Updated: 2024/07/19 17:19:33 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/20 10:32:46 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ int	find_echo_part(char **arg)
 		i++;
 	return (i);
 }
+
+// void	echo_print_word_split()
+// {
+	
+// }
 
 int	echo_func(t_cmd *lst)
 {

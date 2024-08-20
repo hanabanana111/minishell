@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/20 09:33:52 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/20 10:22:20 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,5 +299,6 @@ t_info							*create_info(char *str, char *file, int line);
 void							is_cd_too_many_args(void);
 t_info							*skip_empty_env(t_info *first);
 void							set_quotes_char(char str_char, char *quote_char);
+void							env_args_print_error(char *arg1);
 
 #endif
