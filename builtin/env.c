@@ -6,25 +6,25 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 21:53:44 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/20 10:21:58 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:47:48 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//added function
-int		is_env_args(t_cmd *lst)
+// added function
+int	is_env_args(t_cmd *lst)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
-	while(lst->arg[i])
+	while (lst->arg[i])
 		i++;
 	if (i > 1)
 		return (TRUE);
 	return (FALSE);
 }
-//end
+// end
 
 int	check_env_path(char **env)
 {
@@ -78,8 +78,8 @@ int	env_func(t_status *status, t_cmd *lst)
 		return (1);
 	// add start
 	if (is_env_args(lst))
-		return (env_args_print_error(lst->arg[1]),1);
-	//end
+		return (env_args_print_error(lst->arg[1]), 1);
+	// end
 	if (!status->envm || !status->envm[i])
 	{
 		printf("\n");
@@ -103,7 +103,7 @@ int	env_func2(t_status *status, t_cmd *lst)
 	i = 0;
 	if (check_env_path(status->envm) == 0)
 		return (1);
-	//added
+	// added
 	if (is_env_args(lst))
 		return (env_args_print_error(lst->arg[1]), 1);
 	// end
@@ -124,4 +124,3 @@ int	env_func2(t_status *status, t_cmd *lst)
 	}
 	return (1);
 }
-

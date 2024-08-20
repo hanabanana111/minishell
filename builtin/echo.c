@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:51:31 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/20 13:52:00 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:47:00 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ int	find_echo_part(char **arg)
 
 void	echo_print_word_split(char *arg)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
-	while(arg[i] == ' ' || arg[i] == '\t')
+	while (arg[i] == ' ' || arg[i] == '\t')
 		i++;
-	while(arg[i])
+	while (arg[i])
 	{
 		if (arg[i] == ' ' || arg[i] == '\t')
 		{
-			while(arg[i] == ' ' || arg[i] == '\t')
+			while (arg[i] == ' ' || arg[i] == '\t')
 				i++;
 			if (arg[i])
 				ft_printf(1, " ");

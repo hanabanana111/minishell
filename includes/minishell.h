@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/20 10:22:20 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:50:02 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 # define MINISHELL_H
 
 # include "../libft/libft.h"
+# include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <ncursesw/curses.h>
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/types.h>
-# include <dirent.h>
 # include <sys/wait.h>
-# include <ncursesw/curses.h>
 # include <term.h>
 # include <termios.h>
 # include <unistd.h>
@@ -298,7 +298,8 @@ t_info							*create_info_nord(char *lst_str, char *file,
 t_info							*create_info(char *str, char *file, int line);
 void							is_cd_too_many_args(void);
 t_info							*skip_empty_env(t_info *first);
-void							set_quotes_char(char str_char, char *quote_char);
+void							set_quotes_char(char str_char,
+									char *quote_char);
 void							env_args_print_error(char *arg1);
 
 #endif
