@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd3.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:08:51 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/13 10:59:24 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:28:37 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char	*re_pwd(t_status *status, char *str)
 	}
 	if (index == -1)
 		error_exit("dont do that!!");
+	if (index == 0)
+		index++;
 	ans = (char *)malloc(index + 1);
 	if (ans == NULL)
 		error_exit("re_pwd");
