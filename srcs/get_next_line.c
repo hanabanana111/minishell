@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:41:49 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/22 23:06:55 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/22 23:46:23 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ char	*get_next_line(int fd, t_buf *bufs)
 		if (c == EOF)
 			str[0] = '\0';
 		result = ft_strjoin(result, str);
-		if (!result)
-			return (free(first), NULL);
 		free(first);
 		if (c == '\n')
 			break ;
