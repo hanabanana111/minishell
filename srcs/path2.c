@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 11:12:16 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/19 15:03:56 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:59:59 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ char	*search_env(char *cmd, char **env)
 		if (access(ans, R_OK) == 0)
 			return (ans);
 		free(ans);
-		ans = ft_strdup("command not found\0");
+		ans = ft_strdup("No such file or directory\0");
 		if (ans == NULL)
 			error_exit("serach_env");
 		return (ans);

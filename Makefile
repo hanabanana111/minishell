@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+         #
+#    By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 20:59:22 by hakobori          #+#    #+#              #
-#    Updated: 2024/08/20 10:22:39 by hakobori         ###   ########.fr        #
+#    Updated: 2024/08/22 18:57:35 by rkawahar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS 		 = $(SRCS_DIR)main.c \
 			   $(SRCS_DIR)prosses.c \
 			   $(SRCS_DIR)prosses2.c \
 			   $(SRCS_DIR)list.c \
+			   $(SRCS_DIR)list2.c \
 			   $(SRCS_DIR)path.c \
 			   $(SRCS_DIR)path2.c \
 			   $(SRCS_DIR)pipe.c \

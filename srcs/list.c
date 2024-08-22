@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:43:21 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/15 15:40:22 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/22 18:29:24 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_cmd	*create_nord(t_info *lst)
 	if (ans == NULL)
 		error_exit("create_nord");
 	ans->cmd = NULL;
+	ans->flg = NULL;
 	ans->path = NULL;
 	ans->arg = (char **)malloc(sizeof(char *));
 	ans->arg[0] = NULL;
@@ -129,5 +130,6 @@ t_cmd	*create_lst(t_info *first)
 	lst = first;
 	ans = insert_info(lst, ans);
 	lst = first;
+	ans = insert_flg(lst, ans);
 	return (ans);
 }

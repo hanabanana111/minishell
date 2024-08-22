@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/20 17:18:05 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/22 18:56:56 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_cmd
 	char						*cmd;
 	char						*path;
 	char						**arg;
+	int							*flg;
 	int							pipe_0;
 	int							pipe_1;
 	char						*error_file;
@@ -301,5 +302,7 @@ t_info							*skip_empty_env(t_info *first);
 void							set_quotes_char(char str_char,
 									char *quote_char);
 void							env_args_print_error(char *arg1);
+int								search_arg(char *str1, t_info *lst);
+t_cmd							*insert_flg(t_info *lst, t_cmd *ans);
 
 #endif
