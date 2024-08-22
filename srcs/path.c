@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:41:23 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/20 16:33:46 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/22 13:50:48 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*path(t_cmd *lst)
 	fd = opendir(lst -> cmd);
 	if (fd)
 	{
-		ans = ft_strdup("Is a directory\n");
+		ans = ft_strdup("Is a directory");
 		if (ans == NULL)
 			error_exit("path");
 		end_status_func(126);
