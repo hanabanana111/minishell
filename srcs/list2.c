@@ -6,7 +6,7 @@
 /*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 18:29:44 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/22 19:12:44 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/22 19:14:13 by rkawahar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	search_arg(char *str1, t_info *lst)
 	while (lst)
 	{
 		if (lst -> str && ft_strncmp(str1, lst -> str, sizeof(str1)) == 0)
-			break;
+			break ;
 		lst = lst -> next;
 	}
 	free(lst -> str);
