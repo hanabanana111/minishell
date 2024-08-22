@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:41:49 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/20 17:19:15 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/22 23:06:55 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ static int	ft_getchar(int fd, t_buf *gnl)
 	}
 }
 
+void	gnl_init(char **result, char **first)
+{
+	*result = NULL;
+	*first = NULL;
+}
+
 char	*get_next_line(int fd, t_buf *bufs)
 {
 	char	*first;
@@ -40,9 +46,8 @@ char	*get_next_line(int fd, t_buf *bufs)
 	char	str[2];
 	char	c;
 
-	result = NULL;
-	first = NULL;
 	ft_bzero(&str, sizeof(str));
+	gnl_init(&result, &first);
 	while (fd >= 0)
 	{
 		first = result;
@@ -52,6 +57,8 @@ char	*get_next_line(int fd, t_buf *bufs)
 		if (c == -2)
 			return (free(result), NULL);
 		str[0] = c;
+		if (c == EOF)
+			str[0] = '\0';
 		result = ft_strjoin(result, str);
 		if (!result)
 			return (free(first), NULL);

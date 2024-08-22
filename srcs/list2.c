@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 18:29:44 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/22 20:11:02 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/22 22:40:40 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ t_cmd	*insert_flg(t_info *lst, t_cmd *ans)
 	int		i;
 
 	cmd_lst = ans;
-	i = 0;
 	while (cmd_lst)
 	{
+		i = 0;
 		while (cmd_lst -> arg[i])
 			i++;
 		cmd_lst -> flg = (int *)ft_calloc(sizeof(int), i);
