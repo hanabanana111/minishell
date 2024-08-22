@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:51:31 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/20 16:34:04 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/22 18:34:27 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ int	check_option_n(char *str)
 	return (TRUE);
 }
 
-int	find_echo_part(char **arg)
+int	find_echo_part(t_cmd *lst)
 {
 	int	i;
 
 	i = 1;
-	while (arg[i] && check_option_n(arg[i]))
+	while(lst->arg[i] && lst->arg[i][0] == '\0' && lst->flg[i])
+		i++;
+	while (lst->arg[i] && check_option_n(lst->arg[i]))
 		i++;
 	return (i);
 }
@@ -49,7 +51,7 @@ int	echo_func(t_cmd *lst)
 	int	echo_part;
 	int	i;
 
-	echo_part = find_echo_part(lst->arg);
+	echo_part = find_echo_part(lst);
 	if (!echo_part)
 		return (1);
 	i = echo_part;
