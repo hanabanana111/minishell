@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 18:29:44 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/22 19:14:13 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:11:02 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@ int	search_arg(char *str1, t_info *lst)
 {
 	while (lst)
 	{
-		if (lst -> str && ft_strncmp(str1, lst -> str, sizeof(str1)) == 0)
+		if (lst -> str && ft_strncmp(str1, lst -> str, ft_strlen(str1) + 1) == 0)
 			break ;
 		lst = lst -> next;
 	}
-	free(lst -> str);
-	lst -> str = strdup("NULL");
 	if (lst -> key)
+	{
+		free(lst -> str);
+		lst -> str = strdup("NULL");
 		return (1);
-	else
-		return (0);
+	}
+	return (0);
 }
 
 t_cmd	*insert_flg(t_info *lst, t_cmd *ans)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkawahar <rkawahar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:51:31 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/22 19:14:37 by rkawahar         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:12:41 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	find_echo_part(t_cmd *lst)
 	while (lst->arg[i] && lst->arg[i][0] == '\0' && lst->flg[i])
 		i++;
 	while (lst->arg[i] && check_option_n(lst->arg[i]))
+		i++;
+	while (lst->arg[i] && lst->arg[i][0] == '\0' && lst->flg[i])
 		i++;
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:12:20 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/19 14:58:01 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:11:08 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	free_cmd(t_cmd *lst)
 		i = 0;
 		while (lst -> arg[i])
 			free(lst -> arg[i++]);
+		free(lst -> flg);
 		free(lst -> arg[i]);
 		free(lst -> arg);
 		if (lst -> pipe_0 > 1)
