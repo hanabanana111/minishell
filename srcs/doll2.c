@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 18:37:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/27 00:58:43 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/27 04:25:48 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,58 @@ int	is_doll(char *str)
 	return (FALSE);
 }
 
-void	while_key_incriment_i(char *key_tmp, char *pre, size_t *i)
+void	while_key_incriment_i(char *key_tmp, char *pre, int *i)
 {
-	size_t	k;
+	int	k;
 
 	k = 0;
 	while (key_tmp[k] && pre[++(*i)] == key_tmp[k])
 		k++;
 	if (key_tmp && *key_tmp)
 		(*i)++;
+}
+
+int	init_heredoc_value(t_info *node, t_env_quote_info *e_q_info, char **key_tmp,
+		char **value_tmp)
+{
+	*key_tmp = e_q_info->key;
+	*value_tmp = e_q_info->value;
+	node->len = s_strlen(node->str) - s_strlen(*key_tmp) + s_strlen(*value_tmp)
+		+ 1;
+	if (*key_tmp && *key_tmp[0] == '\0')
+		node->len += 1;
+	node->str = (char *)ft_calloc(node->len, sizeof(char));
+	if (!node->str)
+		return (1);
+	return (0);
+}
+
+void	ft_chenge_env_to_value_heredoc(t_info *node, t_env_quote_info *e_q_info,
+		size_t node_i)
+{
+	char	*pre;
+	char	*key_tmp;
+	char	*value_tmp;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	pre = node->str;
+	if (init_heredoc_value(node, e_q_info, &key_tmp, &value_tmp))
+		return (free(pre));
+	while (i < node_i)
+		node->str[j++] = pre[i++];
+	if (pre[i + 1] && (pre[i + 1] == '_' || ft_isalpha(pre[i + 1]) || pre[i \
+			+ 1] == '?'))
+	{
+		while (value_tmp && *value_tmp)
+			node->str[j++] = *value_tmp++;
+		while (*key_tmp && pre[++i] == *key_tmp)
+			key_tmp++;
+		i++;
+	}
+	while (pre[i])
+		node->str[j++] = pre[i++];
+	free_pre_e_q_info(&pre, e_q_info);
 }

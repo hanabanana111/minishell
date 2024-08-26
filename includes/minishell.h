@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/27 00:56:16 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/27 03:59:03 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
-# include <stdio.h>
 # include <ncursesw/curses.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 # include <signal.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/types.h>
@@ -30,6 +28,8 @@
 # include <term.h>
 # include <termios.h>
 # include <unistd.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 
 extern volatile sig_atomic_t	g_sig;
 
@@ -161,7 +161,7 @@ void							treat_doll(char const *str,
 void							find_env(t_env_quote_info **e_q_info,
 									char **envm);
 void							ft_chenge_env_to_value(t_info *node,
-									t_env_quote_info *e_q_info);
+									t_env_quote_info *e_q_info, int node_i);
 void							format_quote(t_info **cmd_lst);
 int								end_status_func(int status);
 size_t							s_strlen(char *str);
@@ -307,6 +307,11 @@ t_cmd							*insert_flg(t_info *lst, t_cmd *ans);
 void							print_numeric_arg(t_cmd *lst);
 int								is_es_digits(t_cmd *lst, int *is_minus);
 int								is_oflow(const char *str, int minus);
-void							while_key_incriment_i(char *key_tmp, char *pre, size_t *i);
+void							while_key_incriment_i(char *key_tmp, char *pre,
+									int *i);
+void							ft_chenge_env_to_value_heredoc(t_info *node,
+									t_env_quote_info *e_q_info, size_t node_i);
+void							free_pre_e_q_info(char **pre,
+									t_env_quote_info *e_q_info);
 
 #endif

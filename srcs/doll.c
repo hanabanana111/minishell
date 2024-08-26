@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:09:34 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/27 00:59:31 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/27 04:04:45 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	find_env(t_env_quote_info **e_q_info, char **envm)
 	size_t	i;
 	size_t	n_len;
 	size_t	env_len;
+	char	*value_tmp;
 
 	i = 0;
 	n_len = s_strlen((*e_q_info)->key);
@@ -28,11 +29,12 @@ void	find_env(t_env_quote_info **e_q_info, char **envm)
 			&& envm[i][n_len] == '=')
 		{
 			env_len = s_strlen(envm[i]) - n_len;
-			(*e_q_info)->value = (char *)ft_calloc(env_len, sizeof(char));
-			if (!(*e_q_info)->value)
+			value_tmp = (char *)ft_calloc(env_len, sizeof(char));
+			if (!value_tmp)
 				return ;
-			ft_strlcpy((*e_q_info)->value, &envm[i][n_len + 1], env_len);
-			return ;
+			ft_strlcpy(value_tmp, &envm[i][n_len + 1], env_len);
+			(*e_q_info)->value = ft_strtrim(value_tmp, " \t");
+			return (free(value_tmp));
 		}
 		i++;
 	}
@@ -88,13 +90,14 @@ void	free_pre_e_q_info(char **pre, t_env_quote_info *e_q_info)
 	free(value_tmp);
 }
 
-void	ft_chenge_env_to_value(t_info *node, t_env_quote_info *e_q_info)
+void	ft_chenge_env_to_value(t_info *node, t_env_quote_info *e_q_info,
+		int node_i)
 {
 	char	*pre;
 	char	*key_tmp;
 	char	*value_tmp;
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -106,7 +109,7 @@ void	ft_chenge_env_to_value(t_info *node, t_env_quote_info *e_q_info)
 	node->str = (char *)ft_calloc(node->len, sizeof(char));
 	if (!node->str)
 		return (free(pre));
-	while (pre[i] != '$')
+	while (i < node_i - 1)
 		node->str[j++] = pre[i++];
 	while (value_tmp && *value_tmp)
 		node->str[j++] = *value_tmp++;

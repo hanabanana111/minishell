@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:19:00 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/20 17:17:55 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/27 04:03:26 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	set_here_doc_env_value(t_info *node, t_status *status)
 {
 	size_t				i;
 	t_env_quote_info	e_q_info;
-	t_env_quote_info	*p_e_q_info;	
+	t_env_quote_info	*p_e_q_info;
 
 	i = 0;
 	p_e_q_info = &e_q_info;
@@ -33,12 +33,14 @@ void	set_here_doc_env_value(t_info *node, t_status *status)
 	while (node && node->str && node->str[i])
 	{
 		p_e_q_info->is_question = 0;
-		if (node->str[i] == '$')
+		if (node->str[i] == '$' && node->str[i + 1])
 		{
-			treat_doll(&node->str[++i], p_e_q_info, node);
+			treat_doll(&node->str[i + 1], p_e_q_info, node);
 			find_env(&p_e_q_info, status->envm);
-			ft_chenge_env_to_value(node, p_e_q_info);
+			ft_chenge_env_to_value_heredoc(node, p_e_q_info, i);
 		}
+		if (node->str[i] == '$')
+			i++;
 		free(e_q_info.key);
 		if (i >= ft_strlen(node->str))
 			return ;
