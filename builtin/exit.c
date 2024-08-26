@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:27:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/26 17:29:59 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/27 04:33:13 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	is_es_digits(t_cmd *lst, int *is_minus)
 			*is_minus = 1;
 		i++;
 	}
+	if (lst->arg[1][i] == '\0')
+		return (FALSE);
 	while (lst->arg[1][i])
 	{
 		if (!ft_isdigit(lst->arg[1][i]) && !is_space_till_end(&lst->arg[1][i]))
@@ -35,15 +37,6 @@ int	is_es_digits(t_cmd *lst, int *is_minus)
 	}
 	return (TRUE);
 }
-
-// int	write_error_invalid_argment(char *cmd)
-// {
-// 	//debug
-// 	// ft_printf(2, "cmd = [%s]\n", cmd);
-// 	//end
-// 	ft_printf(2, "minishell : exit: %s: numeric argument required\n", cmd);
-// 	return (2);
-// }
 
 int	is_pipe(t_cmd *lst)
 {
