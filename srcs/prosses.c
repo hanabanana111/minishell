@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/22 20:00:12 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:04:04 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ int	check_cmd_exist(char *path, t_cmd *lst)
 		return (1);
 	if (path != NULL && access(path, X_OK) == 0)
 		return (1);
+	if (path == NULL && lst->cmd == NULL)
+	{
+		end_status_func(0);
+		return (0);
+	}
 	if (lst->pipe_0 > 0)
 	{
 		close(lst->pipe_0);
@@ -114,7 +119,7 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 	info = create_pipe(info, lst);
 	if (info == NULL)
 		return ;
-	if (ft_strncmp(lst -> str, "\0", 1) == 0 && lst -> key && !(lst -> next))
+	if (ft_strncmp(lst->str, "\0", 1) == 0 && lst->key && !(lst->next))
 	{
 		free_cmd(info);
 		return ;
