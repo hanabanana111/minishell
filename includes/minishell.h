@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/22 20:09:40 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:04:28 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,5 +304,8 @@ void							set_quotes_char(char str_char,
 void							env_args_print_error(char *arg1);
 int								search_arg(char *str1, t_info *lst);
 t_cmd							*insert_flg(t_info *lst, t_cmd *ans);
+void							print_numeric_arg(t_cmd *lst);
+int								is_es_digits(t_cmd *lst, int *is_minus);
+int								is_oflow(const char *str, int minus);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:27:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/18 06:26:32 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:29:59 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_es_digits(t_cmd *lst, int *is_minus)
 	size_t	i;
 
 	i = 0;
-	if (!lst->arg[1])
+	if (lst->arg && lst->arg[0] && !lst->arg[1])
 		return (TRUE);
 	while (ft_isspace_tab_space(lst->arg[1][i]))
 		i++;
@@ -36,11 +36,14 @@ int	is_es_digits(t_cmd *lst, int *is_minus)
 	return (TRUE);
 }
 
-int	write_error_invalid_argment(char *cmd)
-{
-	ft_printf(2, "minishell : exit: %s: numeric argument required\n", cmd);
-	return (2);
-}
+// int	write_error_invalid_argment(char *cmd)
+// {
+// 	//debug
+// 	// ft_printf(2, "cmd = [%s]\n", cmd);
+// 	//end
+// 	ft_printf(2, "minishell : exit: %s: numeric argument required\n", cmd);
+// 	return (2);
+// }
 
 int	is_pipe(t_cmd *lst)
 {
@@ -49,7 +52,7 @@ int	is_pipe(t_cmd *lst)
 	return (FALSE);
 }
 
-static int	is_oflow(const char *str, int minus)
+int	is_oflow(const char *str, int minus)
 {
 	unsigned long	res;
 	unsigned long	ul_max;
@@ -78,28 +81,37 @@ static int	is_oflow(const char *str, int minus)
 	return (FALSE);
 }
 
+int	is_exit_first_arg(t_cmd *lst)
+{
+	if (lst->arg && lst->arg[0] && lst->arg[1])
+		return (TRUE);
+	return (FALSE);
+}
+
 int	exit_func(t_cmd *lst, int is_parents)
 {
-	long	end_status;
-	int		is_minus;
+	int	is_minus;
+	int	is_exit_arg;
 
-	end_status = 0;
 	is_minus = 0;
+	is_exit_arg = is_exit_first_arg(lst);
 	if (!is_pipe(lst) && is_parents)
 		printf("exit\n");
-	if (!lst->arg[1])
-		end_status = end_status_func(-1);
-	else if (!is_es_digits(lst, &is_minus) || is_oflow(lst->arg[1], is_minus))
-		end_status = write_error_invalid_argment(lst->arg[1]);
-	else if (lst->arg[1] && lst->arg[2])
+	if (!is_exit_arg)
+		end_status_func(-1);
+	if (is_parents)
+		print_numeric_arg(lst);
+	if (is_parents && !is_pipe(lst))
+		exit(end_status_func(-1));
+	else if (is_exit_arg && lst->arg[2])
 	{
-		end_status = write_error_str(": exit: too many arguments\n");
+		write_error_str(": exit: too many arguments\n");
 		return (end_status_func(1), 1);
 	}
-	else if (lst->arg[1] && is_es_digits(lst, &is_minus)
+	else if (is_exit_arg && is_es_digits(lst, &is_minus)
 		&& !is_oflow(lst->arg[1], is_minus) && !lst->arg[2])
-		end_status = (unsigned char)ft_atol(lst->arg[1]);
+		end_status_func((unsigned char)ft_atol(lst->arg[1]));
 	if ((is_parents && !is_pipe(lst)) || !is_parents)
-		exit(end_status);
+		exit(end_status_func(-1));
 	return (0);
 }

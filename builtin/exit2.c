@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/11 19:05:08 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:31:02 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,28 @@ int	is_space_till_end(char *str)
 int	ft_isspace_tab_space(int c)
 {
 	return (c == '\t' || c == ' ');
+}
+
+void	print_numeric_arg(t_cmd *lst)
+{
+	int		is_minus;
+	t_cmd	*node;
+
+	is_minus = 0;
+	node = lst;
+	while (node)
+	{
+		if (node->arg && node->arg[0] && node->arg[1])
+		{
+			if (!is_es_digits(node, &is_minus) || is_oflow(node->arg[1],
+					is_minus))
+			{
+				ft_printf(2, "minishell : exit:");
+				ft_printf(2, " %s: numeric argument required\n", node->arg[1]);
+				if (!node->next)
+					end_status_func(2);
+			}
+		}
+		node = node->next;
+	}
 }
