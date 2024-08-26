@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:02:40 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/19 12:45:27 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/27 01:21:42 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int	ft_cd(t_cmd *first, t_status *status)
 		return (0);
 	if (first->arg[1] == NULL)
 		return (move_home(status->envm, status, first));
+	if (ft_strncmp(first->arg[1], "\0", 1) == 0)
+		return (1);
 	if (first->arg[2])
 		return (is_cd_too_many_args(), 1);
 	if (ft_strncmp(first->arg[1], ".\0", 2) == 0)
