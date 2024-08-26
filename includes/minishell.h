@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/26 17:04:28 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/27 00:56:16 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
-// # include <ncursesw/curses.h>
-// #include
-# include <signal.h>
 # include <stdio.h>
+# include <ncursesw/curses.h>
+# include <readline/history.h>
+# include <readline/readline.h>
+# include <signal.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/types.h>
@@ -29,8 +30,6 @@
 # include <term.h>
 # include <termios.h>
 # include <unistd.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 
 extern volatile sig_atomic_t	g_sig;
 
@@ -308,5 +307,6 @@ t_cmd							*insert_flg(t_info *lst, t_cmd *ans);
 void							print_numeric_arg(t_cmd *lst);
 int								is_es_digits(t_cmd *lst, int *is_minus);
 int								is_oflow(const char *str, int minus);
+void							while_key_incriment_i(char *key_tmp, char *pre, size_t *i);
 
 #endif

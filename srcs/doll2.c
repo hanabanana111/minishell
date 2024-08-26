@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 18:37:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/11 19:12:12 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/27 00:58:43 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,15 @@ int	is_doll(char *str)
 		i++;
 	}
 	return (FALSE);
+}
+
+void	while_key_incriment_i(char *key_tmp, char *pre, size_t *i)
+{
+	size_t	k;
+
+	k = 0;
+	while (key_tmp[k] && pre[++(*i)] == key_tmp[k])
+		k++;
+	if (key_tmp && *key_tmp)
+		(*i)++;
 }

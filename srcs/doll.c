@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:09:34 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/20 08:53:58 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/27 00:59:31 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ void	ft_chenge_env_to_value(t_info *node, t_env_quote_info *e_q_info)
 	pre = node->str;
 	key_tmp = e_q_info->key;
 	value_tmp = e_q_info->value;
-	node->len = s_strlen(node->str) - s_strlen(key_tmp) + s_strlen(value_tmp);
+	node->len = s_strlen(node->str) - s_strlen(key_tmp) + s_strlen(value_tmp)
+		+ 1;
 	node->str = (char *)ft_calloc(node->len, sizeof(char));
 	if (!node->str)
 		return (free(pre));
@@ -109,9 +110,8 @@ void	ft_chenge_env_to_value(t_info *node, t_env_quote_info *e_q_info)
 		node->str[j++] = pre[i++];
 	while (value_tmp && *value_tmp)
 		node->str[j++] = *value_tmp++;
-	while (*key_tmp && pre[++i] == *key_tmp)
-		key_tmp++;
-	while (pre[++i])
-		node->str[j++] = pre[i];
+	while_key_incriment_i(key_tmp, pre, &i);
+	while (pre[i])
+		node->str[j++] = pre[i++];
 	free_pre_e_q_info(&pre, e_q_info);
 }
