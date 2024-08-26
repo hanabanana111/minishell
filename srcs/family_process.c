@@ -32,10 +32,10 @@ void	children_process(t_cmd *lst, t_status *env_lst, t_cmd *first)
 
 void	parent_process(t_cmd *lst, int i)
 {
-	int	end_status;
+	// int	end_status;
 
 	(void)i;
-	end_status = 0;
+	// end_status = 0;
 	if (lst->pipe_1 != 1)
 		close(lst->pipe_1);
 	if (lst->pipe_0 > 2)
