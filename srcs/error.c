@@ -72,6 +72,7 @@ void	re_free(char *str, t_info *lst)
 	t_info	*tmp;
 	t_info	*node;
 
+	(void)str;
 	node = lst;
 	str = NULL;
 	while (node)

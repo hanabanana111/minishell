@@ -21,10 +21,10 @@ void	set_pipe_cmd_lst_next(t_cmd **cmd_lst, int pp)
 t_cmd	*create_pipe(t_cmd *ans, t_info *lst)
 {
 	t_cmd	*cmd_lst;
-	t_info	*first;
+	// t_info	*first;
 	int		pp[2];
 
-	first = lst;
+	// first = lst;
 	cmd_lst = ans;
 	while (lst)
 	{

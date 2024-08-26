@@ -18,7 +18,8 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
-# include <ncursesw/curses.h>
+// # include <ncursesw/curses.h>
+// #include
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
