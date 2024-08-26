@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:46:28 by kawaharadar       #+#    #+#             */
-/*   Updated: 2024/08/15 20:43:51 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:45:47 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ void	set_pipe_cmd_lst_next(t_cmd **cmd_lst, int pp)
 t_cmd	*create_pipe(t_cmd *ans, t_info *lst)
 {
 	t_cmd	*cmd_lst;
-	// t_info	*first;
 	int		pp[2];
 
-	// first = lst;
 	cmd_lst = ans;
 	while (lst)
 	{
