@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/27 03:59:03 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:55:51 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,6 @@ typedef struct s_syntax_heredoc
 	int							is_heredoc;
 }								t_syn_here;
 
-typedef struct s_gnl
-{
-	char						buf[42];
-	char						*bufp;
-	int							n;
-}								t_gnl;
 
 void							ft_miniprocess(t_info *first,
 									t_status *env_lst);

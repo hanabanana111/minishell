@@ -6,25 +6,11 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:27:40 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/15 16:54:17 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:56:57 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	ans_checker(char *ans)
-{
-	size_t	i;
-
-	i = 0;
-	while (ans[i])
-	{
-		if (ans[i] != '\n')
-			return (TRUE);
-		i++;
-	}
-	return (FALSE);
-}
 
 char	*s_strjoin(char const *s1, char const *s2)
 {

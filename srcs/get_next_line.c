@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:41:49 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/22 23:46:23 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:56:06 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_getchar(int fd, t_buf *gnl)
 		gnl->n = read(fd, gnl->buf, 42);
 		if (gnl->n < 0)
 		{
-			ft_bzero(gnl, sizeof(t_gnl));
+			ft_bzero(gnl, sizeof(t_buf));
 			return (-2);
 		}
 		gnl->bufp = gnl->buf;
@@ -28,7 +28,7 @@ static int	ft_getchar(int fd, t_buf *gnl)
 		return ((unsigned char)*gnl->bufp++);
 	else
 	{
-		ft_bzero(gnl, sizeof(t_gnl));
+		ft_bzero(gnl, sizeof(t_buf));
 		return (EOF);
 	}
 }
