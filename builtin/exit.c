@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:27:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/29 15:45:06 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:59:54 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	exit_func(t_cmd *lst, int is_parents)
 		return (end_status_func(1), 1);
 	}
 	else if (is_exit_arg && is_es_digits(lst, &is_minus)
-		&& !is_oflow(lst->arg[1], is_minus) && !lst->arg[2])
+		&& !is_oflow(lst->arg[1], is_minus) && !lst->arg[2] && !lst->next)
 		end_status_func((unsigned char)ft_atol(lst->arg[1]));
 	if ((is_parents && !is_pipe(lst)) || !is_parents)
 		exit(end_status_func(-1));
