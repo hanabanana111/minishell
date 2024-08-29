@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:27:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/27 04:33:13 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:45:06 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	exit_func(t_cmd *lst, int is_parents)
 		end_status_func(-1);
 	if (is_parents)
 		print_numeric_arg(lst);
-	if (is_parents && !is_pipe(lst))
+	if (is_parents && !is_pipe(lst) && !is_exit_arg)
 		exit(end_status_func(-1));
 	else if (is_exit_arg && lst->arg[2])
 	{

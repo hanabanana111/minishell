@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/27 18:55:51 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:39:57 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ typedef struct s_syntax_heredoc
 	int							is_syntax;
 	int							is_heredoc;
 }								t_syn_here;
-
 
 void							ft_miniprocess(t_info *first,
 									t_status *env_lst);
