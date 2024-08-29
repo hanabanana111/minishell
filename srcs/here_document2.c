@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:19:00 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/27 04:03:26 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:21:40 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ void	set_here_doc_env_value(t_info *node, t_status *status)
 			find_env(&p_e_q_info, status->envm);
 			ft_chenge_env_to_value_heredoc(node, p_e_q_info, i);
 		}
-		if (node->str[i] == '$')
-			i++;
 		free(e_q_info.key);
-		if (i >= ft_strlen(node->str))
+		if (node->str && i >= ft_strlen(node->str))
 			return ;
-		if (node->str[i] != '$')
+		if (node->str[i] != '$' || (node->str[i] == '$'
+				&& !is_valid_key(node->str, i)))
 			i++;
 	}
 }

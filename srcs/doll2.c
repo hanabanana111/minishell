@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 18:37:20 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/27 04:25:48 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:21:08 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	init_heredoc_value(t_info *node, t_env_quote_info *e_q_info, char **key_tmp,
 	*key_tmp = e_q_info->key;
 	*value_tmp = e_q_info->value;
 	node->len = s_strlen(node->str) - s_strlen(*key_tmp) + s_strlen(*value_tmp)
-		+ 1;
+		+ 2;
 	if (*key_tmp && *key_tmp[0] == '\0')
 		node->len += 1;
 	node->str = (char *)ft_calloc(node->len, sizeof(char));
@@ -85,15 +85,12 @@ void	ft_chenge_env_to_value_heredoc(t_info *node, t_env_quote_info *e_q_info,
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	j = 0;
-	pre = node->str;
+	init_heredoc_pre_size(&i, &j, &pre, node);
 	if (init_heredoc_value(node, e_q_info, &key_tmp, &value_tmp))
 		return (free(pre));
 	while (i < node_i)
 		node->str[j++] = pre[i++];
-	if (pre[i + 1] && (pre[i + 1] == '_' || ft_isalpha(pre[i + 1]) || pre[i \
-			+ 1] == '?'))
+	if (is_valid_key(pre, i))
 	{
 		while (value_tmp && *value_tmp)
 			node->str[j++] = *value_tmp++;
@@ -101,6 +98,8 @@ void	ft_chenge_env_to_value_heredoc(t_info *node, t_env_quote_info *e_q_info,
 			key_tmp++;
 		i++;
 	}
+	if (ft_strncmp("$$", &pre[i], 2) == 0)
+		i += 2;
 	while (pre[i])
 		node->str[j++] = pre[i++];
 	free_pre_e_q_info(&pre, e_q_info);

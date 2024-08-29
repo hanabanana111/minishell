@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:59:37 by hakobori          #+#    #+#             */
-/*   Updated: 2024/08/29 15:55:05 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/29 18:56:33 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,5 +306,10 @@ void							ft_chenge_env_to_value_heredoc(t_info *node,
 									t_env_quote_info *e_q_info, size_t node_i);
 void							free_pre_e_q_info(char **pre,
 									t_env_quote_info *e_q_info);
+void							super_strncpy(char *dst, const char *src,
+									size_t dstsize);
+int								is_valid_key(char *pre, size_t i);
+void							init_heredoc_pre_size(size_t *i, size_t *j,
+									char **pre, t_info *node);
 
 #endif
