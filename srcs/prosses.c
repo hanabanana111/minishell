@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:54:42 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/26 16:04:04 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/29 20:49:12 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,4 +158,23 @@ void	ft_miniprocess(t_info *first, t_status *env_lst)
 // 		lst = lst->next;
 // 	}
 // 	return (first);
+// }
+
+// void	check_infolst(t_info *lst)
+// {
+// 	t_info *first;
+// 	int fd;
+
+// 	first = lst;
+// 	while (first)
+// 	{
+// 		if (first -> str[0] == '>')
+// 			fd = open(first->next->str, O_CREAT | O_TRUNC | O_WRONLY, 0000644);
+// 		first = first -> next;
+// 	}
+// 	while (lst)
+// 	{
+// 		ft_printf(fd, "str = %s\n", lst->str);
+// 		lst = lst -> next;
+// 	}
 // }

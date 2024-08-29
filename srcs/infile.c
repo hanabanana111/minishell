@@ -6,7 +6,7 @@
 /*   By: hakobori <hakobori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:26:49 by rkawahar          #+#    #+#             */
-/*   Updated: 2024/08/15 15:03:31 by hakobori         ###   ########.fr       */
+/*   Updated: 2024/08/29 20:45:39 by hakobori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	infile_redirect2(char *str)
 		error_exit("infile_redirect");
 	if (str)
 	{
-		byte = write(pipe_fd[1], str, ft_strlen(str) + 1);
+		byte = write(pipe_fd[1], str, ft_strlen(str));
 		if (byte < 0)
 			error_exit("infile_redirect1");
 	}
